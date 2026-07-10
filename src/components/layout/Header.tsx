@@ -53,7 +53,11 @@ export function Header() {
         )}
       >
         <Container className="flex min-h-16 items-center justify-between gap-3 lg:min-h-[72px] xl:gap-4">
-          <Link href="/" className="inline-flex items-center" aria-label="Viesta homepage">
+          <Link
+            href="/"
+            className="inline-flex items-center"
+            aria-label="Viesta homepage"
+          >
             <Image
               src={siteContent.logo}
               alt=""
@@ -69,7 +73,10 @@ export function Header() {
               Secure WhatsApp checkout
             </p>
           ) : (
-            <nav aria-label="Main navigation" className="hidden items-center gap-4 lg:flex xl:gap-6">
+            <nav
+              aria-label="Main navigation"
+              className="hidden items-center gap-4 lg:flex xl:gap-6"
+            >
               {navItems.map((item) => {
                 const isActive = isActiveNavItem(pathname, item);
 
@@ -109,7 +116,11 @@ export function Header() {
                 type="button"
                 aria-expanded={isMobileSearchOpen}
                 aria-controls="mobile-header-search-panel"
-                aria-label={isMobileSearchOpen ? "Close product search" : "Open product search"}
+                aria-label={
+                  isMobileSearchOpen
+                    ? "Close product search"
+                    : "Open product search"
+                }
                 onClick={() => setIsMobileSearchOpen((current) => !current)}
               >
                 {isMobileSearchOpen ? (
@@ -135,12 +146,18 @@ export function Header() {
               </button>
             ) : null}
             {!isCheckout ? (
-              <MobileNavigation triggerClassName="text-white hover:bg-white/10 hover:text-brand-primary" />
+              <MobileNavigation
+                triggerClassName="text-white hover:bg-white/10 hover:text-brand-primary"
+                onOpen={closeMobileSearch}
+              />
             ) : null}
           </div>
         </Container>
         {!isCheckout && isMobileSearchOpen ? (
-          <div id="mobile-header-search-panel" className="border-t border-white/10 bg-brand-charcoal/95 lg:hidden">
+          <div
+            id="mobile-header-search-panel"
+            className="border-t border-white/10 bg-brand-charcoal/95 lg:hidden"
+          >
             <Container className="py-3">
               <Suspense fallback={null}>
                 <NavigationSearch

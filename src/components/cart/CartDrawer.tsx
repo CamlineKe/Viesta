@@ -69,10 +69,10 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       <aside
         ref={drawerRef}
         aria-labelledby="cart-drawer-title"
-        className="absolute right-0 top-0 flex h-full w-full max-w-[420px] animate-slide-in-right flex-col bg-white shadow-brand-xl"
+        className="drawer-viewport absolute right-0 top-0 flex w-full max-w-[420px] animate-slide-in-right flex-col overflow-hidden bg-white shadow-brand-xl"
         tabIndex={-1}
       >
-        <div className="flex items-center justify-between gap-4 border-b border-brand-border px-5 py-4">
+        <div className="drawer-header-safe flex items-center justify-between gap-4 border-b border-brand-border px-5 py-4">
           <div>
             <h2
               id="cart-drawer-title"
@@ -178,7 +178,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               ))}
             </div>
 
-            <div className="border-t border-brand-border bg-brand-cream px-5 py-5">
+            <div className="drawer-footer-safe border-t border-brand-border bg-brand-cream px-5 py-5">
               <div className="flex items-center justify-between gap-4">
                 <span className="font-heading text-lg font-extrabold text-brand-charcoal">
                   Subtotal
