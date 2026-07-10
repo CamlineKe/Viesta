@@ -26,3 +26,6 @@ pnpm-debug.log*
 # OS and editors
 .DS_Store
 *.swp
+
+TS Metadata
+tsconfig.tsbuildinfo
