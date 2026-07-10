@@ -367,6 +367,31 @@ Best Sellers:
 
 ## 7. Responsive Behavior
 
+### Responsive Contract
+
+The storefront uses mobile-first CSS. Components should use normal document flow, fluid widths,
+CSS grid/flex reflow, intrinsic image ratios, and the breakpoint rules below. Do not add
+device-specific JavaScript for ordinary layout changes.
+
+| Range       | Tailwind boundary | Layout contract                                                                                                                                                                                                                                   |
+| ----------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 320–639px   | Base              | One-column reading flow unless a two-column product grid is explicitly specified. Header uses icon controls and the hamburger drawer. Horizontal rails and filter chips may scroll intentionally; the page itself must not overflow horizontally. |
+| 640–767px   | `sm`              | Preserve the mobile navigation mode. Buttons may sit side-by-side when their labels remain readable. Content gutters increase, and repeated content may move to two columns where specified.                                                      |
+| 768–1023px  | `md`              | Retain the hamburger navigation. Use tablet-friendly grids: two blog cards, three shop product cards, and stacked product detail/checkout layouts. Drawers remain operable with clear close controls.                                             |
+| 1024–1279px | `lg`              | Enable the full header navigation, desktop search, sticky sidebars, and two-column detail/checkout layouts. Grids should prioritise readable cards over maximum density.                                                                          |
+| 1280–1535px | `xl`              | Increase desktop breathing room. Blog grids may use three columns and sidebars may widen where this improves scanning.                                                                                                                            |
+| 1536px+     | `2xl`             | Keep page content constrained by the shared container. Product grids may use four columns only when card content remains comfortably readable.                                                                                                    |
+
+#### Global responsive rules
+
+- Use the shared `Container` gutters: 16px at base, 24px from `sm`, and 32px from `lg`.
+- Treat 360–390px-wide phones and a short visual viewport as supported baselines. Drawers and fixed controls must account for browser chrome and safe-area insets.
+- A component must be usable at 200% browser zoom and when text wraps. Do not depend on fixed combined header heights for primary content sizing.
+- Fixed or sticky UI must not cover a close control, primary form action, validation feedback, or the last drawer action.
+- Horizontal scrolling is permitted only for deliberately labelled rails/chip rows; use scroll snapping and ensure the containing page has no horizontal overflow.
+- Image regions must reserve their final space with an aspect ratio or explicit dimensions. Use responsive `sizes` values that match the rendered layout.
+- Motion is progressive enhancement only and must continue to respect the global reduced-motion preference.
+
 | Surface          | Mobile                                  | Tablet                        | Desktop                 |
 | ---------------- | --------------------------------------- | ----------------------------- | ----------------------- |
 | Header           | Hamburger, cart trigger except checkout | Hamburger                     | Full nav                |
@@ -378,6 +403,19 @@ Best Sellers:
 | Blog cards       | 1 column                                | 2 columns                     | 3 columns               |
 | Cart drawer      | Full width max 420px                    | Right drawer                  | Right drawer            |
 | Checkout         | Stacked                                 | Stacked                       | Form + sticky summary   |
+
+#### Page and component acceptance contract
+
+| Area                        | Required behaviour                                                                                                                                                                                                                     |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Global chrome               | At widths below 1024px, search, cart, and menu controls remain visible without collision. At 1024px and above, logo, full navigation, search, and cart remain on one readable row.                                                     |
+| Mobile navigation           | The panel opens from the right, closes by link/backdrop/close/Escape, traps and restores focus, locks background scroll, and remains vertically scrollable on short viewports. Its close control and WhatsApp action remain reachable. |
+| Hero and calls to action    | Hero stacks below `lg`; action buttons stack at base and may share a row from `sm` only if labels fit. Decorative media must not cause page overflow.                                                                                  |
+| Product discovery           | Shop products are two columns at base, three from `md`, and may become four only from `2xl`. Category filters use a deliberate horizontal chip rail below `lg`, then a sticky sidebar.                                                 |
+| Product and blog rails      | A rail displays one substantial card at base. Related products become a two-column grid from `sm`; blog cards become two columns from `md` and three from `xl`.                                                                        |
+| Detail, cart, and checkout  | Product detail, cart, and checkout are stacked below `lg`; desktop columns begin at `lg`. Sticky summaries/sidebars must use an offset that clears the sticky header.                                                                  |
+| Forms and feedback          | Form fields remain full-width and labels/errors do not clip or overlap. Two-field groups begin at `sm`; controls retain practical touch targets.                                                                                       |
+| Footer and floating actions | Footer progresses from one column to two at `md` and four at `lg`. Floating WhatsApp control respects mobile safe areas and does not obscure an essential action.                                                                      |
 
 ### Responsive QA Matrix
 
