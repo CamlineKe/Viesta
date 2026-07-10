@@ -139,6 +139,7 @@ export default function HomePage() {
                     pathname: "/shop",
                     query: { category: category.slug },
                   }}
+                  aria-label={`Browse ${category.name} products`}
                   className="premium-card group overflow-hidden rounded-brand-lg focus-visible:outline-offset-4"
                   style={{ animationDelay: `${index * 80}ms` }}
                 >
@@ -146,7 +147,7 @@ export default function HomePage() {
                     <Image
                       fill
                       alt=""
-                      className="object-contain p-4 transition duration-500 ease-out-expo group-hover:scale-105"
+                      className="object-contain p-4 transition duration-500 ease-out-expo group-hover:scale-105 group-focus-visible:scale-105"
                       sizes="(min-width: 1024px) 18vw, (min-width: 640px) 42vw, 92vw"
                       src={category.image}
                     />
@@ -163,7 +164,7 @@ export default function HomePage() {
                       </div>
                       <ArrowRight
                         aria-hidden="true"
-                        className="mt-1 h-5 w-5 shrink-0 text-brand-charcoal transition duration-300 ease-out-expo group-hover:translate-x-1 group-hover:text-brand-success"
+                        className="mt-1 h-5 w-5 shrink-0 text-brand-charcoal transition duration-300 ease-out-expo group-hover:translate-x-1 group-hover:text-brand-success group-focus-visible:translate-x-1 group-focus-visible:text-brand-success"
                       />
                     </div>
                     <p className="mt-3 text-sm leading-6 text-brand-muted">
