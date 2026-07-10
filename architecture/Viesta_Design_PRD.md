@@ -430,6 +430,20 @@ The source implementation must be visually checked before release at the followi
 
 At each viewport, check keyboard navigation, text wrapping at increased browser zoom, image cropping/loading, focus visibility, modal/drawer behavior, and an operating-system reduced-motion preference.
 
+### Manual browser QA handoff
+
+Run this checklist in browser responsive mode and on available physical devices before release. Browser configuration is intentionally owned by the release reviewer; this checklist does not require application code changes.
+
+1. At 360px and 390px, visit Home, Shop, a product page, Cart, Checkout, Blog, FAQs, and Contact. Confirm there is no page-level horizontal scroll, card CTAs remain readable, and filter/related-content rails scroll only within their intended rows.
+2. At 768px, confirm the hamburger, search, and cart controls fit on one header row; product grids use three columns; blog grids use two columns; and product detail/cart/checkout remain stacked.
+3. At 1024px and 1280px, confirm the desktop header has no collision between logo, navigation, search, and cart; sidebars and summaries remain below the sticky header; and product detail/cart/checkout become two-column layouts.
+4. At 1440px and wider, confirm content remains constrained, hero media remains balanced, blog cards use three columns, and only the intended wide product grids use four columns.
+5. On a short mobile viewport, open the hamburger and cart drawers. Verify the close control and WhatsApp/checkout actions remain reachable, drawer content scrolls independently, backdrop click and Escape close the drawer, and focus returns to the triggering control.
+6. At 200% browser zoom and with increased system text size, verify announcement text, buttons, form labels/errors, cart totals, and checkout actions wrap without clipping or overlap.
+7. Enable reduced motion and keyboard-only navigation. Verify focus is visible, Tab remains within an open drawer, and motion does not impede use.
+
+Record any failure with its route, viewport width/height, browser/device, zoom or text-size setting, reproduction steps, and a screenshot. This makes responsive regressions reproducible without relying on a specific tester's browser setup.
+
 ## 8. Accessibility
 
 - All interactive elements need visible focus states.
