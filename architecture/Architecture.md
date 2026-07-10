@@ -167,7 +167,7 @@ vitest.config.ts        # Unit test configuration
 - Shipping zones: `src/data/shipping-zones.ts`
 - Site identity, contacts, payment, SEO: `src/data/site.ts`
 
-Data is intentionally local and typed. Until launch facts are confirmed, product prices, product claims, legal text, and payment details should remain flagged as unconfirmed rather than silently treated as final. Business phone, WhatsApp, email, and physical address are confirmed in `src/data/site.ts`.
+Data is intentionally local and typed. Until launch facts are confirmed, product claims, legal text, and payment details should remain flagged as unconfirmed rather than silently treated as final. All catalog product prices are confirmed in `src/data/products.ts`. Business phone, WhatsApp, email, and physical address are confirmed in `src/data/site.ts`.
 
 ## State And Client Boundaries
 
@@ -275,7 +275,6 @@ npm test
 
 The application builds and statically generates successfully, but these facts remain required before launch:
 
-- Final product prices.
 - Final product labels, usage directions, ingredients, warnings, and compliant claims.
 - Final Paybill/Till details.
 - Final legal copy.

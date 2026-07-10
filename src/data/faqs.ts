@@ -34,7 +34,7 @@ export const faqs: FAQ[] = [
     category: "products",
     question: "Are product details final?",
     answer:
-      "Some product entries are still draft content. Final prices, ingredients, usage directions, and product claims must be confirmed before launch.",
+      "All product prices are confirmed. Some product entries still contain draft label details, ingredients, usage directions, and product claims that must be confirmed before launch.",
   },
   {
     id: "faq-products-002",

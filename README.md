@@ -17,7 +17,7 @@ Proprietary pre-launch storefront.
 
 The application structure and commerce flow are implemented, but production launch still depends on final business confirmation for:
 
-- Product prices, labels, ingredients, usage directions, warnings, and compliant health claims.
+- Product labels, ingredients, usage directions, warnings, and compliant health claims.
 - M-Pesa Paybill/Till details.
 - Final legal copy.
 - Responsive, browser, accessibility, and WhatsApp redirect testing.
@@ -143,7 +143,7 @@ flowchart TD
 | Legal page content | `src/data/legal.ts` |
 | Testimonials | `src/data/testimonials.ts` |
 
-Product prices, product claims, legal copy, and payment details should stay visibly marked as pending until the business confirms them.
+Product claims, legal copy, and payment details should stay visibly marked as pending until the business confirms them. All catalog product prices are confirmed in `src/data/products.ts`.
 
 ## Commerce Flow
 

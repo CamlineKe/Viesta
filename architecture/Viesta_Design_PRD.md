@@ -444,7 +444,7 @@ If introduced later, each pattern requires its own responsive, keyboard, focus, 
 
 ## 12. Current Launch Risks
 
-- Final product prices and price statuses still need business review.
+- Product prices and price statuses are confirmed; product label facts, ingredients, usage, warnings, and claims still need business review.
 - Product label facts, ingredients, usage, warnings, and claims need confirmation.
 - Paybill/Till details are not final; WhatsApp orders can proceed with payment details confirmed manually in chat.
 - Legal pages are draft content.

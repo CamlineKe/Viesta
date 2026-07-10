@@ -21,9 +21,9 @@ describe("product pricing metadata", () => {
     expect(products.every((product) => product.price > 0)).toBe(true);
   });
 
-  it("tracks confirmed and estimated price status across the catalog", () => {
-    expect(products.filter((product) => product.priceStatus === "estimated")).toHaveLength(8);
-    expect(products.filter((product) => product.priceStatus === "confirmed")).toHaveLength(18);
+  it("tracks confirmed prices across the entire catalog", () => {
+    expect(products.filter((product) => product.priceStatus === "estimated")).toHaveLength(0);
+    expect(products.filter((product) => product.priceStatus === "confirmed")).toHaveLength(26);
   });
 
   it("applies exact single-pack pricing with pack size and MOQ", () => {
@@ -62,27 +62,21 @@ describe("product pricing metadata", () => {
     ]);
   });
 
-  it("marks previously ambiguous or missing prices as estimated", () => {
-    expect(getProduct("bio1-gluco-capsules")).toMatchObject({
-      price: 350,
-      priceStatus: "estimated",
-      packSize: "30s",
-      minimumOrderQuantity: 100,
-    });
+  it("applies the confirmed prices for formerly estimated products", () => {
+    const confirmedPrices = {
+      "bio1-gluco-capsules": 4000,
+      "bio1-gluco-powder": 1500,
+      "bio1-gluco-teabags": 2000,
+      "bio1-sterol-powder": 1500,
+      "bio1-sterol-teabags": 2500,
+      "bio-power-for-arthritis": 2000,
+      "bio2-acidity-h-pylori": 3500,
+      "bio-optic-capsules-vision-eye-health-support": 3500,
+    };
 
-    expect(getProduct("bio1-gluco-teabags")).toMatchObject({
-      price: 300,
-      priceStatus: "estimated",
-      packSize: "20 tea bags",
-      minimumOrderQuantity: 100,
-    });
-
-    expect(getProduct("bio-power-for-arthritis")).toMatchObject({
-      price: 500,
-      priceStatus: "estimated",
-      packSize: "30s",
-      minimumOrderQuantity: 100,
-    });
+    for (const [slug, price] of Object.entries(confirmedPrices)) {
+      expect(getProduct(slug)).toMatchObject({ price, priceStatus: "confirmed" });
+    }
   });
 
   it("removes price and stock confirmations only for products with confirmed prices", () => {
@@ -90,10 +84,10 @@ describe("product pricing metadata", () => {
     expect(getProduct("bio1-sterol-capsules").needsConfirmation).not.toContain("stock status");
   });
 
-  it("keeps price confirmation but removes stock confirmation for estimated prices", () => {
-    const estimatedProduct = getProduct("bio1-gluco-powder");
+  it("removes price and stock confirmations for newly confirmed products", () => {
+    const confirmedProduct = getProduct("bio1-gluco-powder");
 
-    expect(estimatedProduct.needsConfirmation).toContain("price");
-    expect(estimatedProduct.needsConfirmation).not.toContain("stock status");
+    expect(confirmedProduct.needsConfirmation).not.toContain("price");
+    expect(confirmedProduct.needsConfirmation).not.toContain("stock status");
   });
 });
