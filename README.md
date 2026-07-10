@@ -51,6 +51,17 @@ Open the local app:
 http://localhost:3000
 ```
 
+### Refresh the local Next.js cache
+
+If a changed static asset, such as a product image, does not appear locally, stop the development server and run:
+
+```bash
+rm -rf .next
+npm run dev
+```
+
+This removes generated Next.js development cache files only; it does not remove source files.
+
 Build and run production locally:
 
 ```bash
