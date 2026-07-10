@@ -55,19 +55,24 @@ src/
 │   │   ├── DeliverySelector.tsx
 │   │   ├── OrderSummary.tsx
 │   │   └── WhatsAppOrderButton.tsx
+│   ├── contact/
+│   │   └── WhatsAppInquiryForm.tsx
 │   ├── content/
 │   │   ├── BlogCard.tsx
 │   │   ├── BlogGrid.tsx
 │   │   ├── FAQAccordion.tsx
 │   │   ├── LegalPageLayout.tsx
 │   │   └── TestimonialCard.tsx
+│   ├── icons/
+│   │   └── WhatsAppIcon.tsx
 │   ├── layout/
 │   │   ├── FloatingWhatsAppButton.tsx
 │   │   ├── Footer.tsx
 │   │   ├── Header.tsx
 │   │   ├── MobileNavigation.tsx
 │   │   ├── NavigationSearch.tsx
-│   │   └── TopBar.tsx
+│   │   ├── TopBar.tsx
+│   │   └── navigation-state.ts
 │   ├── product/
 │   │   ├── ProductGallery.tsx
 │   │   ├── ProductInfo.tsx
@@ -79,9 +84,12 @@ src/
 │   │   ├── ProductGrid.tsx
 │   │   └── SortSelect.tsx
 │   └── ui/
+│       ├── Alert.tsx
 │       ├── Badge.tsx
 │       ├── Button.tsx
+│       ├── Card.tsx
 │       ├── Container.tsx
+│       ├── FormField.tsx
 │       └── SectionHeader.tsx
 ├── context/
 │   ├── CartContext.tsx
@@ -96,7 +104,8 @@ src/
 │   ├── site.ts
 │   └── testimonials.ts
 ├── hooks/
-│   └── useCart.ts
+│   ├── useCart.ts
+│   └── useFocusTrap.ts
 ├── lib/
 │   ├── cart-drawer-events.ts
 │   ├── cart.ts
@@ -116,7 +125,12 @@ src/
 └── __tests__/
     ├── cart.test.ts
     ├── currency.test.ts
+    ├── focus-trap.test.tsx
+    ├── mobile-navigation.test.tsx
+    ├── product-pricing.test.ts
+    ├── products.test.ts
     ├── shipping.test.ts
+    ├── ui-primitives.test.tsx
     ├── validation.test.ts
     └── whatsapp.test.ts
 
@@ -129,7 +143,6 @@ public/
     │   ├── nutrition.png
     │   └── wellness.png
     ├── brand/hero.png
-    ├── categories/
     └── products/
 ```
 
@@ -181,11 +194,26 @@ Server components are used by default for pages and static content. Client compo
 - Add-to-cart interactions: `ProductCard.tsx`, `ProductInfo.tsx`
 - Checkout form and summary: `CheckoutView.tsx`, `CheckoutForm.tsx`, `DeliverySelector.tsx`, `OrderSummary.tsx`
 - FAQ accordion and blog filters: `FAQAccordion.tsx`, `BlogGrid.tsx`
-- Navigation search: `NavigationSearch.tsx`
-- Mobile navigation: `MobileNavigation.tsx`
+- Header and top-bar scroll state: `Header.tsx`, `TopBar.tsx`
+- Navigation search and active-link state: `NavigationSearch.tsx`, `navigation-state.ts`
+- Mobile navigation and focus management: `MobileNavigation.tsx`, `useFocusTrap.ts`
 - Floating WhatsApp inquiry CTA: `FloatingWhatsAppButton.tsx`
 
 Navigation search is product-only and routes into `/shop` using the `q` query parameter. It is exposed through the desktop header, mobile header search panel, and mobile navigation drawer. `ProductGrid.tsx` treats URL search params as the source of truth for category, sort, and query state.
+
+## Responsive And Overlay Architecture
+
+Visual breakpoint rules and browser QA criteria are owned by `Viesta_Design_PRD.md`. This document records the shared implementation mechanisms that enforce them:
+
+- `Container.tsx` provides the shared constrained layout and responsive gutters.
+- `globals.css` provides global visual tokens plus drawer viewport and safe-area utilities. Drawers use `100dvh` with a `100vh` fallback, and floating actions account for bottom/right safe-area insets.
+- `Header.tsx` owns the header search state and cart drawer state. Opening mobile navigation closes the expanded header search so the two overlays cannot remain open together.
+- `MobileNavigation.tsx` and `CartDrawer.tsx` use a right-side, 420px-maximum drawer pattern. Each locks background scrolling, supports Escape and backdrop close, and uses `useFocusTrap.ts` to contain keyboard focus and restore it to the invoking control.
+- The mobile navigation keeps its link/contact region independently scrollable, preserving reachable close and WhatsApp controls in short visual viewports.
+- `cart-drawer-events.ts` decouples add-to-cart controls from the header-owned cart drawer through the `viesta:cart-drawer-open` browser event.
+- Sticky cart, checkout, FAQ, and shop panels use the shared desktop `top-24` offset to clear the header.
+
+Any new modal, drawer, fixed action, or sticky panel should reuse these mechanisms or document why it cannot.
 
 ## Commerce Architecture
 
@@ -195,6 +223,7 @@ Navigation search is product-only and routes into `/shop` using the `q` query pa
 - Persisted to `localStorage` under `viesta-cart`.
 - Supports add, remove, quantity update, clear, subtotal, and item count.
 - Cart drawer can be opened by header cart trigger or add-to-cart events.
+- Add-to-cart controls dispatch `viesta:cart-drawer-open`; the header listens for that event and owns the drawer open state.
 - Cart page remains available for full review.
 
 ### Checkout
@@ -246,13 +275,17 @@ The real WhatsApp icon should be reserved for actions that directly open WhatsAp
 
 ## Tests
 
-Current unit tests cover:
+Current unit and component tests cover:
 
 - Cart helper behavior
 - KES currency formatting
 - Shipping fee calculation
 - Checkout validation
 - WhatsApp message and URL generation
+- Product data and pricing helpers
+- Shared UI primitive variants
+- Focus trapping and focus restoration
+- Mobile navigation opening, scroll locking, and Escape close behavior
 
 Run:
 
@@ -260,7 +293,7 @@ Run:
 npm run type-check
 npm run lint
 npm run build
-npm test
+npm run test
 ```
 
 ## Asset Strategy
