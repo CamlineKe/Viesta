@@ -197,11 +197,11 @@ export default function HomePage() {
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </div>
-          <div className="-mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-4 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0">
+          <div className="-mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 2xl:grid-cols-4">
             {featuredProducts.slice(0, 6).map((product) => (
               <div
                 key={product.id}
-                className="min-w-[82vw] snap-start sm:min-w-[340px] lg:min-w-0"
+                className="min-w-[82vw] snap-start sm:min-w-[340px] md:min-w-0"
               >
                 <ProductCard product={product} />
               </div>
@@ -232,7 +232,7 @@ export default function HomePage() {
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </div>
-          <div className="-mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
+          <div className="-mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-3">
             {featuredBlogPosts.slice(0, 3).map((post) => (
               <div
                 key={post.id}

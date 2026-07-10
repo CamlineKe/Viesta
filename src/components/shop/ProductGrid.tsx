@@ -170,7 +170,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
               <span className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-neutral-200 bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
                 <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-brand-muted" />
                 <input
-                  className="min-h-10 flex-1 bg-transparent text-sm font-semibold text-brand-charcoal outline-none"
+                  className="min-h-10 min-w-0 flex-1 bg-transparent text-sm font-semibold text-brand-charcoal outline-none"
                   placeholder="Search by name, category, or pack size"
                   type="search"
                   value={query}

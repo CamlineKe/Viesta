@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 View all articles
               </Link>
             </div>
-            <div className="-mx-4 mt-8 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
+            <div className="-mx-4 mt-8 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-3">
               {relatedPosts.map((relatedPost) => (
                 <div key={relatedPost.id} className="min-w-[82vw] snap-start sm:min-w-[340px] md:min-w-0">
                   <BlogCard post={relatedPost} />
