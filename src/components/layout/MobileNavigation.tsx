@@ -1,0 +1,165 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Mail, Menu, Phone, X } from "lucide-react";
+import { Suspense, useEffect, useRef, useState } from "react";
+
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { navItems, siteContent } from "@/data/site";
+import { cn } from "@/lib/class-names";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
+
+import { Button } from "../ui/Button";
+import { isActiveNavItem } from "./navigation-state";
+import { NavigationSearch } from "./NavigationSearch";
+
+type MobileNavigationProps = {
+  triggerClassName?: string;
+};
+
+export function MobileNavigation({ triggerClassName }: MobileNavigationProps) {
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const drawerRef = useRef<HTMLElement>(null);
+
+  useFocusTrap(isOpen, drawerRef);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
+
+  return (
+    <div className="lg:hidden">
+      <Button
+        aria-label="Open navigation"
+        aria-expanded={isOpen}
+        className={triggerClassName}
+        size="icon"
+        variant="ghost"
+        onClick={() => setIsOpen(true)}
+      >
+        <Menu aria-hidden="true" className="h-6 w-6" />
+      </Button>
+
+      {isOpen ? (
+        <div className="fixed inset-0 z-50">
+          <button
+            aria-label="Close navigation backdrop"
+            className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
+            onClick={() => setIsOpen(false)}
+          />
+          <aside
+            ref={drawerRef}
+            aria-labelledby="mobile-navigation-title"
+            aria-modal="true"
+            className="absolute right-0 top-0 flex h-full w-full max-w-sm animate-slide-in-right flex-col bg-white p-6 shadow-brand-xl"
+            role="dialog"
+            tabIndex={-1}
+          >
+            <div className="mb-8 flex items-center justify-between">
+              <h2 id="mobile-navigation-title" className="sr-only">
+                Mobile navigation
+              </h2>
+              <Image
+                src={siteContent.logo}
+                alt=""
+                width={132}
+                height={44}
+                className="h-11 w-auto"
+              />
+              <Button
+                aria-label="Close navigation"
+                size="icon"
+                variant="ghost"
+                onClick={() => setIsOpen(false)}
+              >
+                <X aria-hidden="true" className="h-6 w-6" />
+              </Button>
+            </div>
+            <Suspense fallback={null}>
+              <NavigationSearch
+                id="mobile-product-search"
+                variant="mobile"
+                onSearch={() => setIsOpen(false)}
+              />
+            </Suspense>
+            <nav className="flex flex-col gap-2">
+              {navItems.map((item) => {
+                const isActive = isActiveNavItem(pathname, item);
+
+                return (
+                  <Link
+                    key={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    href={{ pathname: item.href }}
+                    className={cn(
+                      "rounded-md px-3 py-3 font-heading font-bold transition",
+                      isActive
+                        ? "bg-brand-primary text-brand-charcoal shadow-glow"
+                        : "text-brand-charcoal hover:bg-brand-primary-muted",
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+            <div className="mt-8 space-y-3 rounded-2xl bg-brand-cream p-4 text-sm font-semibold text-brand-charcoal">
+              {siteContent.contact.needsConfirmation ? (
+                <p className="rounded-md bg-white px-3 py-2 text-xs font-bold text-orange-800">
+                  Contact details to be confirmed before launch.
+                </p>
+              ) : null}
+              <a
+                className="flex items-center gap-2"
+                href={`tel:${siteContent.contact.phone}`}
+              >
+                <Phone
+                  aria-hidden="true"
+                  className="h-4 w-4 text-brand-success"
+                />
+                {siteContent.contact.phone}
+              </a>
+              <a
+                className="flex items-center gap-2"
+                href={`mailto:${siteContent.contact.email}`}
+              >
+                <Mail
+                  aria-hidden="true"
+                  className="h-4 w-4 text-brand-success"
+                />
+                {siteContent.contact.email}
+              </a>
+            </div>
+            <a
+              href={`https://wa.me/${siteContent.contact.whatsapp.replace(/[^\d]/g, "")}`}
+              className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-whatsapp px-5 font-heading font-bold text-white shadow-soft transition hover:brightness-95"
+            >
+              <WhatsAppIcon className="h-5 w-5" />
+              Chat on WhatsApp
+            </a>
+          </aside>
+        </div>
+      ) : null}
+    </div>
+  );
+}
