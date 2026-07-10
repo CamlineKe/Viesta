@@ -1,16 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Activity,
   ArrowRight,
-  Dumbbell,
-  HeartPulse,
-  Leaf,
-  Package,
   ShieldCheck,
   Sparkles,
   Truck,
-  Users,
 } from "lucide-react";
 
 import { BlogCard } from "@/components/content/BlogCard";
@@ -24,17 +18,6 @@ import { featuredBlogPosts } from "@/data/blog-posts";
 import { categories } from "@/data/categories";
 import { featuredProducts, products } from "@/data/products";
 import { siteContent } from "@/data/site";
-
-const categoryIcons = {
-  Activity,
-  HeartPulse,
-  ShieldCheck,
-  Leaf,
-  Users,
-  Dumbbell,
-  Package,
-  Sparkles,
-};
 
 const heroTrustItems = [
   { label: "Free Nairobi & Kiambu delivery", icon: Truck },
@@ -147,9 +130,6 @@ export default function HomePage() {
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((category, index) => {
-              const Icon =
-                categoryIcons[category.icon as keyof typeof categoryIcons] ??
-                Package;
               const count = categoryCounts[category.id] ?? 0;
 
               return (
@@ -159,21 +139,37 @@ export default function HomePage() {
                     pathname: "/shop",
                     query: { category: category.slug },
                   }}
-                  className="premium-card group rounded-brand-lg p-5"
+                  className="premium-card group overflow-hidden rounded-brand-lg focus-visible:outline-offset-4"
                   style={{ animationDelay: `${index * 80}ms` }}
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal transition duration-300 group-hover:bg-brand-primary">
-                    <Icon aria-hidden="true" className="h-7 w-7" />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-primary-muted via-brand-cream to-white">
+                    <Image
+                      fill
+                      alt=""
+                      className="object-contain p-4 transition duration-500 ease-out-expo group-hover:scale-105"
+                      sizes="(min-width: 1024px) 18vw, (min-width: 640px) 42vw, 92vw"
+                      src={category.image}
+                    />
                   </div>
-                  <h3 className="mt-5 font-heading text-lg font-extrabold text-brand-charcoal">
-                    {category.name}
-                  </h3>
-                  <p className="mt-2 text-sm font-bold text-brand-muted">
-                    {count} product{count === 1 ? "" : "s"}
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-brand-muted">
-                    {category.description}
-                  </p>
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h3 className="font-heading text-lg font-extrabold text-brand-charcoal">
+                          {category.name}
+                        </h3>
+                        <p className="mt-2 text-sm font-bold text-brand-muted">
+                          {count} product{count === 1 ? "" : "s"}
+                        </p>
+                      </div>
+                      <ArrowRight
+                        aria-hidden="true"
+                        className="mt-1 h-5 w-5 shrink-0 text-brand-charcoal transition duration-300 ease-out-expo group-hover:translate-x-1 group-hover:text-brand-success"
+                      />
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-brand-muted">
+                      {category.description}
+                    </p>
+                  </div>
                 </Link>
               );
             })}

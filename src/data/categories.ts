@@ -7,7 +7,6 @@ export const categories: ProductCategory[] = [
     slug: "blood-sugar-support",
     description: "Products selected for everyday blood sugar wellness routines.",
     image: "/images/categories/blood_sugar.webp",
-    icon: "Activity",
     featured: true,
   },
   {
@@ -16,7 +15,6 @@ export const categories: ProductCategory[] = [
     slug: "blood-pressure-heart-health",
     description: "Heart and blood pressure wellness products for guided daily routines.",
     image: "/images/categories/blood_pressure.webp",
-    icon: "HeartPulse",
     featured: true,
   },
   {
@@ -25,7 +23,6 @@ export const categories: ProductCategory[] = [
     slug: "joint-mobility-support",
     description: "Joint comfort and mobility support for active everyday living.",
     image: "/images/categories/joint_mobility.webp",
-    icon: "Dumbbell",
     featured: true,
   },
   {
@@ -34,7 +31,6 @@ export const categories: ProductCategory[] = [
     slug: "detox-digestive-wellness",
     description: "Detox and digestive wellness options for gentle routine support.",
     image: "/images/categories/detox_digestive.webp",
-    icon: "Leaf",
     featured: true,
   },
   {
@@ -43,7 +39,6 @@ export const categories: ProductCategory[] = [
     slug: "immunity-general-wellness",
     description: "General wellness products selected for immunity, vision, energy, and daily support.",
     image: "/images/categories/immunity.webp",
-    icon: "ShieldCheck",
     featured: true,
   },
   {
@@ -52,7 +47,6 @@ export const categories: ProductCategory[] = [
     slug: "mens-wellness",
     description: "Men's wellness products for targeted vitality and daily health routines.",
     image: "/images/categories/men_wellness.webp",
-    icon: "Users",
     featured: true,
   },
   {
@@ -61,7 +55,6 @@ export const categories: ProductCategory[] = [
     slug: "womens-wellness",
     description: "Women's wellness products for beauty, balance, and everyday support.",
     image: "/images/categories/women_wellness.webp",
-    icon: "Sparkles",
     featured: true,
   },
   {
@@ -70,7 +63,6 @@ export const categories: ProductCategory[] = [
     slug: "diabetes",
     description: "Diabetes-focused products listed separately from general blood sugar support.",
     image: "/images/categories/diabetes.webp",
-    icon: "Package",
     featured: true,
   },
 ];

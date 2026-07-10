@@ -51,7 +51,6 @@ export type ProductCategory = {
   slug: ProductCategorySlug;
   description: string;
   image: string;
-  icon: string;
   featured: boolean;
 };
 
