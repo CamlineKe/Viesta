@@ -20,7 +20,11 @@ export function CategoryFilter({
   onChange,
   productCounts,
 }: CategoryFilterProps) {
-  const categoryOptions: Array<{ id: CategoryFilterValue; name: string; count: number }> = [
+  const categoryOptions: Array<{
+    id: CategoryFilterValue;
+    name: string;
+    count: number;
+  }> = [
     { id: "all", name: "All products", count: productCounts.all ?? 0 },
     ...categories.map((category) => ({
       id: category.id,
@@ -52,10 +56,15 @@ export function CategoryFilter({
         </div>
       </section>
 
-      <aside className="hidden rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm backdrop-blur-md lg:sticky lg:top-28 lg:block">
+      <aside className="hidden rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm backdrop-blur-md lg:sticky lg:top-24 lg:block">
         <div className="flex items-center gap-2 border-b border-neutral-200 pb-4">
-          <SlidersHorizontal aria-hidden="true" className="h-5 w-5 text-brand-charcoal" />
-          <h2 className="font-heading text-lg font-extrabold text-brand-charcoal">Categories</h2>
+          <SlidersHorizontal
+            aria-hidden="true"
+            className="h-5 w-5 text-brand-charcoal"
+          />
+          <h2 className="font-heading text-lg font-extrabold text-brand-charcoal">
+            Categories
+          </h2>
         </div>
 
         <fieldset className="mt-5 space-y-2">
@@ -73,9 +82,13 @@ export function CategoryFilter({
                   type="radio"
                   onChange={() => onChange(category.id)}
                 />
-                <span className="text-sm font-bold text-brand-charcoal">{category.name}</span>
+                <span className="text-sm font-bold text-brand-charcoal">
+                  {category.name}
+                </span>
               </span>
-              <span className="text-xs font-bold text-brand-muted">{category.count}</span>
+              <span className="text-xs font-bold text-brand-muted">
+                {category.count}
+              </span>
             </label>
           ))}
         </fieldset>

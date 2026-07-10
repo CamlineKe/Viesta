@@ -33,13 +33,16 @@ export function TopBar() {
       )}
     >
       <Container className="flex min-h-10 items-center justify-between gap-4 py-2 text-xs font-bold sm:text-sm">
-        <p>{siteContent.announcement}</p>
+        <p className="min-w-0 break-words">{siteContent.announcement}</p>
         <div className="hidden items-center gap-4 md:flex">
           {siteContent.contact.needsConfirmation ? (
             <span>Contact details to be confirmed</span>
           ) : (
             <>
-              <a className="inline-flex items-center gap-1.5 hover:underline" href={`tel:${siteContent.contact.phone}`}>
+              <a
+                className="inline-flex items-center gap-1.5 hover:underline"
+                href={`tel:${siteContent.contact.phone}`}
+              >
                 <Phone aria-hidden="true" className="h-4 w-4" />
                 {siteContent.contact.phone}
               </a>

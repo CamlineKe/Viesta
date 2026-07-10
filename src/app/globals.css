@@ -120,6 +120,11 @@ button {
     padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
   }
 
+  .floating-action-safe {
+    bottom: max(1.25rem, calc(1rem + env(safe-area-inset-bottom)));
+    right: max(1rem, calc(0.75rem + env(safe-area-inset-right)));
+  }
+
   .glass-surface {
     border: 1px solid rgb(229 231 235 / 0.7);
     background: var(--color-surface);
@@ -147,6 +152,13 @@ button {
   .shimmer-surface {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .floating-action-safe {
+    bottom: max(1.5rem, calc(1rem + env(safe-area-inset-bottom)));
+    right: max(1.5rem, calc(1rem + env(safe-area-inset-right)));
   }
 }
 

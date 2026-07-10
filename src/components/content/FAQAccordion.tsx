@@ -18,10 +18,18 @@ const categoryLabels: Record<FAQCategory | "all", string> = {
   returns: "Returns",
 };
 
-const categories: Array<FAQCategory | "all"> = ["all", "products", "shipping", "orders", "returns"];
+const categories: Array<FAQCategory | "all"> = [
+  "all",
+  "products",
+  "shipping",
+  "orders",
+  "returns",
+];
 
 export function FAQAccordion({ faqs }: FAQAccordionProps) {
-  const [activeCategory, setActiveCategory] = useState<FAQCategory | "all">("all");
+  const [activeCategory, setActiveCategory] = useState<FAQCategory | "all">(
+    "all",
+  );
   const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
   const [query, setQuery] = useState("");
 
@@ -29,7 +37,8 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
     const normalizedQuery = query.trim().toLowerCase();
 
     return faqs.filter((faq) => {
-      const matchesCategory = activeCategory === "all" || faq.category === activeCategory;
+      const matchesCategory =
+        activeCategory === "all" || faq.category === activeCategory;
       const matchesQuery =
         normalizedQuery.length === 0 ||
         faq.question.toLowerCase().includes(normalizedQuery) ||
@@ -41,9 +50,11 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-      <aside className="rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm backdrop-blur-md lg:sticky lg:top-28 lg:self-start">
+      <aside className="rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm backdrop-blur-md lg:sticky lg:top-24 lg:self-start">
         <label className="block">
-          <span className="text-sm font-bold text-brand-charcoal">Search questions</span>
+          <span className="text-sm font-bold text-brand-charcoal">
+            Search questions
+          </span>
           <input
             className="mt-2 min-h-11 w-full rounded-md border border-neutral-200 bg-white px-3 text-sm outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30"
             placeholder="Search FAQs"
@@ -101,12 +112,17 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
                   </span>
                   <ChevronDown
                     aria-hidden="true"
-                    className={cn("h-5 w-5 shrink-0 transition", isOpen && "rotate-180")}
+                    className={cn(
+                      "h-5 w-5 shrink-0 transition",
+                      isOpen && "rotate-180",
+                    )}
                   />
                 </button>
                 {isOpen ? (
                   <div className="border-t border-neutral-200 bg-brand-cream px-5 py-4">
-                    <p className="text-sm leading-7 text-brand-muted">{faq.answer}</p>
+                    <p className="text-sm leading-7 text-brand-muted">
+                      {faq.answer}
+                    </p>
                   </div>
                 ) : null}
               </article>
@@ -114,8 +130,12 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
           })
         ) : (
           <div className="rounded-2xl border border-dashed border-neutral-300 bg-white p-10 text-center">
-            <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">No FAQs found</h2>
-            <p className="mt-3 text-brand-muted">Try another search term or category.</p>
+            <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
+              No FAQs found
+            </h2>
+            <p className="mt-3 text-brand-muted">
+              Try another search term or category.
+            </p>
           </div>
         )}
       </section>

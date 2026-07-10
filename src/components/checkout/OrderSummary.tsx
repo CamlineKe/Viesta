@@ -105,7 +105,7 @@ export function OrderSummary({
   };
 
   return (
-    <aside className={cardClassName({ className: "lg:sticky lg:top-28" })}>
+    <aside className={cardClassName({ className: "lg:sticky lg:top-24" })}>
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">

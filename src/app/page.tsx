@@ -42,10 +42,13 @@ const heroTrustItems = [
   { label: "WhatsApp checkout", icon: Sparkles },
 ];
 
-const categoryCounts = products.reduce<Record<string, number>>((counts, product) => {
-  counts[product.category] = (counts[product.category] ?? 0) + 1;
-  return counts;
-}, {});
+const categoryCounts = products.reduce<Record<string, number>>(
+  (counts, product) => {
+    counts[product.category] = (counts[product.category] ?? 0) + 1;
+    return counts;
+  },
+  {},
+);
 
 export default function HomePage() {
   const updatesMessage = encodeURIComponent(
@@ -64,15 +67,15 @@ export default function HomePage() {
               "radial-gradient(circle at 18% 18%, rgba(246,226,6,0.18), transparent 28%), radial-gradient(circle at 82% 72%, rgba(255,215,0,0.14), transparent 30%), linear-gradient(180deg, #ffffff 0%, #fffbea 100%)",
           }}
         />
-        <Container className="relative grid min-h-[calc(100svh-104px)] items-center gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+        <Container className="relative grid min-h-[70svh] items-center gap-10 py-14 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div className="max-w-3xl animate-fade-up">
             <Badge variant="default">Premium Nutrition</Badge>
             <h1 className="mt-5 font-heading text-4xl font-extrabold leading-tight text-brand-charcoal sm:text-5xl lg:text-6xl">
               Your trusted source for premium nutrition.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-brand-muted sm:text-lg">
-              Quality supplements for everyday health goals, clear product discovery, and a simple
-              WhatsApp order flow built for Kenya.
+              Quality supplements for everyday health goals, clear product
+              discovery, and a simple WhatsApp order flow built for Kenya.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -98,7 +101,10 @@ export default function HomePage() {
                     key={item.label}
                     className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/85 px-4 py-2 text-sm font-bold text-brand-charcoal shadow-brand-sm backdrop-blur-md"
                   >
-                    <Icon aria-hidden="true" className="h-4 w-4 text-brand-success" />
+                    <Icon
+                      aria-hidden="true"
+                      className="h-4 w-4 text-brand-success"
+                    />
                     {item.label}
                   </div>
                 );
@@ -107,7 +113,10 @@ export default function HomePage() {
           </div>
 
           <div className="relative animate-scale-in">
-            <div aria-hidden="true" className="absolute -left-8 top-8 h-28 w-28 rounded-full bg-brand-primary/25 blur-2xl" />
+            <div
+              aria-hidden="true"
+              className="absolute -left-8 top-8 h-28 w-28 rounded-full bg-brand-primary/25 blur-2xl"
+            />
             <div
               aria-hidden="true"
               className="absolute -bottom-8 right-2 h-36 w-36 rounded-full bg-brand-accent/20 blur-3xl"
@@ -138,13 +147,18 @@ export default function HomePage() {
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((category, index) => {
-              const Icon = categoryIcons[category.icon as keyof typeof categoryIcons] ?? Package;
+              const Icon =
+                categoryIcons[category.icon as keyof typeof categoryIcons] ??
+                Package;
               const count = categoryCounts[category.id] ?? 0;
 
               return (
                 <Link
                   key={category.id}
-                  href={{ pathname: "/shop", query: { category: category.slug } }}
+                  href={{
+                    pathname: "/shop",
+                    query: { category: category.slug },
+                  }}
                   className="premium-card group rounded-brand-lg p-5"
                   style={{ animationDelay: `${index * 80}ms` }}
                 >
@@ -157,7 +171,9 @@ export default function HomePage() {
                   <p className="mt-2 text-sm font-bold text-brand-muted">
                     {count} product{count === 1 ? "" : "s"}
                   </p>
-                  <p className="mt-3 text-sm leading-6 text-brand-muted">{category.description}</p>
+                  <p className="mt-3 text-sm leading-6 text-brand-muted">
+                    {category.description}
+                  </p>
                 </Link>
               );
             })}
@@ -183,7 +199,10 @@ export default function HomePage() {
           </div>
           <div className="-mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-4 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0">
             {featuredProducts.slice(0, 6).map((product) => (
-              <div key={product.id} className="min-w-[82vw] snap-start sm:min-w-[340px] lg:min-w-0">
+              <div
+                key={product.id}
+                className="min-w-[82vw] snap-start sm:min-w-[340px] lg:min-w-0"
+              >
                 <ProductCard product={product} />
               </div>
             ))}
@@ -215,7 +234,10 @@ export default function HomePage() {
           </div>
           <div className="-mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
             {featuredBlogPosts.slice(0, 3).map((post) => (
-              <div key={post.id} className="min-w-[82vw] snap-start sm:min-w-[340px] md:min-w-0">
+              <div
+                key={post.id}
+                className="min-w-[82vw] snap-start sm:min-w-[340px] md:min-w-0"
+              >
                 <BlogCard post={post} />
               </div>
             ))}
@@ -226,12 +248,15 @@ export default function HomePage() {
       <section className="bg-brand-charcoal py-16 text-white lg:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-primary">Stay Updated</p>
+            <p className="text-sm font-bold uppercase tracking-wide text-brand-primary">
+              Stay Updated
+            </p>
             <h2 className="mt-3 font-heading text-3xl font-extrabold sm:text-4xl">
               Nutrition tips and product updates.
             </h2>
             <p className="mt-4 text-base leading-7 text-white/70">
-              Get practical wellness notes and launch updates when the final Viesta product catalog is ready.
+              Get practical wellness notes and launch updates when the final
+              Viesta product catalog is ready.
             </p>
             <a
               className="mt-8 inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97]"
