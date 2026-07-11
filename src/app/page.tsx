@@ -157,7 +157,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-brand-cream py-16 lg:py-20">
+      <section className="section-botanical py-16 lg:py-20">
         <Container>
           <SectionHeader
             align="center"

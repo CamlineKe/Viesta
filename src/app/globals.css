@@ -13,11 +13,16 @@
   --color-text-inverse: #ffffff;
   --color-bg-base: #ffffff;
   --color-bg-cream: #fffbea;
+  --color-bg-canvas: #fffdf5;
+  --color-bg-botanical: #f1f7ee;
+  --color-bg-sun-wash: #fff8d7;
   --color-bg-light: #f5f5f5;
   --color-bg-dark: #1a1a1a;
   --color-surface: rgb(255 255 255 / 0.85);
   --color-surface-elevated: rgb(255 255 255 / 0.95);
+  --color-surface-solid: #ffffff;
   --color-border: #e5e7eb;
+  --color-border-soft: #e6e8df;
   --color-border-focus: #f6e206;
   --color-whatsapp: #25d366;
   --color-success: #2e7d32;
@@ -48,7 +53,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: var(--color-bg-base);
+  background: var(--color-bg-canvas);
   color: var(--color-text-primary);
   font-family: var(--font-open-sans), "Open Sans", system-ui, sans-serif;
   text-rendering: optimizeLegibility;
@@ -100,6 +105,40 @@ button {
 }
 
 @layer utilities {
+  .section-canvas {
+    background-color: var(--color-bg-canvas);
+    background-image:
+      radial-gradient(circle at 12% 12%, rgb(246 226 6 / 0.12), transparent 26%),
+      linear-gradient(145deg, var(--color-surface-solid), var(--color-bg-canvas));
+  }
+
+  .section-botanical {
+    background-color: var(--color-bg-botanical);
+    background-image:
+      radial-gradient(ellipse at 88% 20%, rgb(46 125 50 / 0.1), transparent 32%),
+      radial-gradient(circle at 8% 88%, rgb(246 226 6 / 0.13), transparent 25%),
+      radial-gradient(circle, rgb(26 26 26 / 0.025) 1px, transparent 1px);
+    background-size: auto, auto, 24px 24px;
+  }
+
+  .section-sun-wash {
+    background-color: var(--color-bg-sun-wash);
+    background-image:
+      radial-gradient(circle at 18% 22%, rgb(246 226 6 / 0.18), transparent 30%),
+      linear-gradient(135deg, var(--color-bg-canvas), var(--color-bg-sun-wash));
+  }
+
+  .surface-flat {
+    border: 1px solid var(--color-border-soft);
+    background: var(--color-surface-solid);
+  }
+
+  .surface-raised {
+    border: 1px solid var(--color-border-soft);
+    background: var(--color-surface-solid);
+    box-shadow: var(--shadow-soft);
+  }
+
   .drawer-viewport {
     height: 100vh;
     height: 100dvh;

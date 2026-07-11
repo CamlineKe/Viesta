@@ -1,6 +1,6 @@
 # Viesta Design PRD
 
-**Version:** 2.0  
+**Version:** 2.1
 **Date:** July 2026  
 **Project:** Viesta Nutrition static storefront  
 **Implementation:** Next.js App Router, TypeScript, Tailwind CSS  
@@ -11,6 +11,17 @@ This document is the source of truth for Viesta's visual design, interaction mod
 ## 1. Design Philosophy
 
 Viesta should feel like a premium Kenyan wellness storefront: clinical enough to be trustworthy, warm enough for everyday health shoppers, and simple enough to move from product discovery to WhatsApp ordering without friction.
+
+### Visual Direction: Warm Botanical Editorial
+
+Viesta uses a warm botanical editorial language rather than a generic white-and-cream storefront. The system combines quiet natural color, restrained organic decoration, image-led storytelling, and clear commerce surfaces. Decoration supports hierarchy but never competes with product information, prices, forms, or actions.
+
+- Warm ivory is the default page canvas; pure white is reserved for focused reading, product, and form surfaces.
+- Pale botanical green supports education, trust, categories, and brand storytelling.
+- Pale yellow supports highlights and promotional emphasis without replacing primary CTA yellow.
+- Charcoal anchors global chrome and strong conversion sections.
+- Botanical line work, dots, grain, contours, and organic gradients remain low contrast and decorative.
+- Dense commerce, checkout, drawer, and legal surfaces stay quiet and prioritize legibility.
 
 ### Principles
 
@@ -38,9 +49,13 @@ Viesta should feel like a premium Kenyan wellness storefront: clinical enough to
 | Muted text     | `#6B7280` | Supporting copy                             |
 | Base white     | `#FFFFFF` | Main canvas                                 |
 | Cream          | `#FFFBEA` | Section alternation                         |
+| Warm canvas    | `#FFFDF5` | Default editorial page and section canvas   |
+| Botanical wash | `#F1F7EE` | Trust, education, and category backgrounds  |
+| Sun wash       | `#FFF8D7` | Promotional and highlighted backgrounds     |
 | Light gray     | `#F5F5F5` | Forms, inactive chips                       |
 | Dark charcoal  | `#1A1A1A` | Header/footer contrast                      |
 | Border         | `#E5E7EB` | Dividers, cards, inputs                     |
+| Soft border    | `#E6E8DF` | Warm canvas and editorial surface borders   |
 | WhatsApp green | `#25D366` | WhatsApp action                             |
 | Success        | `#2E7D32` | Positive shipping/payment states            |
 | Warning        | `#F57C00` | Launch warnings, confirmation notes         |
@@ -98,6 +113,36 @@ Rules:
 - Hero and prominent media panels use the extra-large radius.
 - Do not introduce additional radius sizes without a documented component need.
 - Use a border or surface change as the default elevation cue. Reserve medium/large shadows for hoverable cards, drawers, and sticky purchase summaries; avoid stacked or nested strong shadows.
+
+### Background And Surface Roles
+
+| Role             | Purpose                                                    | Decoration allowance                                      |
+| ---------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| Warm canvas      | Default marketing and editorial background                 | Subtle organic gradients or fine dot texture               |
+| Botanical wash   | Categories, trust, education, and brand-story sections     | One botanical or contour motif per section                 |
+| Sun wash         | Promotions, selected highlights, and important reassurance | Soft yellow glow; never reduce CTA contrast                 |
+| White surface    | Products, forms, summaries, and focused reading            | None behind dense information                              |
+| Charcoal anchor  | Header, footer, and strong conversion sections             | Low-contrast glow only when it does not affect readability |
+
+Rules:
+
+- A page may use multiple background roles, but adjacent sections need a clear purpose for changing surface.
+- Decorative layers are `aria-hidden`, ignore pointer events, and stay behind content.
+- Texture should normally remain below 10% perceived opacity and be reduced or removed on small screens.
+- Do not place grain, botanical line work, or contour patterns behind form controls, prices, warnings, legal copy, or checkout progress.
+- Prefer CSS gradients and lightweight SVG line work over raster background textures.
+- Pure white should communicate focus or elevation rather than serving as the automatic page background.
+
+### Surface Hierarchy
+
+| Surface     | Treatment                                                        | Usage                                             |
+| ----------- | ---------------------------------------------------------------- | ------------------------------------------------- |
+| Flat        | Soft border, solid or lightly translucent surface, no lift       | Content on an already contrasting section         |
+| Raised      | White surface, soft border, restrained shadow                    | Forms, summaries, and important grouped content   |
+| Interactive | Flat/raised baseline plus focus, border, and slight hover change | Product, category, article, and navigable cards    |
+| Featured    | Tinted or image-led surface with stronger hierarchy              | A small number of promotional or editorial blocks |
+
+Glass blur is optional rather than the default. Avoid nested shadows and multiple inset surfaces when one clear boundary is sufficient.
 
 ### Color, Contrast, And Semantic Feedback
 
@@ -279,9 +324,17 @@ Order:
 Hero:
 
 - Split layout on desktop, stacked on mobile.
-- White-to-cream gradient mesh background.
+- Warm-canvas gradient mesh with a restrained botanical line motif on desktop.
 - Left: badge, large headline, supporting copy, primary/secondary CTAs, trust micro-row.
 - Right: clear brand/product range imagery only. Do not add floating product cards or mini product cards in the hero; product discovery belongs in Best Sellers and Shop by Category.
+
+Background rhythm:
+
+- Hero: warm canvas with organic yellow and botanical green accents.
+- Categories and trust: botanical wash or another quiet education/trust surface.
+- Product and editorial grids: clean warm canvas or white, selected according to card contrast.
+- Final conversion section: charcoal anchor.
+- Do not alternate white and cream mechanically; every surface change should communicate a content-role change.
 
 Best Sellers:
 
@@ -481,6 +534,9 @@ Record any failure with its route, viewport width/height, browser/device, zoom o
 - Blog and brand PNG assets should be converted to WebP or AVIF before launch.
 - Avoid layout shift with stable aspect ratios.
 - Keep animations transform/opacity based.
+- Prefer CSS gradients and reusable SVG line art to raster textures.
+- Do not add decorative assets that cause layout shift or compete with above-the-fold image loading.
+- Simplify or remove nonessential background decoration on small screens.
 
 ## 11. Currently Out Of Scope
 
@@ -502,3 +558,23 @@ If introduced later, each pattern requires its own responsive, keyboard, focus, 
 - Legal pages are draft content.
 - Browser/device responsive QA and full accessibility audit are still required.
 - Shared UI primitives are not yet fully consolidated; future visual work can drift unless Phase 2 standardizes the repeated patterns.
+
+## 13. Visual-System Migration
+
+The warm botanical editorial redesign is delivered in five separately reviewable phases. Each phase requires visual approval before the next begins.
+
+| Phase | Scope                                   | Acceptance checkpoint                                                                 |
+| ----- | --------------------------------------- | ------------------------------------------------------------------------------------- |
+| 1     | PRD, tokens, background utilities       | Palette, texture strength, and one homepage reference section are approved            |
+| 2     | Shared cards and reusable surfaces      | Product and editorial card references are approved in isolation and in a grid         |
+| 3     | Marketing and editorial routes          | Home, About, Blog, Contact, and FAQs are reviewed across mobile and desktop            |
+| 4     | Shop, product, cart, and checkout routes | Browse-to-WhatsApp flow retains clear hierarchy, validation, and conversion actions   |
+| 5     | Legal, utility, consistency, and cleanup | All routes pass the visual audit and obsolete visual patterns are safely removed       |
+
+Migration rules:
+
+- Do not remove a legacy token or utility until every consumer has migrated.
+- Keep phase changes independently reviewable and avoid unrelated content or behavior changes.
+- Validate representative mobile, tablet, laptop, and wide-desktop layouts after each phase.
+- Transactional pages receive quieter decoration than marketing pages.
+- The implemented result, rather than an unshipped proposal, becomes the final PRD baseline at the end of Phase 5.
