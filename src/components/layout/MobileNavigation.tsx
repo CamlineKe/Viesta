@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Mail, Menu, Phone, X } from "lucide-react";
 import { Suspense, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { navItems, siteContent } from "@/data/site";
@@ -68,8 +69,9 @@ export function MobileNavigation({
         <Menu aria-hidden="true" className="h-6 w-6" />
       </Button>
 
-      {isOpen ? (
-        <div className="fixed inset-0 z-50">
+      {isOpen
+        ? createPortal(
+            <div className="fixed inset-0 z-50">
           <button
             aria-label="Close navigation backdrop"
             className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"
@@ -174,8 +176,10 @@ export function MobileNavigation({
               Chat on WhatsApp
             </a>
           </aside>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </div>
   );
 }

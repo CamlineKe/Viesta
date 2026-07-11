@@ -54,4 +54,20 @@ describe("MobileNavigation", () => {
     expect(queryByRole("dialog", { name: "Mobile navigation" })).toBeNull();
     expect(document.body.style.overflow).toBe("");
   });
+
+  it("portals the drawer outside a filtered header containing context", () => {
+    const { getByRole, getByTestId } = render(
+      <header className="backdrop-blur-md" data-testid="filtered-header">
+        <MobileNavigation />
+      </header>,
+    );
+
+    fireEvent.click(getByRole("button", { name: "Open navigation" }));
+
+    const header = getByTestId("filtered-header");
+    const drawer = getByRole("dialog", { name: "Mobile navigation" });
+
+    expect(header.contains(drawer)).toBe(false);
+    expect(drawer.parentElement?.parentElement).toBe(document.body);
+  });
 });

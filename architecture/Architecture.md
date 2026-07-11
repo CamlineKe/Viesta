@@ -235,6 +235,7 @@ Visual breakpoint rules and browser QA criteria are owned by `Viesta_Design_PRD.
 - `globals.css` provides global visual tokens plus drawer viewport, toast, and safe-area utilities. Drawers use `100dvh` with a `100vh` fallback; floating actions and toasts account for device safe-area insets.
 - `Header.tsx` owns the header search state and cart drawer state. Opening mobile navigation closes the expanded header search so the two overlays cannot remain open together.
 - `MobileNavigation.tsx` and `CartDrawer.tsx` use a right-side, 420px-maximum drawer pattern. Each locks background scrolling, supports Escape and backdrop close, and uses `useFocusTrap.ts` to contain keyboard focus and restore it to the invoking control.
+- The mobile-navigation overlay is portalled to `document.body`. Viewport-fixed overlays must not remain descendants of the sticky, backdrop-filtered header because that ancestor can establish a containing and stacking context for fixed descendants on mobile browsers.
 - The mobile navigation keeps its link/contact region independently scrollable, preserving reachable close and WhatsApp controls in short visual viewports.
 - `cart-drawer-events.ts` decouples add-to-cart controls from the header-owned cart drawer through the `viesta:cart-drawer-open` browser event.
 - Sticky cart, checkout, FAQ, and shop panels use the shared desktop `top-24` offset to clear the header.
