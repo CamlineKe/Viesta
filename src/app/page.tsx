@@ -109,11 +109,27 @@ export default function HomePage() {
                 <Image
                   fill
                   priority
-                  alt="Viesta premium nutrition product range"
+                  alt="Herbal tea, plant ingredients, and nutrition capsules representing nature-inspired wellness"
                   className="object-cover"
                   sizes="(min-width: 1024px) 44vw, 92vw"
                   src="/images/brand/hero.webp"
                 />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/90 via-brand-charcoal/25 to-transparent sm:bg-gradient-to-r sm:from-brand-charcoal/85 sm:via-brand-charcoal/30 sm:to-transparent"
+                />
+                <div className="absolute inset-x-0 bottom-0 max-w-lg p-5 text-white sm:p-7 lg:p-8">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-brand-primary sm:text-sm">
+                    Rooted in wellness
+                  </p>
+                  <p className="mt-2 font-heading text-2xl font-extrabold leading-tight sm:text-3xl">
+                    Good health is the foundation of a fulfilling life.
+                  </p>
+                  <p className="mt-3 hidden max-w-md text-sm leading-6 text-white/85 sm:block">
+                    Viesta brings trusted nutrition and nature-inspired wellness
+                    into your everyday routine.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
