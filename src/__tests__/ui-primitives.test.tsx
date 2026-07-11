@@ -10,6 +10,18 @@ describe("UI primitives", () => {
   it("uses the documented card radius and surface treatment", () => {
     expect(cardClassName()).toContain("rounded-brand-lg");
     expect(cardClassName()).toContain("bg-white/90");
+    expect(cardClassName({ variant: "flat" })).toContain(
+      "bg-brand-surface-solid",
+    );
+    expect(cardClassName({ variant: "raised" })).toContain(
+      "shadow-brand-md",
+    );
+    expect(cardClassName({ variant: "interactive" })).toContain(
+      "hover:-translate-y-1",
+    );
+    expect(cardClassName({ variant: "featured" })).toContain(
+      "bg-brand-botanical",
+    );
 
     const markup = renderToStaticMarkup(<Card>Card content</Card>);
 

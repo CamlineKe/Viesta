@@ -12,6 +12,7 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { TrustBadges } from "@/components/product/TrustBadges";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { Badge } from "@/components/ui/Badge";
+import { cardClassName } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { featuredBlogPosts } from "@/data/blog-posts";
@@ -177,10 +178,14 @@ export default function HomePage() {
                     query: { category: category.slug },
                   }}
                   aria-label={`Browse ${category.name} products`}
-                  className="premium-card group overflow-hidden rounded-brand-lg focus-visible:outline-offset-4"
+                  className={cardClassName({
+                    className:
+                      "group overflow-hidden p-0 focus-visible:outline-offset-4",
+                    variant: "interactive",
+                  })}
                   style={{ animationDelay: `${index * 80}ms` }}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-primary-muted via-brand-cream to-white">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-brand-botanical via-brand-canvas to-brand-sun-wash">
                     <Image
                       fill
                       alt=""

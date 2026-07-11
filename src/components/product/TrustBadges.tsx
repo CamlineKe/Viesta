@@ -1,24 +1,26 @@
 import { BadgeCheck, CreditCard, ShieldCheck, Truck } from "lucide-react";
 
+import { cardClassName } from "@/components/ui/Card";
+
 const trustBadges = [
   {
-    label: "Quality Guaranteed",
-    sublabel: "Carefully selected products",
+    label: "Thoughtfully Selected",
+    sublabel: "Products for everyday wellness",
     icon: ShieldCheck,
   },
   {
-    label: "Lab Tested",
-    sublabel: "Product facts to confirm",
+    label: "Clear Information",
+    sublabel: "Details for informed choices",
     icon: BadgeCheck,
   },
   {
-    label: "Fast Delivery",
+    label: "Kenya Delivery",
     sublabel: "Kenya delivery support",
     icon: Truck,
   },
   {
-    label: "M-Pesa Ready",
-    sublabel: "Paybill/Till checkout",
+    label: "M-Pesa Support",
+    sublabel: "Payment confirmed when ordering",
     icon: CreditCard,
   },
 ];
@@ -30,18 +32,26 @@ export function TrustBadges() {
         const Icon = badge.icon;
 
         return (
-          <div
+          <article
             key={badge.label}
-            className="flex items-center gap-4 rounded-2xl border border-neutral-200/70 bg-white/85 p-4 shadow-sm backdrop-blur-md"
+            className={cardClassName({
+              className: "flex items-center gap-4",
+              padding: "sm",
+              variant: "flat",
+            })}
           >
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-primary-muted text-brand-charcoal">
               <Icon aria-hidden="true" className="h-6 w-6" />
             </div>
             <div>
-              <p className="font-heading font-extrabold text-brand-charcoal">{badge.label}</p>
-              <p className="mt-1 text-sm text-brand-muted">{badge.sublabel}</p>
+              <p className="font-heading font-extrabold text-brand-charcoal">
+                {badge.label}
+              </p>
+              <p className="mt-1 text-sm text-brand-muted">
+                {badge.sublabel}
+              </p>
             </div>
-          </div>
+          </article>
         );
       })}
     </div>

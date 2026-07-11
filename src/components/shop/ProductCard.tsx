@@ -60,17 +60,16 @@ export function ProductCard({ product }: ProductCardProps) {
       })}
     >
       <Link href={productHref} className="block">
-        <div className="relative aspect-[4/5] overflow-hidden bg-brand-primary-muted">
-          <div className="absolute inset-4 rounded-2xl border border-white/70 bg-white/60 shadow-soft" />
-          {!isImageLoaded ? (
-            <div className="shimmer-surface absolute inset-5 animate-shimmer rounded-2xl" />
-          ) : null}
-          <div className="absolute inset-3 overflow-hidden rounded-2xl bg-white/80 p-3 transition duration-500 ease-out-expo group-hover:scale-105 sm:inset-5 sm:p-4">
+        <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-brand-botanical via-brand-canvas to-brand-sun-wash">
+          <div className="absolute inset-3 overflow-hidden rounded-brand-lg border border-brand-border-soft bg-white transition duration-500 ease-out-expo group-hover:scale-[1.03] sm:inset-5">
+            {!isImageLoaded ? (
+              <div className="shimmer-surface absolute inset-0 animate-shimmer" />
+            ) : null}
             <Image
               fill
               alt={`${product.name} product image`}
               className={cn(
-                "object-contain transition duration-500 ease-out-expo",
+                "object-contain p-3 transition duration-500 ease-out-expo sm:p-4",
                 isImageLoaded ? "opacity-100" : "opacity-0",
               )}
               sizes="(min-width: 1280px) 30vw, (min-width: 640px) 45vw, 90vw"

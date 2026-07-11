@@ -24,13 +24,12 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <article
       className={cardClassName({
-        className:
-          "group h-full overflow-hidden bg-white p-0 hover:shadow-soft",
+        className: "group h-full overflow-hidden p-0",
         variant: "interactive",
       })}
     >
       <Link href={postHref} className="block">
-        <div className="relative aspect-[16/10] overflow-hidden bg-brand-cream">
+        <div className="relative aspect-[16/10] overflow-hidden bg-brand-canvas">
           <Image
             fill
             alt={`${post.title} article image`}

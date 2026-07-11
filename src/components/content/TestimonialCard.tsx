@@ -10,9 +10,11 @@ type TestimonialCardProps = {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <article className={cardClassName()}>
+    <article className={cardClassName({ variant: "raised" })}>
       <div className="flex items-center justify-between gap-4">
-        <Quote aria-hidden="true" className="h-6 w-6 text-brand-primary" />
+        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-primary-muted text-brand-success">
+          <Quote aria-hidden="true" className="h-5 w-5" />
+        </div>
         <div
           className="flex gap-0.5 text-brand-accent"
           aria-label="5 star review"
@@ -29,7 +31,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
       <p className="mt-4 text-sm leading-7 text-brand-muted">
         {testimonial.quote}
       </p>
-      <div className="mt-5 border-t border-neutral-200 pt-4">
+      <div className="mt-5 border-t border-brand-border-soft pt-4">
         <p className="font-heading font-extrabold text-brand-charcoal">
           {testimonial.name}
         </p>
