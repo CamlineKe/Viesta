@@ -8,7 +8,7 @@ export const blogPosts: BlogPost[] = [
     category: "nutrition-tips",
     excerpt:
       "A practical guide to reading labels, checking serving sizes, and choosing supplements that fit your goals.",
-    image: "/images/blog/nutrition.png",
+    image: "/images/blog/nutrition.webp",
     author: "Viesta Nutrition",
     publishedAt: "2026-07-01",
     readTime: "4 min read",
@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     category: "fitness",
     excerpt:
       "A simple overview of protein powder formats and what to check before adding one to your routine.",
-    image: "/images/blog/fitness.png",
+    image: "/images/blog/fitness.webp",
     author: "Viesta Nutrition",
     publishedAt: "2026-07-02",
     readTime: "5 min read",
@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
     category: "wellness",
     excerpt:
       "Learn the basics of digestive wellness and the questions to ask when comparing gut health products.",
-    image: "/images/blog/wellness.png",
+    image: "/images/blog/wellness.webp",
     author: "Viesta Nutrition",
     publishedAt: "2026-07-03",
     readTime: "4 min read",
@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
     category: "ingredients",
     excerpt:
       "A careful checklist for reviewing ingredients, directions, warnings, and serving information before ordering.",
-    image: "/images/blog/nutrition.png",
+    image: "/images/blog/nutrition.webp",
     author: "Viesta Nutrition",
     publishedAt: "2026-07-04",
     readTime: "4 min read",
@@ -84,7 +84,7 @@ export const blogPosts: BlogPost[] = [
     category: "fitness",
     excerpt:
       "How to think about consistency, hydration, meals, and supplements in an active lifestyle routine.",
-    image: "/images/blog/fitness.png",
+    image: "/images/blog/fitness.webp",
     author: "Viesta Nutrition",
     publishedAt: "2026-07-05",
     readTime: "5 min read",
@@ -103,7 +103,7 @@ export const blogPosts: BlogPost[] = [
     category: "wellness",
     excerpt:
       "Practical habit cues for staying consistent with nutrition, hydration, movement, and supplement routines.",
-    image: "/images/blog/wellness.png",
+    image: "/images/blog/wellness.webp",
     author: "Viesta Nutrition",
     publishedAt: "2026-07-06",
     readTime: "4 min read",

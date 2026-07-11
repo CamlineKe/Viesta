@@ -112,7 +112,7 @@ export default function HomePage() {
                   alt="Viesta premium nutrition product range"
                   className="object-cover"
                   sizes="(min-width: 1024px) 44vw, 92vw"
-                  src="/images/brand/hero.png"
+                  src="/images/brand/hero.webp"
                 />
               </div>
             </div>

@@ -67,7 +67,7 @@ export default function AboutPage() {
                 alt="Viesta product range presented for premium wellness shopping"
                 className="object-cover"
                 sizes="(min-width: 1024px) 40vw, 92vw"
-                src="/images/brand/hero.png"
+                src="/images/brand/about_1.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/65 via-brand-charcoal/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5 text-white">
