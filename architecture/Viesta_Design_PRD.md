@@ -360,7 +360,7 @@ Best Sellers:
 - Page header with breadcrumb.
 - Use a warm editorial introduction followed by a quiet warm-canvas product area.
 - Desktop: sticky category sidebar and product grid.
-- Mobile: horizontal category chips above results.
+- Mobile and tablet: a compact filter disclosure expands category radio options above results.
 - Sort select visible above product grid.
 - Product grid: 1 column at base, 2 from `sm`, 3 from `md`, and 4 from `2xl`.
 - Empty state explains how to reset or change category.
@@ -482,7 +482,7 @@ device-specific JavaScript for ordinary layout changes.
 | ---------------- | --------------------------------------- | ----------------------------- | ----------------------- |
 | Header           | Hamburger, cart trigger except checkout | Hamburger                     | Full nav                |
 | Hero             | Stacked                                 | Stacked                       | Split                   |
-| Shop filters     | Horizontal chips                        | Chips/sidebar depending width | Sticky sidebar          |
+| Shop filters     | Collapsible category disclosure         | Collapsible disclosure        | Sticky sidebar          |
 | Product grid     | 1 column; 2 from `sm`                   | 3 columns                     | 3 columns; 4 from `2xl` |
 | Product detail   | Stacked                                 | Stacked                       | Gallery/info two-column |
 | Related products | Horizontal rail                         | Grid/rail                     | Grid                    |
@@ -497,7 +497,7 @@ device-specific JavaScript for ordinary layout changes.
 | Global chrome               | At widths below 1024px, search, cart, and menu controls remain visible without collision. At 1024px and above, logo, full navigation, search, and cart remain on one readable row.                                                     |
 | Mobile navigation           | The panel opens from the right, closes by link/backdrop/close/Escape, traps and restores focus, locks background scroll, and remains vertically scrollable on short viewports. Its close control and WhatsApp action remain reachable. |
 | Hero and calls to action    | Hero stacks below `lg`; action buttons stack at base and may share a row from `sm` only if labels fit. Decorative media must not cause page overflow.                                                                                  |
-| Product discovery           | Shop products are one column at base, two from `sm`, three from `md`, and four from `2xl`. Category filters use a deliberate horizontal chip rail below `lg`, then a sticky sidebar.                                                        |
+| Product discovery           | Shop products are one column at base, two from `sm`, three from `md`, and four from `2xl`. Category filters use a compact disclosure below `lg`, then a sticky sidebar.                                                                  |
 | Product and blog rails      | A rail displays one substantial card at base. Related products become a two-column grid from `sm`; blog cards become two columns from `md` and three from `xl`.                                                                        |
 | Detail, cart, and checkout  | Product detail, cart, and checkout are stacked below `lg`; desktop columns begin at `lg`. Sticky summaries/sidebars must use an offset that clears the sticky header.                                                                  |
 | Forms and feedback          | Form fields remain full-width and labels/errors do not clip or overlap. Two-field groups begin at `sm`; controls retain practical touch targets.                                                                                       |
@@ -509,7 +509,7 @@ The source implementation must be visually checked before release at the followi
 
 | Viewport           | Required checks                                                                                                                                                                                           |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 360–390px mobile   | No horizontal overflow; 44px-ish touch targets where practical; readable product-card CTA; drawer is full-width; filters and rails scroll intentionally; checkout order action and errors remain visible. |
+| 360–390px mobile   | No horizontal overflow; 44px-ish touch targets where practical; readable product-card CTA; drawer is full-width; shop filters expand vertically; intentional content rails remain locally contained; checkout order action and errors remain visible. |
 | 768px tablet       | Header controls fit without collision; grids reflow as specified; drawers retain clear close controls; form groups remain readable.                                                                       |
 | 1024–1280px laptop | Header nav, search, cart, and logo fit together; sidebar/sticky elements do not obscure content; product grid has balanced card widths.                                                                   |
 | 1440px+ desktop    | Content remains constrained and balanced; four-column product grids are not overly dense; hero/media does not become disproportionately wide.                                                             |

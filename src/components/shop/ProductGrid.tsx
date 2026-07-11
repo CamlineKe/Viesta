@@ -160,10 +160,11 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
         categories={categories}
         productCounts={productCounts}
         selectedCategory={selectedCategory}
+        variant="desktop"
         onChange={handleCategoryChange}
       />
 
-      <section aria-live="polite">
+      <section className="min-w-0" aria-live="polite">
         <div
           className={cardClassName({
             className: "mb-5 space-y-4",
@@ -172,7 +173,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
           })}
         >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <label className="block flex-1">
+            <label className="block min-w-0 flex-1">
               <span className="text-sm font-bold text-brand-charcoal">Search products</span>
               <span className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-brand-border-soft bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
                 <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-brand-muted" />
@@ -185,6 +186,20 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
                 />
               </span>
             </label>
+            <SortSelect
+              className="hidden lg:flex"
+              value={sortOption}
+              onChange={handleSortChange}
+            />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3 lg:hidden">
+            <CategoryFilter
+              categories={categories}
+              productCounts={productCounts}
+              selectedCategory={selectedCategory}
+              variant="mobile"
+              onChange={handleCategoryChange}
+            />
             <SortSelect value={sortOption} onChange={handleSortChange} />
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -206,13 +221,13 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
         </div>
 
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 2xl:grid-cols-4">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="rounded-brand-lg border border-dashed border-brand-border-soft bg-white p-10 text-center">
+          <div className="rounded-brand-lg border border-dashed border-brand-border-soft bg-white px-4 py-8 text-center sm:p-10">
             <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
               {activeQuery ? `No products found for "${activeQuery}"` : "No products found"}
             </h2>

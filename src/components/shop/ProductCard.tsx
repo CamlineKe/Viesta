@@ -55,7 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <article
       className={cardClassName({
-        className: "group flex h-full flex-col overflow-hidden p-0",
+        className: "group min-w-0 flex h-full flex-col overflow-hidden p-0",
         variant: "interactive",
       })}
     >
@@ -72,7 +72,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 "object-contain p-3 transition duration-500 ease-out-expo sm:p-4",
                 isImageLoaded ? "opacity-100" : "opacity-0",
               )}
-              sizes="(min-width: 1280px) 30vw, (min-width: 640px) 45vw, 90vw"
+              sizes="(min-width: 1536px) 20vw, (min-width: 1024px) 24vw, (min-width: 768px) 30vw, (min-width: 640px) 45vw, calc(100vw - 2rem)"
               src={product.image}
               onLoad={() => setIsImageLoaded(true)}
             />
@@ -80,18 +80,18 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
 
-      <div className="flex flex-1 flex-col p-3 sm:p-4">
+      <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-4">
         {category ? <Badge>{category.name}</Badge> : null}
         <Link href={productHref} className="mt-3 block">
-          <h3 className="font-heading text-base font-extrabold leading-snug text-brand-charcoal sm:text-lg">
+          <h3 className="line-clamp-2 break-words font-heading text-base font-extrabold leading-snug text-brand-charcoal sm:text-lg">
             {product.name}
           </h3>
         </Link>
-        <p className="mt-2 text-sm leading-6 text-brand-muted">
+        <p className="mt-2 line-clamp-3 break-words text-sm leading-6 text-brand-muted">
           {product.shortDescription}
         </p>
         <div className="mt-auto pt-4 sm:pt-5">
-          <p className="font-heading text-lg font-extrabold text-brand-charcoal sm:text-xl">
+          <p className="break-words font-heading text-lg font-extrabold text-brand-charcoal sm:text-xl">
             {formatProductDisplayPrice(product)}
           </p>
           {hasVariants ? (

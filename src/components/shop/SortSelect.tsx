@@ -1,10 +1,12 @@
 "use client";
 
+import { cn } from "@/lib/class-names";
 import type { ProductSortOption } from "@/types/product";
 
 type SortSelectProps = {
   value: ProductSortOption;
   onChange: (value: ProductSortOption) => void;
+  className?: string;
 };
 
 const sortOptions: Array<{ value: ProductSortOption; label: string }> = [
@@ -15,12 +17,17 @@ const sortOptions: Array<{ value: ProductSortOption; label: string }> = [
   { value: "name-desc", label: "Name: Z-A" },
 ];
 
-export function SortSelect({ value, onChange }: SortSelectProps) {
+export function SortSelect({ value, onChange, className }: SortSelectProps) {
   return (
-    <label className="flex flex-col gap-2 text-sm font-bold text-brand-charcoal sm:flex-row sm:items-center">
+    <label
+      className={cn(
+        "flex min-w-0 flex-col gap-2 text-sm font-bold text-brand-charcoal sm:flex-row sm:items-center",
+        className,
+      )}
+    >
       <span>Sort by</span>
       <select
-        className="min-h-11 rounded-md border border-brand-border-soft bg-white px-3 text-sm font-semibold text-brand-charcoal outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30"
+        className="min-h-11 min-w-0 rounded-md border border-brand-border-soft bg-white px-3 text-sm font-semibold text-brand-charcoal outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30"
         value={value}
         onChange={(event) => onChange(event.target.value as ProductSortOption)}
       >
