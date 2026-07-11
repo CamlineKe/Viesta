@@ -199,7 +199,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
         </div>
 
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 md:grid-cols-3 2xl:grid-cols-4">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

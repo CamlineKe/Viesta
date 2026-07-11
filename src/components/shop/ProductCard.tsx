@@ -84,11 +84,11 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="flex flex-1 flex-col p-3 sm:p-4">
         {category ? <Badge>{category.name}</Badge> : null}
         <Link href={productHref} className="mt-3 block">
-          <h3 className="line-clamp-2 font-heading text-base font-extrabold leading-snug text-brand-charcoal sm:text-lg">
+          <h3 className="font-heading text-base font-extrabold leading-snug text-brand-charcoal sm:text-lg">
             {product.name}
           </h3>
         </Link>
-        <p className="mt-2 line-clamp-2 text-sm leading-6 text-brand-muted">
+        <p className="mt-2 text-sm leading-6 text-brand-muted">
           {product.shortDescription}
         </p>
         <div className="mt-auto pt-4 sm:pt-5">
