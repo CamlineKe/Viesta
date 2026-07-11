@@ -39,8 +39,8 @@ export default function AboutPage() {
           <div>
             <SectionHeader
               eyebrow="About Viesta"
-              title="Premium wellness with a Kenya-first ordering experience."
-              description="Viesta is being built as a static nutrition and health supplements storefront that makes product discovery, delivery context, and WhatsApp checkout clear from the first visit."
+              title="Your trusted partner in health, beauty & wellness."
+              description="At Viesta, we believe good health is the foundation of a fulfilling life. We provide thoughtfully selected supplements, wellness solutions, and personal care products to support everyday wellbeing."
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -64,16 +64,16 @@ export default function AboutPage() {
               <Image
                 fill
                 priority
-                alt="Viesta product range presented for premium wellness shopping"
+                alt="A selection of Viesta teas, coffees, and nutrition products"
                 className="object-cover"
                 sizes="(min-width: 1024px) 40vw, 92vw"
                 src="/images/brand/about_1.webp"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/65 via-brand-charcoal/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                <p className="font-heading text-3xl font-extrabold">Modern clinical wellness</p>
+                <p className="font-heading text-3xl font-extrabold">Wellness for everyday life</p>
                 <p className="mt-3 text-sm leading-6 text-white/80">
-                  Clear product discovery, Kenya-first delivery context, and WhatsApp ordering.
+                  Thoughtfully selected products to help you feel well and live fully.
                 </p>
               </div>
             </div>
