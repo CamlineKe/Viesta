@@ -62,7 +62,7 @@ export default function HomePage() {
             strokeWidth="2"
           />
         </svg>
-        <Container className="relative grid min-h-[70svh] items-center gap-10 py-14 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+        <Container className="relative grid min-h-[70svh] items-center gap-10 py-14 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:py-20">
           <div className="min-w-0 max-w-3xl animate-fade-up">
             <Badge variant="default">Health, Beauty &amp; Wellness</Badge>
             <h1 className="mt-5 break-words font-heading text-3xl font-extrabold leading-tight text-brand-charcoal sm:text-4xl md:text-5xl lg:text-6xl">

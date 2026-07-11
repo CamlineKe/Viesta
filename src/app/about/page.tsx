@@ -36,7 +36,7 @@ export default function AboutPage() {
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
       <section className="section-canvas py-16 lg:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center">
           <div className="min-w-0">
             <SectionHeader
               eyebrow="About Viesta"
@@ -120,7 +120,7 @@ export default function AboutPage() {
       </section>
 
       <section className="section-sun-wash py-16 lg:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
           <div className="min-w-0">
             <SectionHeader
               eyebrow="Launch Notes"

@@ -207,12 +207,12 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 
 **Layout:**
 
-**Sidebar Filters (or top dropdown on mobile)**
-- Category filter (checkboxes)
+**Sidebar Filters (collapsible disclosure on mobile)**
+- Category filter (radio options)
 - Sort by: Price (low-high, high-low), Name (A-Z, Z-A)
 
 **Product Grid**
-- Display products as cards (3-4 per row on desktop, 2 on mobile)
+- Display products as cards: 1 per row at the narrowest phone widths, 2 from 640px, 3 on tablet/standard desktop, and 4 only on sufficiently wide screens
 - Each card: Product image, Product name, Category tag (small badge), Price (KES), "Add to Cart" button
 - Pagination (if >12 products)
 
@@ -503,7 +503,7 @@ The project folder structure is maintained separately in [`Architecture.md`](./A
 ### 7.1 Mobile-First Design
 
 - **Navigation:** Hamburger menu on mobile
-- **Product Grid:** 2 columns on mobile, 4 columns on desktop
+- **Product Grid:** 1 column at the narrowest mobile widths, 2 from 640px, 3 on tablet/standard desktop, and 4 only on sufficiently wide screens
 - **Cart/Checkout:** Full-width forms, large tap targets (min 44px)
 - **Buttons:** Prominent, high-contrast CTAs
 

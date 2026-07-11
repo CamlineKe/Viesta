@@ -145,13 +145,17 @@ src/
 │   └── product.ts
 └── __tests__/
     ├── cart.test.ts
+    ├── commerce-responsive.test.tsx
     ├── currency.test.ts
+    ├── editorial-responsive.test.tsx
     ├── focus-trap.test.tsx
     ├── home-categories.test.tsx
     ├── mobile-navigation.test.tsx
     ├── product-pricing.test.ts
     ├── products.test.ts
+    ├── responsive-foundations.test.tsx
     ├── shipping.test.ts
+    ├── shop-category-filter.test.tsx
     ├── ui-primitives.test.tsx
     ├── validation.test.ts
     └── whatsapp.test.ts
@@ -227,15 +231,20 @@ Navigation search is product-only and routes into `/shop` using the `q` query pa
 
 Visual breakpoint rules and browser QA criteria are owned by `Viesta_Design_PRD.md`. This document records the shared implementation mechanisms that enforce them:
 
-- `Container.tsx` provides the shared constrained layout and responsive gutters.
-- `globals.css` provides global visual tokens plus drawer viewport and safe-area utilities. Drawers use `100dvh` with a `100vh` fallback, and floating actions account for bottom/right safe-area insets.
+- `Container.tsx` provides the shared constrained layout, responsive gutters, and `min-w-0` containment required by nested flex/grid layouts.
+- `globals.css` provides global visual tokens plus drawer viewport, toast, and safe-area utilities. Drawers use `100dvh` with a `100vh` fallback; floating actions and toasts account for device safe-area insets.
 - `Header.tsx` owns the header search state and cart drawer state. Opening mobile navigation closes the expanded header search so the two overlays cannot remain open together.
 - `MobileNavigation.tsx` and `CartDrawer.tsx` use a right-side, 420px-maximum drawer pattern. Each locks background scrolling, supports Escape and backdrop close, and uses `useFocusTrap.ts` to contain keyboard focus and restore it to the invoking control.
 - The mobile navigation keeps its link/contact region independently scrollable, preserving reachable close and WhatsApp controls in short visual viewports.
 - `cart-drawer-events.ts` decouples add-to-cart controls from the header-owned cart drawer through the `viesta:cart-drawer-open` browser event.
 - Sticky cart, checkout, FAQ, and shop panels use the shared desktop `top-24` offset to clear the header.
+- Mobile shop categories use an inline disclosure rather than a horizontal control rail. The sticky category sidebar begins at `lg`; URL search parameters remain the source of filter, search, and sort state.
+- Intentional product, article, and thumbnail rails declare local horizontal overflow, overscroll containment, scroll snapping, an accessible label, and an expanded width that matches the shared base gutter. They switch back to ordinary grids at their documented breakpoint.
+- Commerce and editorial grids use `minmax(0, ...)` tracks and `min-w-0` children where long names, prices, contact details, or validation feedback could otherwise establish an oversized minimum content width.
 
 Any new modal, drawer, fixed action, or sticky panel should reuse these mechanisms or document why it cannot.
+
+Responsive regression coverage is split across `mobile-navigation.test.tsx`, `shop-category-filter.test.tsx`, `commerce-responsive.test.tsx`, `editorial-responsive.test.tsx`, and `responsive-foundations.test.tsx`. These tests cover interaction semantics and shared containment contracts; they do not replace the manual browser/device matrix in `Viesta_Design_PRD.md`.
 
 ## Commerce Architecture
 

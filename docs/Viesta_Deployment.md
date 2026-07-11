@@ -111,7 +111,11 @@ Open and inspect:
 - Check shipping fees for Nairobi, Kiambu, a KES 500 town, and the “Other” option.
 - Open the generated WhatsApp order and verify the recipient, items, quantities, customer details, shipping, and total.
 - Test header navigation, mobile navigation, cart drawer, footer links, and the floating WhatsApp button.
-- Check the site at mobile, tablet, and desktop widths.
+- Check the site at 320px, 360px, 390px, 768px, 1024px, 1280px, and 1440px or wider.
+- At phone widths, verify there is no page-level horizontal scrollbar; shop filters expand vertically; and labelled product, article, and thumbnail rails scroll only inside their own region.
+- Review Home, Shop, a product page, Cart, Checkout, About, Blog, a blog article, FAQs, Contact, and at least one legal page at the phone baseline.
+- At 200% zoom and increased text size, verify long names, prices, contact values, form errors, totals, and primary actions wrap without clipping.
+- On a short mobile viewport, verify navigation/cart drawer close controls and final actions remain reachable and that focus returns to the invoking control.
 - Check browser console and Vercel runtime logs for unexpected errors.
 
 Opening WhatsApp does not submit an order automatically. The customer must send the pre-filled message in WhatsApp.
@@ -283,4 +287,8 @@ Use this final checklist before announcing the website:
 - [ ] Existing email DNS records remain intact.
 - [ ] The production-domain smoke test passes.
 - [ ] WhatsApp checkout is verified on a real mobile device.
+- [ ] The responsive matrix passes at 320, 360, 390, 768, 1024, 1280, and 1440+ pixels.
+- [ ] Home, Shop, Product, Cart, Checkout, About, Blog/article, FAQs, Contact, and Legal have no page-level horizontal overflow.
+- [ ] Intentional rails are locally contained and shop filters expand vertically below 1024px.
+- [ ] Keyboard, reduced-motion, short-viewport, safe-area, and 200% zoom checks pass.
 - [ ] A known-good deployment is available for rollback.

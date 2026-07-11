@@ -67,7 +67,7 @@ Viesta uses a warm botanical editorial language rather than a generic white-and-
 - Heading font: Nunito Sans
 - Body font: Open Sans
 - Body copy: 16px default, relaxed line-height
-- Hero heading: responsive `text-4xl` to `text-6xl`
+- Hero heading: responsive `text-3xl` at the narrowest baseline through `text-6xl` on desktop
 - Section headings: `text-3xl` to `text-4xl`
 - Product/card titles: bold, two-line clamp where needed
 - Letter spacing: normal by default; uppercase labels may use modest tracking
@@ -461,7 +461,7 @@ device-specific JavaScript for ordinary layout changes.
 
 | Range       | Tailwind boundary | Layout contract                                                                                                                                                                                                                                   |
 | ----------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 320–639px   | Base              | One-column reading flow unless a two-column product grid is explicitly specified. Header uses icon controls and the hamburger drawer. Horizontal rails and filter chips may scroll intentionally; the page itself must not overflow horizontally. |
+| 320–639px   | Base              | One-column reading and shop-product flow. Header uses icon controls and the hamburger drawer. Deliberately labelled product/article rails and blog-category chips may scroll locally; shop filters expand vertically and the page itself must not overflow horizontally. |
 | 640–767px   | `sm`              | Preserve the mobile navigation mode. Buttons may sit side-by-side when their labels remain readable. Content gutters increase, and repeated content may move to two columns where specified.                                                      |
 | 768–1023px  | `md`              | Retain the hamburger navigation. Use tablet-friendly grids: two blog cards, three shop product cards, and stacked product detail/checkout layouts. Drawers remain operable with clear close controls.                                             |
 | 1024–1279px | `lg`              | Enable the full header navigation, desktop search, sticky sidebars, and two-column detail/checkout layouts. Grids should prioritise readable cards over maximum density.                                                                          |
@@ -471,7 +471,7 @@ device-specific JavaScript for ordinary layout changes.
 #### Global responsive rules
 
 - Use the shared `Container` gutters: 16px at base, 24px from `sm`, and 32px from `lg`.
-- Treat 360–390px-wide phones and a short visual viewport as supported baselines. Drawers and fixed controls must account for browser chrome and safe-area insets.
+- Treat 320px as the minimum layout baseline, with 360–390px phones and a short visual viewport as primary supported baselines. Drawers and fixed controls must account for browser chrome and safe-area insets.
 - A component must be usable at 200% browser zoom and when text wraps. Do not depend on fixed combined header heights for primary content sizing.
 - Fixed or sticky UI must not cover a close control, primary form action, validation feedback, or the last drawer action.
 - Horizontal scrolling is permitted only for deliberately labelled rails/chip rows; use scroll snapping and ensure the containing page has no horizontal overflow.
@@ -509,6 +509,7 @@ The source implementation must be visually checked before release at the followi
 
 | Viewport           | Required checks                                                                                                                                                                                           |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 320px minimum      | One-column product cards; no page-level horizontal overflow; long names, prices, contact values, and actions wrap without clipping.                                                                                                      |
 | 360–390px mobile   | No horizontal overflow; 44px-ish touch targets where practical; readable product-card CTA; drawer is full-width; shop filters expand vertically; intentional content rails remain locally contained; checkout order action and errors remain visible. |
 | 768px tablet       | Header controls fit without collision; grids reflow as specified; drawers retain clear close controls; form groups remain readable.                                                                       |
 | 1024–1280px laptop | Header nav, search, cart, and logo fit together; sidebar/sticky elements do not obscure content; product grid has balanced card widths.                                                                   |
@@ -520,7 +521,7 @@ At each viewport, check keyboard navigation, text wrapping at increased browser 
 
 Run this checklist in browser responsive mode and on available physical devices before release. Browser configuration is intentionally owned by the release reviewer; this checklist does not require application code changes.
 
-1. At 360px and 390px, visit Home, Shop, a product page, Cart, Checkout, Blog, FAQs, and Contact. Confirm there is no page-level horizontal scroll, card CTAs remain readable, and filter/related-content rails scroll only within their intended rows.
+1. At 320px, 360px, and 390px, visit Home, Shop, a product page, Cart, Checkout, About, Blog, a blog article, FAQs, Contact, and a legal page. Confirm there is no page-level horizontal scroll, card CTAs remain readable, shop filters expand vertically, and related-content rails scroll only within their intended rows.
 2. At 768px, confirm the hamburger, search, and cart controls fit on one header row; product grids use three columns; blog grids use two columns; and product detail/cart/checkout remain stacked.
 3. At 1024px and 1280px, confirm the desktop header has no collision between logo, navigation, search, and cart; sidebars and summaries remain below the sticky header; and product detail/cart/checkout become two-column layouts.
 4. At 1440px and wider, confirm content remains constrained, hero media remains balanced, blog cards use three columns, and only the intended wide product grids use four columns.
