@@ -72,8 +72,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         className="drawer-viewport absolute right-0 top-0 flex w-full max-w-[420px] animate-slide-in-right flex-col overflow-hidden bg-white shadow-brand-xl"
         tabIndex={-1}
       >
-        <div className="drawer-header-safe flex items-center justify-between gap-4 border-b border-brand-border-soft px-5 py-4">
-          <div>
+        <div className="drawer-header-safe flex items-center justify-between gap-4 border-b border-brand-border-soft px-4 py-4 sm:px-5">
+          <div className="min-w-0">
             <h2
               id="cart-drawer-title"
               className="font-heading text-2xl font-extrabold text-brand-charcoal"
@@ -116,11 +116,11 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </div>
         ) : (
           <>
-            <div className="flex-1 space-y-4 overflow-y-auto px-5 py-5">
+            <div className="flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:px-5">
               {items.map((item) => (
                 <article
                   key={item.id}
-                  className="grid grid-cols-[80px_1fr] gap-3 rounded-brand-lg border border-brand-border-soft bg-white p-3"
+                  className="grid grid-cols-[72px_minmax(0,1fr)] gap-3 rounded-brand-lg border border-brand-border-soft bg-white p-3 sm:grid-cols-[80px_minmax(0,1fr)]"
                 >
                   <Link href={`/products/${item.slug}`} onClick={onClose}>
                     <div className="relative aspect-square overflow-hidden rounded-brand-md bg-brand-botanical">
@@ -157,7 +157,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         Pack: {item.packSize}
                       </p>
                     ) : null}
-                    <div className="mt-3 flex items-center justify-between gap-3">
+                    <div className="mt-3 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                       <QuantityControls
                         className="h-9 [&_button]:w-9 [&_span]:min-w-9"
                         value={item.quantity}
@@ -165,7 +165,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                           updateQuantity(item.id, quantity)
                         }
                       />
-                      <p className="text-sm font-extrabold text-brand-charcoal">
+                      <p className="break-words text-sm font-extrabold text-brand-charcoal">
                         {formatProductLineTotal(
                           item.price,
                           item.quantity,
@@ -178,7 +178,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               ))}
             </div>
 
-            <div className="drawer-footer-safe border-t border-brand-border-soft bg-brand-sun-wash px-5 py-5">
+            <div className="drawer-footer-safe border-t border-brand-border-soft bg-brand-sun-wash px-4 py-5 sm:px-5">
               <div className="flex items-center justify-between gap-4">
                 <span className="font-heading text-lg font-extrabold text-brand-charcoal">
                   Subtotal
@@ -202,7 +202,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               >
                 Proceed to Checkout
               </Link>
-              <div className="mt-3 flex items-center justify-center gap-4 text-sm font-bold">
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-bold">
                 <Link
                   className="text-brand-charcoal transition hover:text-brand-muted"
                   href="/cart"

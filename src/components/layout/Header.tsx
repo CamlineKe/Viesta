@@ -55,7 +55,7 @@ export function Header() {
         <Container className="flex min-h-16 items-center justify-between gap-3 lg:min-h-[72px] xl:gap-4">
           <Link
             href="/"
-            className="inline-flex items-center"
+            className="inline-flex min-w-0 items-center"
             aria-label="Viesta homepage"
           >
             <Image
@@ -64,7 +64,7 @@ export function Header() {
               width={150}
               height={50}
               priority
-              className="h-10 w-auto lg:h-11"
+              className="h-9 w-auto max-w-full shrink sm:h-10 lg:h-11"
             />
           </Link>
 
@@ -104,7 +104,7 @@ export function Header() {
             </nav>
           )}
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             {!isCheckout ? (
               <Suspense fallback={null}>
                 <NavigationSearch id="header-product-search" variant="header" />

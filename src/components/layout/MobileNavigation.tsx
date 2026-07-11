@@ -141,24 +141,28 @@ export function MobileNavigation({
                   </p>
                 ) : null}
                 <a
-                  className="flex items-center gap-2"
+                  className="flex min-w-0 items-start gap-2"
                   href={`tel:${siteContent.contact.phone}`}
                 >
                   <Phone
                     aria-hidden="true"
                     className="h-4 w-4 text-brand-success"
                   />
-                  {siteContent.contact.phone}
+                  <span className="min-w-0 break-words">
+                    {siteContent.contact.phone}
+                  </span>
                 </a>
                 <a
-                  className="flex items-center gap-2"
+                  className="flex min-w-0 items-start gap-2"
                   href={`mailto:${siteContent.contact.email}`}
                 >
                   <Mail
                     aria-hidden="true"
                     className="h-4 w-4 text-brand-success"
                   />
-                  {siteContent.contact.email}
+                  <span className="min-w-0 break-all">
+                    {siteContent.contact.email}
+                  </span>
                 </a>
               </div>
             </div>

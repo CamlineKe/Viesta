@@ -15,13 +15,13 @@ export function Footer() {
   return (
     <footer className="bg-brand-charcoal text-white">
       <Container className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-16">
-        <div>
+        <div className="min-w-0">
           <p className="font-heading text-2xl font-extrabold">{siteContent.name}</p>
           <p className="mt-4 max-w-sm text-sm leading-6 text-white/70">{siteContent.description}</p>
           <p className="mt-5 text-sm font-bold text-brand-primary">{siteContent.announcement}</p>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h2 className="font-heading text-sm font-extrabold uppercase tracking-wide text-white">Quick links</h2>
           <nav className="mt-4 flex flex-col gap-3 text-sm text-white/75">
             {navItems.map((item) => (
@@ -32,7 +32,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h2 className="font-heading text-sm font-extrabold uppercase tracking-wide text-white">Categories</h2>
           <nav className="mt-4 flex flex-col gap-3 text-sm text-white/75">
             {categories.slice(0, 6).map((category) => (
@@ -47,19 +47,19 @@ export function Footer() {
           </nav>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h2 className="font-heading text-sm font-extrabold uppercase tracking-wide text-white">Contact</h2>
           <div className="mt-4 flex flex-col gap-3 text-sm text-white/75">
             {siteContent.contact.needsConfirmation ? (
               <span className="font-bold text-brand-primary">Contact details to be confirmed</span>
             ) : null}
-            <a className="transition hover:text-brand-primary" href={`tel:${siteContent.contact.phone}`}>
+            <a className="break-words transition hover:text-brand-primary" href={`tel:${siteContent.contact.phone}`}>
               {siteContent.contact.phone}
             </a>
-            <a className="transition hover:text-brand-primary" href={`mailto:${siteContent.contact.email}`}>
+            <a className="break-all transition hover:text-brand-primary" href={`mailto:${siteContent.contact.email}`}>
               {siteContent.contact.email}
             </a>
-            <span>{siteContent.contact.address}</span>
+            <span className="break-words">{siteContent.contact.address}</span>
           </div>
         </div>
       </Container>
