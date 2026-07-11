@@ -33,11 +33,16 @@ export function BlogGrid({ posts }: BlogGridProps) {
   }, [activeCategory, posts]);
 
   return (
-    <div className="mt-10">
-      <div className="-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+    <div className="min-w-0 mt-10">
+      <div
+        aria-label="Filter articles by category"
+        className="-mx-4 flex w-[calc(100%_+_2rem)] snap-x gap-2 overflow-x-auto overscroll-x-contain px-4 pb-2 sm:mx-0 sm:w-auto sm:flex-wrap sm:px-0"
+        role="group"
+      >
         {categories.map((category) => (
           <button
             key={category}
+            aria-pressed={activeCategory === category}
             className={cn(
               "shrink-0 snap-start rounded-full border px-4 py-2 text-sm font-bold transition",
               activeCategory === category
@@ -52,7 +57,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
         ))}
       </div>
 
-      <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-8 grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {visiblePosts.map((post) => (
           <BlogCard key={post.id} post={post} />
         ))}

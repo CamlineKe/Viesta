@@ -24,7 +24,7 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <article
       className={cardClassName({
-        className: "group h-full overflow-hidden p-0",
+        className: "group min-w-0 h-full overflow-hidden p-0",
         variant: "interactive",
       })}
     >
@@ -34,14 +34,14 @@ export function BlogCard({ post }: BlogCardProps) {
             fill
             alt={`${post.title} article image`}
             className="object-cover transition duration-500 ease-out-expo group-hover:scale-105"
-            sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 90vw"
+            sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, calc(100vw - 2rem)"
             src={post.image}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/20 to-transparent" />
         </div>
       </Link>
 
-      <div className="p-5">
+      <div className="min-w-0 p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-3">
           <Badge variant="default">{categoryLabels[post.category]}</Badge>
           <span className="text-xs font-semibold text-brand-muted">
@@ -49,11 +49,11 @@ export function BlogCard({ post }: BlogCardProps) {
           </span>
         </div>
         <Link href={postHref} className="mt-4 block">
-          <h3 className="line-clamp-2 font-heading text-xl font-extrabold leading-snug text-brand-charcoal">
+          <h3 className="line-clamp-2 break-words font-heading text-xl font-extrabold leading-snug text-brand-charcoal">
             {post.title}
           </h3>
         </Link>
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-brand-muted">
+        <p className="mt-3 line-clamp-3 break-words text-sm leading-6 text-brand-muted">
           {post.excerpt}
         </p>
         <Link

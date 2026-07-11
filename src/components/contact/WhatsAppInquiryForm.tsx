@@ -35,8 +35,13 @@ export function WhatsAppInquiryForm({ whatsappNumber }: WhatsAppInquiryFormProps
   const whatsAppUrl = buildWhatsAppUrl(whatsappNumber, whatsAppMessage);
 
   return (
-    <section className={cardClassName({ variant: "raised" })}>
-      <h2 className="font-heading text-2xl font-extrabold">Send an inquiry on WhatsApp</h2>
+    <section
+      className={cardClassName({
+        className: "min-w-0 p-4 sm:p-5",
+        variant: "raised",
+      })}
+    >
+      <h2 className="break-words font-heading text-xl font-extrabold sm:text-2xl">Send an inquiry on WhatsApp</h2>
       <p className="mt-2 text-sm leading-6 text-brand-muted">
         Fill in the details, then open WhatsApp with your inquiry prepared for Viesta.
       </p>
@@ -81,7 +86,7 @@ export function WhatsAppInquiryForm({ whatsappNumber }: WhatsAppInquiryFormProps
 
         <a
           aria-disabled={!canSend}
-          className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-md px-6 font-heading font-extrabold shadow-soft transition ${
+          className={`inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-4 text-center font-heading font-extrabold shadow-soft transition sm:w-auto sm:px-6 ${
             canSend
               ? "bg-brand-whatsapp text-white hover:brightness-95"
               : "cursor-not-allowed bg-neutral-300 text-neutral-600"

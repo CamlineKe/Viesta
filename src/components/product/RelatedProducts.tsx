@@ -21,7 +21,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
       />
       <div
         aria-label="Related products"
-        className="-mx-4 mt-8 flex max-w-[calc(100%+2rem)] snap-x gap-5 overflow-x-auto overscroll-x-contain px-4 pb-4 sm:mx-0 sm:grid sm:max-w-full sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4"
+        className="-mx-4 mt-8 flex w-[calc(100%_+_2rem)] snap-x gap-5 overflow-x-auto overscroll-x-contain px-4 pb-4 sm:mx-0 sm:grid sm:w-auto sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4"
         role="region"
       >
         {products.map((product) => (

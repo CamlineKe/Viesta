@@ -10,7 +10,12 @@ type TestimonialCardProps = {
 
 export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
-    <article className={cardClassName({ variant: "raised" })}>
+    <article
+      className={cardClassName({
+        className: "min-w-0 p-4 sm:p-5",
+        variant: "raised",
+      })}
+    >
       <div className="flex items-center justify-between gap-4">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-primary-muted text-brand-success">
           <Quote aria-hidden="true" className="h-5 w-5" />
@@ -32,10 +37,10 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         {testimonial.quote}
       </p>
       <div className="mt-5 border-t border-brand-border-soft pt-4">
-        <p className="font-heading font-extrabold text-brand-charcoal">
+        <p className="break-words font-heading font-extrabold text-brand-charcoal">
           {testimonial.name}
         </p>
-        <p className="mt-1 text-xs font-bold uppercase tracking-wide text-brand-muted">
+        <p className="mt-1 break-words text-xs font-bold uppercase tracking-wide text-brand-muted">
           {testimonial.role} - Verified
         </p>
       </div>

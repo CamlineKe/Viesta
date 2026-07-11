@@ -37,7 +37,7 @@ export default function AboutPage() {
     <main className="bg-brand-canvas text-brand-charcoal">
       <section className="section-canvas py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-          <div>
+          <div className="min-w-0">
             <SectionHeader
               eyebrow="About Viesta"
               title="Your trusted partner in health, beauty & wellness."
@@ -77,7 +77,7 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/65 via-brand-charcoal/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                <p className="font-heading text-3xl font-extrabold">Wellness for everyday life</p>
+                <p className="font-heading text-2xl font-extrabold sm:text-3xl">Wellness for everyday life</p>
                 <p className="mt-3 text-sm leading-6 text-white/80">
                   Thoughtfully selected products to help you feel well and live fully.
                 </p>
@@ -103,14 +103,14 @@ export default function AboutPage() {
                 <article
                   key={value.title}
                   className={cardClassName({
-                    padding: "lg",
+                    className: "min-w-0 p-4 sm:p-6",
                     variant: "flat",
                   })}
                 >
                   <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
                     <Icon aria-hidden="true" className="h-7 w-7" />
                   </div>
-                  <h2 className="mt-5 font-heading text-xl font-extrabold">{value.title}</h2>
+                  <h2 className="mt-5 break-words font-heading text-xl font-extrabold">{value.title}</h2>
                   <p className="mt-3 text-sm leading-7 text-brand-muted">{value.description}</p>
                 </article>
               );
@@ -121,7 +121,7 @@ export default function AboutPage() {
 
       <section className="section-sun-wash py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
+          <div className="min-w-0">
             <SectionHeader
               eyebrow="Launch Notes"
               title="What still needs final confirmation"
@@ -137,7 +137,7 @@ export default function AboutPage() {
               <div
                 key={item}
                 className={cardClassName({
-                  className: "flex gap-3",
+                  className: "min-w-0 flex gap-3",
                   padding: "sm",
                   variant: "flat",
                 })}

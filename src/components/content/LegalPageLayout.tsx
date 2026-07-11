@@ -31,8 +31,7 @@ export function LegalPageLayout({ page }: LegalPageLayoutProps) {
 
         <div
           className={cardClassName({
-            className: "mt-10 max-w-3xl",
-            padding: "lg",
+            className: "mt-10 max-w-3xl p-4 sm:p-6",
             variant: "raised",
           })}
         >
@@ -45,10 +44,10 @@ export function LegalPageLayout({ page }: LegalPageLayoutProps) {
                   : undefined
               }
             >
-              <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
+              <h2 className="break-words font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
                 {section.heading}
               </h2>
-              <p className="mt-3 leading-8 text-brand-muted">
+              <p className="mt-3 break-words leading-8 text-brand-muted">
                 {section.body}
               </p>
             </section>

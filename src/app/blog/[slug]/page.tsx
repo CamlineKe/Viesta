@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="mt-8">
           <header className="mx-auto max-w-4xl text-center">
             <Badge variant="default">{categoryLabels[post.category]}</Badge>
-            <h1 className="mt-5 font-heading text-4xl font-extrabold leading-tight sm:text-5xl">
+            <h1 className="mt-5 break-words font-heading text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-brand-muted">{post.excerpt}</p>
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </header>
 
-          <div className="relative mt-10 aspect-[21/9] max-h-[500px] overflow-hidden rounded-brand-xl border border-brand-border-soft bg-brand-canvas shadow-brand-md">
+          <div className="relative mt-10 aspect-[16/10] max-h-[500px] overflow-hidden rounded-brand-xl border border-brand-border-soft bg-brand-canvas shadow-brand-md sm:aspect-[21/9]">
             <Image
               fill
               priority
@@ -100,9 +100,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
 
-          <div className="surface-flat mx-auto mt-10 max-w-3xl space-y-6 rounded-brand-xl p-6 sm:p-8">
+          <div className="surface-flat mx-auto mt-10 max-w-3xl space-y-6 rounded-brand-xl p-4 sm:p-8">
             {post.content.map((paragraph) => (
-              <p key={paragraph} className="text-lg leading-9 text-brand-muted">
+              <p key={paragraph} className="text-base leading-8 text-brand-muted sm:text-lg sm:leading-9">
                 {paragraph}
               </p>
             ))}
@@ -135,7 +135,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 View all articles
               </Link>
             </div>
-            <div className="-mx-4 mt-8 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-3">
+            <div
+              aria-label="Related articles"
+              className="-mx-4 mt-8 flex w-[calc(100%_+_2rem)] snap-x gap-5 overflow-x-auto overscroll-x-contain px-4 pb-4 md:mx-0 md:grid md:w-auto md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-3"
+              role="region"
+            >
               {relatedPosts.map((relatedPost) => (
                 <div key={relatedPost.id} className="min-w-[82vw] snap-start sm:min-w-[340px] md:min-w-0">
                   <BlogCard post={relatedPost} />

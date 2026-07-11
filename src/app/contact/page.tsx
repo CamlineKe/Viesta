@@ -33,10 +33,10 @@ export default function ContactPage() {
           </div>
         ) : null}
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.85fr]">
+        <div className="mt-10 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
           <WhatsAppInquiryForm whatsappNumber={siteContent.contact.whatsapp} />
 
-          <aside className="space-y-4">
+          <aside className="min-w-0 space-y-4">
             {[
               { label: "Phone", value: siteContent.contact.phone, href: `tel:${siteContent.contact.phone}`, icon: Phone },
               { label: "Email", value: siteContent.contact.email, href: `mailto:${siteContent.contact.email}`, icon: Mail },
@@ -46,16 +46,22 @@ export default function ContactPage() {
               const content = (
                 <div
                   className={cardClassName({
-                    className: "flex gap-4",
+                    className: "min-w-0 flex gap-4 p-4 sm:p-5",
                     variant: item.href ? "interactive" : "flat",
                   })}
                 >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-brand-lg bg-brand-primary-muted">
                     <Icon aria-hidden="true" className="h-6 w-6" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs font-bold uppercase tracking-wide text-brand-muted">{item.label}</p>
-                    <p className="mt-1 font-heading font-extrabold">{item.value}</p>
+                    <p
+                      className={`mt-1 font-heading font-extrabold ${
+                        item.label === "Email" ? "break-all" : "break-words"
+                      }`}
+                    >
+                      {item.value}
+                    </p>
                   </div>
                 </div>
               );
@@ -69,7 +75,7 @@ export default function ContactPage() {
               );
             })}
             <a
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-brand-whatsapp px-6 font-heading font-extrabold text-white shadow-soft transition hover:brightness-95"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-brand-whatsapp px-4 text-center font-heading font-extrabold text-white shadow-soft transition hover:brightness-95 sm:px-6"
               href={whatsappUrl}
               rel="noopener noreferrer"
               target="_blank"
