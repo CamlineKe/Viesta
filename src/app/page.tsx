@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  MessageCircle,
   ShieldCheck,
-  Sparkles,
   Truck,
 } from "lucide-react";
 
@@ -21,8 +21,8 @@ import { siteContent } from "@/data/site";
 
 const heroTrustItems = [
   { label: "Free Nairobi & Kiambu delivery", icon: Truck },
-  { label: "Lab-tested positioning", icon: ShieldCheck },
-  { label: "WhatsApp checkout", icon: Sparkles },
+  { label: "Clear product information", icon: ShieldCheck },
+  { label: "Simple WhatsApp ordering", icon: MessageCircle },
 ];
 
 const categoryCounts = products.reduce<Record<string, number>>(
@@ -41,38 +41,59 @@ export default function HomePage() {
 
   return (
     <main className="bg-white text-brand-charcoal">
-      <section className="relative isolate overflow-hidden bg-white">
+      <section className="relative isolate overflow-hidden bg-[#fffdf5]">
         <div
           aria-hidden="true"
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 18% 18%, rgba(246,226,6,0.18), transparent 28%), radial-gradient(circle at 82% 72%, rgba(255,215,0,0.14), transparent 30%), linear-gradient(180deg, #ffffff 0%, #fffbea 100%)",
+              "radial-gradient(circle at 16% 20%, rgba(246,226,6,0.22), transparent 30%), radial-gradient(ellipse at 88% 52%, rgba(35,113,73,0.13), transparent 34%), radial-gradient(circle, rgba(39,39,36,0.035) 1px, transparent 1px), linear-gradient(145deg, #ffffff 0%, #fffdf5 52%, #fff8d7 100%)",
+            backgroundSize: "auto, auto, 24px 24px, auto",
           }}
         />
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-20 top-2 hidden h-[92%] w-[48%] text-brand-success opacity-[0.09] lg:block"
+          fill="none"
+          viewBox="0 0 560 720"
+        >
+          <path
+            d="M470 716C404 590 390 475 408 360C426 245 468 143 536 44"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M410 494C334 450 291 390 276 314C345 329 392 373 414 446M429 351C379 294 363 233 381 166C434 202 454 255 429 351M466 226C454 166 469 112 512 65C540 123 524 177 466 226M445 572C493 510 540 481 558 475"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          />
+        </svg>
         <Container className="relative grid min-h-[70svh] items-center gap-10 py-14 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div className="max-w-3xl animate-fade-up">
-            <Badge variant="default">Premium Nutrition</Badge>
+            <Badge variant="default">Health, Beauty &amp; Wellness</Badge>
             <h1 className="mt-5 font-heading text-4xl font-extrabold leading-tight text-brand-charcoal sm:text-5xl lg:text-6xl">
-              Your trusted source for premium nutrition.
+              Wellness products you can choose with confidence.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-brand-muted sm:text-lg">
-              Quality supplements for everyday health goals, clear product
-              discovery, and a simple WhatsApp order flow built for Kenya.
+              Discover thoughtfully selected supplements and everyday wellness
+              essentials, with clear product information and convenient
+              WhatsApp ordering in Kenya.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/shop"
                 className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97]"
               >
-                Shop Now
+                Explore Products
                 <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="/about"
                 className="inline-flex min-h-12 items-center justify-center rounded-md border border-brand-border bg-white/80 px-6 font-heading font-extrabold text-brand-charcoal backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-brand-primary hover:bg-brand-primary-muted"
               >
-                Learn More
+                Our Story
               </Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
