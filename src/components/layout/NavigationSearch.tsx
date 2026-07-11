@@ -87,13 +87,16 @@ function NavigationSearchForm({
     return (
       <form
         aria-label="Search products"
-        className={cn("mb-5 rounded-2xl bg-brand-cream p-3", className)}
+        className={cn(
+          "mb-5 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-3",
+          className,
+        )}
         onSubmit={handleSubmit}
       >
         <label className="text-sm font-heading font-extrabold text-brand-charcoal" htmlFor={id}>
           Search products
         </label>
-        <div className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-neutral-200 bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
+        <div className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-brand-border-soft bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
           <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-brand-muted" />
           <input
             id={id}

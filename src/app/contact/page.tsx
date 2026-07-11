@@ -27,7 +27,7 @@ export default function ContactPage() {
         />
 
         {siteContent.contact.needsConfirmation ? (
-          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-orange-200 bg-orange-50 p-4 text-center text-sm font-semibold leading-6 text-orange-800">
+          <div className="mx-auto mt-6 max-w-3xl rounded-brand-lg border border-orange-200 bg-orange-50 p-4 text-center text-sm font-semibold leading-6 text-orange-800">
             Contact details are placeholders until launch. Use this page to confirm the intended support
             experience, then replace the phone, email, WhatsApp, and address before publishing.
           </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
                     variant: item.href ? "interactive" : "flat",
                   })}
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary-muted">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-brand-lg bg-brand-primary-muted">
                     <Icon aria-hidden="true" className="h-6 w-6" />
                   </div>
                   <div>

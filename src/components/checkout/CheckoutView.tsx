@@ -59,7 +59,7 @@ export function CheckoutView() {
           variant: "raised",
         })}
       >
-        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-primary-muted text-brand-charcoal">
+        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-brand-xl bg-brand-primary-muted text-brand-charcoal">
           <ShoppingCart aria-hidden="true" className="h-10 w-10" />
         </div>
         <h2 className="mt-6 font-heading text-3xl font-extrabold text-brand-charcoal">Your cart is empty</h2>

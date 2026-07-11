@@ -9,7 +9,8 @@ import { FormField, getFieldControlClassName } from "@/components/ui/FormField";
 describe("UI primitives", () => {
   it("uses the documented card radius and surface treatment", () => {
     expect(cardClassName()).toContain("rounded-brand-lg");
-    expect(cardClassName()).toContain("bg-white/90");
+    expect(cardClassName()).toContain("bg-brand-surface-solid");
+    expect(cardClassName()).toContain("shadow-brand-md");
     expect(cardClassName({ variant: "flat" })).toContain(
       "bg-brand-surface-solid",
     );

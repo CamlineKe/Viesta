@@ -107,7 +107,7 @@ export default function AboutPage() {
                     variant: "flat",
                   })}
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-primary-muted text-brand-charcoal">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
                     <Icon aria-hidden="true" className="h-7 w-7" />
                   </div>
                   <h2 className="mt-5 font-heading text-xl font-extrabold">{value.title}</h2>

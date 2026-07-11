@@ -14,7 +14,7 @@ export default function ReturnsRefundPolicyPage() {
 
   if (!page) {
     return (
-      <main className="bg-white py-16">
+      <main className="section-canvas py-16">
         <Container>
           <SectionHeader title="Returns & Refund Policy" description="Returns content is missing." />
         </Container>

@@ -72,7 +72,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         className="drawer-viewport absolute right-0 top-0 flex w-full max-w-[420px] animate-slide-in-right flex-col overflow-hidden bg-white shadow-brand-xl"
         tabIndex={-1}
       >
-        <div className="drawer-header-safe flex items-center justify-between gap-4 border-b border-brand-border px-5 py-4">
+        <div className="drawer-header-safe flex items-center justify-between gap-4 border-b border-brand-border-soft px-5 py-4">
           <div>
             <h2
               id="cart-drawer-title"
@@ -96,7 +96,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 text-center">
-            <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-primary-muted text-brand-charcoal">
+            <div className="flex h-20 w-20 items-center justify-center rounded-brand-xl bg-brand-primary-muted text-brand-charcoal">
               <ShoppingCart aria-hidden="true" className="h-10 w-10" />
             </div>
             <h3 className="mt-6 font-heading text-2xl font-extrabold text-brand-charcoal">
@@ -120,10 +120,10 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               {items.map((item) => (
                 <article
                   key={item.id}
-                  className="grid grid-cols-[80px_1fr] gap-3 rounded-2xl border border-brand-border bg-white p-3 shadow-brand-sm"
+                  className="grid grid-cols-[80px_1fr] gap-3 rounded-brand-lg border border-brand-border-soft bg-white p-3"
                 >
                   <Link href={`/products/${item.slug}`} onClick={onClose}>
-                    <div className="relative aspect-square overflow-hidden rounded-xl bg-brand-primary-muted">
+                    <div className="relative aspect-square overflow-hidden rounded-brand-md bg-brand-botanical">
                       <Image
                         fill
                         alt={`${item.name} product image`}
@@ -178,7 +178,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               ))}
             </div>
 
-            <div className="drawer-footer-safe border-t border-brand-border bg-brand-cream px-5 py-5">
+            <div className="drawer-footer-safe border-t border-brand-border-soft bg-brand-sun-wash px-5 py-5">
               <div className="flex items-center justify-between gap-4">
                 <span className="font-heading text-lg font-extrabold text-brand-charcoal">
                   Subtotal

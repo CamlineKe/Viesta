@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
 
   if (!page) {
     return (
-      <main className="bg-white py-16">
+      <main className="section-canvas py-16">
         <Container>
           <SectionHeader title="Terms of Service" description="Terms of service content is missing." />
         </Container>

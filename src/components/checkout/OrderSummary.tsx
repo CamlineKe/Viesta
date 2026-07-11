@@ -132,7 +132,7 @@ export function OrderSummary({
         {items.map((item) => (
           <div key={item.id} className="flex gap-3">
             <Link
-              className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl bg-brand-primary-muted"
+              className="relative h-14 w-14 shrink-0 overflow-hidden rounded-brand-lg bg-brand-primary-muted"
               href={`/products/${item.slug}`}
             >
               <Image
@@ -195,7 +195,7 @@ export function OrderSummary({
         </div>
       </dl>
 
-      <div className="mt-5 rounded-2xl bg-brand-primary p-4 text-brand-charcoal">
+      <div className="mt-5 rounded-brand-lg bg-brand-primary p-4 text-brand-charcoal">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <CreditCard aria-hidden="true" className="h-5 w-5" />

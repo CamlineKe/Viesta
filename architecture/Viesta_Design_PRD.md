@@ -1,6 +1,6 @@
 # Viesta Design PRD
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** July 2026  
 **Project:** Viesta Nutrition static storefront  
 **Implementation:** Next.js App Router, TypeScript, Tailwind CSS  
@@ -428,6 +428,15 @@ Best Sellers:
 - Centered readable layout.
 - Last-updated metadata.
 - Launch warning for draft legal text and missing confirmation items.
+- Use a warm canvas with one solid raised reading surface; separate sections with quiet dividers rather than individual tinted cards.
+
+### Utility Surfaces
+
+- Cart and mobile-navigation drawers remain solid white, high-contrast modal panels.
+- Drawer line items use flat borders without unnecessary elevation; summary or contact areas may use sun or botanical washes.
+- Mobile product search uses a solid input on a restrained botanical surface.
+- Header search retains its dark translucent treatment because it sits inside the charcoal header.
+- Semantic alerts keep their success, warning, danger, or information colors and are not recolored as decorative brand surfaces.
 
 ## 7. Responsive Behavior
 
@@ -564,15 +573,16 @@ If introduced later, each pattern requires its own responsive, keyboard, focus, 
 ## 12. Current Launch Risks
 
 - Product prices and price statuses are confirmed; product label facts, ingredients, usage, warnings, and claims still need business review.
-- Product label facts, ingredients, usage, warnings, and claims need confirmation.
 - Paybill/Till details are not final; WhatsApp orders can proceed with payment details confirmed manually in chat.
 - Legal pages are draft content.
 - Browser/device responsive QA and full accessibility audit are still required.
-- Shared UI primitives are not yet fully consolidated; future visual work can drift unless Phase 2 standardizes the repeated patterns.
+- The five-phase visual migration is implemented but still requires user-run tests, static checks, production build, and browser review.
 
 ## 13. Visual-System Migration
 
 The warm botanical editorial redesign is delivered in five separately reviewable phases. Each phase requires visual approval before the next begins.
+
+Implementation status: all five phases are implemented. Final acceptance remains pending user-run automated verification and the responsive browser QA matrix.
 
 | Phase | Scope                                   | Acceptance checkpoint                                                                 |
 | ----- | --------------------------------------- | ------------------------------------------------------------------------------------- |

@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
 
   if (!page) {
     return (
-      <main className="bg-white py-16">
+      <main className="section-canvas py-16">
         <Container>
           <SectionHeader title="Privacy Policy" description="Privacy policy content is missing." />
         </Container>

@@ -41,7 +41,7 @@ export function CheckoutForm({
     <form className="space-y-6" noValidate>
       <section className={cardClassName({ variant: "raised" })}>
         <div className="mb-5 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-primary-muted text-brand-charcoal">
+          <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <User aria-hidden="true" className="h-5 w-5" />
           </div>
           <div>
@@ -97,7 +97,7 @@ export function CheckoutForm({
 
       <section className={cardClassName({ variant: "raised" })}>
         <div className="mb-5 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-primary-muted text-brand-charcoal">
+          <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <MapPin aria-hidden="true" className="h-5 w-5" />
           </div>
           <div>
@@ -149,7 +149,7 @@ export function CheckoutForm({
 
       <section className={cardClassName({ variant: "raised" })}>
         <div className="mb-5 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-primary-muted text-brand-charcoal">
+          <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <MessageSquare aria-hidden="true" className="h-5 w-5" />
           </div>
           <div>

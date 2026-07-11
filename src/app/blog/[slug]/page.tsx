@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </header>
 
-          <div className="relative mt-10 aspect-[21/9] max-h-[500px] overflow-hidden rounded-3xl border border-neutral-200/70 bg-brand-cream shadow-soft">
+          <div className="relative mt-10 aspect-[21/9] max-h-[500px] overflow-hidden rounded-brand-xl border border-brand-border-soft bg-brand-canvas shadow-brand-md">
             <Image
               fill
               priority
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </blockquote>
 
             {post.needsConfirmation?.length ? (
-              <div className="rounded-2xl border border-orange-200 bg-orange-50 p-5 text-sm leading-6 text-orange-800">
+              <div className="rounded-brand-lg border border-orange-200 bg-orange-50 p-5 text-sm leading-6 text-orange-800">
                 <p className="font-heading font-extrabold">Needs confirmation before launch</p>
                 <p className="mt-1">{post.needsConfirmation.join(", ")}</p>
               </div>
