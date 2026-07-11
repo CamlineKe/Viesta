@@ -42,7 +42,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
               "shrink-0 snap-start rounded-full border px-4 py-2 text-sm font-bold transition",
               activeCategory === category
                 ? "border-brand-primary bg-brand-primary text-brand-charcoal shadow-glow"
-                : "border-brand-border bg-brand-light text-brand-charcoal hover:border-brand-primary hover:bg-brand-primary-muted",
+                : "border-brand-border-soft bg-white text-brand-charcoal hover:border-brand-primary hover:bg-brand-primary-muted",
             )}
             type="button"
             onClick={() => setActiveCategory(category)}

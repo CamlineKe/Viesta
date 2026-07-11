@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="bg-white py-12 text-brand-charcoal lg:py-16">
+    <main className="section-canvas py-12 text-brand-charcoal lg:py-16">
       <Container>
         <SectionHeader
           eyebrow="Journal"

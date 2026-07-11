@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+import { cardClassName } from "@/components/ui/Card";
 import { cn } from "@/lib/class-names";
 import type { FAQ, FAQCategory } from "@/types/content";
 
@@ -50,7 +51,13 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-      <aside className="rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm backdrop-blur-md lg:sticky lg:top-24 lg:self-start">
+      <aside
+        className={cardClassName({
+          className: "lg:sticky lg:top-24 lg:self-start",
+          padding: "sm",
+          variant: "raised",
+        })}
+      >
         <label className="block">
           <span className="text-sm font-bold text-brand-charcoal">
             Search questions
@@ -92,8 +99,11 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
               <article
                 key={faq.id}
                 className={cn(
-                  "overflow-hidden rounded-2xl border bg-white shadow-sm transition",
-                  isOpen ? "border-brand-primary" : "border-neutral-200/70",
+                  cardClassName({
+                    className: "overflow-hidden p-0 transition",
+                    variant: "flat",
+                  }),
+                  isOpen && "border-brand-primary shadow-brand-sm",
                 )}
               >
                 <button
@@ -119,7 +129,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
                   />
                 </button>
                 {isOpen ? (
-                  <div className="border-t border-neutral-200 bg-brand-cream px-5 py-4">
+                  <div className="border-t border-brand-border-soft bg-brand-botanical px-5 py-4">
                     <p className="text-sm leading-7 text-brand-muted">
                       {faq.answer}
                     </p>
@@ -129,7 +139,7 @@ export function FAQAccordion({ faqs }: FAQAccordionProps) {
             );
           })
         ) : (
-          <div className="rounded-2xl border border-dashed border-neutral-300 bg-white p-10 text-center">
+          <div className="rounded-brand-lg border border-dashed border-brand-border-soft bg-white p-10 text-center">
             <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
               No FAQs found
             </h2>

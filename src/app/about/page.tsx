@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, FlaskConical, HeartPulse, ShieldCheck } from "lucide-react";
 
 import { TestimonialCard } from "@/components/content/TestimonialCard";
+import { cardClassName } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { testimonials } from "@/data/testimonials";
@@ -33,8 +34,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="bg-white text-brand-charcoal">
-      <section className="bg-brand-cream py-16 lg:py-20">
+    <main className="bg-brand-canvas text-brand-charcoal">
+      <section className="section-canvas py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <div>
             <SectionHeader
@@ -59,8 +60,13 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/70 bg-white/75 p-6 shadow-soft backdrop-blur-md">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-brand-primary-muted">
+          <div
+            className={cardClassName({
+              className: "rounded-brand-xl p-4 sm:p-5",
+              variant: "raised",
+            })}
+          >
+            <div className="relative aspect-[4/3] overflow-hidden rounded-brand-lg bg-brand-primary-muted">
               <Image
                 fill
                 priority
@@ -81,7 +87,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-16 lg:py-20">
+      <section className="section-botanical py-16 lg:py-20">
         <Container>
           <SectionHeader
             align="center"
@@ -94,7 +100,13 @@ export default function AboutPage() {
               const Icon = value.icon;
 
               return (
-                <article key={value.title} className="rounded-2xl border border-neutral-200/70 bg-white p-6 shadow-sm">
+                <article
+                  key={value.title}
+                  className={cardClassName({
+                    padding: "lg",
+                    variant: "flat",
+                  })}
+                >
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-primary-muted text-brand-charcoal">
                     <Icon aria-hidden="true" className="h-7 w-7" />
                   </div>
@@ -107,7 +119,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-brand-cream py-16 lg:py-20">
+      <section className="section-sun-wash py-16 lg:py-20">
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <SectionHeader
@@ -122,7 +134,14 @@ export default function AboutPage() {
               "Paybill/Till number, phone, email, physical address, and delivery operations.",
               "Returns, refunds, privacy policy, terms of service, and testimonial permissions.",
             ].map((item) => (
-              <div key={item} className="flex gap-3 rounded-2xl bg-white p-4 shadow-sm">
+              <div
+                key={item}
+                className={cardClassName({
+                  className: "flex gap-3",
+                  padding: "sm",
+                  variant: "flat",
+                })}
+              >
                 <CheckCircle2 aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-brand-success" />
                 <p className="text-sm leading-6 text-brand-muted">{item}</p>
               </div>
@@ -131,7 +150,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-16 lg:py-20">
+      <section className="bg-brand-canvas py-16 lg:py-20">
         <Container>
           <SectionHeader
             align="center"

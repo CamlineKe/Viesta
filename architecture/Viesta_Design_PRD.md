@@ -389,13 +389,16 @@ Best Sellers:
 - Blog index uses category chips: All, Nutrition Tips, Fitness, Ingredients, Wellness.
 - Cards use real blog imagery from `public/images/blog`.
 - Blog posts use large image headers, centered title, metadata, readable article content, educational disclaimer, and related posts.
+- Blog index and article routes use the warm canvas; long-form article copy sits on a solid, bordered reading surface.
+- Related articles remain visually secondary and use the shared interactive editorial card.
 
 ### About
 
-- Hero explains Viesta's Kenya-first wellness storefront.
+- Hero explains Viesta's health, beauty, and wellness purpose.
 - Use real brand imagery.
 - Value cards: clinical clarity, local convenience, trust before purchase.
 - Launch notes remain visible until final business facts are confirmed.
+- Use warm canvas for the introduction, botanical wash for values, sun wash for launch notes, and a quiet canvas for testimonials.
 
 ### Contact
 
@@ -404,6 +407,7 @@ Best Sellers:
 - Contact cards for phone, email, address.
 - WhatsApp CTA.
 - Placeholder contact details must remain visibly unconfirmed until final values are provided.
+- Use a botanical page wash with a solid raised form surface and clear flat/interactive contact cards.
 
 ### FAQs
 
@@ -411,6 +415,7 @@ Best Sellers:
 - Category filters.
 - Accordion list with one open item.
 - Empty state when no question matches.
+- Use a warm canvas, raised filter/search surface, and solid accordion cards; open answers may use the botanical wash.
 
 ### Legal
 

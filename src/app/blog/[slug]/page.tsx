@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     .slice(0, 3);
 
   return (
-    <main className="bg-white py-12 text-brand-charcoal lg:py-16">
+    <main className="section-canvas py-12 text-brand-charcoal lg:py-16">
       <Container>
         <Link
           className="inline-flex items-center gap-2 font-heading text-sm font-extrabold text-brand-charcoal transition hover:gap-3"
@@ -100,14 +100,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
 
-          <div className="mx-auto mt-10 max-w-3xl space-y-6">
+          <div className="surface-flat mx-auto mt-10 max-w-3xl space-y-6 rounded-brand-xl p-6 sm:p-8">
             {post.content.map((paragraph) => (
               <p key={paragraph} className="text-lg leading-9 text-brand-muted">
                 {paragraph}
               </p>
             ))}
 
-            <blockquote className="rounded-2xl border-l-4 border-brand-primary bg-brand-cream p-5 text-base italic leading-8 text-brand-charcoal">
+            <blockquote className="rounded-brand-lg border-l-4 border-brand-primary bg-brand-sun-wash p-5 text-base italic leading-8 text-brand-charcoal">
               Educational content is general wellness information. Customers with medical conditions,
               pregnancy, allergies, or medication use should seek qualified professional advice.
             </blockquote>
@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </article>
 
         {relatedPosts.length > 0 ? (
-          <section className="mt-16 border-t border-neutral-200 pt-12">
+          <section className="mt-16 border-t border-brand-border-soft pt-12">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-sm font-bold uppercase tracking-wide text-brand-muted">More from Viesta</p>

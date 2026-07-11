@@ -41,17 +41,8 @@ export default function HomePage() {
   const updatesUrl = `https://wa.me/${siteContent.contact.whatsapp.replace(/[^\d]/g, "")}?text=${updatesMessage}`;
 
   return (
-    <main className="bg-white text-brand-charcoal">
-      <section className="relative isolate overflow-hidden bg-[#fffdf5]">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 16% 20%, rgba(246,226,6,0.22), transparent 30%), radial-gradient(ellipse at 88% 52%, rgba(35,113,73,0.13), transparent 34%), radial-gradient(circle, rgba(39,39,36,0.035) 1px, transparent 1px), linear-gradient(145deg, #ffffff 0%, #fffdf5 52%, #fff8d7 100%)",
-            backgroundSize: "auto, auto, 24px 24px, auto",
-          }}
-        />
+    <main className="bg-brand-canvas text-brand-charcoal">
+      <section className="section-canvas relative isolate overflow-hidden">
         <svg
           aria-hidden="true"
           className="pointer-events-none absolute -right-20 top-2 hidden h-[92%] w-[48%] text-brand-success opacity-[0.09] lg:block"
@@ -220,7 +211,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-brand-canvas py-16 lg:py-20">
         <Container>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
@@ -249,13 +240,13 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-brand-cream py-16 lg:py-20">
+      <section className="section-sun-wash py-16 lg:py-20">
         <Container>
           <TrustBadges />
         </Container>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
+      <section className="section-botanical py-16 lg:py-20">
         <Container>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader

@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 import { WhatsAppInquiryForm } from "@/components/contact/WhatsAppInquiryForm";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { cardClassName } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { siteContent } from "@/data/site";
@@ -16,7 +17,7 @@ export default function ContactPage() {
   const whatsappUrl = `https://wa.me/${siteContent.contact.whatsapp.replace(/[^\d]/g, "")}`;
 
   return (
-    <main className="bg-brand-cream py-12 text-brand-charcoal lg:py-16">
+    <main className="section-botanical py-12 text-brand-charcoal lg:py-16">
       <Container>
         <SectionHeader
           eyebrow="Contact"
@@ -43,7 +44,12 @@ export default function ContactPage() {
             ].map((item) => {
               const Icon = item.icon;
               const content = (
-                <div className="flex gap-4 rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm transition hover:border-brand-primary">
+                <div
+                  className={cardClassName({
+                    className: "flex gap-4",
+                    variant: item.href ? "interactive" : "flat",
+                  })}
+                >
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary-muted">
                     <Icon aria-hidden="true" className="h-6 w-6" />
                   </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { cardClassName } from "@/components/ui/Card";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type WhatsAppInquiryFormProps = {
@@ -34,7 +35,7 @@ export function WhatsAppInquiryForm({ whatsappNumber }: WhatsAppInquiryFormProps
   const whatsAppUrl = buildWhatsAppUrl(whatsappNumber, whatsAppMessage);
 
   return (
-    <section className="rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm backdrop-blur-md">
+    <section className={cardClassName({ variant: "raised" })}>
       <h2 className="font-heading text-2xl font-extrabold">Send an inquiry on WhatsApp</h2>
       <p className="mt-2 text-sm leading-6 text-brand-muted">
         Fill in the details, then open WhatsApp with your inquiry prepared for Viesta.
