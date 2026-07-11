@@ -1,6 +1,6 @@
 # Viesta Design PRD
 
-**Version:** 2.2
+**Version:** 2.3
 **Date:** July 2026  
 **Project:** Viesta Nutrition static storefront  
 **Implementation:** Next.js App Router, TypeScript, Tailwind CSS  
@@ -29,7 +29,7 @@ Viesta uses a warm botanical editorial language rather than a generic white-and-
 | --------------------- | ----------------------------------------------------------------------------------------------------- |
 | Clarity first         | CTAs, prices, delivery rules, and WhatsApp checkout should be unmistakable.                           |
 | Trust through detail  | Use careful copy, visible warnings, product facts, delivery notes, and payment confirmation guidance. |
-| Premium restraint     | Clean white/cream layouts, soft shadows, bright yellow accents, and generous spacing.                 |
+| Premium restraint     | Warm ivory canvases, solid white surfaces, restrained botanical washes, soft shadows, and generous spacing. |
 | Kenya-first commerce  | KES, M-Pesa/Paybill/Till, Nairobi/Kiambu free delivery, and WhatsApp handoff are core UI elements.    |
 | Mobile-first shopping | Product discovery, cart editing, and checkout must be easy on phones.                                 |
 | Health-claim caution  | Wellness and supplement copy must remain educational and avoid disease-treatment promises.            |
@@ -47,8 +47,8 @@ Viesta uses a warm botanical editorial language rather than a generic white-and-
 | Accent hover   | `#E6C200` | Gold hover states                           |
 | Text charcoal  | `#1A1A1A` | Main text, headings                         |
 | Muted text     | `#6B7280` | Supporting copy                             |
-| Base white     | `#FFFFFF` | Main canvas                                 |
-| Cream          | `#FFFBEA` | Section alternation                         |
+| Base white     | `#FFFFFF` | Focused reading, product, form, and drawer surfaces |
+| Cream          | `#FFFBEA` | Legacy-compatible soft surface; prefer purpose-specific washes for new work |
 | Warm canvas    | `#FFFDF5` | Default editorial page and section canvas   |
 | Botanical wash | `#F1F7EE` | Trust, education, and category backgrounds  |
 | Sun wash       | `#FFF8D7` | Promotional and highlighted backgrounds     |
@@ -133,6 +133,14 @@ Rules:
 - Prefer CSS gradients and lightweight SVG line work over raster background textures.
 - Pure white should communicate focus or elevation rather than serving as the automatic page background.
 
+Implemented shared utilities:
+
+- `section-canvas`: warm editorial canvas with restrained yellow and green gradients.
+- `section-botanical`: botanical wash with low-contrast organic glow and dot texture.
+- `section-sun-wash`: pale yellow reassurance or promotional surface.
+- `surface-flat`: solid white surface with a soft border.
+- `surface-raised`: solid white surface with a soft border and restrained shadow.
+
 ### Surface Hierarchy
 
 | Surface     | Treatment                                                        | Usage                                             |
@@ -147,9 +155,9 @@ Glass blur is optional rather than the default. Avoid nested shadows and multipl
 ### Color, Contrast, And Semantic Feedback
 
 - Use primary yellow with charcoal text for primary actions. Do not use white text on primary yellow.
-- Use charcoal or white/cream surfaces behind body text. Muted text is for supporting information only, not essential instructions or errors.
+- Use charcoal, warm canvas, or solid white surfaces behind body text. Muted text is for supporting information only, not essential instructions or errors.
 - Success, warning, danger, and info states must pair a semantic foreground token with a sufficiently distinct tinted surface and border. Do not communicate state with color alone; pair it with clear copy and, where useful, an icon.
-- A focus state must remain visible on white, cream, dark, and image-backed surfaces. A yellow outline may be paired with a dark offset, ring, or surface change; yellow alone is not sufficient on light surfaces.
+- A focus state must remain visible on warm, botanical, sun-wash, white, dark, and image-backed surfaces. A yellow outline may be paired with a dark offset, ring, or surface change; yellow alone is not sufficient on light surfaces.
 - Reuse semantic tokens for badges, alerts, form messages, and toast notifications. Raw one-off color utilities should not define a new semantic meaning.
 
 ## 3. Motion
@@ -261,23 +269,26 @@ Every interactive component must define the relevant states below before impleme
 
 - Use cards for repeated items, framed tools, drawers, and summaries.
 - Avoid deeply nested card stacks.
-- Standard card treatment: white/85 surface, subtle border, soft shadow, backdrop blur where useful.
+- Supported variants are `default`, `flat`, `raised`, `interactive`, and `featured`.
+- `default` and `raised` use a solid white surface, soft border, and restrained medium shadow.
+- `flat` removes elevation, `interactive` adds focus and slight hover elevation, and `featured` uses the botanical surface.
+- Backdrop blur is reserved for intentional image-backed or header treatments and is not the default card treatment.
 
 ### Product Cards
 
 - Image ratio: 4:5.
-- Image treatment: muted yellow background, white inset surface, object-contain product image.
+- Image treatment: botanical-to-canvas-to-sun gradient with one solid white inset surface and an object-contain product image.
 - Loading: shimmer until image load.
-- Hover: card lift, stronger shadow, image scale.
+- Hover: restrained card lift, border/shadow emphasis, and slight image scale.
 - Text: category badge, two-line product name, two-line short description, price.
 - CTA: visible on mobile and desktop, with hover/focus enhancement only.
 - Disabled state: use "Awaiting price" when price is unconfirmed.
 
 ### Product Gallery
 
-- Main image: square, large, object-contain, muted yellow background.
+- Main image: square, large, object-contain, with one solid white surface over a restrained botanical-to-sun gradient.
 - Loading: shimmer and crossfade.
-- Hover: subtle zoom on desktop.
+- Hover: subtle zoom on desktop; avoid nested translucent image panels.
 - Thumbnails: horizontal row, selected state uses yellow border/glow.
 
 ### Cart Drawer
@@ -331,8 +342,10 @@ Hero:
 Background rhythm:
 
 - Hero: warm canvas with organic yellow and botanical green accents.
-- Categories and trust: botanical wash or another quiet education/trust surface.
-- Product and editorial grids: clean warm canvas or white, selected according to card contrast.
+- Categories: botanical wash.
+- Best Sellers: clean warm canvas.
+- Trust badges: sun wash.
+- Journal: botanical wash with solid editorial cards.
 - Final conversion section: charcoal anchor.
 - Do not alternate white and cream mechanically; every surface change should communicate a content-role change.
 
@@ -349,7 +362,7 @@ Best Sellers:
 - Desktop: sticky category sidebar and product grid.
 - Mobile: horizontal category chips above results.
 - Sort select visible above product grid.
-- Product grid: 2 columns mobile, 3 tablet, 4 at very wide screens where practical.
+- Product grid: 1 column at base, 2 from `sm`, 3 from `md`, and 4 from `2xl`.
 - Empty state explains how to reset or change category.
 - Filters, search, sorting, and empty states use solid flat/raised surfaces without decorative texture.
 
@@ -409,10 +422,10 @@ Best Sellers:
 ### Contact
 
 - Two-column desktop layout.
-- Static mailto form.
+- Client-side inquiry form that prepares and opens a WhatsApp message.
 - Contact cards for phone, email, address.
 - WhatsApp CTA.
-- Placeholder contact details must remain visibly unconfirmed until final values are provided.
+- Contact details must remain visibly flagged whenever their `needsConfirmation` state is true.
 - Use a botanical page wash with a solid raised form surface and clear flat/interactive contact cards.
 
 ### FAQs
@@ -470,7 +483,7 @@ device-specific JavaScript for ordinary layout changes.
 | Header           | Hamburger, cart trigger except checkout | Hamburger                     | Full nav                |
 | Hero             | Stacked                                 | Stacked                       | Split                   |
 | Shop filters     | Horizontal chips                        | Chips/sidebar depending width | Sticky sidebar          |
-| Product grid     | 2 columns                               | 3 columns                     | 3 to 4 columns          |
+| Product grid     | 1 column; 2 from `sm`                   | 3 columns                     | 3 columns; 4 from `2xl` |
 | Product detail   | Stacked                                 | Stacked                       | Gallery/info two-column |
 | Related products | Horizontal rail                         | Grid/rail                     | Grid                    |
 | Blog cards       | 1 column                                | 2 columns                     | 3 columns               |
@@ -484,7 +497,7 @@ device-specific JavaScript for ordinary layout changes.
 | Global chrome               | At widths below 1024px, search, cart, and menu controls remain visible without collision. At 1024px and above, logo, full navigation, search, and cart remain on one readable row.                                                     |
 | Mobile navigation           | The panel opens from the right, closes by link/backdrop/close/Escape, traps and restores focus, locks background scroll, and remains vertically scrollable on short viewports. Its close control and WhatsApp action remain reachable. |
 | Hero and calls to action    | Hero stacks below `lg`; action buttons stack at base and may share a row from `sm` only if labels fit. Decorative media must not cause page overflow.                                                                                  |
-| Product discovery           | Shop products are two columns at base, three from `md`, and may become four only from `2xl`. Category filters use a deliberate horizontal chip rail below `lg`, then a sticky sidebar.                                                 |
+| Product discovery           | Shop products are one column at base, two from `sm`, three from `md`, and four from `2xl`. Category filters use a deliberate horizontal chip rail below `lg`, then a sticky sidebar.                                                        |
 | Product and blog rails      | A rail displays one substantial card at base. Related products become a two-column grid from `sm`; blog cards become two columns from `md` and three from `xl`.                                                                        |
 | Detail, cart, and checkout  | Product detail, cart, and checkout are stacked below `lg`; desktop columns begin at `lg`. Sticky summaries/sidebars must use an offset that clears the sticky header.                                                                  |
 | Forms and feedback          | Form fields remain full-width and labels/errors do not clip or overlap. Two-field groups begin at `sm`; controls retain practical touch targets.                                                                                       |
@@ -528,7 +541,7 @@ Record any failure with its route, viewport width/height, browser/device, zoom o
 - Reduced-motion preferences must be respected.
 - Mobile navigation and cart drawers must trap focus and restore it to their invoking control on close before launch.
 - Errors that block checkout must be announced assertively; informational feedback may use polite live announcements.
-- Verify meaningful text contrast and focus-indicator contrast on light, dark, cream, and image-backed surfaces.
+- Verify meaningful text contrast and focus-indicator contrast on warm, botanical, sun-wash, white, dark, and image-backed surfaces.
 - Complete keyboard-only and browser/device accessibility QA using the responsive matrix before launch.
 
 ## 9. Content Standards
@@ -580,17 +593,17 @@ If introduced later, each pattern requires its own responsive, keyboard, focus, 
 
 ## 13. Visual-System Migration
 
-The warm botanical editorial redesign is delivered in five separately reviewable phases. Each phase requires visual approval before the next begins.
+The warm botanical editorial redesign was implemented in five separately reviewable phases. Each phase used a review checkpoint before work progressed.
 
 Implementation status: all five phases are implemented. Final acceptance remains pending user-run automated verification and the responsive browser QA matrix.
 
-| Phase | Scope                                   | Acceptance checkpoint                                                                 |
-| ----- | --------------------------------------- | ------------------------------------------------------------------------------------- |
-| 1     | PRD, tokens, background utilities       | Palette, texture strength, and one homepage reference section are approved            |
-| 2     | Shared cards and reusable surfaces      | Product and editorial card references are approved in isolation and in a grid         |
-| 3     | Marketing and editorial routes          | Home, About, Blog, Contact, and FAQs are reviewed across mobile and desktop            |
-| 4     | Shop, product, cart, and checkout routes | Browse-to-WhatsApp flow retains clear hierarchy, validation, and conversion actions   |
-| 5     | Legal, utility, consistency, and cleanup | All routes pass the visual audit and obsolete visual patterns are safely removed       |
+| Phase | Scope                                   | Implementation | Remaining acceptance check                                                        |
+| ----- | --------------------------------------- | -------------- | --------------------------------------------------------------------------------- |
+| 1     | PRD, tokens, background utilities       | Complete       | Confirm palette and texture strength during responsive browser review             |
+| 2     | Shared cards and reusable surfaces      | Complete       | Confirm product and editorial cards in isolation and representative grids         |
+| 3     | Marketing and editorial routes          | Complete       | Review Home, About, Blog, Contact, and FAQs across required viewports              |
+| 4     | Shop, product, cart, and checkout routes | Complete       | Verify the complete browse-to-WhatsApp journey and transactional hierarchy        |
+| 5     | Legal, utility, consistency, and cleanup | Complete       | Run the final site-wide visual, accessibility, static, test, and production checks |
 
 Migration rules:
 
@@ -598,4 +611,4 @@ Migration rules:
 - Keep phase changes independently reviewable and avoid unrelated content or behavior changes.
 - Validate representative mobile, tablet, laptop, and wide-desktop layouts after each phase.
 - Transactional pages receive quieter decoration than marketing pages.
-- The implemented result, rather than an unshipped proposal, becomes the final PRD baseline at the end of Phase 5.
+- This version documents the implemented Phase 5 baseline. Future visual changes must update this PRD with the corresponding component and responsive contracts.
