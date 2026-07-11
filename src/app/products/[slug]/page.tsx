@@ -66,7 +66,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const relatedProducts = getRelatedProducts(product.id, product.category);
 
   return (
-    <main className="bg-white py-10 text-brand-charcoal lg:py-14">
+    <main className="bg-brand-canvas py-10 text-brand-charcoal lg:py-14">
       <Container>
         <nav
           aria-label="Breadcrumb"
@@ -99,13 +99,13 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           <ProductInfo product={product} />
         </div>
 
-        <section className="mt-12 rounded-3xl bg-brand-cream p-5 lg:mt-16 lg:p-6">
+        <section className="section-sun-wash mt-12 rounded-brand-xl border border-brand-border-soft p-5 lg:mt-16 lg:p-6">
           <TrustBadges />
         </section>
 
         <RelatedProducts products={relatedProducts} />
 
-        <section className="mt-16 rounded-3xl bg-brand-cream p-5 lg:mt-20 lg:p-8">
+        <section className="section-botanical mt-16 rounded-brand-xl border border-brand-border-soft p-5 lg:mt-20 lg:p-8">
           <SectionHeader
             align="center"
             eyebrow="Customer Signals"

@@ -26,13 +26,14 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
     <article
       className={cardClassName({
         className:
-          "grid gap-4 transition duration-300 hover:-translate-y-0.5 hover:shadow-soft sm:grid-cols-[132px_1fr] sm:p-5",
+          "grid gap-4 sm:grid-cols-[132px_1fr] sm:p-5",
         padding: "sm",
+        variant: "flat",
       })}
     >
       <Link href={productHref} className="block">
-        <div className="relative aspect-square overflow-hidden rounded-2xl bg-brand-primary-muted">
-          <div className="absolute inset-3 rounded-xl border border-white/80 bg-white/60" />
+        <div className="relative aspect-square overflow-hidden rounded-brand-lg bg-brand-botanical">
+          <div className="absolute inset-3 rounded-brand-md border border-brand-border-soft bg-white" />
           <div className="absolute inset-4">
             <Image
               fill

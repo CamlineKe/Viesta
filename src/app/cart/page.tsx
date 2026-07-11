@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function CartPage() {
   return (
-    <main className="bg-brand-cream py-12 text-brand-charcoal lg:py-16">
+    <main className="bg-brand-canvas py-12 text-brand-charcoal lg:py-16">
       <Container>
         <SectionHeader
           eyebrow="Cart"

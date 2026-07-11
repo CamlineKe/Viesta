@@ -345,17 +345,21 @@ Best Sellers:
 ### Shop
 
 - Page header with breadcrumb.
+- Use a warm editorial introduction followed by a quiet warm-canvas product area.
 - Desktop: sticky category sidebar and product grid.
 - Mobile: horizontal category chips above results.
 - Sort select visible above product grid.
 - Product grid: 2 columns mobile, 3 tablet, 4 at very wide screens where practical.
 - Empty state explains how to reset or change category.
+- Filters, search, sorting, and empty states use solid flat/raised surfaces without decorative texture.
 
 ### Product Detail
 
 - Breadcrumb: Home > Shop > Category > Product.
 - Two-column desktop layout: gallery left, product info right.
 - Product info includes category badge, featured badge, name, price/price-confirmation state, expandable description, trust micro-badges, delivery note, benefits, usage, ingredients, warnings, quantity selector, and add-to-cart.
+- The gallery uses one solid image surface over a restrained botanical-to-sun wash; avoid nested translucent panels.
+- Supporting delivery, usage, and trust information may use sun or botanical washes, but price and purchase controls remain on quiet high-contrast surfaces.
 - Related products use mobile horizontal scroll and desktop grid.
 - Reviews/testimonials section uses quote, star row, name, role, and verified note.
 
@@ -365,11 +369,13 @@ Best Sellers:
 - Empty state uses icon, clear message, and shop CTA.
 - Cart summary stays sticky on desktop.
 - Shipping is estimated/confirmed during checkout.
+- Use a quiet warm canvas, flat line-item cards, and a raised summary; cart controls and totals stay on solid white surfaces.
 
 ### Checkout
 
 - Simplified header.
 - Progress indicator: Cart, Checkout, WhatsApp.
+- Use a quiet warm canvas with solid raised form and summary surfaces; do not place decorative texture behind fields, validation, totals, or payment instructions.
 - Form sections:
   - Customer details
   - Delivery details

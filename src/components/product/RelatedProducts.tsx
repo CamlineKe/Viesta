@@ -13,7 +13,7 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
   }
 
   return (
-    <section className="mt-16 border-t border-neutral-200 pt-12 lg:mt-20 lg:pt-16">
+    <section className="mt-16 border-t border-brand-border-soft pt-12 lg:mt-20 lg:pt-16">
       <SectionHeader
         eyebrow="Related Products"
         title="Explore similar wellness support"

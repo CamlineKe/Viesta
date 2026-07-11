@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 import type { Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { cardClassName } from "@/components/ui/Card";
 import type { Product, ProductCategory, ProductCategorySlug, ProductSortOption } from "@/types/product";
 
 import { CategoryFilter } from "./CategoryFilter";
@@ -163,11 +164,17 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
       />
 
       <section aria-live="polite">
-        <div className="mb-5 space-y-4 rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm backdrop-blur-md">
+        <div
+          className={cardClassName({
+            className: "mb-5 space-y-4",
+            padding: "sm",
+            variant: "raised",
+          })}
+        >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <label className="block flex-1">
               <span className="text-sm font-bold text-brand-charcoal">Search products</span>
-              <span className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-neutral-200 bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
+              <span className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-brand-border-soft bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
                 <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-brand-muted" />
                 <input
                   className="min-h-10 min-w-0 flex-1 bg-transparent text-sm font-semibold text-brand-charcoal outline-none"
@@ -187,7 +194,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
             </p>
             {hasActiveFilters ? (
               <button
-                className="inline-flex min-h-10 items-center justify-center gap-2 self-start rounded-md border border-neutral-200 bg-white px-4 text-sm font-bold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted sm:self-auto"
+                className="inline-flex min-h-10 items-center justify-center gap-2 self-start rounded-md border border-brand-border-soft bg-white px-4 text-sm font-bold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted sm:self-auto"
                 type="button"
                 onClick={resetFilters}
               >
@@ -205,7 +212,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-neutral-300 bg-white p-10 text-center">
+          <div className="rounded-brand-lg border border-dashed border-brand-border-soft bg-white p-10 text-center">
             <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
               {activeQuery ? `No products found for "${activeQuery}"` : "No products found"}
             </h2>

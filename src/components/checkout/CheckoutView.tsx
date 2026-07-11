@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { ArrowLeft, CheckCircle2, ShoppingBag, ShoppingCart } from "lucide-react";
 
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { cardClassName } from "@/components/ui/Card";
 import { siteContent } from "@/data/site";
 import { useCart } from "@/hooks/useCart";
 import { calculateGrandTotal, getShippingFee } from "@/lib/shipping";
@@ -52,7 +53,12 @@ export function CheckoutView() {
 
   if (items.length === 0) {
     return (
-      <section className="rounded-3xl border border-neutral-200/70 bg-white/90 px-6 py-16 text-center shadow-sm backdrop-blur-md">
+      <section
+        className={cardClassName({
+          className: "px-6 py-16 text-center",
+          variant: "raised",
+        })}
+      >
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-primary-muted text-brand-charcoal">
           <ShoppingCart aria-hidden="true" className="h-10 w-10" />
         </div>
@@ -74,7 +80,11 @@ export function CheckoutView() {
     <>
       <nav
         aria-label="Checkout progress"
-        className="mb-8 rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm backdrop-blur-md"
+        className={cardClassName({
+          className: "mb-8",
+          padding: "sm",
+          variant: "flat",
+        })}
       >
         <ol className="grid gap-3 sm:grid-cols-3">
           {progressSteps.map((step, index) => (
@@ -119,13 +129,20 @@ export function CheckoutView() {
         </ol>
       </nav>
 
-      <div className="mb-6 flex flex-col gap-3 rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
+      <div
+        className={cardClassName({
+          className:
+            "mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+          padding: "sm",
+          variant: "flat",
+        })}
+      >
         <p className="text-sm font-semibold leading-6 text-brand-muted">
           Need to change quantities, choose another pack, or keep browsing?
         </p>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Link
-            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-neutral-200 bg-white px-4 font-heading text-sm font-extrabold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted"
+            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-brand-border-soft bg-white px-4 font-heading text-sm font-extrabold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted"
             href="/cart"
           >
             <ArrowLeft aria-hidden="true" className="h-4 w-4" />

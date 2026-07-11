@@ -23,10 +23,10 @@ export function DeliverySelector({ value, error, onChange }: DeliverySelectorPro
           return (
             <label
               key={zone.id}
-              className={`cursor-pointer rounded-2xl border bg-white p-4 transition ${
+              className={`cursor-pointer rounded-brand-lg border p-4 transition ${
                 isSelected
-                  ? "border-brand-primary shadow-glow"
-                  : "border-neutral-200 hover:border-brand-primary"
+                  ? "border-brand-primary bg-brand-sun-wash shadow-brand-sm"
+                  : "border-brand-border-soft bg-white hover:border-brand-primary"
               }`}
             >
               <span className="flex items-start gap-3">

@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { ChevronRight } from "lucide-react";
 
 import { ProductGrid } from "@/components/shop/ProductGrid";
+import { cardClassName } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { categories } from "@/data/categories";
@@ -16,8 +17,8 @@ export const metadata = {
 
 export default function ShopPage() {
   return (
-    <main className="bg-brand-cream text-brand-charcoal">
-      <section className="border-b border-neutral-200/70 bg-white py-14 lg:py-16">
+    <main className="bg-brand-canvas text-brand-charcoal">
+      <section className="section-canvas border-b border-brand-border-soft py-14 lg:py-16">
         <Container>
           <nav
             aria-label="Breadcrumb"
@@ -38,9 +39,21 @@ export default function ShopPage() {
         </Container>
       </section>
 
-      <section className="py-10 lg:py-14">
+      <section className="bg-brand-canvas py-10 lg:py-14">
         <Container>
-          <Suspense fallback={<div className="rounded-2xl bg-white p-8 text-brand-muted">Loading products...</div>}>
+          <Suspense
+            fallback={
+              <div
+                className={cardClassName({
+                  className: "text-brand-muted",
+                  padding: "lg",
+                  variant: "raised",
+                })}
+              >
+                Loading products...
+              </div>
+            }
+          >
             <ProductGrid categories={categories} products={products} />
           </Suspense>
         </Container>

@@ -19,12 +19,17 @@ export function CartSummary({
   hasEstimatedPrices = false,
 }: CartSummaryProps) {
   return (
-    <aside className={cardClassName({ className: "lg:sticky lg:top-24" })}>
+    <aside
+      className={cardClassName({
+        className: "lg:sticky lg:top-24",
+        variant: "raised",
+      })}
+    >
       <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
         Cart summary
       </h2>
 
-      <dl className="mt-6 space-y-4 border-b border-neutral-200 pb-5">
+      <dl className="mt-6 space-y-4 border-b border-brand-border-soft pb-5">
         <div className="flex items-center justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Items</dt>
           <dd className="font-heading font-extrabold text-brand-charcoal">
@@ -65,7 +70,7 @@ export function CartSummary({
         </Alert>
       ) : null}
 
-      <div className="mt-6 rounded-2xl bg-brand-cream p-4">
+      <div className="mt-6 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-4">
         <div className="flex gap-3">
           <Truck
             aria-hidden="true"

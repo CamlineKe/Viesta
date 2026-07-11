@@ -25,7 +25,7 @@ export function QuantityControls({
   return (
     <div
       className={cn(
-        "inline-flex h-12 items-center overflow-hidden rounded-md border border-neutral-200 bg-white",
+        "inline-flex h-12 items-center overflow-hidden rounded-md border border-brand-border-soft bg-white",
         className,
       )}
     >
@@ -38,7 +38,7 @@ export function QuantityControls({
       >
         <Minus aria-hidden="true" className="h-4 w-4" />
       </button>
-      <span className="flex h-full min-w-12 items-center justify-center border-x border-neutral-200 px-3 font-heading font-extrabold text-brand-charcoal">
+      <span className="flex h-full min-w-12 items-center justify-center border-x border-brand-border-soft px-3 font-heading font-extrabold text-brand-charcoal">
         {value}
       </span>
       <button

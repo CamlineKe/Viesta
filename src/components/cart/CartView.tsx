@@ -23,7 +23,7 @@ export function CartView() {
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
       <section aria-label="Cart items" className="space-y-5">
-        <div className={cardClassName()}>
+        <div className={cardClassName({ variant: "raised" })}>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
@@ -56,7 +56,7 @@ export function CartView() {
 
         <Link
           href="/shop"
-          className="inline-flex min-h-11 items-center rounded-md border border-neutral-200 bg-white px-5 font-heading text-sm font-extrabold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted"
+          className="inline-flex min-h-11 items-center rounded-md border border-brand-border-soft bg-white px-5 font-heading text-sm font-extrabold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted"
         >
           Continue shopping
         </Link>

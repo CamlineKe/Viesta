@@ -20,7 +20,7 @@ export function SortSelect({ value, onChange }: SortSelectProps) {
     <label className="flex flex-col gap-2 text-sm font-bold text-brand-charcoal sm:flex-row sm:items-center">
       <span>Sort by</span>
       <select
-        className="min-h-11 rounded-md border border-neutral-200 bg-white px-3 text-sm font-semibold text-brand-charcoal outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30"
+        className="min-h-11 rounded-md border border-brand-border-soft bg-white px-3 text-sm font-semibold text-brand-charcoal outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30"
         value={value}
         onChange={(event) => onChange(event.target.value as ProductSortOption)}
       >

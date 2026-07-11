@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { QuantityControls } from "@/components/cart/QuantityControls";
+import { cardClassName } from "@/components/ui/Card";
 import { useToast } from "@/context/ToastContext";
 import { categories } from "@/data/categories";
 import { useCart } from "@/hooks/useCart";
@@ -138,7 +139,11 @@ export function ProductInfo({ product }: ProductInfoProps) {
           return (
             <div
               key={item.label}
-              className="flex gap-3 rounded-2xl border border-neutral-200/70 bg-white/90 p-4 shadow-sm"
+              className={cardClassName({
+                className: "flex gap-3",
+                padding: "sm",
+                variant: "flat",
+              })}
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary-muted text-brand-charcoal">
                 <Icon aria-hidden="true" className="h-5 w-5" />
@@ -156,7 +161,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         })}
       </div>
 
-      <div className="mt-5 flex gap-3 rounded-2xl bg-brand-primary-muted p-4 text-sm leading-6 text-brand-charcoal">
+      <div className="mt-5 flex gap-3 rounded-brand-lg border border-brand-border-soft bg-brand-sun-wash p-4 text-sm leading-6 text-brand-charcoal">
         <Truck
           aria-hidden="true"
           className="mt-0.5 h-5 w-5 shrink-0 text-brand-success"
@@ -182,7 +187,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         ))}
       </ul>
 
-      <div className="mt-8 rounded-2xl border border-neutral-200/70 bg-brand-cream p-5">
+      <div className="mt-8 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-5">
         <p className="font-heading text-lg font-extrabold text-brand-charcoal">
           Usage
         </p>
@@ -230,10 +235,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
                   <button
                     key={variant.id}
                     aria-pressed={isSelected}
-                    className={`rounded-2xl border p-4 text-left transition ${
+                    className={`rounded-brand-lg border p-4 text-left transition ${
                       isSelected
-                        ? "border-brand-primary bg-brand-primary-muted shadow-soft"
-                        : "border-neutral-200 bg-white hover:border-brand-primary"
+                        ? "border-brand-primary bg-brand-sun-wash shadow-brand-sm"
+                        : "border-brand-border-soft bg-white hover:border-brand-primary"
                     }`}
                     type="button"
                     onClick={() => setSelectedVariantId(variant.id)}

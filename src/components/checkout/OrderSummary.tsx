@@ -105,7 +105,12 @@ export function OrderSummary({
   };
 
   return (
-    <aside className={cardClassName({ className: "lg:sticky lg:top-24" })}>
+    <aside
+      className={cardClassName({
+        className: "lg:sticky lg:top-24",
+        variant: "raised",
+      })}
+    >
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
@@ -123,7 +128,7 @@ export function OrderSummary({
         </Link>
       </div>
 
-      <div className="mt-6 space-y-4 border-b border-neutral-200 pb-5">
+      <div className="mt-6 space-y-4 border-b border-brand-border-soft pb-5">
         {items.map((item) => (
           <div key={item.id} className="flex gap-3">
             <Link
@@ -165,7 +170,7 @@ export function OrderSummary({
         ))}
       </div>
 
-      <dl className="mt-5 space-y-4 border-b border-neutral-200 pb-5">
+      <dl className="mt-5 space-y-4 border-b border-brand-border-soft pb-5">
         <div className="flex items-center justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Subtotal</dt>
           <dd className="font-heading font-extrabold text-brand-charcoal">
@@ -267,7 +272,7 @@ export function OrderSummary({
         </Alert>
       ) : null}
 
-      <div className="mt-4 flex gap-3 rounded-2xl bg-brand-cream p-4 text-sm leading-6 text-brand-muted">
+      <div className="mt-4 flex gap-3 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-4 text-sm leading-6 text-brand-muted">
         <ShieldCheck
           aria-hidden="true"
           className="mt-0.5 h-5 w-5 shrink-0 text-brand-success"

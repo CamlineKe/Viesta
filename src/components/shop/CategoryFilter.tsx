@@ -2,6 +2,7 @@
 
 import { SlidersHorizontal } from "lucide-react";
 
+import { cardClassName } from "@/components/ui/Card";
 import { cn } from "@/lib/class-names";
 import type { ProductCategory, ProductCategorySlug } from "@/types/product";
 
@@ -44,7 +45,7 @@ export function CategoryFilter({
                 "shrink-0 snap-start rounded-full border px-4 py-2 text-sm font-bold transition",
                 selectedCategory === category.id
                   ? "border-brand-primary bg-brand-primary text-brand-charcoal shadow-glow"
-                  : "border-brand-border bg-white text-brand-charcoal hover:border-brand-primary hover:bg-brand-primary-muted",
+                  : "border-brand-border-soft bg-white text-brand-charcoal hover:border-brand-primary hover:bg-brand-primary-muted",
               )}
               type="button"
               onClick={() => onChange(category.id)}
@@ -56,8 +57,13 @@ export function CategoryFilter({
         </div>
       </section>
 
-      <aside className="hidden rounded-2xl border border-neutral-200/70 bg-white/90 p-5 shadow-sm backdrop-blur-md lg:sticky lg:top-24 lg:block">
-        <div className="flex items-center gap-2 border-b border-neutral-200 pb-4">
+      <aside
+        className={cardClassName({
+          className: "hidden lg:sticky lg:top-24 lg:block",
+          variant: "raised",
+        })}
+      >
+        <div className="flex items-center gap-2 border-b border-brand-border-soft pb-4">
           <SlidersHorizontal
             aria-hidden="true"
             className="h-5 w-5 text-brand-charcoal"

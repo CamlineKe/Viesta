@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 
+import { cardClassName } from "@/components/ui/Card";
+
 export function EmptyCartState() {
   return (
-    <section className="rounded-3xl border border-neutral-200/70 bg-white/90 px-6 py-16 text-center shadow-sm backdrop-blur-md">
+    <section
+      className={cardClassName({
+        className: "px-6 py-16 text-center",
+        variant: "raised",
+      })}
+    >
       <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-brand-primary-muted text-brand-charcoal">
         <ShoppingCart aria-hidden="true" className="h-10 w-10" />
       </div>
