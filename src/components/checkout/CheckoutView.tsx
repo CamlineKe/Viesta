@@ -158,7 +158,7 @@ export function CheckoutView() {
         </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
         <CheckoutForm errors={errors} values={values} onErrorsChange={setErrors} onValuesChange={setValues} />
         <OrderSummary
           errors={errors}

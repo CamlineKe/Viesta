@@ -38,14 +38,14 @@ export function CheckoutForm({
   };
 
   return (
-    <form className="space-y-6" noValidate>
-      <section className={cardClassName({ variant: "raised" })}>
+    <form className="min-w-0 space-y-6" noValidate>
+      <section className={cardClassName({ className: "p-4 sm:p-5", variant: "raised" })}>
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <User aria-hidden="true" className="h-5 w-5" />
           </div>
-          <div>
-            <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
+          <div className="min-w-0">
+            <h2 className="font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
               Customer details
             </h2>
             <p className="mt-1 text-sm text-brand-muted">
@@ -95,13 +95,13 @@ export function CheckoutForm({
         </div>
       </section>
 
-      <section className={cardClassName({ variant: "raised" })}>
+      <section className={cardClassName({ className: "p-4 sm:p-5", variant: "raised" })}>
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <MapPin aria-hidden="true" className="h-5 w-5" />
           </div>
-          <div>
-            <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
+          <div className="min-w-0">
+            <h2 className="font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
               Delivery details
             </h2>
             <p className="mt-1 text-sm text-brand-muted">
@@ -147,13 +147,13 @@ export function CheckoutForm({
         </div>
       </section>
 
-      <section className={cardClassName({ variant: "raised" })}>
+      <section className={cardClassName({ className: "p-4 sm:p-5", variant: "raised" })}>
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <MessageSquare aria-hidden="true" className="h-5 w-5" />
           </div>
-          <div>
-            <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
+          <div className="min-w-0">
+            <h2 className="font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
               Order notes
             </h2>
             <p className="mt-1 text-sm text-brand-muted">

@@ -31,7 +31,7 @@ export function WhatsAppOrderButton({
   return (
     <a
       aria-disabled={disabled}
-      className={`mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-6 font-heading font-extrabold text-white shadow-soft transition ${
+      className={`mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md px-4 text-center font-heading font-extrabold text-white shadow-soft transition sm:px-6 ${
         disabled
           ? "pointer-events-auto cursor-not-allowed bg-neutral-400"
           : "bg-brand-whatsapp hover:brightness-95"

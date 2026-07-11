@@ -21,8 +21,8 @@ export function CartView() {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
-      <section aria-label="Cart items" className="space-y-5">
+    <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
+      <section aria-label="Cart items" className="min-w-0 space-y-5">
         <div className={cardClassName({ variant: "raised" })}>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>

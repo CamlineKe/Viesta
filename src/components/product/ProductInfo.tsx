@@ -89,22 +89,22 @@ export function ProductInfo({ product }: ProductInfoProps) {
   };
 
   return (
-    <section className="flex flex-col">
+    <section className="min-w-0 flex flex-col">
       <div className="flex flex-wrap items-center gap-3">
         {category ? <Badge variant="default">{category.name}</Badge> : null}
         {product.featured ? <Badge variant="success">Featured</Badge> : null}
       </div>
 
-      <h1 className="mt-5 font-heading text-4xl font-extrabold leading-tight text-brand-charcoal lg:text-5xl">
+      <h1 className="mt-5 break-words font-heading text-3xl font-extrabold leading-tight text-brand-charcoal sm:text-4xl lg:text-5xl">
         {product.name}
       </h1>
-      <p className="mt-4 font-heading text-3xl font-extrabold text-brand-charcoal">
+      <p className="mt-4 break-words font-heading text-2xl font-extrabold text-brand-charcoal sm:text-3xl">
         {formatProductPrice(selectedPrice, selectedPriceStatus)}
       </p>
       {selectedPackSize || selectedMinimumOrderQuantity ? (
         <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide text-brand-muted">
           {selectedPackSize ? (
-            <span className="rounded-full bg-brand-primary-muted px-3 py-1 text-brand-charcoal">
+            <span className="max-w-full break-words rounded-full bg-brand-primary-muted px-3 py-1 text-brand-charcoal">
               Pack: {selectedPackSize}
             </span>
           ) : null}
@@ -140,7 +140,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
             <div
               key={item.label}
               className={cardClassName({
-                className: "flex gap-3",
+                className: "min-w-0 flex gap-3",
                 padding: "sm",
                 variant: "flat",
               })}
@@ -148,7 +148,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary-muted text-brand-charcoal">
                 <Icon aria-hidden="true" className="h-5 w-5" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="font-heading text-sm font-extrabold text-brand-charcoal">
                   {item.label}
                 </p>
@@ -187,7 +187,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
         ))}
       </ul>
 
-      <div className="mt-8 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-5">
+      <div className="mt-8 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-4 sm:p-5">
         <p className="font-heading text-lg font-extrabold text-brand-charcoal">
           Usage
         </p>
@@ -208,7 +208,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {product.warnings?.length ? (
         <Alert
-          className="mt-5 p-5 text-orange-900"
+          className="mt-5 p-4 text-orange-900 sm:p-5"
           icon={<AlertTriangle className="h-5 w-5" />}
           title="Warnings"
           variant="warning"
@@ -235,7 +235,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
                   <button
                     key={variant.id}
                     aria-pressed={isSelected}
-                    className={`rounded-brand-lg border p-4 text-left transition ${
+                    className={`min-w-0 rounded-brand-lg border p-4 text-left transition ${
                       isSelected
                         ? "border-brand-primary bg-brand-sun-wash shadow-brand-sm"
                         : "border-brand-border-soft bg-white hover:border-brand-primary"
@@ -243,10 +243,10 @@ export function ProductInfo({ product }: ProductInfoProps) {
                     type="button"
                     onClick={() => setSelectedVariantId(variant.id)}
                   >
-                    <span className="block font-heading text-base font-extrabold text-brand-charcoal">
+                    <span className="block break-words font-heading text-base font-extrabold text-brand-charcoal">
                       {variant.label}
                     </span>
-                    <span className="mt-1 block text-sm font-bold text-brand-muted">
+                    <span className="mt-1 block break-words text-sm font-bold text-brand-muted">
                       {formatProductPrice(
                         variant.price,
                         variant.priceStatus ?? product.priceStatus,
@@ -268,7 +268,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           <QuantityControls value={quantity} onChange={setQuantity} />
           <Button
             disabled={!canAddToCart}
-            className="min-h-12 flex-1"
+            className="min-h-12 min-w-0 flex-1 px-4 text-center"
             onClick={handleAddToCart}
           >
             <ShoppingCart aria-hidden="true" className="h-5 w-5" />

@@ -107,12 +107,12 @@ export function OrderSummary({
   return (
     <aside
       className={cardClassName({
-        className: "lg:sticky lg:top-24",
+        className: "min-w-0 p-4 sm:p-5 lg:sticky lg:top-24",
         variant: "raised",
       })}
     >
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0">
           <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
             Order summary
           </h2>
@@ -130,7 +130,7 @@ export function OrderSummary({
 
       <div className="mt-6 space-y-4 border-b border-brand-border-soft pb-5">
         {items.map((item) => (
-          <div key={item.id} className="flex gap-3">
+          <div key={item.id} className="grid min-w-0 grid-cols-[56px_minmax(0,1fr)] gap-3">
             <Link
               className="relative h-14 w-14 shrink-0 overflow-hidden rounded-brand-lg bg-brand-primary-muted"
               href={`/products/${item.slug}`}
@@ -158,47 +158,47 @@ export function OrderSummary({
               <p className="mt-1 text-xs font-semibold text-brand-muted">
                 Quantity: {item.quantity}
               </p>
+              <p className="mt-2 break-words text-sm font-extrabold text-brand-charcoal">
+                {formatProductLineTotal(
+                  item.price,
+                  item.quantity,
+                  item.priceStatus,
+                )}
+              </p>
             </div>
-            <p className="shrink-0 text-sm font-extrabold text-brand-charcoal">
-              {formatProductLineTotal(
-                item.price,
-                item.quantity,
-                item.priceStatus,
-              )}
-            </p>
           </div>
         ))}
       </div>
 
       <dl className="mt-5 space-y-4 border-b border-brand-border-soft pb-5">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Subtotal</dt>
-          <dd className="font-heading font-extrabold text-brand-charcoal">
+          <dd className="min-w-0 break-words text-right font-heading font-extrabold text-brand-charcoal">
             {subtotalLabel}
           </dd>
         </div>
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">
             Shipping ({zone.name})
           </dt>
-          <dd className="text-right text-sm font-bold text-brand-success">
+          <dd className="min-w-0 break-words text-right text-sm font-bold text-brand-success">
             {shippingLabel}
           </dd>
         </div>
-        <div className="flex items-center justify-between gap-4 pt-2">
+        <div className="flex items-start justify-between gap-4 pt-2">
           <dt className="font-heading text-lg font-extrabold text-brand-charcoal">
             Grand total
           </dt>
-          <dd className="text-right font-heading text-2xl font-extrabold text-brand-charcoal">
+          <dd className="min-w-0 break-words text-right font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
             {totalLabel}
           </dd>
         </div>
       </dl>
 
       <div className="mt-5 rounded-brand-lg bg-brand-primary p-4 text-brand-charcoal">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <CreditCard aria-hidden="true" className="h-5 w-5" />
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 items-center gap-2">
+            <CreditCard aria-hidden="true" className="h-5 w-5 shrink-0" />
             <h3 className="font-heading font-extrabold">
               {paymentNeedsConfirmation
                 ? "Payment confirmation"

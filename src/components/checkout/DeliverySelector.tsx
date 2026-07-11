@@ -23,7 +23,7 @@ export function DeliverySelector({ value, error, onChange }: DeliverySelectorPro
           return (
             <label
               key={zone.id}
-              className={`cursor-pointer rounded-brand-lg border p-4 transition ${
+              className={`min-w-0 cursor-pointer rounded-brand-lg border p-4 transition ${
                 isSelected
                   ? "border-brand-primary bg-brand-sun-wash shadow-brand-sm"
                   : "border-brand-border-soft bg-white hover:border-brand-primary"
@@ -32,14 +32,14 @@ export function DeliverySelector({ value, error, onChange }: DeliverySelectorPro
               <span className="flex items-start gap-3">
                 <input
                   checked={isSelected}
-                  className="mt-1 h-4 w-4 accent-brand-primary"
+                  className="mt-1 h-4 w-4 shrink-0 accent-brand-primary"
                   name="deliveryLocation"
                   type="radio"
                   value={zone.id}
                   onChange={() => onChange(zone.id)}
                 />
-                <span>
-                  <span className="block font-heading font-extrabold text-brand-charcoal">{zone.name}</span>
+                <span className="min-w-0">
+                  <span className="block break-words font-heading font-extrabold text-brand-charcoal">{zone.name}</span>
                   <span className="mt-1 block text-sm font-bold text-brand-success">{feeLabel}</span>
                   <span className="mt-1 block text-xs leading-5 text-brand-muted">{zone.description}</span>
                 </span>
@@ -48,7 +48,11 @@ export function DeliverySelector({ value, error, onChange }: DeliverySelectorPro
           );
         })}
       </div>
-      {error ? <p className="mt-2 text-sm font-semibold text-brand-danger">{error}</p> : null}
+      {error ? (
+        <p className="mt-2 break-words text-sm font-semibold text-brand-danger">
+          {error}
+        </p>
+      ) : null}
     </fieldset>
   );
 }

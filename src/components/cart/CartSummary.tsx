@@ -21,7 +21,7 @@ export function CartSummary({
   return (
     <aside
       className={cardClassName({
-        className: "lg:sticky lg:top-24",
+        className: "min-w-0 p-4 sm:p-5 lg:sticky lg:top-24",
         variant: "raised",
       })}
     >
@@ -30,21 +30,21 @@ export function CartSummary({
       </h2>
 
       <dl className="mt-6 space-y-4 border-b border-brand-border-soft pb-5">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Items</dt>
-          <dd className="font-heading font-extrabold text-brand-charcoal">
+          <dd className="min-w-0 break-words text-right font-heading font-extrabold text-brand-charcoal">
             {itemCount}
           </dd>
         </div>
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Subtotal</dt>
-          <dd className="font-heading font-extrabold text-brand-charcoal">
+          <dd className="min-w-0 break-words text-right font-heading font-extrabold text-brand-charcoal">
             {hasEstimatedPrices
               ? formatProductPrice(subtotal, "estimated")
               : formatKES(subtotal)}
           </dd>
         </div>
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Shipping</dt>
           <dd className="text-right text-sm font-bold text-brand-success">
             Calculated at checkout
@@ -52,11 +52,11 @@ export function CartSummary({
         </div>
       </dl>
 
-      <div className="mt-5 flex items-center justify-between gap-4">
+      <div className="mt-5 flex items-start justify-between gap-4">
         <span className="font-heading text-lg font-extrabold text-brand-charcoal">
           Estimated total
         </span>
-        <span className="font-heading text-2xl font-extrabold text-brand-charcoal">
+        <span className="min-w-0 break-words text-right font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
           {hasEstimatedPrices
             ? formatProductPrice(subtotal, "estimated")
             : formatKES(subtotal)}
@@ -94,7 +94,7 @@ export function CartSummary({
 
       <Link
         href="/checkout"
-        className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:bg-brand-primary-hover"
+        className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-brand-primary px-4 text-center font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:bg-brand-primary-hover sm:px-6"
       >
         Proceed to checkout
         <ArrowRight aria-hidden="true" className="h-5 w-5" />

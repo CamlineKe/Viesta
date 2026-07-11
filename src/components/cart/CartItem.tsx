@@ -25,13 +25,12 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
   return (
     <article
       className={cardClassName({
-        className:
-          "grid gap-4 sm:grid-cols-[132px_1fr] sm:p-5",
+        className: "grid min-w-0 gap-4 sm:grid-cols-[132px_minmax(0,1fr)] sm:p-5",
         padding: "sm",
         variant: "flat",
       })}
     >
-      <Link href={productHref} className="block">
+      <Link href={productHref} className="block w-full max-w-48 justify-self-center sm:max-w-none">
         <div className="relative aspect-square overflow-hidden rounded-brand-lg bg-brand-botanical">
           <div className="absolute inset-3 rounded-brand-md border border-brand-border-soft bg-white" />
           <div className="absolute inset-4">
@@ -50,7 +49,7 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
             <Link href={productHref}>
-              <h3 className="font-heading text-xl font-extrabold leading-snug text-brand-charcoal transition hover:text-neutral-700">
+              <h3 className="break-words font-heading text-lg font-extrabold leading-snug text-brand-charcoal transition hover:text-neutral-700 sm:text-xl">
                 {item.name}
               </h3>
             </Link>
@@ -68,7 +67,7 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
               </p>
             ) : null}
           </div>
-          <p className="shrink-0 font-heading text-xl font-extrabold text-brand-charcoal">
+          <p className="break-words font-heading text-lg font-extrabold text-brand-charcoal sm:shrink-0 sm:text-xl">
             {formatProductLineTotal(
               item.price,
               item.quantity,

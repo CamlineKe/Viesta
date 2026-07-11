@@ -19,7 +19,11 @@ export function RelatedProducts({ products }: RelatedProductsProps) {
         title="Explore similar wellness support"
         description="Products from the same category or nearby routines."
       />
-      <div className="-mx-4 mt-8 flex snap-x gap-5 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4">
+      <div
+        aria-label="Related products"
+        className="-mx-4 mt-8 flex max-w-[calc(100%+2rem)] snap-x gap-5 overflow-x-auto overscroll-x-contain px-4 pb-4 sm:mx-0 sm:grid sm:max-w-full sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4"
+        role="region"
+      >
         {products.map((product) => (
           <div key={product.id} className="min-w-[82vw] snap-start sm:min-w-0">
             <ProductCard product={product} />

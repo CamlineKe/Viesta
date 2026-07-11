@@ -35,7 +35,7 @@ export function TrustBadges() {
           <article
             key={badge.label}
             className={cardClassName({
-              className: "flex items-center gap-4",
+              className: "min-w-0 flex items-center gap-4",
               padding: "sm",
               variant: "flat",
             })}
@@ -43,8 +43,8 @@ export function TrustBadges() {
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-primary-muted text-brand-charcoal">
               <Icon aria-hidden="true" className="h-6 w-6" />
             </div>
-            <div>
-              <p className="font-heading font-extrabold text-brand-charcoal">
+            <div className="min-w-0">
+              <p className="break-words font-heading font-extrabold text-brand-charcoal">
                 {badge.label}
               </p>
               <p className="mt-1 text-sm text-brand-muted">

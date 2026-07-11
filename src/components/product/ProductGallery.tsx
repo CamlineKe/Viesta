@@ -25,7 +25,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="min-w-0 space-y-4">
       <div className="group relative aspect-square overflow-hidden rounded-brand-xl border border-brand-border-soft bg-gradient-to-br from-brand-botanical via-brand-canvas to-brand-sun-wash shadow-brand-md">
         <div className="absolute inset-5 overflow-hidden rounded-brand-xl border border-brand-border-soft bg-white sm:inset-7">
           {!isImageLoaded ? (
@@ -41,7 +41,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
                 "object-contain transition duration-500 ease-out-expo group-hover:scale-[1.03]",
                 isImageLoaded ? "opacity-100" : "opacity-0",
               )}
-              sizes="(min-width: 1024px) 45vw, 90vw"
+              sizes="(min-width: 1280px) 40vw, (min-width: 1024px) 45vw, calc(100vw - 2rem)"
               src={selectedImage}
               onLoad={() => setIsImageLoaded(true)}
             />
@@ -52,7 +52,11 @@ export function ProductGallery({ product }: ProductGalleryProps) {
         </div>
       </div>
 
-      <div className="flex snap-x gap-3 overflow-x-auto pb-1">
+      <div
+        aria-label="Product image thumbnails"
+        className="flex max-w-full snap-x gap-3 overflow-x-auto overscroll-x-contain pb-1"
+        role="group"
+      >
         {images.map((image, index) => (
           <button
             key={`${image}-${index}`}

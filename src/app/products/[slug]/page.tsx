@@ -91,21 +91,23 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </>
           ) : null}
           <ChevronRight aria-hidden="true" className="h-4 w-4" />
-          <span className="text-brand-charcoal">{product.name}</span>
+          <span className="min-w-0 break-words text-brand-charcoal">
+            {product.name}
+          </span>
         </nav>
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14">
+        <div className="grid min-w-0 gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14">
           <ProductGallery product={product} />
           <ProductInfo product={product} />
         </div>
 
-        <section className="section-sun-wash mt-12 rounded-brand-xl border border-brand-border-soft p-5 lg:mt-16 lg:p-6">
+        <section className="section-sun-wash mt-12 rounded-brand-xl border border-brand-border-soft p-4 sm:p-5 lg:mt-16 lg:p-6">
           <TrustBadges />
         </section>
 
         <RelatedProducts products={relatedProducts} />
 
-        <section className="section-botanical mt-16 rounded-brand-xl border border-brand-border-soft p-5 lg:mt-20 lg:p-8">
+        <section className="section-botanical mt-16 rounded-brand-xl border border-brand-border-soft p-4 sm:p-5 lg:mt-20 lg:p-8">
           <SectionHeader
             align="center"
             eyebrow="Customer Signals"
