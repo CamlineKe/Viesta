@@ -1,6 +1,9 @@
 # Viesta Architecture
 
-This document is the source of truth for implementation structure. Product requirements live in `Viesta_PRD.md`; visual and interaction direction lives in `Viesta_Design_PRD.md`.
+**Version:** 1.1
+**Date:** July 2026
+
+This document is the source of truth for implementation structure. Product requirements live in `Viesta_PRD.md`; visual and interaction direction lives in `Viesta_Design_PRD.md` version 2.3 or later.
 
 ## Platform
 
@@ -12,6 +15,24 @@ This document is the source of truth for implementation structure. Product requi
 - Checkout: Browser-side checkout that builds a WhatsApp order handoff URL
 - Data: Local typed files under `src/data`
 - Deployment target: Vercel/static-friendly Next.js deployment
+
+## Design-System Implementation
+
+Visual requirements and responsive acceptance criteria are owned by `Viesta_Design_PRD.md`. Their shared implementation is split between:
+
+- `tailwind.config.ts`: brand colors, typography, radius, shadows, motion, and timing tokens.
+- `src/app/globals.css`: matching CSS custom properties, global focus and reduced-motion behavior, background utilities, drawer safe-area utilities, the intentional hero glass surface, and image-loading shimmer.
+- `src/components/ui`: shared buttons, cards, badges, alerts, form fields, containers, and section headings.
+
+The warm botanical background system exposes these shared utilities:
+
+- `section-canvas`: default warm editorial canvas.
+- `section-botanical`: trust, education, category, and brand-story wash.
+- `section-sun-wash`: promotional, reassurance, and selected-information wash.
+- `surface-flat`: solid white surface with a soft border.
+- `surface-raised`: solid white surface with a soft border and restrained shadow.
+
+`Card.tsx` owns the `default`, `flat`, `raised`, `interactive`, and `featured` surface variants. Marketing routes may use restrained background decoration, while shop, cart, checkout, drawers, forms, legal reading surfaces, prices, and validation remain on quiet high-contrast surfaces. Route-level visual composition stays in page and feature components; shared tokens and repeated surface behavior must not be redefined independently.
 
 ## Core Flow
 
@@ -126,6 +147,7 @@ src/
     ├── cart.test.ts
     ├── currency.test.ts
     ├── focus-trap.test.tsx
+    ├── home-categories.test.tsx
     ├── mobile-navigation.test.tsx
     ├── product-pricing.test.ts
     ├── products.test.ts
@@ -138,12 +160,12 @@ public/
 ├── favicon.ico
 ├── icons/logo.svg
 └── images/
-    ├── blog/
-    │   ├── fitness.png
-    │   ├── nutrition.png
-    │   └── wellness.png
-    ├── brand/hero.png
-    └── products/
+    ├── blog/*.webp
+    ├── brand/
+    │   ├── about_1.webp
+    │   └── hero.webp
+    ├── categories/*.webp
+    └── products/*.webp
 ```
 
 ## Root Configuration
@@ -284,16 +306,18 @@ Current unit and component tests cover:
 - WhatsApp message and URL generation
 - Product data and pricing helpers
 - Shared UI primitive variants
+- Homepage category counts and category query links
 - Focus trapping and focus restoration
 - Mobile navigation opening, scroll locking, and Escape close behavior
 
 Run:
 
 ```bash
+npm run test
 npm run type-check
 npm run lint
+npm run format:check
 npm run build
-npm run test
 ```
 
 ## Asset Strategy
@@ -301,12 +325,13 @@ npm run test
 - Product images live in `public/images/products`.
 - Blog images live in `public/images/blog`.
 - Brand imagery lives in `public/images/brand`.
-- Category data currently points to existing product images because dedicated category assets are not yet available.
-- Blog and brand PNGs should be converted to WebP or AVIF before launch for better performance.
+- Category imagery lives in `public/images/categories` and is referenced from `src/data/categories.ts`.
+- Current product, category, blog, and brand imagery uses WebP. New raster assets should use WebP or AVIF unless a documented compatibility requirement prevents it.
+- Decorative background treatments are CSS-based; no large raster texture layer is required.
 
 ## Launch Blockers
 
-The application builds and statically generates successfully, but these facts remain required before launch:
+Production build, automated checks, browser QA, and accessibility verification remain pending user-run validation. These business and release facts also remain required before launch:
 
 - Final product labels, usage directions, ingredients, warnings, and compliant claims.
 - Final Paybill/Till details.
