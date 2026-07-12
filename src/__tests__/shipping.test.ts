@@ -17,4 +17,9 @@ describe("shipping utilities", () => {
     expect(getShippingFee("other")).toBeNull();
     expect(calculateGrandTotal(2000, "other")).toBeNull();
   });
+
+  it("does not calculate shipping before a location is selected", () => {
+    expect(getShippingFee("")).toBeNull();
+    expect(calculateGrandTotal(2000, "")).toBeNull();
+  });
 });

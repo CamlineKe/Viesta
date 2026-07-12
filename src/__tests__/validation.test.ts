@@ -12,11 +12,12 @@ describe("checkout validation", () => {
     const errors = validateCheckout({
       fullName: "",
       phone: "123",
-      deliveryLocation: "nairobi",
+      deliveryLocation: "",
     });
 
     expect(hasCheckoutErrors(errors)).toBe(true);
     expect(errors.fullName).toBeDefined();
     expect(errors.phone).toBeDefined();
+    expect(errors.deliveryLocation).toBeDefined();
   });
 });

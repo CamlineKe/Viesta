@@ -18,7 +18,7 @@ import { OrderSummary } from "./OrderSummary";
 const initialFormValues: CheckoutFormValues = {
   fullName: "",
   phone: "",
-  deliveryLocation: "nairobi",
+  deliveryLocation: "",
   deliveryAddress: "",
   orderNotes: "",
 };

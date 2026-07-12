@@ -1,15 +1,15 @@
 import { shippingZones } from "@/data/shipping-zones";
-import type { ShippingZoneId } from "@/types/checkout";
+import type { DeliveryLocation } from "@/types/checkout";
 
-export function getShippingZone(location: ShippingZoneId) {
-  return shippingZones.find((zone) => zone.id === location) ?? shippingZones[shippingZones.length - 1];
+export function getShippingZone(location: DeliveryLocation) {
+  return shippingZones.find((zone) => zone.id === location);
 }
 
-export function getShippingFee(location: ShippingZoneId): number | null {
-  return getShippingZone(location).fee;
+export function getShippingFee(location: DeliveryLocation): number | null {
+  return getShippingZone(location)?.fee ?? null;
 }
 
-export function calculateGrandTotal(subtotal: number, location: ShippingZoneId): number | null {
+export function calculateGrandTotal(subtotal: number, location: DeliveryLocation): number | null {
   const fee = getShippingFee(location);
 
   if (fee === null) {

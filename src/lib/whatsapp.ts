@@ -63,7 +63,7 @@ export function buildWhatsAppMessage({
     "",
     `Name: ${checkout.fullName.trim()}`,
     `Phone: ${normalizeKenyanPhone(checkout.phone)}`,
-    `Delivery location: ${deliveryZone.name}`,
+    `Delivery location: ${deliveryZone?.name ?? "Not selected"}`,
     `Delivery address: ${address}`,
   ];
 

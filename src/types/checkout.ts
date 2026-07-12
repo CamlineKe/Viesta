@@ -7,6 +7,8 @@ export type ShippingZoneId =
   | "eldoret"
   | "other";
 
+export type DeliveryLocation = ShippingZoneId | "";
+
 export type ShippingFee = number | null;
 
 export type ShippingZone = {
@@ -20,7 +22,7 @@ export type ShippingZone = {
 export type CheckoutFormValues = {
   fullName: string;
   phone: string;
-  deliveryLocation: ShippingZoneId;
+  deliveryLocation: DeliveryLocation;
   deliveryAddress?: string;
   orderNotes?: string;
 };

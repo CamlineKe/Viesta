@@ -49,6 +49,7 @@ export function OrderSummary({
 }: OrderSummaryProps) {
   const { showToast } = useToast();
   const zone = getShippingZone(values.deliveryLocation);
+  const hasSelectedLocation = Boolean(zone);
   const validationErrors = validateCheckout(values);
   const hasUnpricedItems = items.some((item) => !hasConfirmedPrice(item.price));
   const hasEstimatedPrices = items.some(
@@ -60,7 +61,9 @@ export function OrderSummary({
     hasUnpricedItems;
   const paymentNeedsConfirmation = siteContent.payment.needsConfirmation;
   const shippingLabel =
-    shippingFee === null
+    !hasSelectedLocation
+      ? "Select location"
+      : shippingFee === null
       ? "Contact for fee"
       : shippingFee === 0
         ? "Free"
@@ -72,8 +75,10 @@ export function OrderSummary({
         hasEstimatedPrices ? "estimated" : undefined,
       );
   const totalLabel =
-    hasUnpricedItems || grandTotal === null
-      ? "To be confirmed"
+    !hasSelectedLocation
+      ? "Select location"
+      : hasUnpricedItems || grandTotal === null
+        ? "To be confirmed"
       : formatProductPrice(
           grandTotal,
           hasEstimatedPrices ? "estimated" : undefined,
@@ -179,7 +184,7 @@ export function OrderSummary({
         </div>
         <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">
-            Shipping ({zone.name})
+            Shipping{zone ? ` (${zone.name})` : ""}
           </dt>
           <dd className="min-w-0 break-words text-right text-sm font-bold text-brand-success">
             {shippingLabel}
@@ -233,7 +238,7 @@ export function OrderSummary({
         ) : null}
       </div>
 
-      {shippingFee === null ? (
+      {hasSelectedLocation && shippingFee === null ? (
         <Alert
           className="mt-4"
           icon={<Truck className="h-5 w-5" />}

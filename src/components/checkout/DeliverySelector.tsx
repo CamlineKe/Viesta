@@ -2,57 +2,70 @@
 
 import { shippingZones } from "@/data/shipping-zones";
 import { formatKES } from "@/lib/currency";
-import type { ShippingZoneId } from "@/types/checkout";
+import { getFieldControlClassName } from "@/components/ui/FormField";
+import type { DeliveryLocation } from "@/types/checkout";
 
 type DeliverySelectorProps = {
-  value: ShippingZoneId;
+  value: DeliveryLocation;
   error?: string;
-  onChange: (location: ShippingZoneId) => void;
+  onChange: (location: DeliveryLocation) => void;
 };
 
 export function DeliverySelector({ value, error, onChange }: DeliverySelectorProps) {
+  const selectedZone = shippingZones.find((zone) => zone.id === value);
+  const descriptionId = error
+    ? "deliveryLocation-error"
+    : selectedZone
+      ? "deliveryLocation-description"
+      : undefined;
+
   return (
-    <fieldset>
-      <legend className="mb-3 block text-sm font-bold text-brand-charcoal">Delivery location</legend>
-      <div className="grid gap-3 sm:grid-cols-2">
+    <div>
+      <label
+        className="block text-sm font-bold text-brand-charcoal"
+        htmlFor="deliveryLocation"
+      >
+        Delivery location
+      </label>
+      <select
+        aria-describedby={descriptionId}
+        aria-invalid={Boolean(error)}
+        className={getFieldControlClassName({ invalid: Boolean(error) })}
+        id="deliveryLocation"
+        name="deliveryLocation"
+        value={value}
+        onChange={(event) => onChange(event.target.value as DeliveryLocation)}
+      >
+        <option disabled value="">
+          Select your delivery location
+        </option>
         {shippingZones.map((zone) => {
-          const isSelected = zone.id === value;
           const feeLabel =
             zone.fee === null ? "Contact for fee" : zone.fee === 0 ? "Free" : formatKES(zone.fee);
 
           return (
-            <label
-              key={zone.id}
-              className={`min-w-0 cursor-pointer rounded-brand-lg border p-4 transition ${
-                isSelected
-                  ? "border-brand-primary bg-brand-sun-wash shadow-brand-sm"
-                  : "border-brand-border-soft bg-white hover:border-brand-primary"
-              }`}
-            >
-              <span className="flex items-start gap-3">
-                <input
-                  checked={isSelected}
-                  className="mt-1 h-4 w-4 shrink-0 accent-brand-primary"
-                  name="deliveryLocation"
-                  type="radio"
-                  value={zone.id}
-                  onChange={() => onChange(zone.id)}
-                />
-                <span className="min-w-0">
-                  <span className="block break-words font-heading font-extrabold text-brand-charcoal">{zone.name}</span>
-                  <span className="mt-1 block text-sm font-bold text-brand-success">{feeLabel}</span>
-                  <span className="mt-1 block text-xs leading-5 text-brand-muted">{zone.description}</span>
-                </span>
-              </span>
-            </label>
+            <option key={zone.id} value={zone.id}>
+              {zone.name} — {feeLabel}
+            </option>
           );
         })}
-      </div>
+      </select>
       {error ? (
-        <p className="mt-2 break-words text-sm font-semibold text-brand-danger">
+        <p
+          className="mt-2 break-words text-sm font-semibold text-brand-danger"
+          id="deliveryLocation-error"
+          role="alert"
+        >
           {error}
         </p>
+      ) : selectedZone ? (
+        <p
+          className="mt-2 text-xs font-semibold leading-5 text-brand-muted"
+          id="deliveryLocation-description"
+        >
+          {selectedZone.description}
+        </p>
       ) : null}
-    </fieldset>
+    </div>
   );
 }

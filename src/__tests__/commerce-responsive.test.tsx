@@ -7,17 +7,18 @@ import { WhatsAppOrderButton } from "@/components/checkout/WhatsAppOrderButton";
 describe("responsive commerce controls", () => {
   afterEach(cleanup);
 
-  it("keeps delivery options as accessible radios in a mobile-first grid", () => {
+  it("presents delivery options in an accessible compact selector", () => {
     const handleChange = vi.fn();
-    const { container, getByRole } = render(
-      <DeliverySelector value="nairobi" onChange={handleChange} />,
+    const { getByRole, getByText } = render(
+      <DeliverySelector value="" onChange={handleChange} />,
     );
 
-    expect(container.querySelector(".sm\\:grid-cols-2")).not.toBeNull();
+    const selector = getByRole("combobox", { name: "Delivery location" });
 
-    fireEvent.click(getByRole("radio", { name: /^Mombasa/ }));
+    fireEvent.change(selector, { target: { value: "mombasa" } });
 
     expect(handleChange).toHaveBeenCalledWith("mombasa");
+    expect(getByText("Mombasa — Ksh 500")).toBeDefined();
   });
 
   it("prevents a disabled WhatsApp order and reports validation errors", () => {
