@@ -10,11 +10,11 @@ import {
 import type { CartItem } from "@/types/cart";
 
 const item: CartItem = {
-  id: "prod-001",
-  name: "Vitamin C",
-  slug: "vitamin-c",
+  id: "test-product",
+  name: "Test Product",
+  slug: "test-product",
   price: 1500,
-  image: "/images/products/vitamin-c.webp",
+  image: "/images/products/test-product.webp",
   quantity: 1,
 };
 
@@ -30,14 +30,14 @@ describe("cart utilities", () => {
   it("keeps product variants separate when their cart ids differ", () => {
     const firstVariant = {
       ...item,
-      id: "prod-001:small",
+      id: "test-product:small",
       variantId: "small",
       packSize: "20 sachets",
       price: 300,
     };
     const secondVariant = {
       ...item,
-      id: "prod-001:large",
+      id: "test-product:large",
       variantId: "large",
       packSize: "40 sachets",
       price: 450,

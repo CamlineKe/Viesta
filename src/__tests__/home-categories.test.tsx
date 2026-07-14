@@ -26,7 +26,6 @@ vi.mock("next/link", () => ({
 }));
 
 const categoryLinks = [
-  ["Blood Sugar Support", "blood-sugar-support"],
   ["Blood Pressure & Heart Health", "blood-pressure-heart-health"],
   ["Joint & Mobility Support", "joint-mobility-support"],
   ["Detox & Digestive Wellness", "detox-digestive-wellness"],
@@ -40,13 +39,15 @@ describe("homepage category cards", () => {
   afterEach(cleanup);
 
   it("renders every category with its accessible label and shop filter URL", () => {
-    const { getByRole } = render(
+    const { getAllByRole, getByRole } = render(
       <ToastProvider>
         <CartProvider>
           <HomePage />
         </CartProvider>
       </ToastProvider>,
     );
+
+    expect(getAllByRole("link", { name: /^Browse .+ products$/ })).toHaveLength(7);
 
     for (const [name, slug] of categoryLinks) {
       const link = getByRole("link", { name: `Browse ${name} products` });

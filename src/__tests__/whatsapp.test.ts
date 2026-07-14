@@ -7,8 +7,8 @@ describe("WhatsApp utilities", () => {
     const message = buildWhatsAppMessage({
       items: [
         {
-          id: "prod-001:20",
-          productId: "prod-001",
+          id: "prod-026:bio-gluco-tea-bags-20",
+          productId: "prod-026",
           name: "Bio Gluco Tea Bags",
           slug: "bio-gluco-tea-bags",
           variantId: "bio-gluco-tea-bags-20",
@@ -16,7 +16,7 @@ describe("WhatsApp utilities", () => {
           packSize: "20 sachets",
           minimumOrderQuantity: 100,
           price: 300,
-          image: "/images/products/bio_gluco_teabags.webp",
+          image: "/images/products/bio_gluco_teabags-cutout.webp",
           quantity: 2,
         },
       ],
@@ -48,15 +48,15 @@ describe("WhatsApp utilities", () => {
     const message = buildWhatsAppMessage({
       items: [
         {
-          id: "prod-017",
-          productId: "prod-017",
-          name: "Bio Optic Capsules - Vision & Eye Health Support",
-          slug: "bio-optic-capsules-vision-eye-health-support",
+          id: "test-product-pending-price",
+          productId: "test-product-pending-price",
+          name: "Test Product Pending Price",
+          slug: "test-product-pending-price",
           packSize: "30s",
           minimumOrderQuantity: 100,
           price: 350,
           priceStatus: "estimated",
-          image: "/images/products/bio_optic_capsules.webp",
+          image: "/images/products/test-product.webp",
           quantity: 2,
         },
       ],
@@ -74,7 +74,7 @@ describe("WhatsApp utilities", () => {
     });
 
     expect(message).toContain(
-      "Bio Optic Capsules - Vision & Eye Health Support - 30s x2 (Estimated Ksh",
+      "Test Product Pending Price - 30s x2 (Estimated Ksh",
     );
     expect(message).toContain("Total: Estimated Ksh");
     expect(message).toContain("One or more product prices are estimated. Please confirm final pricing.");

@@ -2,92 +2,163 @@ import { describe, expect, it } from "vitest";
 
 import { products } from "@/data/products";
 
-function getProduct(slug: string) {
-  const product = products.find((item) => item.slug === slug);
+const expectedCatalog = {
+  "bio1-sterol-capsules": {
+    name: "Bio1 Sterol",
+    packs: [{ packSize: "30s", price: 350 }],
+  },
+  "bio1-sterol-plus": {
+    name: "Bio1 Sterol Plus",
+    packs: [{ packSize: "60s", price: 450 }],
+  },
+  "bio1-sterol-sachets": {
+    name: "Bio1 Sterol Sachets",
+    packs: [
+      { packSize: "20 sachets", price: 300 },
+      { packSize: "40 sachets", price: 450 },
+    ],
+  },
+  "biorelief-capsules": {
+    name: "BioRelief",
+    packs: [{ packSize: "30s", price: 350 }],
+  },
+  "biorelief-plus": {
+    name: "BioRelief Plus",
+    packs: [{ packSize: "60s", price: 450 }],
+  },
+  "biorelief-cream": {
+    name: "BioRelief Cream",
+    packs: [{ packSize: "50gms", price: 350 }],
+  },
+  "bio2-total-body-detox": {
+    name: "Bio2 Total Body Detox",
+    packs: [
+      { packSize: "20 sachets", price: 300 },
+      { packSize: "40 sachets", price: 450 },
+    ],
+  },
+  "bio2-nutraceutical-tea": {
+    name: "Bio2 Nutraceutical Tea",
+    packs: [
+      { packSize: "10 tea bags", price: 100 },
+      { packSize: "20 tea bags", price: 200 },
+    ],
+  },
+  "bio-immune-booster-immunity-support-formula": {
+    name: "Bio1 Immune Booster",
+    packs: [
+      { packSize: "20 sachets", price: 350 },
+      { packSize: "40 sachets", price: 500 },
+    ],
+  },
+  "bio1-metabalance-metabolism-energy-support": {
+    name: "Bio Metabalance",
+    packs: [{ packSize: "30s", price: 500 }],
+  },
+  "bioforge-capsules": {
+    name: "BioForge",
+    packs: [{ packSize: "30s", price: 350 }],
+  },
+  "bioforge-plus": {
+    name: "BioForge Plus",
+    packs: [{ packSize: "60s", price: 450 }],
+  },
+  bioflex: {
+    name: "BioFlex",
+    packs: [{ packSize: "30s", price: 350 }],
+  },
+  "bioflex-plus": {
+    name: "BioFlex Plus",
+    packs: [{ packSize: "60s", price: 450 }],
+  },
+  "viesta-slimming-coffee": {
+    name: "Viesta Slimming Coffee",
+    packs: [
+      { packSize: "90 capsules", price: 750 },
+      { packSize: "200 capsules", price: 1300 },
+    ],
+  },
+  "bio1-gluco": {
+    name: "Bio1 Gluco",
+    packs: [{ packSize: "30s", price: 350 }],
+  },
+  "bio1-gluco-plus": {
+    name: "Bio1 Gluco Plus",
+    packs: [{ packSize: "60s", price: 450 }],
+  },
+  "bio-gluco-tea-bags": {
+    name: "Bio Gluco Tea Bags",
+    packs: [
+      { packSize: "20 sachets", price: 300 },
+      { packSize: "40 sachets", price: 450 },
+    ],
+  },
+} as const;
 
-  if (!product) {
-    throw new Error(`Product not found: ${slug}`);
-  }
+const expectedCategoryCounts = {
+  "blood-pressure-heart-health": 3,
+  "joint-mobility-support": 3,
+  "detox-digestive-wellness": 2,
+  "immunity-general-wellness": 2,
+  "mens-wellness": 2,
+  "womens-wellness": 3,
+  diabetes: 3,
+};
 
-  return product;
-}
-
-describe("product pricing metadata", () => {
-  it("keeps the inventory catalog at 26 products", () => {
-    expect(products).toHaveLength(26);
+describe("product inventory and pricing metadata", () => {
+  it("contains exactly the 18 products in the current inventory", () => {
+    expect(products.map((product) => product.slug)).toEqual(
+      Object.keys(expectedCatalog),
+    );
   });
 
-  it("has a price for every inventory product", () => {
-    expect(products.every((product) => product.price > 0)).toBe(true);
-  });
+  it("matches all 24 confirmed pack and price combinations", () => {
+    let packCount = 0;
 
-  it("tracks confirmed prices across the entire catalog", () => {
-    expect(products.filter((product) => product.priceStatus === "estimated")).toHaveLength(0);
-    expect(products.filter((product) => product.priceStatus === "confirmed")).toHaveLength(26);
-  });
+    for (const product of products) {
+      const expected = expectedCatalog[product.slug as keyof typeof expectedCatalog];
+      const actualPacks = product.variants?.length
+        ? product.variants.map(({ packSize, price }) => ({ packSize, price }))
+        : [{ packSize: product.packSize, price: product.price }];
 
-  it("applies exact single-pack pricing with pack size and MOQ", () => {
-    expect(getProduct("bio1-sterol-capsules")).toMatchObject({
-      price: 350,
-      packSize: "30s",
-      minimumOrderQuantity: 100,
-    });
+      expect(product.name).toBe(expected.name);
+      expect(actualPacks).toEqual(expected.packs);
+      expect(product.price).toBe(
+        Math.min(...expected.packs.map((pack) => pack.price)),
+      );
+      expect(product.priceStatus).toBe("confirmed");
+      expect(
+        product.minimumOrderQuantity ??
+          product.variants?.[0]?.minimumOrderQuantity,
+      ).toBe(100);
+      expect(
+        product.variants?.every(
+          (variant) => variant.minimumOrderQuantity === 100,
+        ) ?? true,
+      ).toBe(true);
 
-    expect(getProduct("bio1-gluco-plus")).toMatchObject({
-      price: 450,
-      packSize: "60s",
-      minimumOrderQuantity: 100,
-    });
-  });
-
-  it("applies variant pricing while using the lowest variant as the base price", () => {
-    const product = getProduct("viesta-slimming-coffee");
-
-    expect(product.price).toBe(750);
-    expect(product.variants).toEqual([
-      {
-        id: "viesta-slimming-coffee-90",
-        label: "90 capsules",
-        packSize: "90 capsules",
-        price: 750,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "viesta-slimming-coffee-200",
-        label: "200 capsules",
-        packSize: "200 capsules",
-        price: 1300,
-        minimumOrderQuantity: 100,
-      },
-    ]);
-  });
-
-  it("applies the confirmed prices for formerly estimated products", () => {
-    const confirmedPrices = {
-      "bio1-gluco-capsules": 4000,
-      "bio1-gluco-powder": 1500,
-      "bio1-gluco-teabags": 2000,
-      "bio1-sterol-powder": 1500,
-      "bio1-sterol-teabags": 2500,
-      "bio-power-for-arthritis": 2000,
-      "bio2-acidity-h-pylori": 3500,
-      "bio-optic-capsules-vision-eye-health-support": 3500,
-    };
-
-    for (const [slug, price] of Object.entries(confirmedPrices)) {
-      expect(getProduct(slug)).toMatchObject({ price, priceStatus: "confirmed" });
+      packCount += actualPacks.length;
     }
+
+    expect(packCount).toBe(24);
   });
 
-  it("removes price and stock confirmations only for products with confirmed prices", () => {
-    expect(getProduct("bio1-sterol-capsules").needsConfirmation).not.toContain("price");
-    expect(getProduct("bio1-sterol-capsules").needsConfirmation).not.toContain("stock status");
+  it("matches the documented seven-category distribution", () => {
+    const actualCategoryCounts = products.reduce<Record<string, number>>(
+      (counts, product) => {
+        counts[product.category] = (counts[product.category] ?? 0) + 1;
+        return counts;
+      },
+      {},
+    );
+
+    expect(actualCategoryCounts).toEqual(expectedCategoryCounts);
   });
 
-  it("removes price and stock confirmations for newly confirmed products", () => {
-    const confirmedProduct = getProduct("bio1-gluco-powder");
-
-    expect(confirmedProduct.needsConfirmation).not.toContain("price");
-    expect(confirmedProduct.needsConfirmation).not.toContain("stock status");
+  it("does not request price or stock confirmation for confirmed inventory", () => {
+    for (const product of products) {
+      expect(product.needsConfirmation).not.toContain("price");
+      expect(product.needsConfirmation).not.toContain("stock status");
+    }
   });
 });

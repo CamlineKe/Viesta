@@ -5,9 +5,9 @@ import { CategoryFilter } from "@/components/shop/CategoryFilter";
 import { categories } from "@/data/categories";
 
 const productCounts = {
-  all: 5,
-  "blood-sugar-support": 2,
+  all: 6,
   "blood-pressure-heart-health": 3,
+  "joint-mobility-support": 3,
 };
 
 describe("shop category filter", () => {
@@ -18,7 +18,7 @@ describe("shop category filter", () => {
       <CategoryFilter
         categories={categories.slice(0, 2)}
         productCounts={productCounts}
-        selectedCategory="blood-sugar-support"
+        selectedCategory="blood-pressure-heart-health"
         variant="mobile"
         onChange={() => undefined}
       />,
@@ -26,7 +26,7 @@ describe("shop category filter", () => {
 
     expect(container.querySelector("details")).not.toBeNull();
     expect(getByText("Filters")).not.toBeNull();
-    expect(getAllByText("Blood Sugar Support")).toHaveLength(2);
+    expect(getAllByText("Blood Pressure & Heart Health")).toHaveLength(2);
     expect(container.innerHTML).not.toContain("overflow-x-auto");
   });
 
@@ -43,11 +43,11 @@ describe("shop category filter", () => {
     );
 
     fireEvent.click(
-      getByRole("radio", { name: /^Blood Pressure & Heart Health/ }),
+      getByRole("radio", { name: /^Joint & Mobility Support/ }),
     );
 
     expect(handleChange).toHaveBeenCalledWith(
-      "blood-pressure-heart-health",
+      "joint-mobility-support",
     );
   });
 });
