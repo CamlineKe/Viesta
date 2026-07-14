@@ -6,7 +6,7 @@ export const categories: ProductCategory[] = [
     name: "Blood Sugar Support",
     slug: "blood-sugar-support",
     description: "Products selected for everyday blood sugar wellness routines.",
-    image: "/images/categories/blood_sugar.webp",
+    image: "/images/categories/blood_sugar-cutout.webp",
     featured: true,
   },
   {
@@ -14,7 +14,7 @@ export const categories: ProductCategory[] = [
     name: "Blood Pressure & Heart Health",
     slug: "blood-pressure-heart-health",
     description: "Heart and blood pressure wellness products for guided daily routines.",
-    image: "/images/categories/blood_pressure.webp",
+    image: "/images/categories/blood_pressure-cutout.webp",
     featured: true,
   },
   {
@@ -22,7 +22,7 @@ export const categories: ProductCategory[] = [
     name: "Joint & Mobility Support",
     slug: "joint-mobility-support",
     description: "Joint comfort and mobility support for active everyday living.",
-    image: "/images/categories/joint_mobility.webp",
+    image: "/images/categories/joint_mobility-cutout.webp",
     featured: true,
   },
   {
@@ -30,7 +30,7 @@ export const categories: ProductCategory[] = [
     name: "Detox & Digestive Wellness",
     slug: "detox-digestive-wellness",
     description: "Detox and digestive wellness options for gentle routine support.",
-    image: "/images/categories/detox_digestive.webp",
+    image: "/images/categories/detox_digestive-cutout.webp",
     featured: true,
   },
   {
@@ -38,7 +38,7 @@ export const categories: ProductCategory[] = [
     name: "Immunity & General Wellness",
     slug: "immunity-general-wellness",
     description: "General wellness products selected for immunity, vision, energy, and daily support.",
-    image: "/images/categories/immunity.webp",
+    image: "/images/categories/immunity-cutout.webp",
     featured: true,
   },
   {
@@ -46,7 +46,7 @@ export const categories: ProductCategory[] = [
     name: "Men's Wellness",
     slug: "mens-wellness",
     description: "Men's wellness products for targeted vitality and daily health routines.",
-    image: "/images/categories/men_wellness.webp",
+    image: "/images/categories/men_wellness-cutout.webp",
     featured: true,
   },
   {
@@ -54,7 +54,7 @@ export const categories: ProductCategory[] = [
     name: "Women's Wellness",
     slug: "womens-wellness",
     description: "Women's wellness products for beauty, balance, and everyday support.",
-    image: "/images/categories/women_wellness.webp",
+    image: "/images/categories/women_wellness-cutout.webp",
     featured: true,
   },
   {
@@ -62,7 +62,7 @@ export const categories: ProductCategory[] = [
     name: "Diabetes",
     slug: "diabetes",
     description: "Diabetes-focused products listed separately from general blood sugar support.",
-    image: "/images/categories/diabetes.webp",
+    image: "/images/categories/diabetes-cutout.webp",
     featured: true,
   },
 ];
