@@ -19,7 +19,7 @@ export function BlogCard({ post }: BlogCardProps) {
   return (
     <article
       className={cardClassName({
-        className: "group min-w-0 h-full overflow-hidden p-0",
+        className: "group flex min-w-0 h-full flex-col overflow-hidden p-0",
         variant: "interactive",
       })}
     >
@@ -32,11 +32,11 @@ export function BlogCard({ post }: BlogCardProps) {
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, calc(100vw - 2rem)"
             src={post.coverImage.src}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/35 via-transparent to-transparent" />
         </div>
       </Link>
 
-      <div className="min-w-0 p-4 sm:p-5">
+      <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-3">
           <Badge variant="default">{getBlogCategoryLabel(post.category)}</Badge>
           <span className="text-xs font-semibold text-brand-muted">
@@ -53,7 +53,7 @@ export function BlogCard({ post }: BlogCardProps) {
         </p>
         <Link
           href={postHref}
-          className="mt-5 inline-flex items-center gap-2 font-heading text-sm font-extrabold text-brand-charcoal transition hover:gap-3"
+          className="mt-auto inline-flex items-center gap-2 pt-5 font-heading text-sm font-extrabold text-brand-charcoal transition hover:gap-3"
         >
           Read more
           <ArrowRight aria-hidden="true" className="h-4 w-4" />

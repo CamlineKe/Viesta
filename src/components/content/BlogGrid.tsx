@@ -31,8 +31,11 @@ export function BlogGrid({ posts }: BlogGridProps) {
     return posts.filter((post) => post.category === activeCategory);
   }, [activeCategory, posts]);
 
+  const activeCategoryLabel =
+    activeCategory === "all" ? "all topics" : getBlogCategoryLabel(activeCategory);
+
   return (
-    <div className="min-w-0 mt-10">
+    <div className="mt-10 min-w-0">
       <div
         aria-label="Filter articles by category"
         className="-mx-4 flex w-[calc(100%_+_2rem)] snap-x gap-2 overflow-x-auto overscroll-x-contain px-4 pb-2 sm:mx-0 sm:w-auto sm:flex-wrap sm:px-0"
@@ -43,7 +46,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
             key={category}
             aria-pressed={activeCategory === category}
             className={cn(
-              "shrink-0 snap-start rounded-full border px-4 py-2 text-sm font-bold transition",
+              "shrink-0 snap-start rounded-full border px-4 py-2 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-charcoal",
               activeCategory === category
                 ? "border-brand-primary bg-brand-primary text-brand-charcoal shadow-glow"
                 : "border-brand-border-soft bg-white text-brand-charcoal hover:border-brand-primary hover:bg-brand-primary-muted",
@@ -56,7 +59,12 @@ export function BlogGrid({ posts }: BlogGridProps) {
         ))}
       </div>
 
-      <div className="mt-8 grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <p aria-live="polite" className="mt-4 text-sm font-semibold text-brand-muted" role="status">
+        Showing {visiblePosts.length} {visiblePosts.length === 1 ? "guide" : "guides"} in{" "}
+        {activeCategoryLabel}
+      </p>
+
+      <div className="mt-6 grid min-w-0 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {visiblePosts.map((post) => (
           <BlogCard key={post.id} post={post} />
         ))}
