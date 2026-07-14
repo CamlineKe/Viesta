@@ -56,7 +56,12 @@ export function BlogArticleBody({ blocks }: BlogArticleBodyProps) {
       case "table":
         return (
           <figure key={key} className="min-w-0">
-            <div className="overflow-x-auto rounded-brand-lg border border-brand-border-soft">
+            <div
+              aria-label={`${block.caption}. Scroll horizontally to view all columns on smaller screens.`}
+              className="overflow-x-auto rounded-brand-lg border border-brand-border-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+              role="region"
+              tabIndex={0}
+            >
               <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <caption className="bg-brand-canvas px-4 py-3 text-left font-heading font-extrabold text-brand-charcoal">
                   {block.caption}
@@ -89,7 +94,12 @@ export function BlogArticleBody({ blocks }: BlogArticleBodyProps) {
                 </tbody>
               </table>
             </div>
-            {block.note ? <figcaption className="mt-3 text-sm leading-6 text-brand-muted">{block.note}</figcaption> : null}
+            <figcaption className="mt-3 text-sm leading-6 text-brand-muted">
+              <span className="font-bold text-brand-charcoal sm:hidden">
+                Swipe or scroll to see every column.{" "}
+              </span>
+              {block.note}
+            </figcaption>
           </figure>
         );
       case "callout":
