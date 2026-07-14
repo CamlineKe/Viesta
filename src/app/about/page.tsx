@@ -540,6 +540,73 @@ export default function AboutPage() {
           </figure>
         </Container>
       </section>
+
+      <section className="section-sun-wash relative overflow-hidden py-16 lg:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-32 bottom-0 h-80 w-80 rounded-full bg-brand-primary/15 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[8%] top-16 hidden h-28 w-28 rounded-full border border-brand-charcoal/10 lg:block"
+        />
+        <Container className="relative grid gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center lg:gap-16">
+          <figure className="relative mx-auto w-full max-w-lg min-w-0 lg:mx-0">
+            <div
+              aria-hidden="true"
+              className="absolute -left-5 -top-5 h-full w-full rounded-brand-xl bg-brand-charcoal sm:-left-7 sm:-top-7"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-5 -right-5 h-36 w-36 rounded-brand-xl bg-brand-primary sm:-bottom-7 sm:-right-7"
+            />
+            <div className="surface-raised relative overflow-hidden rounded-brand-xl p-3 sm:p-4">
+              <div className="relative aspect-[1172/1342] overflow-hidden rounded-brand-lg bg-white">
+                <Image
+                  fill
+                  alt="Portrait of Prof. Patrick Kareru, founder of Viesta"
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 36vw, (min-width: 640px) 70vw, 92vw"
+                  src="/images/brand/founder_viesta.webp"
+                />
+              </div>
+              <figcaption className="px-2 pb-2 pt-5 sm:px-3">
+                <p className="font-heading text-xl font-extrabold text-brand-charcoal">
+                  Prof. Patrick Kareru
+                </p>
+                <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-brand-success">
+                  Founder, Viesta Health Shop
+                </p>
+              </figcaption>
+            </div>
+          </figure>
+
+          <div className="min-w-0">
+            <SectionHeader
+              eyebrow="Meet the Founder"
+              title="Leadership grounded in better wellbeing"
+              description="Prof. Patrick Kareru is the founder of Viesta Health Shop. Viesta is guided by a mission to support healthier choices for individuals and families."
+            />
+
+            <div className="mt-8 border-l-4 border-brand-primary bg-white/80 p-5 shadow-brand-sm backdrop-blur-sm sm:p-7">
+              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-success">
+                A founder-led principle
+              </p>
+              <p className="mt-4 font-heading text-xl font-extrabold leading-8 text-brand-charcoal sm:text-2xl sm:leading-9">
+                At the heart of Viesta is a simple principle: better wellbeing
+                begins with informed choices, supported by quality products,
+                clear information, and genuine customer care.
+              </p>
+            </div>
+
+            <p className="mt-7 max-w-2xl text-base leading-8 text-brand-muted">
+              This principle connects Viesta&apos;s mission, product approach,
+              and customer relationships as the brand works toward becoming a
+              trusted health and wellness name across East Africa.
+            </p>
+          </div>
+        </Container>
+      </section>
     </main>
   );
 }
