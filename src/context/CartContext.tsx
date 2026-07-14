@@ -25,7 +25,7 @@ type CartContextValue = CartTotals & {
   clearCart: () => void;
 };
 
-const CART_STORAGE_KEY = "viesta-cart";
+const CART_STORAGE_KEY = "viesta-cart-v2";
 
 export const CartContext = createContext<CartContextValue | null>(null);
 
