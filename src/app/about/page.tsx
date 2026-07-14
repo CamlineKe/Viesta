@@ -4,9 +4,11 @@ import Link from "next/link";
 import {
   ArrowRight,
   CheckCircle2,
+  Eye,
   FlaskConical,
   HeartPulse,
   ShieldCheck,
+  Target,
 } from "lucide-react";
 
 import { cardClassName } from "@/components/ui/Card";
@@ -199,17 +201,37 @@ export default function AboutPage() {
 
       <section
         id="our-approach"
-        className="section-botanical scroll-mt-28 py-16 lg:py-20"
+        className="section-botanical relative scroll-mt-28 overflow-hidden py-16 lg:py-20"
       >
-        <Container>
-          <SectionHeader
-            align="center"
-            eyebrow="Who We Are"
-            title="A thoughtful approach to everyday wellbeing"
-            description="Viesta brings together premium supplements, personal care products, and natural wellness solutions, with a commitment to quality, integrity, and customer education."
-          />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-20 top-20 h-52 w-52 rounded-full border border-brand-success/10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-10 top-32 h-36 w-36 rounded-full border border-brand-success/10"
+        />
+        <Container className="relative">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-16">
+            <SectionHeader
+              eyebrow="Who We Are"
+              title="A thoughtful approach to everyday wellbeing"
+              description="Viesta brings together premium supplements, personal care products, and natural wellness solutions for individuals and families in Kenya."
+            />
+            <div className="border-l-2 border-brand-primary pl-5 sm:pl-7">
+              <p className="font-heading text-xl font-extrabold leading-8 text-brand-charcoal sm:text-2xl sm:leading-9">
+                We believe people should be able to approach wellness with
+                greater clarity and confidence.
+              </p>
+              <p className="mt-4 text-base leading-8 text-brand-muted">
+                That means combining a quality-led product range with integrity,
+                useful education, and customer care that supports informed
+                decisions.
+              </p>
+            </div>
+          </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {brandPillars.map((pillar) => {
+            {brandPillars.map((pillar, index) => {
               const Icon = pillar.icon;
 
               return (
@@ -220,8 +242,16 @@ export default function AboutPage() {
                     variant: "flat",
                   })}
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
-                    <Icon aria-hidden="true" className="h-7 w-7" />
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
+                      <Icon aria-hidden="true" className="h-7 w-7" />
+                    </div>
+                    <span
+                      aria-hidden="true"
+                      className="font-heading text-3xl font-extrabold text-brand-charcoal/10"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
                   <h3 className="mt-5 break-words font-heading text-xl font-extrabold">
                     {pillar.title}
@@ -236,46 +266,57 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="section-sun-wash py-16 lg:py-20">
-        <Container>
+      <section className="section-sun-wash relative overflow-hidden py-16 lg:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border-[48px] border-brand-primary/10"
+        />
+        <Container className="relative">
           <SectionHeader
-            align="center"
             eyebrow="Our Purpose"
             title="Guided by purpose, growing with integrity"
             description="Our mission defines the difference we want to make today, while our vision sets the standard we are working toward across East Africa."
           />
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            <article
-              className={cardClassName({
-                className: "min-w-0 p-6 sm:p-8",
-                variant: "raised",
-              })}
-            >
-              <p className="text-sm font-bold uppercase tracking-wide text-brand-success">
+          <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-stretch">
+            <article className="surface-raised min-w-0 rounded-brand-xl p-6 sm:p-8 lg:p-10">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
+                  <Target aria-hidden="true" className="h-7 w-7" />
+                </div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-muted">
+                  Present purpose
+                </p>
+              </div>
+              <p className="mt-8 text-sm font-bold uppercase tracking-wide text-brand-success">
                 Our Mission
               </p>
-              <h3 className="mt-3 font-heading text-2xl font-extrabold sm:text-3xl">
+              <h3 className="mt-3 font-heading text-2xl font-extrabold leading-tight sm:text-3xl">
                 Empower healthier choices
               </h3>
-              <p className="mt-4 text-base leading-8 text-brand-muted">
+              <div className="mt-6 h-1 w-14 rounded-full bg-brand-primary" />
+              <p className="mt-6 text-base leading-8 text-brand-muted">
                 To empower people to take control of their health by providing
                 safe, effective, and natural wellness solutions.
               </p>
             </article>
 
-            <article
-              className={cardClassName({
-                className: "min-w-0 p-6 sm:p-8",
-                variant: "raised",
-              })}
-            >
-              <p className="text-sm font-bold uppercase tracking-wide text-brand-success">
+            <article className="min-w-0 overflow-hidden rounded-brand-xl bg-brand-charcoal p-6 text-white shadow-brand-lg sm:p-8 lg:p-10">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-brand-lg bg-white/10 text-brand-primary">
+                  <Eye aria-hidden="true" className="h-7 w-7" />
+                </div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-white/55">
+                  Future direction
+                </p>
+              </div>
+              <p className="mt-8 text-sm font-bold uppercase tracking-wide text-brand-primary">
                 Our Vision
               </p>
-              <h3 className="mt-3 font-heading text-2xl font-extrabold sm:text-3xl">
+              <h3 className="mt-3 font-heading text-2xl font-extrabold leading-tight sm:text-3xl">
                 Earn trust across East Africa
               </h3>
-              <p className="mt-4 text-base leading-8 text-brand-muted">
+              <div className="mt-6 h-1 w-14 rounded-full bg-brand-primary" />
+              <p className="mt-6 text-base leading-8 text-white/70">
                 To become East Africa&apos;s most trusted health and wellness
                 brand, recognized for quality, integrity, innovation, and
                 customer care.
