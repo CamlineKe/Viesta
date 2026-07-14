@@ -326,41 +326,105 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-brand-canvas py-16 lg:py-20">
-        <Container>
+      <section className="section-canvas relative overflow-hidden py-16 lg:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full border-[56px] border-brand-success/[0.06]"
+        />
+        <Container className="relative">
           <SectionHeader
             align="center"
             eyebrow="Core Highlights"
             title="Wellness support for different stages of life"
             description="Our growing range brings together everyday supplements, targeted wellness support, and personal care to serve a wide range of individual and family needs."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {wellnessAreas.map((area) => (
-              <article
-                key={area.title}
-                className={cardClassName({
-                  className: "min-w-0 p-5 sm:p-6",
-                  variant: "flat",
-                })}
-              >
-                <h3 className="font-heading text-xl font-extrabold">
-                  {area.title}
-                </h3>
-                <ul className="mt-5 space-y-4">
-                  {area.items.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <CheckCircle2
-                        aria-hidden="true"
-                        className="mt-0.5 h-5 w-5 shrink-0 text-brand-success"
-                      />
-                      <span className="text-sm leading-6 text-brand-muted">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+          <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center lg:gap-16">
+            <figure className="relative min-w-0">
+              <div
+                aria-hidden="true"
+                className="absolute -left-5 -top-5 h-full w-full rounded-brand-xl bg-brand-primary sm:-left-7 sm:-top-7"
+              />
+              <div className="surface-raised relative overflow-hidden rounded-brand-xl p-3 sm:p-4">
+                <div className="relative aspect-[891/600] overflow-hidden rounded-brand-lg bg-white">
+                  <Image
+                    fill
+                    alt="A selection of Viesta supplement products representing several wellness categories"
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 44vw, 92vw"
+                    src="/images/brand/product_categories.webp"
+                  />
+                </div>
+                <figcaption className="flex items-start gap-3 px-2 pb-2 pt-5 sm:px-3">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-brand-success"
+                  />
+                  <div>
+                    <p className="font-heading text-lg font-extrabold text-brand-charcoal">
+                      A growing wellness range
+                    </p>
+                    <p className="mt-1 text-sm leading-6 text-brand-muted">
+                      Premium-quality products selected across everyday and
+                      targeted wellness needs.
+                    </p>
+                  </div>
+                </figcaption>
+              </div>
+            </figure>
+
+            <div className="min-w-0">
+              <div className="flex flex-wrap gap-2">
+                <span className="rounded-full border border-brand-border-soft bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-brand-charcoal shadow-brand-sm">
+                  Premium-quality products
+                </span>
+                <span className="rounded-full border border-brand-border-soft bg-brand-botanical px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-brand-charcoal">
+                  Natural ingredient focus
+                </span>
+              </div>
+
+              <div className="mt-7 divide-y divide-brand-border-soft border-y border-brand-border-soft">
+                {wellnessAreas.map((area, index) => (
+                  <article
+                    key={area.title}
+                    className="grid gap-4 py-6 sm:grid-cols-[2.5rem_minmax(0,1fr)] sm:gap-5"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="font-heading text-sm font-extrabold text-brand-success"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="font-heading text-xl font-extrabold text-brand-charcoal">
+                        {area.title}
+                      </h3>
+                      <ul className="mt-4 flex flex-wrap gap-2">
+                        {area.items.map((item) => (
+                          <li
+                            key={item}
+                            className="rounded-brand-md border border-brand-border-soft bg-white px-3 py-2 text-sm font-bold leading-5 text-brand-muted"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="mt-6 flex gap-3 rounded-brand-lg border border-brand-success/15 bg-brand-botanical p-4 sm:p-5">
+                <CheckCircle2
+                  aria-hidden="true"
+                  className="mt-0.5 h-5 w-5 shrink-0 text-brand-success"
+                />
+                <p className="text-sm leading-6 text-brand-muted">
+                  Across every category, Viesta is committed to helping
+                  customers make informed wellness decisions through trusted
+                  products and customer education.
+                </p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
