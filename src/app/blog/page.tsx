@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { BlogGrid } from "@/components/content/BlogGrid";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { blogPosts } from "@/data/blog-posts";
+import { publishedBlogPosts } from "@/data/blog-posts";
 
 export const metadata = {
   title: "Blog",
@@ -20,7 +20,7 @@ export default function BlogPage() {
           description="Educational articles for supplement literacy, fitness nutrition, ingredients, and daily wellness decisions."
           align="center"
         />
-        <BlogGrid posts={blogPosts} />
+        <BlogGrid posts={publishedBlogPosts} />
       </Container>
     </main>
   );

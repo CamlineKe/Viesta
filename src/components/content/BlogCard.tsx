@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { getBlogCategoryLabel } from "@/data/blog-categories";
+import { getBlogReadTimeLabel } from "@/data/blog-editorial";
 import type { BlogPost } from "@/types/blog";
 
 import { Badge } from "../ui/Badge";
@@ -9,13 +11,6 @@ import { cardClassName } from "../ui/Card";
 
 type BlogCardProps = {
   post: BlogPost;
-};
-
-const categoryLabels: Record<BlogPost["category"], string> = {
-  "nutrition-tips": "Nutrition Tips",
-  fitness: "Fitness",
-  ingredients: "Ingredients",
-  wellness: "Wellness",
 };
 
 export function BlogCard({ post }: BlogCardProps) {
@@ -32,10 +27,10 @@ export function BlogCard({ post }: BlogCardProps) {
         <div className="relative aspect-[16/10] overflow-hidden bg-brand-canvas">
           <Image
             fill
-            alt={`${post.title} article image`}
+            alt={post.coverImage.alt}
             className="object-cover transition duration-500 ease-out-expo group-hover:scale-105"
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, calc(100vw - 2rem)"
-            src={post.image}
+            src={post.coverImage.src}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/20 to-transparent" />
         </div>
@@ -43,9 +38,9 @@ export function BlogCard({ post }: BlogCardProps) {
 
       <div className="min-w-0 p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-3">
-          <Badge variant="default">{categoryLabels[post.category]}</Badge>
+          <Badge variant="default">{getBlogCategoryLabel(post.category)}</Badge>
           <span className="text-xs font-semibold text-brand-muted">
-            {post.readTime}
+            {getBlogReadTimeLabel(post.readTimeMinutes)}
           </span>
         </div>
         <Link href={postHref} className="mt-4 block">

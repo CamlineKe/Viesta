@@ -2,6 +2,10 @@
 
 import { useMemo, useState } from "react";
 
+import {
+  getBlogCategoriesForPosts,
+  getBlogCategoryLabel,
+} from "@/data/blog-categories";
 import type { BlogCategory, BlogPost } from "@/types/blog";
 import { cn } from "@/lib/class-names";
 
@@ -11,18 +15,13 @@ type BlogGridProps = {
   posts: BlogPost[];
 };
 
-const categoryLabels: Record<BlogCategory | "all", string> = {
-  all: "All",
-  "nutrition-tips": "Nutrition Tips",
-  fitness: "Fitness",
-  ingredients: "Ingredients",
-  wellness: "Wellness",
-};
-
-const categories: Array<BlogCategory | "all"> = ["all", "nutrition-tips", "fitness", "ingredients", "wellness"];
-
 export function BlogGrid({ posts }: BlogGridProps) {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | "all">("all");
+
+  const categories = useMemo<Array<BlogCategory | "all">>(
+    () => ["all", ...getBlogCategoriesForPosts(posts.map((post) => post.category))],
+    [posts],
+  );
 
   const visiblePosts = useMemo(() => {
     if (activeCategory === "all") {
@@ -52,7 +51,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
             type="button"
             onClick={() => setActiveCategory(category)}
           >
-            {categoryLabels[category]}
+            {category === "all" ? "All" : getBlogCategoryLabel(category)}
           </button>
         ))}
       </div>
@@ -62,6 +61,17 @@ export function BlogGrid({ posts }: BlogGridProps) {
           <BlogCard key={post.id} post={post} />
         ))}
       </div>
+
+      {visiblePosts.length === 0 ? (
+        <div className="mt-8 rounded-brand-lg border border-brand-border-soft bg-white p-8 text-center">
+          <p className="font-heading text-xl font-extrabold text-brand-charcoal">
+            No published articles in this topic yet
+          </p>
+          <p className="mt-2 text-sm leading-6 text-brand-muted">
+            Choose another wellness topic or check back as the journal grows.
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

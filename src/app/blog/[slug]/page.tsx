@@ -4,21 +4,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock, UserRound } from "lucide-react";
 
+import { BlogArticleBody } from "@/components/content/BlogArticleBody";
 import { BlogCard } from "@/components/content/BlogCard";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
-import { blogPosts } from "@/data/blog-posts";
-import type { BlogPost } from "@/types/blog";
-
-const categoryLabels: Record<BlogPost["category"], string> = {
-  "nutrition-tips": "Nutrition Tips",
-  fitness: "Fitness",
-  ingredients: "Ingredients",
-  wellness: "Wellness",
-};
+import { getBlogCategoryLabel } from "@/data/blog-categories";
+import { BLOG_MEDICAL_DISCLAIMER, getBlogReadTimeLabel } from "@/data/blog-editorial";
+import { publishedBlogPosts } from "@/data/blog-posts";
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return publishedBlogPosts.map((post) => ({ slug: post.slug }));
 }
 
 type BlogPostPageProps = {
@@ -27,7 +22,7 @@ type BlogPostPageProps = {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = publishedBlogPosts.find((item) => item.slug === slug);
 
   if (!post) {
     return { title: "Blog Post Not Found" };
@@ -41,15 +36,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = publishedBlogPosts.find((item) => item.slug === slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = blogPosts
+  const relatedPosts = publishedBlogPosts
     .filter((item) => item.id !== post.id && item.category === post.category)
-    .concat(blogPosts.filter((item) => item.id !== post.id && item.category !== post.category))
+    .concat(
+      publishedBlogPosts.filter(
+        (item) => item.id !== post.id && item.category !== post.category,
+      ),
+    )
     .slice(0, 3);
 
   return (
@@ -65,7 +64,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <article className="mt-8">
           <header className="mx-auto max-w-4xl text-center">
-            <Badge variant="default">{categoryLabels[post.category]}</Badge>
+            <Badge variant="default">{getBlogCategoryLabel(post.category)}</Badge>
             <h1 className="mt-5 break-words font-heading text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
@@ -81,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Clock aria-hidden="true" className="h-4 w-4" />
-                {post.readTime}
+                {getBlogReadTimeLabel(post.readTimeMinutes)}
               </span>
             </div>
           </header>
@@ -90,34 +89,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Image
               fill
               priority
-              alt={`${post.title} article hero image`}
+              alt={post.coverImage.alt}
               className="object-cover"
               sizes="(min-width: 1280px) 1120px, 92vw"
-              src={post.image}
+              src={post.coverImage.src}
             />
             <div className="absolute left-5 top-5">
-              <Badge variant="default">{categoryLabels[post.category]}</Badge>
+              <Badge variant="default">{getBlogCategoryLabel(post.category)}</Badge>
             </div>
           </div>
 
           <div className="surface-flat mx-auto mt-10 max-w-3xl space-y-6 rounded-brand-xl p-4 sm:p-8">
-            {post.content.map((paragraph) => (
-              <p key={paragraph} className="text-base leading-8 text-brand-muted sm:text-lg sm:leading-9">
-                {paragraph}
-              </p>
-            ))}
+            <BlogArticleBody blocks={post.content} />
 
-            <blockquote className="rounded-brand-lg border-l-4 border-brand-primary bg-brand-sun-wash p-5 text-base italic leading-8 text-brand-charcoal">
-              Educational content is general wellness information. Customers with medical conditions,
-              pregnancy, allergies, or medication use should seek qualified professional advice.
-            </blockquote>
-
-            {post.needsConfirmation?.length ? (
-              <div className="rounded-brand-lg border border-orange-200 bg-orange-50 p-5 text-sm leading-6 text-orange-800">
-                <p className="font-heading font-extrabold">Needs confirmation before launch</p>
-                <p className="mt-1">{post.needsConfirmation.join(", ")}</p>
-              </div>
-            ) : null}
+            <aside className="rounded-brand-lg border-l-4 border-brand-primary bg-brand-sun-wash p-5 text-base leading-8 text-brand-charcoal">
+              <p className="font-heading font-extrabold">Medical information disclaimer</p>
+              <p className="mt-2">{BLOG_MEDICAL_DISCLAIMER}</p>
+            </aside>
           </div>
         </article>
 
