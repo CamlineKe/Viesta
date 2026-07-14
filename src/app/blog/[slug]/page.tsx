@@ -18,6 +18,7 @@ import { BlogProductDiscoveryCard } from "@/components/content/BlogProductDiscov
 import { BlogSources } from "@/components/content/BlogSources";
 import { BlogTableOfContents } from "@/components/content/BlogTableOfContents";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -32,6 +33,7 @@ import { publishedBlogPosts } from "@/data/blog-posts";
 import { products } from "@/data/products";
 import { siteContent } from "@/data/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildBlogPostJsonLd, buildBlogPostMetadata } from "@/lib/blog-seo";
 
 export function generateStaticParams() {
   return publishedBlogPosts.map((post) => ({ slug: post.slug }));
@@ -49,10 +51,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return { title: "Blog Post Not Found" };
   }
 
-  return {
-    title: post.title,
-    description: post.excerpt,
-  };
+  return buildBlogPostMetadata(post);
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -81,9 +80,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     siteContent.contact.whatsapp,
     `Hello Viesta Nutrition, I read “${post.title}” and would like to receive new wellness guides on WhatsApp.`,
   );
+  const articleJsonLd = buildBlogPostJsonLd(post);
 
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
+      <JsonLd data={articleJsonLd} />
       <section className="section-canvas relative isolate overflow-hidden pb-16 pt-10 lg:pb-20 lg:pt-12">
         <svg
           aria-hidden="true"

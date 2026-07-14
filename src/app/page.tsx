@@ -19,6 +19,7 @@ import { featuredBlogPosts } from "@/data/blog-posts";
 import { categories } from "@/data/categories";
 import { featuredProducts, products } from "@/data/products";
 import { siteContent } from "@/data/site";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const heroTrustItems = [
   { label: "Free Nairobi & Kiambu delivery", icon: Truck },
@@ -35,10 +36,10 @@ const categoryCounts = products.reduce<Record<string, number>>(
 );
 
 export default function HomePage() {
-  const updatesMessage = encodeURIComponent(
-    "Hello! I'd like to receive Viesta nutrition tips and product updates.",
+  const updatesUrl = buildWhatsAppUrl(
+    siteContent.contact.whatsapp,
+    "Hello Viesta Nutrition, I'd like to receive practical wellness guides and product updates on WhatsApp.",
   );
-  const updatesUrl = `https://wa.me/${siteContent.contact.whatsapp.replace(/[^\d]/g, "")}?text=${updatesMessage}`;
 
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
@@ -254,20 +255,20 @@ export default function HomePage() {
         <Container>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
-              eyebrow="Journal"
-              title="Latest from the blog"
-              description="Educational wellness content for nutrition, fitness, ingredients, and everyday health decisions."
+              eyebrow="Wellness Journal"
+              title="Start with three essential guides"
+              description="Understand blood pressure, glucose testing, and evidence-aware detox choices through practical, source-led education."
             />
             <Link
-              href="/blog"
+              href="/blog#browse-guides"
               className="inline-flex items-center gap-2 font-heading text-sm font-extrabold text-brand-charcoal transition hover:gap-3"
             >
-              View all articles
+              Browse all wellness guides
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
           </div>
           <div
-            aria-label="Latest articles"
+            aria-label="Featured wellness guides"
             className="-mx-4 mt-10 flex w-[calc(100%_+_2rem)] snap-x gap-5 overflow-x-auto overscroll-x-contain px-4 pb-4 md:mx-0 md:grid md:w-auto md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-3"
             role="region"
           >
@@ -290,11 +291,11 @@ export default function HomePage() {
               Stay Updated
             </p>
             <h2 className="mt-3 font-heading text-3xl font-extrabold sm:text-4xl">
-              Nutrition tips and product updates.
+              Practical wellness guidance, delivered simply.
             </h2>
             <p className="mt-4 text-base leading-7 text-white/70">
-              Get practical wellness notes and launch updates when the final
-              Viesta product catalog is ready.
+              Ask to receive new Viesta Wellness Journal guides and carefully
+              separated product-education updates through WhatsApp.
             </p>
             <a
               className="mt-8 inline-flex min-h-12 max-w-full items-center justify-center rounded-md bg-brand-primary px-4 text-center font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97] sm:px-6"
@@ -302,7 +303,7 @@ export default function HomePage() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Get updates on WhatsApp
+              Get wellness updates on WhatsApp
               <WhatsAppIcon className="ml-2 h-5 w-5" />
             </a>
           </div>

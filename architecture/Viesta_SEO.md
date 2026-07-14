@@ -44,15 +44,18 @@ The project already has a good foundation:
 - Root metadata exists in `src/app/layout.tsx`.
 - Basic page-level metadata exists on key pages.
 - Product and blog pages generate dynamic titles and descriptions.
+- The blog index has canonical, Open Graph, and Twitter metadata.
+- Published blog articles generate canonical, Open Graph, and Twitter metadata from article data.
+- Published blog articles render matching `BlogPosting` JSON-LD.
 - Product, blog, category, FAQ, shipping, legal, and contact content are stored in typed local data files.
 
 Current gaps to address:
 
 - No `sitemap.ts` or generated `sitemap.xml`.
 - No `robots.ts` or generated `robots.txt`.
-- No canonical URL strategy.
-- No Open Graph or Twitter metadata strategy.
-- No structured data JSON-LD.
+- Canonical metadata is not yet consistently implemented outside the blog and About pages.
+- Open Graph and Twitter metadata are not yet consistently implemented outside the blog and About pages.
+- Structured data is currently limited to published blog articles.
 - No Search Console verification plan in code or deployment settings.
 - No formal index/noindex rules for cart, checkout, or policy pages.
 - No SEO acceptance checklist for launch.
