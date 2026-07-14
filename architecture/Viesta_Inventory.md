@@ -1,10 +1,10 @@
 # Viesta Inventory
 
-This document is the normalized source of truth for Viesta storefront inventory, product images, pack sizes, MOQ, and pricing status. Product availability and pricing are derived from [`Updated_Price.md`](./Updated_Price.md).
+This document is the single source of truth for Viesta storefront inventory, product images, pack sizes, MOQ, and pricing status.
 
 Price status:
 
-- **Confirmed**: sourced from the current Viesta product price list in [`Updated_Price.md`](./Updated_Price.md).
+- **Confirmed**: verified against the current Viesta product price list.
 - **Estimated**: placeholder price added so the storefront can display and calculate totals. Replace when legitimate pricing is available.
 
 ## Product Catalog
