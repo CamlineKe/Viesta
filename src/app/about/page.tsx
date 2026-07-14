@@ -16,8 +16,34 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const metadata = {
-  title: "About",
-  description: "Learn about Viesta Nutrition and its wellness mission in Kenya.",
+  title: "About Viesta Health Shop",
+  description:
+    "Discover Viesta Health Shop, a Kenyan wellness brand focused on quality products, informed choices, integrity, and customer care.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Viesta Health Shop",
+    description:
+      "Meet the Kenyan wellness brand helping individuals and families make more informed everyday health, beauty, and wellness choices.",
+    url: "/about",
+    type: "website",
+    images: [
+      {
+        url: "/images/brand/about_1.webp",
+        width: 830,
+        height: 457,
+        alt: "A selection of Viesta teas, coffees, and nutrition products",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Viesta Health Shop",
+    description:
+      "Meet the Kenyan wellness brand focused on quality products, informed choices, integrity, and customer care.",
+    images: ["/images/brand/about_1.webp"],
+  },
 } satisfies Metadata;
 
 const brandPillars = [
@@ -157,14 +183,14 @@ export default function AboutPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97]"
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover focus-visible:outline-brand-charcoal active:scale-[0.97]"
                 href="/shop"
               >
                 Explore our products
                 <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
               </Link>
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-brand-border bg-white/80 px-6 font-heading font-extrabold text-brand-charcoal backdrop-blur-sm transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-brand-primary hover:bg-brand-primary-muted active:scale-[0.97]"
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-brand-border bg-white/80 px-6 font-heading font-extrabold text-brand-charcoal backdrop-blur-sm transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-brand-primary hover:bg-brand-primary-muted focus-visible:outline-brand-charcoal active:scale-[0.97]"
                 href="#our-approach"
               >
                 Our wellness approach
@@ -551,7 +577,32 @@ export default function AboutPage() {
           className="pointer-events-none absolute right-[8%] top-16 hidden h-28 w-28 rounded-full border border-brand-charcoal/10 lg:block"
         />
         <Container className="relative grid gap-12 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center lg:gap-16">
-          <figure className="relative mx-auto w-full max-w-lg min-w-0 lg:mx-0">
+          <div className="min-w-0 lg:order-2">
+            <SectionHeader
+              eyebrow="Meet the Founder"
+              title="Leadership grounded in better wellbeing"
+              description="Prof. Patrick Kareru is the founder of Viesta Health Shop. Viesta is guided by a mission to support healthier choices for individuals and families."
+            />
+
+            <div className="mt-8 border-l-4 border-brand-primary bg-white/80 p-5 shadow-brand-sm backdrop-blur-sm sm:p-7">
+              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-success">
+                A founder-led principle
+              </p>
+              <p className="mt-4 font-heading text-xl font-extrabold leading-8 text-brand-charcoal sm:text-2xl sm:leading-9">
+                At the heart of Viesta is a simple principle: better wellbeing
+                begins with informed choices, supported by quality products,
+                clear information, and genuine customer care.
+              </p>
+            </div>
+
+            <p className="mt-7 max-w-2xl text-base leading-8 text-brand-muted">
+              This principle connects Viesta&apos;s mission, product approach,
+              and customer relationships as the brand works toward becoming a
+              trusted health and wellness name across East Africa.
+            </p>
+          </div>
+
+          <figure className="relative mx-auto w-full max-w-lg min-w-0 lg:order-1 lg:mx-0">
             <div
               aria-hidden="true"
               className="absolute -left-5 -top-5 h-full w-full rounded-brand-xl bg-brand-charcoal sm:-left-7 sm:-top-7"
@@ -580,30 +631,46 @@ export default function AboutPage() {
               </figcaption>
             </div>
           </figure>
+        </Container>
+      </section>
 
-          <div className="min-w-0">
-            <SectionHeader
-              eyebrow="Meet the Founder"
-              title="Leadership grounded in better wellbeing"
-              description="Prof. Patrick Kareru is the founder of Viesta Health Shop. Viesta is guided by a mission to support healthier choices for individuals and families."
-            />
-
-            <div className="mt-8 border-l-4 border-brand-primary bg-white/80 p-5 shadow-brand-sm backdrop-blur-sm sm:p-7">
-              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-success">
-                A founder-led principle
-              </p>
-              <p className="mt-4 font-heading text-xl font-extrabold leading-8 text-brand-charcoal sm:text-2xl sm:leading-9">
-                At the heart of Viesta is a simple principle: better wellbeing
-                begins with informed choices, supported by quality products,
-                clear information, and genuine customer care.
-              </p>
-            </div>
-
-            <p className="mt-7 max-w-2xl text-base leading-8 text-brand-muted">
-              This principle connects Viesta&apos;s mission, product approach,
-              and customer relationships as the brand works toward becoming a
-              trusted health and wellness name across East Africa.
+      <section className="relative overflow-hidden bg-brand-charcoal py-16 text-white lg:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-32 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-brand-primary/10 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full border-[44px] border-white/[0.03]"
+        />
+        <Container className="relative">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
+              Your Next Step
             </p>
+            <h2 className="mt-4 font-heading text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+              Explore wellness with greater confidence.
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
+              Discover Viesta&apos;s growing range of health, beauty, and wellness
+              products, or speak with our team when you need help finding the
+              right place to begin.
+            </p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover focus-visible:outline-white active:scale-[0.97]"
+                href="/shop"
+              >
+                Explore our products
+                <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
+              </Link>
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/25 bg-white/5 px-6 font-heading font-extrabold text-white transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-brand-primary hover:bg-white/10 focus-visible:outline-brand-primary active:scale-[0.97]"
+                href="/contact"
+              >
+                Contact Viesta
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
