@@ -20,6 +20,10 @@ export const blogPosts: BlogPost[] = [
   herbalTeaWellnessPost,
 ];
 
-export const publishedBlogPosts = blogPosts.filter((post) => post.status === "published");
+export function getPublishedBlogPosts(posts: BlogPost[]): BlogPost[] {
+  return posts.filter((post) => post.status === "published");
+}
+
+export const publishedBlogPosts = getPublishedBlogPosts(blogPosts);
 
 export const featuredBlogPosts = publishedBlogPosts.filter((post) => post.featured);

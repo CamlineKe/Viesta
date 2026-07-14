@@ -39,6 +39,7 @@ describe("responsive editorial discovery", () => {
     fireEvent.click(diabetesFilter);
 
     expect(diabetesFilter.getAttribute("aria-pressed")).toBe("true");
+    expect(getByRole("status").textContent).toContain("Showing 1 guide in Diabetes Support");
     expect(queryByText(diabetesPost?.title ?? "missing diabetes post")).not.toBeNull();
     expect(queryByText(bloodPressurePost?.title ?? "missing blood pressure post")).toBeNull();
   });

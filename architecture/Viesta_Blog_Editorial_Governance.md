@@ -9,6 +9,8 @@
 - Customer stories: withheld until consent and final testimony are documented
 - Product positioning: neutral catalog discovery only until approved label claims are available
 - Last source review: 14 July 2026
+- Implementation status: phases 1–7 complete; awaiting user-run verification
+- Media cleanup: the three generic placeholder covers were removed on 14 July 2026
 
 This document governs the blog redesign described in `Viesta_Blog.md`. The original brief remains unchanged as source material. Where the brief and this document conflict, this document controls what may be published.
 
