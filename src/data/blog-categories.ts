@@ -3,7 +3,6 @@ import type { BlogCategory } from "@/types/blog";
 type BlogCategoryDefinition = {
   label: string;
   description: string;
-  legacy?: boolean;
 };
 
 export const blogCategoryDefinitions = {
@@ -38,26 +37,6 @@ export const blogCategoryDefinitions = {
   "customer-stories": {
     label: "Customer Stories",
     description: "Approved and consented customer wellness experiences.",
-  },
-  "nutrition-tips": {
-    label: "Nutrition Tips",
-    description: "Legacy placeholder category scheduled for removal during article migration.",
-    legacy: true,
-  },
-  fitness: {
-    label: "Fitness",
-    description: "Legacy placeholder category scheduled for removal during article migration.",
-    legacy: true,
-  },
-  ingredients: {
-    label: "Ingredients",
-    description: "Legacy placeholder category scheduled for removal during article migration.",
-    legacy: true,
-  },
-  wellness: {
-    label: "Wellness",
-    description: "Legacy placeholder category scheduled for removal during article migration.",
-    legacy: true,
   },
 } satisfies Record<BlogCategory, BlogCategoryDefinition>;
 

@@ -4,7 +4,7 @@
 
 - Phase: 1 — editorial rules and content decisions
 - Status: approved foundation for implementation
-- Initial release: eight educational articles
+- Initial release: eight educational articles published in the local data model on 14 July 2026
 - Default byline: `Viesta Wellness Team`
 - Customer stories: withheld until consent and final testimony are documented
 - Product positioning: neutral catalog discovery only until approved label claims are available
@@ -27,18 +27,18 @@ This document governs the blog redesign described in `Viesta_Blog.md`. The origi
 
 ## Initial publication inventory
 
-All eight records begin as `draft`. An article becomes `published` only after its copy, sources, product references, image alternative text, and publication date have been approved.
+All eight records began as `draft`. Phase 3 supplied their copy, sources, product references, image alternative text, and publication date, and moved them to `published` in the local data model.
 
 | Order | Approved working title | Slug | Category | Cover image | Initial state |
 |---:|---|---|---|---|---|
-| 1 | Understanding Blood Pressure: Numbers, Habits, and When to Get Help | `blood-pressure-awareness` | `heart-blood-pressure` | `blood-pressure-awareness.webp` | Draft |
-| 2 | Diabetes Wellness: Understanding Tests and Everyday Routines | `diabetes-wellness` | `diabetes-support` | `diabetes-wellness.webp` | Draft |
-| 3 | Detoxing the Right Way: What the Evidence Says | `detoxing-the-right-way` | `detox-weight-wellness` | `detoxing-the-right-way.webp` | Draft |
-| 4 | Everyday Immunity Support: Sleep, Nutrition, and Healthy Habits | `daily-immunity-support` | `immunity` | `daily-immunity-support.webp` | Draft |
-| 5 | Joint Mobility Wellness: Movement, Strength, and Daily Care | `joint-mobility-wellness` | `joint-mobility` | `joint-mobility-wellness.webp` | Draft |
-| 6 | Women's Everyday Wellness: Energy, Nutrition, and Self-Care | `womens-wellness` | `mens-womens-health` | `womens-wellness.webp` | Draft |
-| 7 | Men's Wellness and Prostate Awareness | `mens-wellness` | `mens-womens-health` | `mens-wellness.webp` | Draft |
-| 8 | Herbal Tea Wellness: Routines, Safety, and Informed Choices | `herbal-tea-wellness` | `herbal-tea` | `herbal-tea-wellness.webp` | Draft |
+| 1 | Understanding Blood Pressure: Numbers, Habits, and When to Get Help | `blood-pressure-awareness` | `heart-blood-pressure` | `blood-pressure-awareness.webp` | Published |
+| 2 | Diabetes Wellness: Understanding Tests and Everyday Routines | `diabetes-wellness` | `diabetes-support` | `diabetes-wellness.webp` | Published |
+| 3 | Detoxing the Right Way: What the Evidence Says | `detoxing-the-right-way` | `detox-weight-wellness` | `detoxing-the-right-way.webp` | Published |
+| 4 | Everyday Immunity Support: Sleep, Nutrition, and Healthy Habits | `daily-immunity-support` | `immunity` | `daily-immunity-support.webp` | Published |
+| 5 | Joint Mobility Wellness: Movement, Strength, and Daily Care | `joint-mobility-wellness` | `joint-mobility` | `joint-mobility-wellness.webp` | Published |
+| 6 | Women's Everyday Wellness: Energy, Nutrition, and Self-Care | `womens-wellness` | `mens-womens-health` | `womens-wellness.webp` | Published |
+| 7 | Men's Wellness and Prostate Awareness | `mens-wellness` | `mens-womens-health` | `mens-wellness.webp` | Published |
+| 8 | Herbal Tea Wellness: Routines, Safety, and Informed Choices | `herbal-tea-wellness` | `herbal-tea` | `herbal-tea-wellness.webp` | Published |
 
 The blood-pressure, diabetes, and detox articles are the featured launch guides. Featured status does not bypass publication approval.
 

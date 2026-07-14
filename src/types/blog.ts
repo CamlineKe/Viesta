@@ -6,11 +6,7 @@ export type BlogCategory =
   | "joint-mobility"
   | "mens-womens-health"
   | "herbal-tea"
-  | "customer-stories"
-  | "nutrition-tips"
-  | "fitness"
-  | "ingredients"
-  | "wellness";
+  | "customer-stories";
 
 export type BlogPublicationStatus = "draft" | "published";
 

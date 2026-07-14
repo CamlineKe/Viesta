@@ -23,24 +23,24 @@ describe("responsive editorial discovery", () => {
   afterEach(cleanup);
 
   it("contains blog category scrolling and exposes the selected filter", () => {
-    const fitnessPost = blogPosts.find((post) => post.category === "fitness");
-    const nutritionPost = blogPosts.find(
-      (post) => post.category === "nutrition-tips",
+    const diabetesPost = blogPosts.find((post) => post.category === "diabetes-support");
+    const bloodPressurePost = blogPosts.find(
+      (post) => post.category === "heart-blood-pressure",
     );
     const { getByRole, queryByText } = render(<BlogGrid posts={blogPosts} />);
 
     const filterGroup = getByRole("group", {
       name: "Filter articles by category",
     });
-    const fitnessFilter = getByRole("button", { name: "Fitness" });
+    const diabetesFilter = getByRole("button", { name: "Diabetes Support" });
 
     expect(filterGroup.className).toContain("overscroll-x-contain");
 
-    fireEvent.click(fitnessFilter);
+    fireEvent.click(diabetesFilter);
 
-    expect(fitnessFilter.getAttribute("aria-pressed")).toBe("true");
-    expect(queryByText(fitnessPost?.title ?? "missing fitness post")).not.toBeNull();
-    expect(queryByText(nutritionPost?.title ?? "missing nutrition post")).toBeNull();
+    expect(diabetesFilter.getAttribute("aria-pressed")).toBe("true");
+    expect(queryByText(diabetesPost?.title ?? "missing diabetes post")).not.toBeNull();
+    expect(queryByText(bloodPressurePost?.title ?? "missing blood pressure post")).toBeNull();
   });
 
   it("filters FAQs without removing the mobile-first filter surface", () => {
