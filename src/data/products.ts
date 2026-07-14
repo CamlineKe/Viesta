@@ -55,7 +55,6 @@ const standardConfirmations = [
 const medicalConfirmations = [
   ...standardConfirmations,
   "medical-safe wording",
-  "category overlap with blood sugar support",
 ];
 
 const confirmedCommerceFields = new Set(["price", "stock status"]);
@@ -97,23 +96,6 @@ function getNeedsConfirmation(product: ProductSeed, content: CategoryDraftConten
 }
 
 const categoryContent: Record<ProductCategorySlug, CategoryDraftContent> = {
-  "blood-sugar-support": {
-    label: "Blood Sugar Support",
-    shortDescription: "Routine support for customers looking after everyday blood sugar wellness.",
-    description:
-      "This product is positioned for blood sugar wellness routines alongside balanced meals, movement, hydration, and regular monitoring where advised.",
-    benefits: [
-      "Supports a blood sugar wellness routine",
-      "Fits structured daily health habits",
-      "Listed for customers comparing glucose-support options",
-    ],
-    usageNote: "Use consistently with meals or timing guidance from the product label once confirmed.",
-    warnings: [
-      "Consult a qualified healthcare professional if you are managing diabetes, using glucose-lowering medication, pregnant, nursing, or under medical care.",
-      "This product should not replace prescribed medicine, clinical monitoring, or medical advice.",
-    ],
-    needsConfirmation: medicalConfirmations,
-  },
   "blood-pressure-heart-health": {
     label: "Blood Pressure & Heart Health",
     shortDescription: "Heart-conscious support for daily blood pressure and cardiovascular wellness routines.",
@@ -220,7 +202,7 @@ const categoryContent: Record<ProductCategorySlug, CategoryDraftContent> = {
     label: "Diabetes",
     shortDescription: "Diabetes-category products for customers comparing glucose wellness options.",
     description:
-      "This product is listed in the Diabetes category from the current inventory. Keep this category separate for now, but confirm whether it should merge with Blood Sugar Support before launch.",
+      "This product is listed in the Diabetes category from the current inventory for customers comparing glucose wellness options.",
     benefits: [
       "Listed for diabetes-category product discovery",
       "Supports comparison of glucose wellness options",

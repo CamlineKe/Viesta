@@ -1,5 +1,4 @@
 export type ProductCategorySlug =
-  | "blood-sugar-support"
   | "blood-pressure-heart-health"
   | "joint-mobility-support"
   | "detox-digestive-wellness"

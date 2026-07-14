@@ -530,7 +530,6 @@ Future category landing pages may be useful when:
 Potential future routes:
 
 ```txt
-/shop/blood-sugar-support
 /shop/blood-pressure-heart-health
 /shop/joint-mobility-support
 /shop/detox-digestive-wellness

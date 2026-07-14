@@ -2,14 +2,6 @@ import type { ProductCategory } from "@/types/product";
 
 export const categories: ProductCategory[] = [
   {
-    id: "blood-sugar-support",
-    name: "Blood Sugar Support",
-    slug: "blood-sugar-support",
-    description: "Products selected for everyday blood sugar wellness routines.",
-    image: "/images/categories/blood_sugar-cutout.webp",
-    featured: true,
-  },
-  {
     id: "blood-pressure-heart-health",
     name: "Blood Pressure & Heart Health",
     slug: "blood-pressure-heart-health",
@@ -61,7 +53,7 @@ export const categories: ProductCategory[] = [
     id: "diabetes",
     name: "Diabetes",
     slug: "diabetes",
-    description: "Diabetes-focused products listed separately from general blood sugar support.",
+    description: "Diabetes-category products for customers comparing glucose wellness options.",
     image: "/images/categories/diabetes-cutout.webp",
     featured: true,
   },
