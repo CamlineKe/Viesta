@@ -66,68 +66,141 @@ const wellnessAreas = [
 export default function AboutPage() {
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
-      <section className="section-canvas py-16 lg:py-20">
-        <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center">
-          <div className="min-w-0">
-            <p className="text-sm font-bold uppercase tracking-wide text-brand-muted">
-              About Viesta
-            </p>
-            <h1 className="mt-3 break-words font-heading text-3xl font-extrabold leading-tight text-brand-charcoal sm:text-4xl md:text-5xl lg:text-6xl">
+      <section className="section-canvas relative isolate overflow-hidden">
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full text-brand-charcoal opacity-[0.04]"
+        >
+          <defs>
+            <pattern
+              id="about-hero-dots"
+              width="28"
+              height="28"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle cx="2" cy="2" r="1" fill="currentColor" />
+            </pattern>
+          </defs>
+          <rect width="42%" height="100%" fill="url(#about-hero-dots)" />
+        </svg>
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 top-4 hidden h-[92%] w-[46%] text-brand-success opacity-[0.08] lg:block"
+          fill="none"
+          viewBox="0 0 560 720"
+        >
+          <path
+            d="M470 716C404 590 390 475 408 360C426 245 468 143 536 44"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M410 494C334 450 291 390 276 314C345 329 392 373 414 446M429 351C379 294 363 233 381 166C434 202 454 255 429 351M466 226C454 166 469 112 512 65C540 123 524 177 466 226M445 572C493 510 540 481 558 475"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          />
+        </svg>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-24 top-16 h-64 w-64 rounded-full bg-brand-primary/20 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-24 right-[18%] h-72 w-72 rounded-full bg-brand-success/10 blur-3xl"
+        />
+
+        <Container className="relative grid min-h-[70svh] items-center gap-12 py-14 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-20">
+          <div className="min-w-0 max-w-2xl animate-fade-up">
+            <div className="inline-flex items-center gap-3 rounded-full border border-brand-border-soft bg-white/80 px-4 py-2 shadow-brand-sm backdrop-blur-sm">
+              <span
+                aria-hidden="true"
+                className="h-2.5 w-2.5 rounded-full bg-brand-primary shadow-glow"
+              />
+              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-charcoal sm:text-sm">
+                About Viesta
+              </p>
+            </div>
+            <h1 className="mt-6 break-words font-heading text-3xl font-extrabold leading-[1.08] text-brand-charcoal sm:text-4xl md:text-5xl lg:text-6xl">
               Wellness built around better everyday choices.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-brand-muted sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-8 text-brand-muted sm:text-lg">
               Viesta Health Shop is a Kenyan health and wellness brand helping
               individuals and families improve their wellbeing through quality
               health, beauty, and wellness products.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:bg-brand-primary-hover"
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97]"
                 href="/shop"
               >
                 Explore our products
                 <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
               </Link>
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-200 bg-white px-6 font-heading font-extrabold text-brand-charcoal transition hover:border-brand-primary"
-                href="/contact"
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-brand-border bg-white/80 px-6 font-heading font-extrabold text-brand-charcoal backdrop-blur-sm transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-brand-primary hover:bg-brand-primary-muted active:scale-[0.97]"
+                href="#our-approach"
               >
-                Contact Viesta
+                Our wellness approach
               </Link>
+            </div>
+            <div className="mt-8 flex items-center gap-4 border-l-2 border-brand-primary pl-4">
+              <p className="text-sm font-bold leading-6 text-brand-charcoal">
+                Quality
+                <span aria-hidden="true" className="mx-2 text-brand-muted/60">
+                  ·
+                </span>
+                Integrity
+                <span aria-hidden="true" className="mx-2 text-brand-muted/60">
+                  ·
+                </span>
+                Customer care
+              </p>
             </div>
           </div>
 
-          <div
-            className={cardClassName({
-              className: "rounded-brand-xl p-4 sm:p-5",
-              variant: "raised",
-            })}
-          >
-            <div className="relative aspect-[4/3] overflow-hidden rounded-brand-lg bg-brand-primary-muted">
-              <Image
-                fill
-                priority
-                alt="A selection of Viesta teas, coffees, and nutrition products"
-                className="object-cover"
-                sizes="(min-width: 1024px) 40vw, 92vw"
-                src="/images/brand/about_1.webp"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/65 via-brand-charcoal/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                <p className="font-heading text-2xl font-extrabold sm:text-3xl">
-                  Wellbeing for individuals and families
-                </p>
-                <p className="mt-3 text-sm leading-6 text-white/80">
-                  Supplements, personal care products, and natural wellness
-                  solutions for healthier lifestyles.
-                </p>
+          <div className="relative min-w-0 animate-scale-in">
+            <div
+              aria-hidden="true"
+              className="absolute -left-5 -top-5 h-24 w-24 rounded-brand-xl bg-brand-primary sm:-left-7 sm:-top-7"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-5 -right-5 h-32 w-32 rounded-brand-xl border-2 border-brand-success/20 sm:-bottom-7 sm:-right-7"
+            />
+            <div className="glass-surface relative overflow-hidden rounded-brand-xl p-3 sm:p-4">
+              <div className="relative aspect-[830/457] overflow-hidden rounded-brand-lg bg-brand-primary-muted">
+                <Image
+                  fill
+                  priority
+                  alt="A selection of Viesta teas, coffees, and nutrition products"
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 52vw, 92vw"
+                  src="/images/brand/about_1.webp"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/90 via-brand-charcoal/10 to-transparent"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-primary sm:text-sm">
+                    Rooted in everyday wellbeing
+                  </p>
+                  <p className="mt-2 hidden max-w-md font-heading text-2xl font-extrabold leading-tight sm:block sm:text-3xl">
+                    Health, beauty, and wellness for individuals and families.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="section-botanical py-16 lg:py-20">
+      <section
+        id="our-approach"
+        className="section-botanical scroll-mt-28 py-16 lg:py-20"
+      >
         <Container>
           <SectionHeader
             align="center"
