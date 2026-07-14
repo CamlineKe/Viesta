@@ -65,6 +65,29 @@ const wellnessAreas = [
   },
 ];
 
+const trustReasons = [
+  {
+    title: "Thoughtfully selected products",
+    description:
+      "A considered range of supplements, personal care products, and wellness solutions for different everyday needs.",
+  },
+  {
+    title: "Natural wellness focus",
+    description:
+      "An emphasis on natural ingredients and sustainably minded sourcing as the Viesta product range grows.",
+  },
+  {
+    title: "Clearer wellness decisions",
+    description:
+      "Useful product information and customer education designed to support more informed choices.",
+  },
+  {
+    title: "Care grounded in integrity",
+    description:
+      "Customer care shaped by honest guidance, attentive support, and respect for each person's wellness journey.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
@@ -426,6 +449,95 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+        </Container>
+      </section>
+
+      <section className="section-botanical relative overflow-hidden py-16 lg:py-20">
+        <svg
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-24 bottom-0 hidden h-[85%] w-[38%] text-brand-success opacity-[0.07] lg:block"
+          fill="none"
+          viewBox="0 0 480 620"
+        >
+          <path
+            d="M40 620C94 510 122 408 124 314C126 220 106 126 64 32"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <path
+            d="M122 384C184 338 222 282 236 216C178 230 140 268 122 328M112 250C62 220 30 180 16 132C68 140 102 172 112 224M124 472C184 460 234 474 274 514C216 532 166 518 124 472"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+          />
+        </svg>
+        <Container className="relative grid gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(0,0.98fr)] lg:items-center lg:gap-16">
+          <div className="min-w-0">
+            <SectionHeader
+              eyebrow="Why Choose Viesta"
+              title="A wellness partner built on clarity and care"
+              description="We want every interaction with Viesta to feel considered—from the products we bring together to the information and support that surround them."
+            />
+
+            <ol className="mt-8 divide-y divide-brand-border-soft border-y border-brand-border-soft">
+              {trustReasons.map((reason, index) => (
+                <li
+                  key={reason.title}
+                  className="grid gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-primary font-heading text-sm font-extrabold text-brand-charcoal"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-heading text-lg font-extrabold text-brand-charcoal sm:text-xl">
+                      {reason.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-7 text-brand-muted">
+                      {reason.description}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <figure className="relative min-w-0 lg:pl-4">
+            <div
+              aria-hidden="true"
+              className="absolute -right-5 -top-5 h-full w-[88%] rounded-brand-xl border-2 border-brand-success/15 sm:-right-7 sm:-top-7"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-5 -left-1 h-32 w-32 rounded-brand-xl bg-brand-primary sm:-bottom-7 sm:-left-3"
+            />
+            <div className="surface-raised relative overflow-hidden rounded-brand-xl p-3 sm:p-4">
+              <div className="relative aspect-[890/790] overflow-hidden rounded-brand-lg bg-brand-botanical">
+                <Image
+                  fill
+                  alt="A person enjoying water beside fresh fruit in a bright, plant-filled room"
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 44vw, 92vw"
+                  src="/images/brand/why_choose_viesta.webp"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/55 via-transparent to-transparent"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-7">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-brand-primary sm:text-sm">
+                    The Viesta approach
+                  </p>
+                  <p className="mt-2 font-heading text-2xl font-extrabold leading-tight sm:text-3xl">
+                    Thoughtful choices. Everyday support.
+                  </p>
+                </figcaption>
+              </div>
+            </div>
+          </figure>
         </Container>
       </section>
     </main>
