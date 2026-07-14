@@ -11,24 +11,24 @@ Price status:
 
 | Storefront Category | Product | Image Location | Pricing Status |
 |---------------------|---------|----------------|----------------|
-| Blood Pressure & Heart Health | Bio1 Sterol | `images/products/bio1_sterol_capsule.webp` | Confirmed |
-| Blood Pressure & Heart Health | Bio1 Sterol Plus | `images/products/bio1_sterol_plus.webp` | Confirmed |
-| Blood Pressure & Heart Health | Bio1 Sterol Sachets | `images/products/bio1_sterol_sachets.webp` | Confirmed |
-| Joint & Mobility Support | BioRelief | `images/products/biorelief_capsules.webp` | Confirmed |
-| Joint & Mobility Support | BioRelief Plus | `images/products/biorelief_plus.webp` | Confirmed |
-| Joint & Mobility Support | BioRelief Cream | `images/products/biorelief_cream.webp` | Confirmed |
-| Detox & Digestive Wellness | Bio2 Total Body Detox | `images/products/bio2_total_body.webp` | Confirmed |
-| Detox & Digestive Wellness | Bio2 Nutraceutical Tea | `images/products/bio2_neutraceutical.webp` | Confirmed |
-| Immunity & General Wellness | Bio1 Immune Booster | `images/products/bio_immune_booster.webp` | Confirmed |
-| Immunity & General Wellness | Bio Metabalance | `images/products/bio1_metabalance.webp` | Confirmed |
-| Men's Wellness | BioForge | `images/products/bioforge_capsules.webp` | Confirmed |
-| Men's Wellness | BioForge Plus | `images/products/bioforge_plus.webp` | Confirmed |
-| Women's Wellness | BioFlex | `images/products/bioflex.webp` | Confirmed |
-| Women's Wellness | BioFlex Plus | `images/products/bioflex_plus.webp` | Confirmed |
-| Women's Wellness | Viesta Slimming Coffee | `images/products/viesta_slimming_coffee.webp` | Confirmed |
-| Diabetes | Bio1 Gluco | `images/products/bio1_gluco.webp` | Confirmed |
-| Diabetes | Bio1 Gluco Plus | `images/products/bio1_gluco_plus.webp` | Confirmed |
-| Diabetes | Bio Gluco Tea Bags | `images/products/bio_gluco_teabags.webp` | Confirmed |
+| Blood Pressure & Heart Health | Bio1 Sterol | `public/images/products/bio1_sterol_capsule-cutout.webp` | Confirmed |
+| Blood Pressure & Heart Health | Bio1 Sterol Plus | `public/images/products/bio1_sterol_plus-cutout.webp` | Confirmed |
+| Blood Pressure & Heart Health | Bio1 Sterol Sachets | `public/images/products/bio1_sterol_sachets-cutout.webp` | Confirmed |
+| Joint & Mobility Support | BioRelief | `public/images/products/biorelief_capsules-cutout.webp` | Confirmed |
+| Joint & Mobility Support | BioRelief Plus | `public/images/products/biorelief_plus-cutout.webp` | Confirmed |
+| Joint & Mobility Support | BioRelief Cream | `public/images/products/biorelief_cream-cutout.webp` | Confirmed |
+| Detox & Digestive Wellness | Bio2 Total Body Detox | `public/images/products/bio2_total_body-cutout.webp` | Confirmed |
+| Detox & Digestive Wellness | Bio2 Nutraceutical Tea | `public/images/products/bio2_neutraceutical-cutout.webp` | Confirmed |
+| Immunity & General Wellness | Bio1 Immune Booster | `public/images/products/bio_immune_booster-cutout.webp` | Confirmed |
+| Immunity & General Wellness | Bio Metabalance | `public/images/products/bio1_metabalance-cutout.webp` | Confirmed |
+| Men's Wellness | BioForge | `public/images/products/bioforge_capsules-cutout.webp` | Confirmed |
+| Men's Wellness | BioForge Plus | `public/images/products/bioforge_plus-cutout.webp` | Confirmed |
+| Women's Wellness | BioFlex | `public/images/products/bioflex-cutout.webp` | Confirmed |
+| Women's Wellness | BioFlex Plus | `public/images/products/bioflex_plus-cutout.webp` | Confirmed |
+| Women's Wellness | Viesta Slimming Coffee | `public/images/products/viesta_slimming_coffee-cutout.webp` | Confirmed |
+| Diabetes | Bio1 Gluco | `public/images/products/bio1_gluco-cutout.webp` | Confirmed |
+| Diabetes | Bio1 Gluco Plus | `public/images/products/bio1_gluco_plus-cutout.webp` | Confirmed |
+| Diabetes | Bio Gluco Tea Bags | `public/images/products/bio_gluco_teabags-cutout.webp` | Confirmed |
 
 ## Pricing
 
