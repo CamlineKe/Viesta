@@ -70,7 +70,7 @@ export function Header() {
 
           {isCheckout ? (
             <p className="hidden rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-white/85 sm:block">
-              Secure WhatsApp checkout
+              WhatsApp order handoff
             </p>
           ) : (
             <nav

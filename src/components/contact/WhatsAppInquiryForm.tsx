@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
@@ -44,6 +45,20 @@ export function WhatsAppInquiryForm({ whatsappNumber }: WhatsAppInquiryFormProps
       <h2 className="break-words font-heading text-xl font-extrabold sm:text-2xl">Send an inquiry on WhatsApp</h2>
       <p className="mt-2 text-sm leading-6 text-brand-muted">
         Fill in the details, then open WhatsApp with your inquiry prepared for Viesta.
+      </p>
+      <p className="mt-3 text-xs leading-5 text-brand-muted">
+        Your entries stay in this browser until you open WhatsApp. WhatsApp and
+        Meta may then process the prepared content; Viesta receives it when you
+        send the message. Read the{" "}
+        <Link
+          className="font-bold underline underline-offset-2"
+          href="/privacy-policy"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Privacy Policy
+        </Link>
+        .
       </p>
 
       <form className="mt-6 space-y-4" onSubmit={(event) => event.preventDefault()}>

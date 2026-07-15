@@ -2,7 +2,11 @@ import type { CartItem } from "@/types/cart";
 import type { CheckoutFormValues } from "@/types/checkout";
 
 import { formatKES } from "./currency";
-import { formatProductLineTotal, formatProductPrice, hasConfirmedPrice } from "./product-pricing";
+import {
+  formatProductLineTotal,
+  formatProductPrice,
+  hasConfirmedPrice,
+} from "./product-pricing";
 import { getShippingZone } from "./shipping";
 import { normalizeKenyanPhone } from "./validation";
 
@@ -33,7 +37,9 @@ export function buildWhatsAppMessage({
 }: WhatsAppMessageInput): string {
   const deliveryZone = getShippingZone(checkout.deliveryLocation);
   const hasUnpricedItems = items.some((item) => !hasConfirmedPrice(item.price));
-  const hasEstimatedPrices = items.some((item) => item.priceStatus === "estimated");
+  const hasEstimatedPrices = items.some(
+    (item) => item.priceStatus === "estimated",
+  );
   const productLines = items
     .map(
       (item) =>
@@ -44,19 +50,26 @@ export function buildWhatsAppMessage({
         )})`,
     )
     .join("\n");
-  const shippingText = shippingFee === null ? "Contact for shipping fee" : formatKES(shippingFee);
+  const shippingText =
+    shippingFee === null ? "Contact for shipping fee" : formatKES(shippingFee);
   const subtotalText = hasUnpricedItems
     ? "To be confirmed"
-    : formatProductPrice(subtotal, hasEstimatedPrices ? "estimated" : undefined);
+    : formatProductPrice(
+        subtotal,
+        hasEstimatedPrices ? "estimated" : undefined,
+      );
   const totalText =
     hasUnpricedItems || grandTotal === null
       ? "To be confirmed"
-      : formatProductPrice(grandTotal, hasEstimatedPrices ? "estimated" : undefined);
+      : formatProductPrice(
+          grandTotal,
+          hasEstimatedPrices ? "estimated" : undefined,
+        );
   const address = checkout.deliveryAddress?.trim() || "Not provided";
   const orderNotes = checkout.orderNotes?.trim();
 
   const messageLines = [
-    "Hello! I'd like to place an order:",
+    "Hello! I'd like to request this order:",
     "",
     "Products:",
     productLines,
@@ -65,6 +78,11 @@ export function buildWhatsAppMessage({
     `Phone: ${normalizeKenyanPhone(checkout.phone)}`,
     `Delivery location: ${deliveryZone?.name ?? "Not selected"}`,
     `Delivery address: ${address}`,
+    ...(checkout.acceptedLegalPolicies
+      ? [
+          "Policy acknowledgement: I agreed to the Terms of Service and acknowledged the Privacy Policy.",
+        ]
+      : []),
   ];
 
   if (orderNotes) {
@@ -77,10 +95,15 @@ export function buildWhatsAppMessage({
     `Subtotal: ${subtotalText}`,
     `Shipping: ${shippingText}`,
     `Total: ${totalText}`,
-    ...(hasEstimatedPrices ? ["", "Note: One or more product prices are estimated. Please confirm final pricing."] : []),
+    ...(hasEstimatedPrices
+      ? [
+          "",
+          "Note: One or more product prices are estimated. Please confirm final pricing.",
+        ]
+      : []),
     "",
     paymentInstruction,
-    "Please confirm my order.",
+    "Please confirm availability, the final total, delivery terms, payment instructions, and acceptance of this order.",
   ].join("\n");
 }
 
@@ -90,7 +113,9 @@ export function buildWhatsAppUrl(phoneNumber: string, message: string): string {
   return `https://wa.me/${normalizedPhone}?text=${encodeURIComponent(message)}`;
 }
 
-export function buildWhatsAppInquiryMessage({ siteName }: WhatsAppInquiryMessageInput): string {
+export function buildWhatsAppInquiryMessage({
+  siteName,
+}: WhatsAppInquiryMessageInput): string {
   return [
     `Hello ${siteName},`,
     "",

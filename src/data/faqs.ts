@@ -20,14 +20,14 @@ export const faqs: FAQ[] = [
     category: "orders",
     question: "How do I place an order?",
     answer:
-      "Add products to your cart, fill in checkout details, then use the WhatsApp order button to send your order summary to Viesta.",
+      "Add products to your cart, complete checkout, agree to the Terms of Service and acknowledge the Privacy Policy, then send the prepared order request through WhatsApp. Viesta confirms availability, the final total, delivery terms, payment instructions, and acceptance in the conversation.",
   },
   {
     id: "faq-orders-002",
     category: "orders",
     question: "How do I confirm payment?",
     answer:
-      "Checkout displays the Paybill/Till payment instructions. After payment, share the confirmation message or screenshot in the WhatsApp conversation so the order can be confirmed manually.",
+      "Wait for Viesta to confirm the order and the correct M-Pesa Paybill or Till details through WhatsApp before paying. After payment, share the confirmation message or screenshot in that conversation so payment can be verified.",
   },
   {
     id: "faq-products-001",
@@ -48,13 +48,13 @@ export const faqs: FAQ[] = [
     category: "returns",
     question: "What is the returns policy?",
     answer:
-      "The returns and refund policy is currently draft content and needs confirmation before launch.",
+      "Viesta reviews damaged, defective, expired, missing, or incorrectly supplied products when they are reported within the applicable period. Visible damage, missing items, and incorrect items should be reported within 48 hours; expiry or a qualifying defect should be reported within 7 days.",
   },
   {
     id: "faq-returns-002",
     category: "returns",
     question: "Can opened supplements be returned?",
     answer:
-      "Final return eligibility needs confirmation. For launch, keep return language conservative and confirm whether opened, damaged, or incorrectly delivered products are handled differently.",
+      "Opened products are generally not returnable unless opening was reasonably necessary to discover a qualifying defect, expiry issue, incorrect supply, or another consumer right that cannot lawfully be excluded. Contact Viesta before returning a product.",
   },
 ];

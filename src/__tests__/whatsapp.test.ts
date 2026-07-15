@@ -26,6 +26,7 @@ describe("WhatsApp utilities", () => {
         deliveryLocation: "nairobi",
         deliveryAddress: "Westlands",
         orderNotes: "Deliver after 5pm.",
+        acceptedLegalPolicies: true,
       },
       subtotal: 600,
       shippingFee: 0,
@@ -41,6 +42,11 @@ describe("WhatsApp utilities", () => {
     expect(message).toContain("Delivery address: Westlands");
     expect(message).toContain("Order notes: Deliver after 5pm.");
     expect(message).toContain("Total: Ksh");
+    expect(message).toContain("I'd like to request this order");
+    expect(message).toContain(
+      "Policy acknowledgement: I agreed to the Terms of Service",
+    );
+    expect(message).toContain("Please confirm availability");
     expect(message).not.toContain("One or more product prices are estimated");
   });
 
@@ -66,6 +72,7 @@ describe("WhatsApp utilities", () => {
         deliveryLocation: "nairobi",
         deliveryAddress: "Westlands",
         orderNotes: "",
+        acceptedLegalPolicies: true,
       },
       subtotal: 700,
       shippingFee: 0,

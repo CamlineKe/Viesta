@@ -283,11 +283,12 @@ export function OrderSummary({
           className="mt-0.5 h-5 w-5 shrink-0 text-brand-success"
         />
         <p>
-          Your order opens in WhatsApp with products, contact details, delivery
-          details, and totals.
+          Your order request opens in WhatsApp with products, contact details,
+          delivery details, and totals. Sending it does not guarantee stock or
+          acceptance.
           {paymentNeedsConfirmation
-            ? " Viesta will confirm payment details in the conversation before you pay."
-            : " Payment confirmation instructions are included."}
+            ? " Viesta will confirm availability, the final total, delivery terms, acceptance, and payment details before you pay."
+            : " Viesta will confirm availability, the final total, delivery terms, and acceptance before payment."}
         </p>
       </div>
 

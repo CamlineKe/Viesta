@@ -20,7 +20,7 @@ const trustBadges = [
   },
   {
     label: "M-Pesa Support",
-    sublabel: "Payment confirmed when ordering",
+    sublabel: "Details confirmed on WhatsApp",
     icon: CreditCard,
   },
 ];

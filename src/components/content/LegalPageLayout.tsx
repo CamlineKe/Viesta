@@ -261,7 +261,7 @@ export function LegalPageLayout({ page }: LegalPageLayoutProps) {
                   Questions about this policy?
                 </p>
                 <h2 className="mt-2 font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
-                  Contact Viesta Health Nutrition
+                  Contact {siteContent.legalName}
                 </h2>
                 <p className="mt-3 max-w-2xl leading-7 text-brand-muted">
                   Use one of the approved contact channels below. For an order,

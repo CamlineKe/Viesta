@@ -4,13 +4,13 @@ import { siteContent } from "@/data/site";
 const reviewStatus = "business-approved-legal-review-pending" as const;
 const updatedAt = "2026-07-15";
 const needsLegalReview = ["qualified Kenyan legal review"];
+const legalBusinessName = siteContent.legalName;
 
 export const legalPages: LegalPage[] = [
   {
     slug: "returns-refund-policy",
     title: "Returns & Refund Policy",
-    summary:
-      "How Viesta Health Nutrition handles damaged, defective, expired, missing, or incorrectly supplied products.",
+    summary: `How ${legalBusinessName} handles damaged, defective, expired, missing, or incorrectly supplied products.`,
     effectiveDate: null,
     updatedAt,
     reviewStatus,
@@ -22,7 +22,7 @@ export const legalPages: LegalPage[] = [
         id: "scope",
         heading: "Scope",
         paragraphs: [
-          "This policy applies to products purchased directly from Viesta Health Nutrition and delivered within Kenya. It explains the operational process for reporting and resolving damaged, defective, expired, missing, or incorrectly supplied products.",
+          `This policy applies to products purchased directly from ${legalBusinessName} and delivered within Kenya. It explains the operational process for reporting and resolving damaged, defective, expired, missing, or incorrectly supplied products.`,
           "This policy does not limit any consumer right or remedy that cannot lawfully be excluded under Kenyan law.",
         ],
       },
@@ -119,8 +119,7 @@ export const legalPages: LegalPage[] = [
   {
     slug: "privacy-policy",
     title: "Privacy Policy",
-    summary:
-      "How Viesta Health Nutrition handles information used for inquiries, WhatsApp orders, payment confirmation, and delivery.",
+    summary: `How ${legalBusinessName} handles information used for inquiries, WhatsApp orders, payment confirmation, and delivery.`,
     effectiveDate: null,
     updatedAt,
     reviewStatus,
@@ -132,7 +131,7 @@ export const legalPages: LegalPage[] = [
         id: "who-we-are",
         heading: "Who we are",
         paragraphs: [
-          "Viesta Health Nutrition is responsible for deciding how customer information described in this policy is used for its storefront, inquiries, orders, payment confirmation, delivery, and customer support.",
+          `${legalBusinessName} is responsible for deciding how customer information described in this policy is used for its storefront, inquiries, orders, payment confirmation, delivery, and customer support.`,
           `Privacy questions and requests may be sent to ${siteContent.contact.email} or through the phone and WhatsApp contact details published on the website.`,
         ],
       },
@@ -146,6 +145,7 @@ export const legalPages: LegalPage[] = [
           "Full name and phone number.",
           "Delivery location and an optional address or landmark.",
           "Products, quantities, and optional order notes.",
+          "The checkout acknowledgement of the Terms of Service and Privacy Policy.",
           "Inquiry type and inquiry message.",
           "WhatsApp conversation history.",
           "M-Pesa confirmation or transaction information shared for payment verification.",
@@ -157,7 +157,7 @@ export const legalPages: LegalPage[] = [
         heading: "How the website prepares information",
         paragraphs: [
           "The website keeps checkout and contact-form entries in the customer's browser while the relevant page is being used. It prepares a WhatsApp message from the information entered by the customer.",
-          "Viesta does not receive that prepared information unless the customer chooses to open WhatsApp and send the message. Once sent, WhatsApp processes the message and makes it available to Viesta in the business conversation.",
+          "Viesta does not receive that prepared information unless the customer sends the message. WhatsApp and Meta may process the prepared content when the customer chooses to open their service, and the sent message becomes available to Viesta in the business conversation.",
         ],
       },
       {
@@ -277,7 +277,7 @@ export const legalPages: LegalPage[] = [
         id: "about-these-terms",
         heading: "About these terms",
         paragraphs: [
-          "These Terms govern use of the Viesta storefront and orders accepted by Viesta Health Nutrition. By using the storefront or asking Viesta to accept an order, a customer agrees to follow these Terms together with the Returns & Refund Policy and Privacy Policy.",
+          `These Terms govern use of the Viesta storefront and orders accepted by ${legalBusinessName}. By using the storefront or asking Viesta to accept an order, a customer agrees to follow these Terms together with the Returns & Refund Policy and Privacy Policy.`,
           "Nothing in these Terms excludes or limits a right or remedy that cannot lawfully be excluded under Kenyan law.",
         ],
       },

@@ -42,7 +42,7 @@ export function WhatsAppOrderButton({
       onClick={handleClick}
     >
       <WhatsAppIcon className="h-5 w-5" />
-      Order via WhatsApp
+      Send order request via WhatsApp
     </a>
   );
 }

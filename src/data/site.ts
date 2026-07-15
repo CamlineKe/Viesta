@@ -2,7 +2,8 @@ import type { NavItem, SiteContent } from "@/types/content";
 
 export const siteContent: SiteContent = {
   name: "Viesta Nutrition",
-  tagline: "Premium nutrition and health supplements for Kenya.",
+  legalName: "Viesta Health Nutrition",
+  tagline: "Nutrition and wellness products for Kenya.",
   description:
     "A static storefront for nutrition and health supplements with Kenyan delivery context, KES pricing, and WhatsApp checkout.",
   url: "https://viesta.co.ke",
@@ -27,7 +28,7 @@ export const siteContent: SiteContent = {
   seo: {
     defaultTitle: "Viesta Nutrition",
     defaultDescription:
-      "Premium nutrition and health supplements in Kenya with WhatsApp ordering and local delivery.",
+      "Nutrition and wellness products in Kenya with WhatsApp ordering and local delivery.",
   },
 };
 

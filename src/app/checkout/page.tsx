@@ -6,7 +6,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const metadata = {
   title: "Checkout",
-  description: "Complete your Viesta order and send it through WhatsApp.",
+  description:
+    "Prepare a Viesta order request and send it through WhatsApp for availability, delivery, payment, and acceptance confirmation.",
 } satisfies Metadata;
 
 export default function CheckoutPage() {
@@ -15,8 +16,8 @@ export default function CheckoutPage() {
       <Container>
         <SectionHeader
           eyebrow="Checkout"
-          title="Complete your WhatsApp order"
-          description="Enter customer and delivery details, review totals, then send your order summary to Viesta on WhatsApp."
+          title="Prepare your WhatsApp order request"
+          description="Enter customer and delivery details, review totals and policies, then send the prepared request to Viesta on WhatsApp for confirmation."
           className="mb-8"
         />
         <CheckoutView />

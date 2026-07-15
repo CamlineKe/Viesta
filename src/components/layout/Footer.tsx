@@ -66,7 +66,7 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <Container className="flex flex-col gap-4 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; 2026 Viesta Nutrition. All rights reserved.</p>
+          <p>&copy; 2026 {siteContent.legalName}. All rights reserved.</p>
           <div className="flex flex-wrap gap-4">
             {legalLinks.map((link) => (
               <Link key={link.href} href={{ pathname: link.href }} className="transition hover:text-brand-primary">

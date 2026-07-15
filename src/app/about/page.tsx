@@ -16,14 +16,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const metadata = {
-  title: "About Viesta Health Shop",
+  title: "About Viesta Nutrition",
   description:
-    "Discover Viesta Health Shop, a Kenyan wellness brand focused on quality products, informed choices, integrity, and customer care.",
+    "Discover Viesta Nutrition, a Kenyan wellness brand focused on thoughtful product selection, informed choices, integrity, and customer care.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Viesta Health Shop",
+    title: "About Viesta Nutrition",
     description:
       "Meet the Kenyan wellness brand helping individuals and families make more informed everyday health, beauty, and wellness choices.",
     url: "/about",
@@ -39,7 +39,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Viesta Health Shop",
+    title: "About Viesta Nutrition",
     description:
       "Meet the Kenyan wellness brand focused on quality products, informed choices, integrity, and customer care.",
     images: ["/images/brand/about_1.webp"],
@@ -50,13 +50,13 @@ const brandPillars = [
   {
     title: "Quality-led selection",
     description:
-      "Premium supplements, personal care products, and wellness solutions selected to support healthier everyday routines.",
+      "Supplements, personal care products, and wellness options selected to support everyday routines.",
     icon: FlaskConical,
   },
   {
-    title: "Natural wellness focus",
+    title: "Considered wellness range",
     description:
-      "A considered focus on natural and sustainably sourced ingredients across the Viesta wellness range.",
+      "Supplements, personal care products, and wellness options brought together for different everyday needs.",
     icon: HeartPulse,
   },
   {
@@ -98,9 +98,9 @@ const trustReasons = [
       "A considered range of supplements, personal care products, and wellness solutions for different everyday needs.",
   },
   {
-    title: "Natural wellness focus",
+    title: "Product information first",
     description:
-      "An emphasis on natural ingredients and sustainably minded sourcing as the Viesta product range grows.",
+      "A commitment to clearer product information as the Viesta wellness range grows.",
   },
   {
     title: "Clearer wellness decisions",
@@ -177,7 +177,7 @@ export default function AboutPage() {
               Wellness built around better everyday choices.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-brand-muted sm:text-lg">
-              Viesta Health Shop is a Kenyan health and wellness brand helping
+              Viesta Nutrition is a Kenyan health and wellness brand helping
               individuals and families improve their wellbeing through quality
               health, beauty, and wellness products.
             </p>
@@ -265,7 +265,7 @@ export default function AboutPage() {
             <SectionHeader
               eyebrow="Who We Are"
               title="A thoughtful approach to everyday wellbeing"
-              description="Viesta brings together premium supplements, personal care products, and natural wellness solutions for individuals and families in Kenya."
+              description="Viesta brings together supplements, personal care products, and everyday wellness options for individuals and families in Kenya."
             />
             <div className="border-l-2 border-brand-primary pl-5 sm:pl-7">
               <p className="font-heading text-xl font-extrabold leading-8 text-brand-charcoal sm:text-2xl sm:leading-9">
@@ -344,8 +344,8 @@ export default function AboutPage() {
               </h3>
               <div className="mt-6 h-1 w-14 rounded-full bg-brand-primary" />
               <p className="mt-6 text-base leading-8 text-brand-muted">
-                To empower people to take control of their health by providing
-                safe, effective, and natural wellness solutions.
+                To empower people to make more informed wellness choices through
+                considered products, clearer information, and attentive support.
               </p>
             </article>
 
@@ -413,8 +413,8 @@ export default function AboutPage() {
                       A growing wellness range
                     </p>
                     <p className="mt-1 text-sm leading-6 text-brand-muted">
-                      Premium-quality products selected across everyday and
-                      targeted wellness needs.
+                      A quality-led range selected across everyday and targeted
+                      wellness needs.
                     </p>
                   </div>
                 </figcaption>
@@ -424,10 +424,10 @@ export default function AboutPage() {
             <div className="min-w-0">
               <div className="flex flex-wrap gap-2">
                 <span className="rounded-full border border-brand-border-soft bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-brand-charcoal shadow-brand-sm">
-                  Premium-quality products
+                  Quality-led product range
                 </span>
                 <span className="rounded-full border border-brand-border-soft bg-brand-botanical px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-brand-charcoal">
-                  Natural ingredient focus
+                  Clear product information
                 </span>
               </div>
 
@@ -581,7 +581,7 @@ export default function AboutPage() {
             <SectionHeader
               eyebrow="Meet the Founder"
               title="Leadership grounded in better wellbeing"
-              description="Prof. Patrick Kareru is the founder of Viesta Health Shop. Viesta is guided by a mission to support healthier choices for individuals and families."
+              description="Prof. Patrick Kareru is the founder of Viesta Nutrition. Viesta is guided by a mission to support healthier choices for individuals and families."
             />
 
             <div className="mt-8 border-l-4 border-brand-primary bg-white/80 p-5 shadow-brand-sm backdrop-blur-sm sm:p-7">
@@ -626,7 +626,7 @@ export default function AboutPage() {
                   Prof. Patrick Kareru
                 </p>
                 <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-brand-success">
-                  Founder, Viesta Health Shop
+                  Founder, Viesta Nutrition
                 </p>
               </figcaption>
             </div>

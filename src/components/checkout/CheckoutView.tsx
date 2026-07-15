@@ -21,6 +21,7 @@ const initialFormValues: CheckoutFormValues = {
   deliveryLocation: "",
   deliveryAddress: "",
   orderNotes: "",
+  acceptedLegalPolicies: false,
 };
 
 const progressSteps = [

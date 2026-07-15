@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it } from "vitest";
 
 import { LegalPageLayout } from "@/components/content/LegalPageLayout";
 import { legalPages } from "@/data/legal";
+import { siteContent } from "@/data/site";
 
 describe("legal content", () => {
   afterEach(cleanup);
@@ -45,6 +46,13 @@ describe("legal content", () => {
     expect(JSON.stringify(privacyPage)).toContain(
       "within 30 days after delivery or final issue resolution",
     );
+  });
+
+  it("separates the public brand from the registered legal business", () => {
+    expect(siteContent.name).toBe("Viesta Nutrition");
+    expect(siteContent.legalName).toBe("Viesta Health Nutrition");
+    expect(JSON.stringify(legalPages)).toContain(siteContent.legalName);
+    expect(JSON.stringify(legalPages)).not.toContain("Viesta Health Shop");
   });
 
   it("renders structured paragraphs and lists in the shared layout", () => {

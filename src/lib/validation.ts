@@ -35,6 +35,11 @@ export function validateCheckout(values: CheckoutFormValues): CheckoutValidation
     errors.deliveryLocation = "Select a delivery location.";
   }
 
+  if (!values.acceptedLegalPolicies) {
+    errors.acceptedLegalPolicies =
+      "Accept the Terms of Service and acknowledge the Privacy Policy to continue.";
+  }
+
   return errors;
 }
 

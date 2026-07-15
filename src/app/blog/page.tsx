@@ -15,7 +15,6 @@ import {
 
 import { BlogCard } from "@/components/content/BlogCard";
 import { BlogGrid } from "@/components/content/BlogGrid";
-import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Badge } from "@/components/ui/Badge";
 import { cardClassName } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
@@ -23,8 +22,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { getBlogCategoryLabel } from "@/data/blog-categories";
 import { getBlogReadTimeLabel } from "@/data/blog-editorial";
 import { featuredBlogPosts, publishedBlogPosts } from "@/data/blog-posts";
-import { siteContent } from "@/data/site";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata = {
   title: "Wellness Blog",
@@ -92,10 +89,6 @@ const livingEssentials = [
 
 export default function BlogPage() {
   const leadingPost = featuredBlogPosts[0];
-  const updatesUrl = buildWhatsAppUrl(
-    siteContent.contact.whatsapp,
-    "Hello Viesta Nutrition, I'd like to receive practical wellness tips and new blog updates on WhatsApp.",
-  );
 
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
@@ -346,24 +339,31 @@ export default function BlogPage() {
         <Container className="relative">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-brand-primary">
-              Stay Connected
+              Explore At Your Pace
             </p>
             <h2 className="mt-3 font-heading text-3xl font-extrabold sm:text-4xl">
-              Keep practical wellness guidance close.
+              Turn useful guidance into informed questions.
             </h2>
             <p className="mt-4 text-base leading-8 text-white/70">
-              Ask to receive new Viesta guides and product-education updates through WhatsApp—no
-              unsupported email subscription required.
+              Continue comparing wellness topics and products, or contact
+              Viesta with a specific product, delivery, payment, or returns
+              question.
             </p>
-            <a
-              className="mt-8 inline-flex min-h-12 max-w-full items-center justify-center rounded-md bg-brand-primary px-5 text-center font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97] sm:px-6"
-              href={updatesUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Get blog updates on WhatsApp
-              <WhatsAppIcon aria-hidden="true" className="ml-2 h-5 w-5" />
-            </a>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-primary-hover"
+                href="/shop"
+              >
+                Browse products
+                <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
+              </Link>
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/25 bg-white/5 px-6 font-heading font-extrabold text-white transition hover:-translate-y-0.5 hover:border-brand-primary hover:bg-white/10"
+                href="/contact"
+              >
+                Contact Viesta
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

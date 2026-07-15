@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 
 import { BlogCard } from "@/components/content/BlogCard";
-import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { TrustBadges } from "@/components/product/TrustBadges";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { cardClassName } from "@/components/ui/Card";
@@ -17,8 +16,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { featuredBlogPosts } from "@/data/blog-posts";
 import { categories } from "@/data/categories";
 import { featuredProducts, products } from "@/data/products";
-import { siteContent } from "@/data/site";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const heroTrustItems = [
   { label: "Free Nairobi & Kiambu delivery", icon: Truck },
@@ -35,11 +32,6 @@ const categoryCounts = products.reduce<Record<string, number>>(
 );
 
 export default function HomePage() {
-  const updatesUrl = buildWhatsAppUrl(
-    siteContent.contact.whatsapp,
-    "Hello Viesta Nutrition, I'd like to receive practical wellness guides and product updates on WhatsApp.",
-  );
-
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
       <section className="section-canvas relative isolate overflow-hidden">
@@ -311,24 +303,31 @@ export default function HomePage() {
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-bold uppercase tracking-wide text-brand-primary">
-              Stay Updated
+              Explore With Clarity
             </p>
             <h2 className="mt-3 font-heading text-3xl font-extrabold sm:text-4xl">
-              Practical wellness guidance, delivered simply.
+              Make your next wellness choice with clearer context.
             </h2>
             <p className="mt-4 text-base leading-7 text-white/70">
-              Ask to receive new Viesta Wellness Journal guides and carefully
-              separated product-education updates through WhatsApp.
+              Read practical Viesta Wellness Journal guides, compare the
+              available product range, or contact Viesta when you have a
+              specific product or order question.
             </p>
-            <a
-              className="mt-8 inline-flex min-h-12 max-w-full items-center justify-center rounded-md bg-brand-primary px-4 text-center font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97] sm:px-6"
-              href={updatesUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Get wellness updates on WhatsApp
-              <WhatsAppIcon className="ml-2 h-5 w-5" />
-            </a>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-primary-hover"
+                href="/blog"
+              >
+                Read wellness guides
+                <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
+              </Link>
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/25 bg-white/5 px-6 font-heading font-extrabold text-white transition hover:-translate-y-0.5 hover:border-brand-primary hover:bg-white/10"
+                href="/contact"
+              >
+                Contact Viesta
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

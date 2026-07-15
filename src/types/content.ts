@@ -50,6 +50,7 @@ export type LegalPage = {
 
 export type SiteContent = {
   name: string;
+  legalName: string;
   tagline: string;
   description: string;
   url: string;

@@ -25,6 +25,7 @@ export type CheckoutFormValues = {
   deliveryLocation: DeliveryLocation;
   deliveryAddress?: string;
   orderNotes?: string;
+  acceptedLegalPolicies: boolean;
 };
 
 export type CheckoutValidationErrors = Partial<Record<keyof CheckoutFormValues, string>>;

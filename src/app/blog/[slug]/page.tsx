@@ -17,7 +17,6 @@ import { BlogCard } from "@/components/content/BlogCard";
 import { BlogProductDiscoveryCard } from "@/components/content/BlogProductDiscoveryCard";
 import { BlogSources } from "@/components/content/BlogSources";
 import { BlogTableOfContents } from "@/components/content/BlogTableOfContents";
-import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
@@ -31,8 +30,6 @@ import {
 } from "@/data/blog-editorial";
 import { publishedBlogPosts } from "@/data/blog-posts";
 import { products } from "@/data/products";
-import { siteContent } from "@/data/site";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { buildBlogPostJsonLd, buildBlogPostMetadata } from "@/lib/blog-seo";
 
 export function generateStaticParams() {
@@ -76,10 +73,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       ),
     )
     .slice(0, 3);
-  const updatesUrl = buildWhatsAppUrl(
-    siteContent.contact.whatsapp,
-    `Hello Viesta Nutrition, I read “${post.title}” and would like to receive new wellness guides on WhatsApp.`,
-  );
   const articleJsonLd = buildBlogPostJsonLd(post);
 
   return (
@@ -271,26 +264,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               Keep Learning
             </p>
             <h2 className="mt-3 font-heading text-3xl font-extrabold sm:text-4xl">
-              Get new wellness guides on WhatsApp.
+              Continue exploring the Viesta wellness library.
             </h2>
             <p className="mt-4 text-base leading-8 text-white/70">
-              Receive practical education and new article updates from the Viesta Wellness Team.
+              Return to the journal for more source-led guidance, or contact
+              Viesta when you have a specific product or ordering question.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a
-                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97]"
-                href={updatesUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Get updates on WhatsApp
-                <WhatsAppIcon className="ml-2 h-5 w-5" />
-              </a>
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 font-heading font-extrabold text-white transition hover:-translate-y-0.5 hover:border-brand-primary hover:bg-white/5 active:scale-[0.97]"
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:-translate-y-0.5 hover:bg-brand-primary-hover active:scale-[0.97]"
                 href="/blog"
               >
                 Return to the journal
+              </Link>
+              <Link
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 font-heading font-extrabold text-white transition hover:-translate-y-0.5 hover:border-brand-primary hover:bg-white/5 active:scale-[0.97]"
+                href="/contact"
+              >
+                Contact Viesta
               </Link>
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 **Business:** Viesta Health Nutrition  
 **Market:** Kenya  
-**Storefront:** Viesta Nutrition / Viesta Health Shop  
+**Public storefront brand:** Viesta Nutrition
 **Production hosting:** Vercel  
 **Document status:** Approved business-policy specification; legal wording remains subject to qualified Kenyan legal review  
 **Last updated:** 2026-07-15
@@ -29,9 +29,9 @@ The legal business name used in contracts, policies, privacy-controller disclosu
 
 ### 2.2 Public brand naming
 
-The repository currently uses both `Viesta Nutrition` and `Viesta Health Shop` as public-facing names. These may remain marketing names only if they are intentionally approved. Wherever a legal obligation, contract, data-controller identity, or policy contact is stated, the copy must identify **Viesta Health Nutrition**.
+The approved public storefront brand is **Viesta Nutrition**. The legacy `Viesta Health Shop` name must not appear in customer-facing application content. Wherever a legal obligation, contract, data-controller identity, copyright notice, or formal policy contact is stated, the copy must identify **Viesta Health Nutrition**.
 
-Phase 4 must reconcile the public brand names across the About page, metadata, footer, site data, WhatsApp messages, and documentation. Until that review is complete, code must not silently replace the registered business name with a public brand name in legal content.
+Shared site data owns both names: `siteContent.name` contains the public brand and `siteContent.legalName` contains the registered business name. Application content should reference the appropriate shared value instead of introducing another literal naming variant.
 
 ### 2.3 Market and governing law
 
@@ -373,22 +373,27 @@ Status: **Complete; user approved progression on 2026-07-15**
 
 ### Phase 3 — Shared legal-page experience
 
-Status: **Implemented; awaiting user review**
+Status: **Complete; user approved progression on 2026-07-15**
 
 - [x] Update the shared legal layout with a page-level heading and clear draft status.
 - [x] Add accessible page navigation, structured sections, related-policy links, and contact guidance.
 - [x] Add route descriptions, canonical URLs, and temporary `noindex` directives while legal review is pending.
 - [x] Preserve a restrained, readable warm botanical presentation across mobile and desktop layouts.
 - [x] Update focused rendering assertions without running the test suite.
-- [ ] User has reviewed and approved the Phase 3 legal-page experience.
+- [x] User approved progression from the Phase 3 legal-page experience on 2026-07-15.
 
 ### Phase 4 — Store-wide integration
 
-Status: Not started
+Status: **Implemented; awaiting user review**
 
-- Add checkout acknowledgement and policy links.
-- Align checkout, contact, FAQs, site identity, About claims, payment wording, and delivery wording.
-- Remove or rewrite promotional WhatsApp-update calls to action because marketing use is not approved.
+- [x] Add required checkout acknowledgement and links to all three policies.
+- [x] Explain the browser-to-WhatsApp data handoff in checkout and contact forms.
+- [x] Align checkout, WhatsApp messages, FAQs, payment wording, and order-acceptance wording.
+- [x] Separate the Viesta Nutrition public brand from the Viesta Health Nutrition legal entity.
+- [x] Reconcile About-page naming and remove unsupported sourcing and effectiveness claims.
+- [x] Remove promotional WhatsApp-update calls to action because marketing use is not approved.
+- [x] Add or update focused validation, checkout, and WhatsApp-message tests without running them.
+- [ ] User has reviewed and approved the Phase 4 store-wide integration.
 
 ### Phase 5 — Documentation and acceptance
 
