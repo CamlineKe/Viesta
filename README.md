@@ -103,6 +103,8 @@ flowchart TD
 │   ├── Viesta_Legal_Policies.md # Legal-policy decisions and governance
 │   ├── Viesta_SEO.md            # SEO plan and content guidance
 │   └── Viesta_Inventory.md      # Inventory/product planning notes
+├── infrastructure/
+│   └── Viesta_Deployment.md     # Vercel deployment and launch operations
 ├── public/
 │   ├── favicon.ico
 │   └── images/
@@ -303,6 +305,8 @@ Use the root README for onboarding and daily development. Use `Architecture.md` 
 ## Deployment
 
 The app targets Vercel for production hosting.
+
+See the [Viesta Deployment Guide](infrastructure/Viesta_Deployment.md) for preview deployment, production configuration, domain setup, validation, monitoring, and rollback instructions.
 
 Before production deployment:
 

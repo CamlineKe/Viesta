@@ -14,7 +14,7 @@ This document is the source of truth for implementation structure. Product requi
 - State: React Context for cart state, persisted to `localStorage`
 - Checkout: Browser-side checkout that validates and builds a WhatsApp order-request handoff URL
 - Data: Local typed files under `src/data`
-- Deployment target: Vercel/static-friendly Next.js deployment
+- Deployment target: Vercel/static-friendly Next.js deployment. Operational setup, validation, release, and rollback instructions live in the [Viesta Deployment Guide](../infrastructure/Viesta_Deployment.md).
 
 ## Design-System Implementation
 
