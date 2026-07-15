@@ -42,7 +42,7 @@ Sections · Lists · Tables · Callouts · Sources · Disclaimer
    ↓
 Optional product discovery · Related reading
    ↓
-WhatsApp updates or return to the journal
+Return to the journal or contact Viesta with a specific question
 ```
 
 ### Blog landing page
@@ -55,7 +55,7 @@ The `/blog` page contains:
 4. Topic-based article filtering with an accessible result count.
 5. All eight published guides.
 6. Healthy Living Essentials.
-7. A WhatsApp updates call to action.
+7. Product-discovery and contact navigation without a marketing subscription.
 
 The page uses the established Viesta design system: warm canvas backgrounds, botanical surfaces, yellow accents, charcoal typography, glass-framed imagery, rounded cards, and mobile-first horizontal discovery.
 
@@ -349,7 +349,7 @@ Before the blog is treated as production-ready:
 1. Run the targeted blog tests and full project test suite.
 2. Run the type check, lint, formatting check, and production build.
 3. Review the homepage, blog index, and article pages at mobile, tablet, and desktop sizes.
-4. Keyboard-test filters, tables, contents links, sources, cards, and WhatsApp actions.
+4. Keyboard-test filters, tables, contents links, sources, cards, and closing navigation actions.
 5. Validate deployed article pages with a structured-data testing tool.
 6. Confirm `https://viesta.co.ke` is the correct canonical production domain.
 7. Obtain qualified Kenyan clinical review of the final article copy.

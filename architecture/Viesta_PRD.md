@@ -48,7 +48,7 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 - **Payment:** Offline via Paybill/Till (WhatsApp-based confirmation)
 - **Hosting:** Vercel
 - **Language:** English (single region - Kenya)
-- **Analytics:** Google Analytics
+- **Analytics:** None at launch; any future provider requires privacy and business approval
 
 ---
 
@@ -420,7 +420,7 @@ Shipping fees are calculated automatically based on the selected delivery locati
 - **Data Storage:** Static JSON files with TypeScript types (products, blog posts, FAQs)
 - **Content:** JSON files (for products, blog posts)
 - **Hosting:** Vercel
-- **Analytics:** Google Analytics
+- **Analytics:** None at launch; future analytics is governed by the legal-policy change-control process
 
 ### 6.2 State Management: React Context + localStorage
 
@@ -659,8 +659,8 @@ The project folder structure is maintained separately in [`Architecture.md`](./A
 - [ ] Clean URL structure (/products/[slug], /blog/[slug])
 
 **Analytics:**
-- [ ] Google Analytics / Tag Manager installed
-- [ ] Event tracking for: Add to cart, Initiate checkout, WhatsApp button clicks, Form submissions
+- [x] No analytics, advertising pixels, or tag manager enabled at launch
+- [ ] If later approved, complete privacy review, policy disclosure, consent assessment, and event minimization before activation
 
 **Final Review:**
 - [ ] Test all CTAs
@@ -707,7 +707,7 @@ Styling: Tailwind CSS
 State: React Context + localStorage
 Data: Static JSON files (typed with TypeScript)
 Hosting: Vercel
-Analytics: Google Analytics
+Analytics: None at launch; future provider subject to privacy and business approval
 ```
 
 ### 11.3 Color Palette Summary
@@ -759,8 +759,8 @@ Headings: 24px, 32px, 40px
 **Phase 7: Testing & Optimization**
 > Mobile responsive, cross-browser, cart/checkout testing, performance optimization, Lighthouse, SEO meta tags
 
-**Phase 8: Analytics & Launch Preparation**
-> Google Analytics, event tracking, sitemap, robots.txt, final review, Vercel deployment
+**Phase 8: Search & Launch Preparation**
+> Sitemap, robots.txt, privacy-safe measurement decision, final review, Vercel deployment
 
 ---
 

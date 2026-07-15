@@ -12,7 +12,7 @@ This document is the source of truth for implementation structure. Product requi
 - Styling: Tailwind CSS plus global CSS tokens in `src/app/globals.css`
 - Rendering: Static generation where practical, including product and blog detail routes via `generateStaticParams`
 - State: React Context for cart state, persisted to `localStorage`
-- Checkout: Browser-side checkout that builds a WhatsApp order handoff URL
+- Checkout: Browser-side checkout that validates and builds a WhatsApp order-request handoff URL
 - Data: Local typed files under `src/data`
 - Deployment target: Vercel/static-friendly Next.js deployment
 
@@ -190,10 +190,10 @@ vitest.config.ts        # Unit test configuration
 - `/shop` contains category filtering, sorting, and product discovery.
 - `/products/[slug]` statically generates product detail pages from `src/data/products.ts`.
 - `/cart` is the full cart review page.
-- `/checkout` is the browser-side order form and WhatsApp handoff surface.
+- `/checkout` is the browser-side order-request form and WhatsApp handoff surface. A required acknowledgement links to the Terms of Service and Privacy Policy before the request can continue.
 - `/blog` contains category-filtered educational content.
 - `/blog/[slug]` statically generates blog detail pages from `src/data/blog-posts.ts`.
-- Legal pages are generated from local legal content through page-specific routes.
+- Legal pages are generated from structured local content through page-specific routes and a shared accessible layout. They remain `noindex` while qualified Kenyan legal review and effective dates are pending.
 
 ## Data Ownership
 
@@ -204,9 +204,9 @@ vitest.config.ts        # Unit test configuration
 - Testimonials: `src/data/testimonials.ts`
 - Legal content: `src/data/legal.ts`
 - Shipping zones: `src/data/shipping-zones.ts`
-- Site identity, contacts, payment, SEO: `src/data/site.ts`
+- Public brand, registered legal name, contacts, payment, SEO: `src/data/site.ts`
 
-Data is intentionally local and typed. Until launch facts are confirmed, product claims, legal text, and payment details should remain flagged as unconfirmed rather than silently treated as final. All catalog product prices are confirmed in `src/data/products.ts`. Business phone, WhatsApp, email, and physical address are confirmed in `src/data/site.ts`.
+Data is intentionally local and typed. Product claims and payment details remain flagged where business confirmation is pending. Legal policy content reflects approved business rules but remains visibly marked as pending qualified Kenyan legal review and has no effective date. All catalog product prices are confirmed in `src/data/products.ts`. The public brand, registered legal name, business phone, WhatsApp, email, and physical address are confirmed in `src/data/site.ts`.
 
 ## State And Client Boundaries
 
@@ -267,6 +267,7 @@ Checkout collects:
 - Delivery location
 - Optional delivery address or landmark
 - Optional order notes
+- Required Terms of Service agreement and Privacy Policy acknowledgement
 
 Checkout displays:
 
@@ -275,9 +276,12 @@ Checkout displays:
 - Shipping fee
 - Grand total when available
 - M-Pesa payment guidance
-- WhatsApp order button
+- Policy links and browser-to-WhatsApp privacy notice
+- WhatsApp order-request button
 
-The WhatsApp order button can still be used while Paybill/Till details are pending, as long as required checkout fields are valid and product prices are confirmed. In that state, payment details are confirmed manually in the WhatsApp conversation before the customer pays. Copying payment details remains disabled until final Paybill/Till information is provided.
+The WhatsApp order-request button can still be used while Paybill/Till details are pending, as long as required checkout fields, policy acknowledgement, and product prices are valid. In that state, payment details are confirmed manually in the WhatsApp conversation before the customer pays. Copying payment details remains disabled until final Paybill/Till information is provided.
+
+Sending the prepared message is an order request, not an accepted order. Viesta confirms availability, the final total, delivery terms, payment instructions, and acceptance through WhatsApp.
 
 ### Shipping
 
@@ -296,6 +300,7 @@ Shipping rules are implemented in `src/data/shipping-zones.ts` and `src/lib/ship
 - Customer contact details
 - Delivery location and address
 - Optional order notes
+- Policy acknowledgement
 - Subtotal, shipping, and total
 - Payment guidance or confirmation instruction
 
@@ -314,6 +319,8 @@ Current unit and component tests cover:
 - Shipping fee calculation
 - Checkout validation
 - WhatsApp message and URL generation
+- Legal content structure and legal-page rendering
+- Checkout policy acknowledgement and policy links
 - Product data and pricing helpers
 - Shared UI primitive variants
 - Homepage category counts and category query links
@@ -345,5 +352,5 @@ Production build, automated checks, browser QA, and accessibility verification r
 
 - Final product labels, usage directions, ingredients, warnings, and compliant claims.
 - Final Paybill/Till details.
-- Final legal copy.
+- Qualified Kenyan legal review, effective dates, and removal of temporary legal-page `noindex` directives.
 - Browser/device responsive and accessibility pass.

@@ -1,6 +1,6 @@
 # Viesta Nutrition
 
-Static e-commerce storefront for Viesta Nutrition, a Kenyan nutrition and health supplements shop. The site helps customers browse products, review a cart, enter delivery details, and send a structured order through WhatsApp.
+Static e-commerce storefront for Viesta Nutrition, a Kenyan nutrition and wellness shop operated by Viesta Health Nutrition. The site helps customers browse products, review a cart, enter delivery details, acknowledge the policies, and send a structured order request through WhatsApp.
 
 ```mermaid
 flowchart LR
@@ -8,18 +8,18 @@ flowchart LR
   Shop --> Product[Product detail]
   Product --> Cart[Cart drawer or cart page]
   Cart --> Checkout[Checkout form]
-  Checkout --> WhatsApp[WhatsApp order handoff]
+  Checkout --> WhatsApp[WhatsApp order-request handoff]
 ```
 
 ## Project Status
 
 Proprietary pre-launch storefront.
 
-The application structure and commerce flow are implemented, but production launch still depends on final business confirmation for:
+The application structure and commerce flow are implemented, but production launch still depends on:
 
 - Product labels, ingredients, usage directions, warnings, and compliant health claims.
 - M-Pesa Paybill/Till details.
-- Final legal copy.
+- Qualified Kenyan legal review, policy effective dates, and final indexability approval.
 - Responsive, browser, accessibility, and WhatsApp redirect testing.
 
 ## Tech Stack
@@ -100,6 +100,7 @@ flowchart TD
 │   ├── Architecture.md          # Implementation structure and launch notes
 │   ├── Viesta_PRD.md            # Product requirements
 │   ├── Viesta_Design_PRD.md     # Visual and interaction direction
+│   ├── Viesta_Legal_Policies.md # Legal-policy decisions and governance
 │   ├── Viesta_SEO.md            # SEO plan and content guidance
 │   └── Viesta_Inventory.md      # Inventory/product planning notes
 ├── public/
@@ -130,22 +131,22 @@ flowchart TD
 /shop                     Product discovery, search, filtering, and sorting
 /products/[slug]          Product detail pages generated from local product data
 /cart                     Full cart review
-/checkout                 Checkout form and WhatsApp order handoff
+/checkout                 Checkout acknowledgement and WhatsApp order-request handoff
 /blog                     Educational content listing
 /blog/[slug]              Blog detail pages generated from local blog data
 /about                    Brand/about page
 /contact                  Contact and WhatsApp inquiry page
 /faqs                     Frequently asked questions
-/privacy-policy           Draft privacy policy content
-/returns-refund-policy    Draft returns and refund content
-/terms-of-service         Draft terms content
+/privacy-policy           Business-approved privacy draft pending legal review
+/returns-refund-policy    Business-approved returns draft pending legal review
+/terms-of-service         Business-approved terms draft pending legal review
 ```
 
 ## Data Ownership
 
 | Data | File |
 |---|---|
-| Site identity, contact details, payment display text, SEO defaults | `src/data/site.ts` |
+| Public brand, registered legal name, contact details, payment display text, SEO defaults | `src/data/site.ts` |
 | Product catalog, prices, variants, claims, confirmation flags | `src/data/products.ts` |
 | Product categories | `src/data/categories.ts` |
 | Shipping zones and fees | `src/data/shipping-zones.ts` |
@@ -154,7 +155,7 @@ flowchart TD
 | Legal page content | `src/data/legal.ts` |
 | Testimonials | `src/data/testimonials.ts` |
 
-Product claims, legal copy, and payment details should stay visibly marked as pending until the business confirms them. All catalog product prices are confirmed in `src/data/products.ts`.
+Product claims and payment details stay visibly marked where business confirmation is pending. Legal content reflects approved business rules but remains marked as pending qualified Kenyan legal review and has no effective date. All catalog product prices are confirmed in `src/data/products.ts`.
 
 ## Commerce Flow
 
@@ -169,9 +170,11 @@ sequenceDiagram
   Customer->>Storefront: Browse shop or product page
   Customer->>Cart: Add product and adjust quantity
   Cart->>Checkout: Send cart items and totals
-  Customer->>Checkout: Enter name, phone, and delivery location
-  Checkout->>WhatsApp: Open pre-filled order message
-  WhatsApp-->>Customer: Customer sends order to Viesta
+  Customer->>Checkout: Enter customer and delivery details
+  Customer->>Checkout: Agree to Terms and acknowledge Privacy Policy
+  Checkout->>WhatsApp: Open pre-filled order request
+  WhatsApp-->>Customer: Customer sends request to Viesta
+  WhatsApp-->>Customer: Viesta confirms availability, total, delivery, payment, and acceptance
 ```
 
 Shipping rules are currently:
@@ -214,6 +217,7 @@ Update checkout validation:
 ```text
 src/lib/validation.ts
 src/__tests__/validation.test.ts
+src/__tests__/commerce-responsive.test.tsx
 ```
 
 Update WhatsApp order text or URL behavior:
@@ -221,6 +225,16 @@ Update WhatsApp order text or URL behavior:
 ```text
 src/lib/whatsapp.ts
 src/__tests__/whatsapp.test.ts
+```
+
+Update policy decisions or legal content:
+
+```text
+architecture/Viesta_Legal_Policies.md
+src/types/content.ts
+src/data/legal.ts
+src/components/content/LegalPageLayout.tsx
+src/__tests__/legal-content.test.tsx
 ```
 
 Update page layouts or route-level content:
@@ -247,7 +261,9 @@ src/components/
 Recommended verification before merging application changes:
 
 ```bash
+npm test -- src/__tests__/legal-content.test.tsx src/__tests__/validation.test.ts src/__tests__/commerce-responsive.test.tsx src/__tests__/whatsapp.test.ts
 npm run type-check
+npm run format:check
 npm run lint
 npm test
 npm run build
@@ -263,6 +279,8 @@ Current tests cover:
 - Shipping fee calculation.
 - Checkout validation.
 - WhatsApp message and URL generation.
+- Checkout policy acknowledgement and policy links.
+- Structured legal content and legal-page rendering.
 - Product data expectations.
 
 The tests live in:
@@ -273,23 +291,24 @@ src/__tests__/
 
 ## Architecture Documentation
 
-The full architecture source of truth is:
+The implementation architecture and legal-policy governance sources are:
 
 ```text
 architecture/Architecture.md
+architecture/Viesta_Legal_Policies.md
 ```
 
-Use the root README for onboarding and daily development. Use the architecture document for implementation structure, client/server boundaries, commerce behavior, and launch blockers.
+Use the root README for onboarding and daily development. Use `Architecture.md` for implementation structure, client/server boundaries, commerce behavior, and launch blockers. Use `Viesta_Legal_Policies.md` for business-policy decisions, privacy and commerce rules, verification, legal review, and release change control.
 
 ## Deployment
 
-The app targets Vercel or another static-friendly Next.js hosting environment.
+The app targets Vercel for production hosting.
 
 Before production deployment:
 
 - Confirm Paybill/Till details.
 - Review health and product claims for compliance.
-- Finalize legal pages.
+- Obtain qualified Kenyan legal review, set policy effective dates, and remove temporary legal-page `noindex` directives.
 - Verify WhatsApp ordering on mobile devices.
 - Run the full quality command set.
 

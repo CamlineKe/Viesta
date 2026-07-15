@@ -33,7 +33,7 @@ Viesta is a static storefront for nutrition and health supplements in Kenya. The
 - Local delivery context, KES pricing, and M-Pesa confirmation through WhatsApp.
 - Static legal pages for privacy, terms, and returns.
 
-The PRD defines the initial launch as a static e-commerce site hosted on Vercel with Google Analytics planned.
+The initial launch is a static e-commerce site hosted on Vercel. Google Analytics and other behavioral-tracking tools are not approved for launch. Any future analytics implementation requires the privacy-impact, disclosure, consent, and policy change-control process defined in `Viesta_Legal_Policies.md`.
 
 ### 2.2 Current Technical SEO State
 
@@ -659,9 +659,9 @@ Indexing may take days or weeks. Google does not guarantee that every submitted 
 
 ## 11. Part 7: Measurement and Iteration
 
-### 11.1 Analytics Events
+### 11.1 Future analytics events
 
-Google Analytics should track business-relevant actions, not only page views.
+No analytics or advertising pixels are approved for launch. If Viesta later approves a compliant analytics implementation, measurement should remain limited to documented business-relevant actions and follow the legal-policy change-control process.
 
 Recommended events:
 
@@ -671,7 +671,7 @@ Recommended events:
 | `add_to_cart` | Product added to cart |
 | `view_cart` | Cart viewed |
 | `begin_checkout` | Checkout viewed |
-| `whatsapp_order_click` | Order sent to WhatsApp |
+| `whatsapp_order_request_click` | Order-request handoff opened |
 | `whatsapp_inquiry_click` | General WhatsApp contact clicked |
 | `blog_post_view` | Blog post viewed |
 
@@ -782,12 +782,14 @@ Implement after production deployment:
 
 ### Phase 6: Measurement
 
-Implement after indexing begins:
+Consider only after indexing begins and after a separate privacy and business approval:
 
-1. Add Google Analytics events.
-2. Connect Search Console and Analytics analysis workflow.
-3. Review query/page performance monthly.
-4. Improve titles, descriptions, internal links, and content based on data.
+1. Complete a privacy-impact and consent assessment for the proposed analytics provider.
+2. Update the Privacy Policy and legal-policy architecture before activation.
+3. Add only the approved analytics events.
+4. Connect Search Console and the approved analytics workflow.
+5. Review query/page performance monthly.
+6. Improve titles, descriptions, internal links, and content based on data.
 
 ---
 

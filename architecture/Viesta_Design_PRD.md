@@ -393,6 +393,7 @@ Best Sellers:
   - Customer details
   - Delivery details
   - Optional order notes
+  - Required Terms agreement, Privacy acknowledgement, policy links, and data-handoff notice
 - Order summary:
   - Compact products
   - Subtotal
@@ -400,8 +401,8 @@ Best Sellers:
   - Grand total when available
   - Payment card with Paybill/Till instructions when final, or manual WhatsApp payment confirmation when pending
   - Copy button disabled until payment details are confirmed
-  - WhatsApp order button
-- WhatsApp button stays disabled until required fields are valid and prices are confirmed. Pending Paybill/Till details should not block WhatsApp order submission; instead, payment details are confirmed manually in the WhatsApp conversation before the customer pays.
+  - WhatsApp order-request button
+- WhatsApp button stays disabled until required fields, policy acknowledgement, and prices are valid. Pending Paybill/Till details should not block the order request; instead, availability, final total, delivery, acceptance, and payment details are confirmed manually in the WhatsApp conversation before the customer pays.
 
 ### Blog
 
@@ -438,10 +439,12 @@ Best Sellers:
 
 ### Legal
 
-- Centered readable layout.
-- Last-updated metadata.
-- Launch warning for draft legal text and missing confirmation items.
-- Use a warm canvas with one solid raised reading surface; separate sections with quiet dividers rather than individual tinted cards.
+- Botanical legal header with one page-level heading, summary, effective-date state, last-updated metadata, and Kenya scope.
+- Visible business-approved/pending-legal-review warning until qualified review is complete.
+- Collapsible table of contents on mobile and a bounded sticky table of contents on desktop.
+- One solid raised reading surface with numbered, anchored sections and quiet dividers rather than individual tinted cards.
+- Approved contact channels and related-policy navigation after the reading surface.
+- Legal routes remain `noindex, follow` until qualified review and effective dates are complete.
 
 ### Utility Surfaces
 
@@ -588,7 +591,7 @@ If introduced later, each pattern requires its own responsive, keyboard, focus, 
 
 - Product prices and price statuses are confirmed; product label facts, ingredients, usage, warnings, and claims still need business review.
 - Paybill/Till details are not final; WhatsApp orders can proceed with payment details confirmed manually in chat.
-- Legal pages are draft content.
+- Legal pages contain business-approved policy drafts but still require qualified Kenyan legal review, effective dates, and removal of temporary `noindex` directives.
 - Browser/device responsive QA and full accessibility audit are still required.
 - The five-phase visual migration is implemented but still requires user-run tests, static checks, production build, and browser review.
 

@@ -261,7 +261,7 @@ The contract-formation rule is:
 
 > Sending a WhatsApp order request is an invitation for Viesta to review the requested order. An order is accepted only after Viesta confirms product availability, final price, delivery terms, payment instructions, and acceptance through WhatsApp.
 
-The checkout interface must give the customer a reasonable opportunity to review and correct their order and customer details before proceeding to WhatsApp. Phase 4 will add an explicit acknowledgement linking to the Terms of Service and Privacy Policy.
+The checkout interface gives the customer an opportunity to review and correct their order and customer details before proceeding to WhatsApp. It requires explicit Terms of Service agreement and Privacy Policy acknowledgement, links to all three policies, and includes the acknowledgement in the prepared message when the customer sends it.
 
 ### 6.5 Payment and stock reservation
 
@@ -384,7 +384,7 @@ Status: **Complete; user approved progression on 2026-07-15**
 
 ### Phase 4 — Store-wide integration
 
-Status: **Implemented; awaiting user review**
+Status: **Complete; user approved progression on 2026-07-15**
 
 - [x] Add required checkout acknowledgement and links to all three policies.
 - [x] Explain the browser-to-WhatsApp data handoff in checkout and contact forms.
@@ -393,16 +393,20 @@ Status: **Implemented; awaiting user review**
 - [x] Reconcile About-page naming and remove unsupported sourcing and effectiveness claims.
 - [x] Remove promotional WhatsApp-update calls to action because marketing use is not approved.
 - [x] Add or update focused validation, checkout, and WhatsApp-message tests without running them.
-- [ ] User has reviewed and approved the Phase 4 store-wide integration.
+- [x] User approved progression from the Phase 4 store-wide integration on 2026-07-15.
 
 ### Phase 5 — Documentation and acceptance
 
-Status: Not started
+Status: **Implemented; awaiting user-run verification, legal review, and final acceptance**
 
-- Reconcile architecture and README documentation.
-- Hand off targeted and full automated verification commands.
-- Complete responsive, accessibility, policy-link, content-consistency, and print review.
-- Obtain qualified Kenyan legal review before legal approval is claimed.
+- [x] Reconcile architecture, About, Blog, design, SEO, PRD, and README documentation.
+- [x] Document the public brand/legal identity split and privacy-safe launch measurement position.
+- [x] Prepare targeted and full automated verification commands without running them.
+- [ ] User completes targeted tests, full tests, type checking, linting, formatting, and production build.
+- [ ] User completes responsive, accessibility, policy-link, content-consistency, WhatsApp, and print review.
+- [ ] Qualified Kenyan legal review is obtained before legal approval is claimed.
+- [ ] Policy effective dates are set and temporary legal-page `noindex` directives are removed after approval.
+- [ ] User provides final acceptance after verification and legal-review requirements are satisfied.
 
 ## 10. Phase 1 acceptance checklist
 
@@ -435,3 +439,67 @@ Any future change to analytics, advertising, hosting, payment processing, delive
 7. Record the new effective and last-updated dates.
 
 No implementation should silently diverge from the authoritative rules in this document.
+
+## 12. Phase 5 verification handoff
+
+All commands must be run by the user from:
+
+```text
+/home/camline/Documents/Projects/Viesta
+```
+
+Run the fastest targeted checks first:
+
+```bash
+npm test -- src/__tests__/legal-content.test.tsx src/__tests__/validation.test.ts src/__tests__/commerce-responsive.test.tsx src/__tests__/whatsapp.test.ts
+npm run type-check
+npm run format:check
+npm run lint
+```
+
+Then run the full suite and production build:
+
+```bash
+npm test
+npm run build
+```
+
+Manual acceptance must cover:
+
+- `/returns-refund-policy`, `/privacy-policy`, and `/terms-of-service` at 320px, tablet, laptop, and wide desktop widths.
+- Page-level headings, draft status, effective-date state, table-of-contents anchors, contact links, related-policy links, keyboard focus, long-text wrapping, and print preview.
+- Checkout with missing fields, missing policy acknowledgement, complete valid details, and the prepared WhatsApp message.
+- Confirmation that the order-request button remains blocked until validation passes.
+- Confirmation that the sent message records policy acknowledgement and requests availability, total, delivery, payment, and acceptance confirmation.
+- Contact-form privacy notice and WhatsApp handoff behavior.
+- Homepage, Blog index, and Blog article endings, confirming that no promotional WhatsApp subscription remains.
+- About-page public naming, conservative claims, founder details, and image permission.
+- Footer legal identity and all legal links.
+- Mobile WhatsApp behavior on a real device before launch.
+
+The implementation must remain described as **awaiting verification** until the user supplies successful results.
+
+## 13. Legal-review and release handoff
+
+Qualified Kenyan legal review should validate at least:
+
+- The registered entity and data-controller identity.
+- Internet-order disclosure, review, correction, acceptance, cancellation, and copy/record requirements.
+- Returns eligibility, reporting periods, opened-product treatment, remedies, delivery costs, and refund timing.
+- Privacy purposes, lawful bases, rights handling, provider disclosures, international processing, retention, security wording, and any ODPC registration obligation.
+- Product and medical-information disclaimers.
+- Payment, delivery, failed-delivery, risk-transfer, liability, dispute, and governing-law clauses.
+- The checkout acknowledgement wording and the WhatsApp conversation record.
+
+After approved legal wording is supplied:
+
+1. Apply counsel-required changes to this document and `src/data/legal.ts`.
+2. Set each policy's `reviewStatus` to `legally-approved`.
+3. Set approved `effectiveDate` and `updatedAt` values.
+4. Remove resolved legal-review confirmation flags and the public warning state.
+5. Remove the temporary route-level `noindex` directives only when indexing is approved.
+6. Re-run every targeted and full verification command.
+7. Repeat the legal-page, checkout, WhatsApp, accessibility, responsive, and print review.
+8. Record final user acceptance and release date in this document.
+
+Until those steps are complete, the policies are business-approved drafts and must not be described as legally approved or fully launch-ready.
