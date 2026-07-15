@@ -19,14 +19,32 @@ export type Testimonial = {
   quote: string;
 };
 
+export type LegalPageSlug =
+  | "returns-refund-policy"
+  | "privacy-policy"
+  | "terms-of-service";
+
+export type LegalReviewStatus =
+  | "business-approved-legal-review-pending"
+  | "legally-approved";
+
+export type LegalSection = {
+  id: string;
+  heading: string;
+  paragraphs: string[];
+  items?: string[];
+};
+
 export type LegalPage = {
-  slug: "returns-refund-policy" | "privacy-policy" | "terms-of-service";
+  slug: LegalPageSlug;
   title: string;
+  summary: string;
+  effectiveDate: string | null;
   updatedAt: string;
-  sections: Array<{
-    heading: string;
-    body: string;
-  }>;
+  reviewStatus: LegalReviewStatus;
+  sections: LegalSection[];
+  contactChannels: Array<"email" | "phone" | "whatsapp">;
+  relatedPolicies: LegalPageSlug[];
   needsConfirmation?: string[];
 };
 

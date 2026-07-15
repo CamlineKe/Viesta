@@ -355,7 +355,7 @@ Route files should remain thin and must not duplicate substantive policy rules. 
 
 ### Phase 1 — Policy architecture and decisions
 
-Status: **Implemented; awaiting user review**
+Status: **Complete; user approved on 2026-07-15**
 
 - Establish this source-of-truth document.
 - Record business identity, Vercel hosting, retention periods, refund timing, and all approved policy decisions.
@@ -363,11 +363,13 @@ Status: **Implemented; awaiting user review**
 
 ### Phase 2 — Typed legal content
 
-Status: Not started
+Status: **Implemented; awaiting user review**
 
-- Extend the legal content type for summaries, dates, multiple paragraphs, lists, stable section IDs, contacts, and related links.
-- Author the three complete customer-facing policies from this specification.
-- Preserve visible review status until content approval.
+- [x] Extend the legal content type for summaries, dates, multiple paragraphs, lists, stable section IDs, contacts, and related links.
+- [x] Author the three complete customer-facing policies from this specification.
+- [x] Preserve visible review status until content approval.
+- [x] Add focused model, business-rule, and basic rendering tests without running them.
+- [ ] User has reviewed and approved the Phase 2 model and policy drafts.
 
 ### Phase 3 — Shared legal-page experience
 
@@ -409,7 +411,7 @@ Status: Not started
 - [x] M-Pesa confirmation remains private through WhatsApp at launch.
 - [x] Terms acknowledgement identified for Phase 4.
 - [x] Legal review boundary documented.
-- [ ] User has reviewed and approved this Phase 1 document.
+- [x] User reviewed and approved this Phase 1 document on 2026-07-15.
 - [ ] Qualified Kenyan legal review has been completed; required before legal approval, not before technical drafting.
 
 ## 11. Change-control rules

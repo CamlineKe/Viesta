@@ -16,8 +16,13 @@ export function LegalPageLayout({ page }: LegalPageLayoutProps) {
         <SectionHeader
           eyebrow="Legal"
           title={page.title}
-          description={`Last updated: ${page.updatedAt}. This page currently includes draft launch text that needs final review.`}
+          description={page.summary}
         />
+
+        <p className="mt-4 text-sm font-semibold text-brand-muted">
+          Effective date: {page.effectiveDate ?? "Pending legal review"}. Last
+          updated: {page.updatedAt}.
+        </p>
 
         {page.needsConfirmation?.length ? (
           <Alert
@@ -37,7 +42,8 @@ export function LegalPageLayout({ page }: LegalPageLayoutProps) {
         >
           {page.sections.map((section, index) => (
             <section
-              key={section.heading}
+              id={section.id}
+              key={section.id}
               className={
                 index > 0
                   ? "mt-8 border-t border-brand-border-soft pt-8"
@@ -47,9 +53,25 @@ export function LegalPageLayout({ page }: LegalPageLayoutProps) {
               <h2 className="break-words font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
                 {section.heading}
               </h2>
-              <p className="mt-3 break-words leading-8 text-brand-muted">
-                {section.body}
-              </p>
+              <div className="mt-3 space-y-4">
+                {section.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="break-words leading-8 text-brand-muted"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+                {section.items?.length ? (
+                  <ul className="list-disc space-y-2 pl-6 leading-7 text-brand-muted">
+                    {section.items.map((item) => (
+                      <li key={item} className="break-words pl-1">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
             </section>
           ))}
         </div>
