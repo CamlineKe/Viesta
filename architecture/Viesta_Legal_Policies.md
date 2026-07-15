@@ -363,21 +363,24 @@ Status: **Complete; user approved on 2026-07-15**
 
 ### Phase 2 — Typed legal content
 
-Status: **Implemented; awaiting user review**
+Status: **Complete; user approved progression on 2026-07-15**
 
 - [x] Extend the legal content type for summaries, dates, multiple paragraphs, lists, stable section IDs, contacts, and related links.
 - [x] Author the three complete customer-facing policies from this specification.
 - [x] Preserve visible review status until content approval.
 - [x] Add focused model, business-rule, and basic rendering tests without running them.
-- [ ] User has reviewed and approved the Phase 2 model and policy drafts.
+- [x] User approved progression from the Phase 2 model and policy drafts on 2026-07-15.
 
 ### Phase 3 — Shared legal-page experience
 
-Status: Not started
+Status: **Implemented; awaiting user review**
 
-- Update the shared legal layout.
-- Add accessible page navigation, structured sections, policy relationships, contact guidance, metadata, and canonical URLs.
-- Preserve a restrained, readable warm botanical presentation.
+- [x] Update the shared legal layout with a page-level heading and clear draft status.
+- [x] Add accessible page navigation, structured sections, related-policy links, and contact guidance.
+- [x] Add route descriptions, canonical URLs, and temporary `noindex` directives while legal review is pending.
+- [x] Preserve a restrained, readable warm botanical presentation across mobile and desktop layouts.
+- [x] Update focused rendering assertions without running the test suite.
+- [ ] User has reviewed and approved the Phase 3 legal-page experience.
 
 ### Phase 4 — Store-wide integration
 

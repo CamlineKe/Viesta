@@ -56,12 +56,12 @@ describe("legal content", () => {
       throw new Error("Returns policy fixture is missing.");
     }
 
-    const { getByRole, getByText } = render(
+    const { getAllByRole, getByRole, getByText } = render(
       <LegalPageLayout page={returnsPage} />,
     );
 
     expect(
-      getByRole("heading", { name: "Returns & Refund Policy", level: 2 }),
+      getByRole("heading", { name: "Returns & Refund Policy", level: 1 }),
     ).toBeDefined();
     expect(
       getByRole("heading", { name: "Eligible returns", level: 2 }),
@@ -71,6 +71,15 @@ describe("legal content", () => {
         "A product that arrived visibly damaged, reported within 48 hours after delivery.",
       ),
     ).toBeDefined();
-    expect(getByText(/Effective date: Pending legal review/)).toBeDefined();
+    expect(getByText("Pending legal review")).toBeDefined();
+    expect(getAllByRole("link", { name: /Scope/ }).length).toBeGreaterThanOrEqual(
+      1,
+    );
+    expect(
+      getByRole("link", { name: /Terms of Service/ }).getAttribute("href"),
+    ).toBe("/terms-of-service");
+    expect(
+      getByRole("link", { name: /Phone:/ }).getAttribute("href"),
+    ).toMatch(/^tel:/);
   });
 });
