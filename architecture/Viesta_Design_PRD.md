@@ -1,6 +1,6 @@
 # Viesta Design PRD
 
-**Version:** 2.4
+**Version:** 2.5
 **Date:** July 2026  
 **Project:** Viesta Nutrition static storefront  
 **Implementation:** Next.js App Router, TypeScript, Tailwind CSS  
@@ -437,11 +437,15 @@ Best Sellers:
 
 ### FAQs
 
+- Introduce the route with a warm-canvas editorial hero containing the single page-level heading, a concise answer-finding promise, and an in-page action to the FAQ browser.
+- The hero may use the shared fine dot texture, restrained botanical SVG line art, low-opacity yellow/green glows, and a concise topic overview for Products, Shipping, Orders, and Returns.
 - Search input.
 - Category filters.
 - Accordion list with one open item.
 - Empty state when no question matches.
-- Use a warm canvas, raised filter/search surface, and solid accordion cards; open answers may use the botanical wash.
+- Use a warm canvas for the introduction, a botanical wash for the discovery workspace, and a restrained sun wash for the support handoff where introduced.
+- Keep search, filters, questions, and answers on quiet high-contrast surfaces; open answers may use the botanical wash inside their solid accordion boundary.
+- Stack the hero below `lg`; use a balanced split hero from `lg` and preserve `min-w-0` containment throughout the discovery workspace.
 
 ### Legal
 
@@ -659,3 +663,39 @@ The Contact route is being aligned with the visual pattern established by the Ab
 - Update implementation status here after each review checkpoint. Architecture documentation changes only if component ownership or shared responsibilities change.
 
 Phase 3 implementation includes the restrained sun-wash inquiry-support section and targeted Contact route coverage. Final acceptance remains pending user-run tests, static checks, production build, and the responsive browser QA matrix. No new component ownership or shared architectural responsibility was introduced, so `Architecture.md` does not require a corresponding structural update.
+
+## 15. FAQ Page Editorial Alignment
+
+The FAQ route is being aligned with the About and Contact editorial pattern while retaining a quieter, scan-focused discovery workspace. The hero and support handoff carry the strongest brand expression; repeated questions, answers, search, and filters remain on clear high-contrast surfaces.
+
+| Phase | Scope                                            | Implementation status         | Review checkpoint                                                                                                                                               |
+| ----- | ------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Design contract and editorial foundation        | Implemented; awaiting review | Confirm the single `h1`, hero hierarchy, topic-panel density, texture strength, mobile wrapping, and transition into the FAQ browser                            |
+| 2     | Discovery and accordion refinement              | Planned                       | Confirm shared field treatment, filter semantics, result feedback, accordion relationships, keyboard flow, and empty-state recovery                            |
+| 3     | Support handoff, regression coverage, and QA    | Planned                       | Confirm factual support actions, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix                  |
+
+### Phase 1 contract
+
+- Use `section-canvas` for a dedicated editorial hero and `section-botanical` for the FAQ discovery workspace.
+- Reuse the About and Contact routes' fine dot texture, lightweight botanical line art, low-opacity glows, eyebrow pill, responsive hero typography, and framed featured-panel language.
+- Keep one `h1`; the topic panel and discovery workspace use subordinate headings.
+- Summarize only the four established FAQ categories: Products, Shipping, Orders, and Returns.
+- Provide an in-page jump action to the FAQ browser and a matching scroll offset below the sticky header.
+- Use normal document flow and a stacked base layout. The hero becomes a split layout at `lg` and remains constrained by the shared `Container`.
+- Preserve the existing FAQ data, initial open question, search, category filtering, accordion behavior, and empty state during this phase.
+
+### Phase 2 contract
+
+- Move the search control to the shared field treatment and provide a labelled filter group with a selected indication that does not rely on color alone.
+- Use a concise result-count status rather than placing the entire question list in a live region.
+- Give each accordion trigger and answer panel stable IDs with explicit `aria-controls` and labelling relationships.
+- Reconcile the open question when filtering removes it from the visible result set while retaining a predictable one-question-open interaction.
+- Add a recovery action that clears search and category state when no FAQs match.
+- Preserve practical touch targets, visible keyboard focus, long-copy wrapping, and shrinkable layout at the 320px baseline and 200% browser zoom.
+
+### Phase 3 contract
+
+- Add a restrained sun-wash support handoff using only the established Contact route and direct WhatsApp channel; do not invent response times, availability claims, or new support channels.
+- Add targeted coverage for surface roles, the single page-level heading, search, category selection, result feedback, accordion relationships, empty-state recovery, support links, and responsive containment contracts.
+- Complete the FAQ route checks in the existing responsive QA matrix, including keyboard-only use, reduced motion, increased text size, and representative mobile, tablet, laptop, and wide-desktop widths.
+- Update implementation status here after each review checkpoint. Architecture documentation changes only if component ownership or shared responsibilities change.
