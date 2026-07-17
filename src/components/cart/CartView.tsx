@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowLeft, Trash2 } from "lucide-react";
 
 import { useCart } from "@/hooks/useCart";
 import { cardClassName } from "@/components/ui/Card";
@@ -23,21 +24,26 @@ export function CartView() {
   return (
     <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
       <section aria-label="Cart items" className="min-w-0 space-y-5">
-        <div className={cardClassName({ variant: "raised" })}>
+        <div className={cardClassName({ variant: "flat" })}>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
-                Your cart
+                Cart items
               </h2>
-              <p className="mt-1 text-sm text-brand-muted">
+              <p
+                aria-live="polite"
+                className="mt-1 text-sm text-brand-muted"
+                role="status"
+              >
                 {itemCount} item{itemCount === 1 ? "" : "s"} ready for checkout.
               </p>
             </div>
             <button
-              className="self-start text-sm font-bold text-brand-danger transition hover:opacity-70 sm:self-auto"
+              className="inline-flex min-h-10 items-center justify-center gap-2 self-start rounded-md border border-brand-danger/20 bg-white px-3 text-sm font-bold text-brand-danger transition hover:border-brand-danger/40 hover:bg-red-50 sm:self-auto"
               type="button"
               onClick={clearCart}
             >
+              <Trash2 aria-hidden="true" className="h-4 w-4" />
               Clear cart
             </button>
           </div>
@@ -56,8 +62,9 @@ export function CartView() {
 
         <Link
           href="/shop"
-          className="inline-flex min-h-11 items-center rounded-md border border-brand-border-soft bg-white px-5 font-heading text-sm font-extrabold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted"
+          className="inline-flex min-h-11 items-center gap-2 rounded-md border border-brand-border-soft bg-white px-5 font-heading text-sm font-extrabold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted"
         >
+          <ArrowLeft aria-hidden="true" className="h-4 w-4" />
           Continue shopping
         </Link>
       </section>

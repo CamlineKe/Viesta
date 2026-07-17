@@ -7,16 +7,19 @@ export function EmptyCartState() {
   return (
     <section
       className={cardClassName({
-        className: "px-6 py-16 text-center",
+        className: "min-w-0 px-6 py-14 text-center sm:py-16",
         variant: "raised",
       })}
     >
       <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-brand-xl bg-brand-primary-muted text-brand-charcoal">
         <ShoppingCart aria-hidden="true" className="h-10 w-10" />
       </div>
-      <h2 className="mt-6 font-heading text-3xl font-extrabold text-brand-charcoal">Your cart is empty</h2>
+      <h2 className="mt-6 font-heading text-3xl font-extrabold text-brand-charcoal">
+        Your cart is empty
+      </h2>
       <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-brand-muted">
-        Add supplements from the shop, then return here to review quantities before checkout.
+        Add supplements from the shop, then return here to review quantities
+        before checkout.
       </p>
       <Link
         href="/shop"
