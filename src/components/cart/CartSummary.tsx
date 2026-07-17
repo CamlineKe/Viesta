@@ -1,22 +1,20 @@
 import Link from "next/link";
 import { ArrowRight, CreditCard, Truck } from "lucide-react";
 
+import { cardClassName } from "@/components/ui/Card";
 import { siteContent } from "@/data/site";
 import { formatKES } from "@/lib/currency";
-import { formatProductPrice } from "@/lib/product-pricing";
-import { Alert } from "@/components/ui/Alert";
-import { cardClassName } from "@/components/ui/Card";
 
 type CartSummaryProps = {
   subtotal: number;
   itemCount: number;
-  hasEstimatedPrices?: boolean;
+  bundleCount: number;
 };
 
 export function CartSummary({
   subtotal,
   itemCount,
-  hasEstimatedPrices = false,
+  bundleCount,
 }: CartSummaryProps) {
   return (
     <aside
@@ -31,17 +29,23 @@ export function CartSummary({
 
       <dl className="mt-6 space-y-4 border-b border-brand-border-soft pb-5">
         <div className="flex items-start justify-between gap-4">
-          <dt className="text-sm font-semibold text-brand-muted">Items</dt>
+          <dt className="text-sm font-semibold text-brand-muted">Packs</dt>
           <dd className="min-w-0 break-words text-right font-heading font-extrabold text-brand-charcoal">
             {itemCount}
           </dd>
         </div>
         <div className="flex items-start justify-between gap-4">
+          <dt className="text-sm font-semibold text-brand-muted">
+            Offer bundles
+          </dt>
+          <dd className="min-w-0 break-words text-right font-heading font-extrabold text-brand-charcoal">
+            {bundleCount}
+          </dd>
+        </div>
+        <div className="flex items-start justify-between gap-4">
           <dt className="text-sm font-semibold text-brand-muted">Subtotal</dt>
           <dd className="min-w-0 break-words text-right font-heading font-extrabold text-brand-charcoal">
-            {hasEstimatedPrices
-              ? formatProductPrice(subtotal, "estimated")
-              : formatKES(subtotal)}
+            {formatKES(subtotal)}
           </dd>
         </div>
         <div className="flex items-start justify-between gap-4">
@@ -57,18 +61,9 @@ export function CartSummary({
           Estimated total
         </span>
         <span className="min-w-0 break-words text-right font-heading text-xl font-extrabold text-brand-charcoal sm:text-2xl">
-          {hasEstimatedPrices
-            ? formatProductPrice(subtotal, "estimated")
-            : formatKES(subtotal)}
+          {formatKES(subtotal)}
         </span>
       </div>
-
-      {hasEstimatedPrices ? (
-        <Alert className="mt-4 font-semibold" variant="warning">
-          This cart includes estimated prices. Viesta will confirm final pricing
-          on WhatsApp.
-        </Alert>
-      ) : null}
 
       <div className="mt-6 rounded-brand-lg border border-brand-border-soft bg-brand-botanical p-4">
         <div className="flex gap-3">

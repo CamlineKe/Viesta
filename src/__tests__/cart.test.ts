@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { CART_STORAGE_KEY } from "@/context/CartContext";
 import {
   addCartItem,
   clampQuantity,
@@ -10,15 +11,26 @@ import {
 import type { CartItem } from "@/types/cart";
 
 const item: CartItem = {
-  id: "test-product",
+  id: "test-product:buy-1",
+  productId: "test-product",
   name: "Test Product",
   slug: "test-product",
+  offerId: "test-product-buy-1",
+  offerLabel: "Buy 1",
+  paidQuantity: 1,
+  freeQuantity: 0,
+  packsPerBundle: 1,
+  packSize: "30 capsules",
   price: 1500,
   image: "/images/products/test-product.webp",
   quantity: 1,
 };
 
 describe("cart utilities", () => {
+  it("uses a new storage namespace for the retail offer contract", () => {
+    expect(CART_STORAGE_KEY).toBe("viesta-cart-v3");
+  });
+
   it("adds new items and increments existing items", () => {
     const withItem = addCartItem([], item);
     const updated = addCartItem(withItem, { ...item, quantity: 2 });
@@ -27,33 +39,44 @@ describe("cart utilities", () => {
     expect(updated[0].quantity).toBe(3);
   });
 
-  it("keeps product variants separate when their cart ids differ", () => {
-    const firstVariant = {
+  it("keeps product offers separate when their cart ids differ", () => {
+    const firstOffer = {
       ...item,
-      id: "test-product:small",
-      variantId: "small",
-      packSize: "20 sachets",
-      price: 300,
+      id: "test-product:buy-1",
+      offerId: "buy-1",
+      offerLabel: "Buy 1",
+      price: 2800,
     };
-    const secondVariant = {
+    const secondOffer = {
       ...item,
-      id: "test-product:large",
-      variantId: "large",
-      packSize: "40 sachets",
-      price: 450,
+      id: "test-product:buy-2-get-1-free",
+      offerId: "buy-2-get-1-free",
+      offerLabel: "Buy 2 Get 1 Free",
+      paidQuantity: 2,
+      freeQuantity: 1,
+      packsPerBundle: 3,
+      price: 4999,
     };
 
-    const updated = addCartItem(addCartItem([], firstVariant), secondVariant);
+    const updated = addCartItem(addCartItem([], firstOffer), secondOffer);
 
     expect(updated).toHaveLength(2);
-    expect(getCartTotals(updated)).toEqual({ subtotal: 750, itemCount: 2 });
+    expect(getCartTotals(updated)).toEqual({
+      subtotal: 7799,
+      itemCount: 4,
+      bundleCount: 2,
+    });
   });
 
   it("updates quantity and calculates totals", () => {
     const updated = updateCartItemQuantity([item], item.id, 3);
 
     expect(updated[0].quantity).toBe(3);
-    expect(getCartTotals(updated)).toEqual({ subtotal: 4500, itemCount: 3 });
+    expect(getCartTotals(updated)).toEqual({
+      subtotal: 4500,
+      itemCount: 3,
+      bundleCount: 3,
+    });
   });
 
   it("removes items", () => {

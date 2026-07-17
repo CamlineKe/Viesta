@@ -39,7 +39,7 @@ const progressSteps = [
 ] as const;
 
 export function CheckoutView() {
-  const { items, subtotal, itemCount } = useCart();
+  const { items, subtotal, itemCount, bundleCount } = useCart();
   const [values, setValues] = useState<CheckoutFormValues>(initialFormValues);
   const [errors, setErrors] = useState<CheckoutValidationErrors>({});
 
@@ -157,7 +157,7 @@ export function CheckoutView() {
         })}
       >
         <p className="text-sm font-semibold leading-6 text-brand-muted">
-          Need to change quantities, choose another pack, or keep browsing?
+          Need to change quantities, choose another offer, or keep browsing?
         </p>
         <div className="flex flex-col gap-2 sm:flex-row">
           <Link
@@ -185,6 +185,7 @@ export function CheckoutView() {
           onValuesChange={setValues}
         />
         <OrderSummary
+          bundleCount={bundleCount}
           errors={errors}
           grandTotal={grandTotal}
           itemCount={itemCount}

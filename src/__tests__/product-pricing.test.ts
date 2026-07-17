@@ -21,7 +21,7 @@ describe("product pricing helpers", () => {
   });
 
   it("formats confirmed offer line totals", () => {
-    expect(formatProductLineTotal(4999, 2, "confirmed")).toBe("Ksh 9,998");
+    expect(formatProductLineTotal(4999, 2)).toBe("Ksh 9,998");
   });
 
   it("formats multi-offer product prices from the lowest offer", () => {

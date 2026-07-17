@@ -134,7 +134,7 @@ export function Header() {
               <button
                 className="relative inline-flex h-11 w-11 items-center justify-center rounded-md text-white transition hover:bg-white/10 hover:text-brand-primary"
                 type="button"
-                aria-label={`Open cart with ${itemCount} items`}
+                aria-label={`Open cart with ${itemCount} packs`}
                 onClick={openCart}
               >
                 <ShoppingCart aria-hidden="true" className="h-5 w-5" />

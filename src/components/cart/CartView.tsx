@@ -11,11 +11,15 @@ import { CartSummary } from "./CartSummary";
 import { EmptyCartState } from "./EmptyCartState";
 
 export function CartView() {
-  const { items, itemCount, subtotal, updateQuantity, removeItem, clearCart } =
-    useCart();
-  const hasEstimatedPrices = items.some(
-    (item) => item.priceStatus === "estimated",
-  );
+  const {
+    items,
+    itemCount,
+    bundleCount,
+    subtotal,
+    updateQuantity,
+    removeItem,
+    clearCart,
+  } = useCart();
 
   if (items.length === 0) {
     return <EmptyCartState />;
@@ -35,7 +39,8 @@ export function CartView() {
                 className="mt-1 text-sm text-brand-muted"
                 role="status"
               >
-                {itemCount} item{itemCount === 1 ? "" : "s"} ready for checkout.
+                {itemCount} pack{itemCount === 1 ? "" : "s"} across{" "}
+                {bundleCount} offer bundle{bundleCount === 1 ? "" : "s"}.
               </p>
             </div>
             <button
@@ -70,7 +75,7 @@ export function CartView() {
       </section>
 
       <CartSummary
-        hasEstimatedPrices={hasEstimatedPrices}
+        bundleCount={bundleCount}
         itemCount={itemCount}
         subtotal={subtotal}
       />

@@ -38,15 +38,18 @@ vi.mock("next/link", () => ({
 }));
 
 const checkoutItem: CartItem = {
-  id: "viesta-slimming-coffee:standard",
-  productId: "viesta-slimming-coffee",
-  name: "Viesta Slimming Coffee",
-  slug: "viesta-slimming-coffee",
-  variantId: "standard",
-  variantLabel: "Standard pack",
-  packSize: "15 sachets",
-  price: 2500,
-  image: "/images/products/slimming-coffee.png",
+  id: "prod-004:bio1-sterol-capsules-buy-2-get-1-free",
+  productId: "prod-004",
+  name: "Bio1 Sterol",
+  slug: "bio1-sterol-capsules",
+  offerId: "bio1-sterol-capsules-buy-2-get-1-free",
+  offerLabel: "Buy 2 Get 1 Free",
+  paidQuantity: 2,
+  freeQuantity: 1,
+  packsPerBundle: 3,
+  packSize: "30 capsules",
+  price: 4999,
+  image: "/images/products/bio1_sterol_capsule-cutout.webp",
   quantity: 1,
 };
 
@@ -61,7 +64,14 @@ function renderCheckout(items: CartItem[] = [checkoutItem]) {
       <CartContext.Provider
         value={{
           items,
-          itemCount: items.reduce((total, item) => total + item.quantity, 0),
+          itemCount: items.reduce(
+            (total, item) => total + item.packsPerBundle * item.quantity,
+            0,
+          ),
+          bundleCount: items.reduce(
+            (total, item) => total + item.quantity,
+            0,
+          ),
           subtotal,
           addItem: vi.fn(),
           removeItem: vi.fn(),
@@ -128,7 +138,9 @@ describe("Checkout page", () => {
     expect(customerSection?.parentElement?.className).toContain("min-w-0");
     expect(
       getByText("Subtotal").parentElement?.querySelector("dd")?.textContent,
-    ).toContain("2,500");
+    ).toContain("4,999");
+    expect(getByText("Buy 2 Get 1 Free")).not.toBeNull();
+    expect(getByText("Packs: 3 × 30 capsules")).not.toBeNull();
     expect(
       getByText("Grand total").parentElement?.querySelector("dd")
         ?.textContent,
@@ -215,7 +227,8 @@ describe("Checkout page", () => {
     expect(`${orderUrl.origin}${orderUrl.pathname}`).toContain(
       "https://wa.me/",
     );
-    expect(message).toContain("Viesta Slimming Coffee");
+    expect(message).toContain("Bio1 Sterol - Buy 2 Get 1 Free");
+    expect(message).toContain("1 offer bundle, 3 × 30 capsules total");
     expect(message).toContain("Name: Jane Doe");
     expect(message).toContain("Phone: +254712345678");
     expect(message).toContain("Delivery location: Nairobi");

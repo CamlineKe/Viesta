@@ -2,11 +2,9 @@ import type { ProductPriceStatus } from "@/types/product";
 
 import { formatKES } from "./currency";
 
-type TransitionalPriceStatus = ProductPriceStatus | "estimated";
-
 type ProductPriceInput = {
   price: number;
-  priceStatus?: TransitionalPriceStatus;
+  priceStatus?: ProductPriceStatus;
   offers?: Array<{ price: number }>;
 };
 
@@ -14,25 +12,15 @@ export function hasConfirmedPrice(price: number): boolean {
   return Number.isFinite(price) && price > 0;
 }
 
-export function hasEstimatedPrice(
-  priceStatus: TransitionalPriceStatus | undefined,
-): boolean {
-  return priceStatus === "estimated";
-}
-
 export function formatProductPrice(
   price: number,
-  priceStatus?: TransitionalPriceStatus,
+  priceStatus?: ProductPriceStatus,
 ): string {
   if (priceStatus === "unconfirmed" || !hasConfirmedPrice(price)) {
     return "Price unconfirmed";
   }
 
-  const formattedPrice = formatKES(price);
-
-  return hasEstimatedPrice(priceStatus)
-    ? `Estimated ${formattedPrice}`
-    : formattedPrice;
+  return formatKES(price);
 }
 
 export function formatProductDisplayPrice(product: ProductPriceInput): string {
@@ -57,9 +45,8 @@ export function formatProductCompareAtPrice(
 export function formatProductLineTotal(
   price: number,
   quantity: number,
-  priceStatus?: TransitionalPriceStatus,
 ): string {
   return hasConfirmedPrice(price)
-    ? formatProductPrice(price * quantity, priceStatus)
+    ? formatProductPrice(price * quantity)
     : "Price unconfirmed";
 }

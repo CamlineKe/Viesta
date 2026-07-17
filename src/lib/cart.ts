@@ -24,17 +24,17 @@ export function addCartItem(items: CartItem[], input: AddToCartInput): CartItem[
   );
 }
 
-export function removeCartItem(items: CartItem[], productId: string): CartItem[] {
-  return items.filter((item) => item.id !== productId);
+export function removeCartItem(items: CartItem[], cartItemId: string): CartItem[] {
+  return items.filter((item) => item.id !== cartItemId);
 }
 
 export function updateCartItemQuantity(
   items: CartItem[],
-  productId: string,
+  cartItemId: string,
   quantity: number,
 ): CartItem[] {
   return items.map((item) =>
-    item.id === productId ? { ...item, quantity: clampQuantity(quantity) } : item,
+    item.id === cartItemId ? { ...item, quantity: clampQuantity(quantity) } : item,
   );
 }
 
@@ -42,8 +42,9 @@ export function getCartTotals(items: CartItem[]): CartTotals {
   return items.reduce<CartTotals>(
     (totals, item) => ({
       subtotal: totals.subtotal + item.price * item.quantity,
-      itemCount: totals.itemCount + item.quantity,
+      itemCount: totals.itemCount + item.packsPerBundle * item.quantity,
+      bundleCount: totals.bundleCount + item.quantity,
     }),
-    { subtotal: 0, itemCount: 0 },
+    { subtotal: 0, itemCount: 0, bundleCount: 0 },
   );
 }

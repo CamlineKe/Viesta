@@ -19,15 +19,18 @@ vi.mock("next/link", () => ({
 }));
 
 const cartItem: CartItem = {
-  id: "viesta-slimming-coffee:standard",
-  productId: "viesta-slimming-coffee",
-  name: "Viesta Slimming Coffee",
-  slug: "viesta-slimming-coffee",
-  variantId: "standard",
-  variantLabel: "Standard pack",
-  packSize: "15 sachets",
-  price: 2500,
-  image: "/images/products/slimming-coffee.png",
+  id: "prod-004:bio1-sterol-capsules-buy-2-get-1-free",
+  productId: "prod-004",
+  name: "Bio1 Sterol",
+  slug: "bio1-sterol-capsules",
+  offerId: "bio1-sterol-capsules-buy-2-get-1-free",
+  offerLabel: "Buy 2 Get 1 Free",
+  paidQuantity: 2,
+  freeQuantity: 1,
+  packsPerBundle: 3,
+  packSize: "30 capsules",
+  price: 4999,
+  image: "/images/products/bio1_sterol_capsule-cutout.webp",
   quantity: 1,
 };
 
@@ -40,6 +43,7 @@ describe("Cart page", () => {
         value={{
           items: [],
           itemCount: 0,
+          bundleCount: 0,
           subtotal: 0,
           addItem: vi.fn(),
           removeItem: vi.fn(),
@@ -82,8 +86,9 @@ describe("Cart page", () => {
       <CartContext.Provider
         value={{
           items: [cartItem],
-          itemCount: 1,
-          subtotal: 2500,
+          itemCount: 3,
+          bundleCount: 1,
+          subtotal: 4999,
           addItem: vi.fn(),
           removeItem,
           updateQuantity,
@@ -95,7 +100,7 @@ describe("Cart page", () => {
     );
 
     expect(getByRole("status").textContent).toBe(
-      "1 item ready for checkout.",
+      "3 packs across 1 offer bundle.",
     );
     const lineItem = getByRole("heading", { name: cartItem.name }).closest(
       "article",
@@ -117,10 +122,12 @@ describe("Cart page", () => {
     ).toBe("/checkout");
     expect(
       getByText("Subtotal").parentElement?.querySelector("dd")?.textContent,
-    ).toContain("2,500");
+    ).toContain("4,999");
     expect(
       getByText("Estimated total").parentElement?.textContent,
-    ).toContain("2,500");
+    ).toContain("4,999");
+    expect(getByText("Buy 2 Get 1 Free")).toBeDefined();
+    expect(getByText("3 packs total")).toBeDefined();
 
     fireEvent.click(getByRole("button", { name: "Clear cart" }));
     fireEvent.click(getByRole("button", { name: "Remove" }));

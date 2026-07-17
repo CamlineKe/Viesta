@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Trash2 } from "lucide-react";
 
+import { cardClassName } from "@/components/ui/Card";
 import {
   formatProductLineTotal,
   formatProductPrice,
 } from "@/lib/product-pricing";
 import type { CartItem as CartItemType } from "@/types/cart";
-import { cardClassName } from "@/components/ui/Card";
 
 import { QuantityControls } from "./QuantityControls";
 
@@ -54,25 +54,23 @@ export function CartItem({ item, onQuantityChange, onRemove }: CartItemProps) {
               </h3>
             </Link>
             <p className="mt-1 text-sm font-semibold text-brand-muted">
-              {formatProductPrice(item.price, item.priceStatus)} each
+              {item.offerLabel}
             </p>
-            {item.packSize ? (
-              <p className="mt-1 text-sm font-semibold text-brand-muted">
-                Pack: {item.packSize}
-              </p>
-            ) : null}
-            {item.minimumOrderQuantity ? (
-              <p className="mt-1 text-xs font-semibold text-brand-muted">
-                MOQ: {item.minimumOrderQuantity} pcs
-              </p>
-            ) : null}
+            <p className="mt-1 text-sm font-semibold text-brand-muted">
+              {formatProductPrice(item.price)} per offer bundle
+            </p>
+            <p className="mt-1 text-xs font-semibold text-brand-muted">
+              {item.packsPerBundle} pack
+              {item.packsPerBundle === 1 ? "" : "s"} per bundle, each with{" "}
+              {item.packSize}
+            </p>
+            <p className="mt-1 text-xs font-semibold text-brand-muted">
+              {item.packsPerBundle * item.quantity} pack
+              {item.packsPerBundle * item.quantity === 1 ? "" : "s"} total
+            </p>
           </div>
           <p className="break-words font-heading text-lg font-extrabold text-brand-charcoal sm:shrink-0 sm:text-xl">
-            {formatProductLineTotal(
-              item.price,
-              item.quantity,
-              item.priceStatus,
-            )}
+            {formatProductLineTotal(item.price, item.quantity)}
           </p>
         </div>
 

@@ -21,11 +21,15 @@ type CartDrawerProps = {
 };
 
 export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
-  const { items, itemCount, subtotal, updateQuantity, removeItem } = useCart();
+  const {
+    items,
+    itemCount,
+    bundleCount,
+    subtotal,
+    updateQuantity,
+    removeItem,
+  } = useCart();
   const drawerRef = useRef<HTMLElement>(null);
-  const hasEstimatedPrices = items.some(
-    (item) => item.priceStatus === "estimated",
-  );
 
   useFocusTrap(isOpen, drawerRef);
 
@@ -81,7 +85,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               Your Cart
             </h2>
             <p className="mt-1 text-sm font-semibold text-brand-muted">
-              {itemCount} item{itemCount === 1 ? "" : "s"}
+              {itemCount} pack{itemCount === 1 ? "" : "s"} in {bundleCount}{" "}
+              offer bundle{bundleCount === 1 ? "" : "s"}
             </p>
           </div>
           <button
@@ -150,13 +155,19 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       </button>
                     </div>
                     <p className="mt-1 text-xs font-semibold text-brand-muted">
-                      {formatProductPrice(item.price, item.priceStatus)} each
+                      {item.offerLabel}
                     </p>
-                    {item.packSize ? (
-                      <p className="mt-1 text-xs font-semibold text-brand-muted">
-                        Pack: {item.packSize}
-                      </p>
-                    ) : null}
+                    <p className="mt-1 text-xs font-semibold text-brand-muted">
+                      {formatProductPrice(item.price)} per offer
+                    </p>
+                    <p className="mt-1 text-xs font-semibold text-brand-muted">
+                      {item.packsPerBundle} × {item.packSize} per bundle
+                    </p>
+                    <p className="mt-1 text-xs font-semibold text-brand-muted">
+                      {item.packsPerBundle * item.quantity} pack
+                      {item.packsPerBundle * item.quantity === 1 ? "" : "s"}{" "}
+                      total
+                    </p>
                     <div className="mt-3 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
                       <QuantityControls
                         className="h-9 [&_button]:w-9 [&_span]:min-w-9"
@@ -166,11 +177,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         }
                       />
                       <p className="break-words text-sm font-extrabold text-brand-charcoal">
-                        {formatProductLineTotal(
-                          item.price,
-                          item.quantity,
-                          item.priceStatus,
-                        )}
+                        {formatProductLineTotal(item.price, item.quantity)}
                       </p>
                     </div>
                   </div>
@@ -184,17 +191,9 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   Subtotal
                 </span>
                 <span className="font-heading text-2xl font-extrabold text-brand-charcoal">
-                  {hasEstimatedPrices
-                    ? formatProductPrice(subtotal, "estimated")
-                    : formatKES(subtotal)}
+                  {formatKES(subtotal)}
                 </span>
               </div>
-              {hasEstimatedPrices ? (
-                <p className="mt-3 rounded-md bg-orange-50 px-3 py-2 text-xs font-bold leading-5 text-orange-800">
-                  This cart includes estimated prices. Viesta will confirm final
-                  pricing on WhatsApp.
-                </p>
-              ) : null}
               <Link
                 className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition hover:bg-brand-primary-hover"
                 href="/checkout"

@@ -1,14 +1,15 @@
 export type CartItem = {
   id: string;
-  productId?: string;
+  productId: string;
   name: string;
   slug: string;
-  variantId?: string;
-  variantLabel?: string;
-  packSize?: string;
-  minimumOrderQuantity?: number;
+  offerId: string;
+  offerLabel: string;
+  paidQuantity: number;
+  freeQuantity: number;
+  packsPerBundle: number;
+  packSize: string;
   price: number;
-  priceStatus?: "confirmed" | "estimated";
   image: string;
   quantity: number;
 };
@@ -24,4 +25,5 @@ export type AddToCartInput = Omit<CartItem, "quantity"> & {
 export type CartTotals = {
   subtotal: number;
   itemCount: number;
+  bundleCount: number;
 };

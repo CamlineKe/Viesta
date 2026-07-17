@@ -11,7 +11,6 @@ import { cardClassName } from "@/components/ui/Card";
 import { formatKES } from "@/lib/currency";
 import {
   formatProductLineTotal,
-  formatProductPrice,
   hasConfirmedPrice,
 } from "@/lib/product-pricing";
 import { getShippingZone } from "@/lib/shipping";
@@ -27,6 +26,7 @@ import { WhatsAppOrderButton } from "./WhatsAppOrderButton";
 type OrderSummaryProps = {
   items: CartItem[];
   itemCount: number;
+  bundleCount: number;
   subtotal: number;
   shippingFee: number | null;
   grandTotal: number | null;
@@ -39,6 +39,7 @@ type OrderSummaryProps = {
 export function OrderSummary({
   items,
   itemCount,
+  bundleCount,
   subtotal,
   shippingFee,
   grandTotal,
@@ -52,9 +53,6 @@ export function OrderSummary({
   const hasSelectedLocation = Boolean(zone);
   const validationErrors = validateCheckout(values);
   const hasUnpricedItems = items.some((item) => !hasConfirmedPrice(item.price));
-  const hasEstimatedPrices = items.some(
-    (item) => item.priceStatus === "estimated",
-  );
   const isDisabled =
     hasCheckoutErrors({ ...validationErrors, ...errors }) ||
     items.length === 0 ||
@@ -74,20 +72,14 @@ export function OrderSummary({
         ? "Free"
         : formatKES(shippingFee);
   const subtotalLabel = hasUnpricedItems
-    ? "Price to confirm"
-    : formatProductPrice(
-        subtotal,
-        hasEstimatedPrices ? "estimated" : undefined,
-      );
+    ? "Price unconfirmed"
+    : formatKES(subtotal);
   const totalLabel =
     !hasSelectedLocation
       ? "Select location"
       : hasUnpricedItems || grandTotal === null
         ? "To be confirmed"
-      : formatProductPrice(
-          grandTotal,
-          hasEstimatedPrices ? "estimated" : undefined,
-        );
+        : formatKES(grandTotal);
   const paymentDetails = [
     siteContent.payment.displayName,
     `${siteContent.payment.accountLabel}: ${siteContent.payment.accountValue}`,
@@ -127,7 +119,8 @@ export function OrderSummary({
             Order summary
           </h2>
           <p className="mt-1 text-sm text-brand-muted">
-            {itemCount} item{itemCount === 1 ? "" : "s"} in this order.
+            {itemCount} pack{itemCount === 1 ? "" : "s"} across {bundleCount}{" "}
+            offer bundle{bundleCount === 1 ? "" : "s"}.
           </p>
         </div>
         <Link
@@ -160,20 +153,17 @@ export function OrderSummary({
               >
                 {item.name}
               </Link>
-              {item.packSize ? (
-                <p className="mt-1 text-xs font-semibold text-brand-muted">
-                  Pack: {item.packSize}
-                </p>
-              ) : null}
               <p className="mt-1 text-xs font-semibold text-brand-muted">
-                Quantity: {item.quantity}
+                {item.offerLabel}
+              </p>
+              <p className="mt-1 text-xs font-semibold text-brand-muted">
+                Offer bundles: {item.quantity}
+              </p>
+              <p className="mt-1 text-xs font-semibold text-brand-muted">
+                Packs: {item.packsPerBundle * item.quantity} × {item.packSize}
               </p>
               <p className="mt-2 break-words text-sm font-extrabold text-brand-charcoal">
-                {formatProductLineTotal(
-                  item.price,
-                  item.quantity,
-                  item.priceStatus,
-                )}
+                {formatProductLineTotal(item.price, item.quantity)}
               </p>
             </div>
           </div>
@@ -265,19 +255,6 @@ export function OrderSummary({
           <p>
             One or more products need price confirmation before WhatsApp
             checkout can continue.
-          </p>
-        </Alert>
-      ) : null}
-
-      {hasEstimatedPrices ? (
-        <Alert
-          className="mt-4"
-          icon={<CreditCard className="h-5 w-5" />}
-          variant="warning"
-        >
-          <p>
-            This order includes estimated product prices. Viesta will confirm
-            final pricing on WhatsApp.
           </p>
         </Alert>
       ) : null}
