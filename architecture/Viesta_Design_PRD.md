@@ -668,11 +668,11 @@ Phase 3 implementation includes the restrained sun-wash inquiry-support section 
 
 The FAQ route is being aligned with the About and Contact editorial pattern while retaining a quieter, scan-focused discovery workspace. The hero and support handoff carry the strongest brand expression; repeated questions, answers, search, and filters remain on clear high-contrast surfaces.
 
-| Phase | Scope                                            | Implementation status         | Review checkpoint                                                                                                                                               |
-| ----- | ------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1     | Design contract and editorial foundation        | Complete                      | Confirmed for progression to Phase 2; final responsive browser acceptance remains part of Phase 3                                                               |
-| 2     | Discovery and accordion refinement              | Implemented; awaiting review | Confirm shared field treatment, filter semantics, result feedback, accordion relationships, keyboard flow, and empty-state recovery                            |
-| 3     | Support handoff, regression coverage, and QA    | Planned                       | Confirm factual support actions, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix                  |
+| Phase | Scope                                            | Implementation status               | Review checkpoint                                                                                                                                          |
+| ----- | ------------------------------------------------ | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Design contract and editorial foundation        | Complete                            | Confirmed for progression to Phase 2; final responsive browser acceptance remains part of Phase 3                                                          |
+| 2     | Discovery and accordion refinement              | Complete                            | Confirmed for progression to Phase 3; final interaction and browser acceptance remains part of Phase 3                                                    |
+| 3     | Support handoff, regression coverage, and QA    | Implemented; awaiting verification | Run targeted automated coverage and confirm factual support actions, responsive containment, reduced motion, 200% zoom, and the manual browser matrix     |
 
 ### Phase 1 contract
 
@@ -699,3 +699,5 @@ The FAQ route is being aligned with the About and Contact editorial pattern whil
 - Add targeted coverage for surface roles, the single page-level heading, search, category selection, result feedback, accordion relationships, empty-state recovery, support links, and responsive containment contracts.
 - Complete the FAQ route checks in the existing responsive QA matrix, including keyboard-only use, reduced motion, increased text size, and representative mobile, tablet, laptop, and wide-desktop widths.
 - Update implementation status here after each review checkpoint. Architecture documentation changes only if component ownership or shared responsibilities change.
+
+Phase 3 implementation includes the restrained sun-wash support handoff and targeted FAQ route and interaction coverage. Final acceptance remains pending user-run tests, static checks, production build, and the responsive browser QA matrix. No new component ownership or shared architectural responsibility was introduced, so `Architecture.md` does not require a corresponding structural update.

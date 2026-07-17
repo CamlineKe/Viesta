@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import {
   ArrowDown,
+  ArrowRight,
   HelpCircle,
   PackageSearch,
   ReceiptText,
@@ -9,9 +11,12 @@ import {
 } from "lucide-react";
 
 import { FAQAccordion } from "@/components/content/FAQAccordion";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { faqs } from "@/data/faqs";
+import { siteContent } from "@/data/site";
+import { buildWhatsAppInquiryMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export const metadata = {
   title: "FAQs",
@@ -26,6 +31,11 @@ const faqTopics = [
 ];
 
 export default function FAQsPage() {
+  const whatsappUrl = buildWhatsAppUrl(
+    siteContent.contact.whatsapp,
+    buildWhatsAppInquiryMessage({ siteName: siteContent.name }),
+  );
+
   return (
     <main className="bg-brand-canvas text-brand-charcoal">
       <section className="section-canvas relative isolate overflow-hidden">
@@ -172,6 +182,50 @@ export default function FAQsPage() {
             className="mb-10"
           />
           <FAQAccordion faqs={faqs} />
+        </Container>
+      </section>
+
+      <section className="section-sun-wash relative overflow-hidden py-16 lg:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border-[48px] border-brand-primary/10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-32 h-72 w-72 rounded-full bg-brand-primary/10 blur-3xl"
+        />
+        <Container className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:items-center lg:gap-16">
+          <SectionHeader
+            eyebrow="More Support"
+            title="Still need help with your question?"
+            description="Use the Contact page to prepare a detailed inquiry, or start a direct WhatsApp conversation with Viesta."
+          />
+
+          <div className="surface-raised min-w-0 rounded-brand-xl p-5 sm:p-6 lg:p-8">
+            <p className="text-sm leading-7 text-brand-muted">
+              Share the product, order, delivery, payment, or return details
+              relevant to your question so the Viesta team can understand your
+              inquiry.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+              <Link
+                className="inline-flex min-h-12 flex-1 items-center justify-center rounded-md bg-brand-primary px-6 text-center font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover focus-visible:outline-brand-charcoal active:scale-[0.97]"
+                href="/contact"
+              >
+                Visit Contact
+                <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5" />
+              </Link>
+              <a
+                className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-md bg-brand-whatsapp px-6 text-center font-heading font-extrabold text-white shadow-soft transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:brightness-95 focus-visible:outline-brand-charcoal active:translate-y-0 active:scale-[0.97]"
+                href={whatsappUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <WhatsAppIcon aria-hidden="true" className="h-5 w-5" />
+                Ask Viesta on WhatsApp
+              </a>
+            </div>
+          </div>
         </Container>
       </section>
     </main>
