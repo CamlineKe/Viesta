@@ -1,6 +1,6 @@
 # Viesta Design PRD
 
-**Version:** 2.5
+**Version:** 2.6
 **Date:** July 2026  
 **Project:** Viesta Nutrition static storefront  
 **Implementation:** Next.js App Router, TypeScript, Tailwind CSS  
@@ -358,13 +358,16 @@ Best Sellers:
 ### Shop
 
 - Page header with breadcrumb.
-- Use a warm editorial introduction followed by a quiet warm-canvas product area.
+- Use one semantic page-level heading in a compact warm editorial introduction followed by a quiet warm-canvas product area.
+- The introduction may use fine dot texture, one lightweight contour or botanical line motif, and low-opacity yellow/green glows. It must remain shallower and less decorative than the About, Contact, and FAQ heroes.
+- Do not duplicate product cards, category controls, result counts, search, or sorting inside the introduction.
 - Desktop: sticky category sidebar and product grid.
 - Mobile and tablet: a compact filter disclosure expands category radio options above results.
 - Sort select visible above product grid.
 - Product grid: 1 column at base, 2 from `sm`, 3 from `md`, and 4 from `2xl`.
 - Empty state explains how to reset or change category.
 - Filters, search, sorting, and empty states use solid flat/raised surfaces without decorative texture.
+- Product prices, purchase actions, selected filters, and result feedback remain on quiet high-contrast surfaces.
 
 ### Product Detail
 
@@ -379,16 +382,21 @@ Best Sellers:
 ### Cart
 
 - Full cart review page remains available.
+- Introduce the route with one semantic page-level heading in a compact warm-canvas header. Decoration is limited to low-opacity gradients, fine dots, or one lightweight line motif outside the cart workspace.
 - Empty state uses icon, clear message, and shop CTA.
 - Cart summary stays sticky on desktop.
 - Shipping is estimated/confirmed during checkout.
 - Use a quiet warm canvas, flat line-item cards, and a raised summary; cart controls and totals stay on solid white surfaces.
+- Keep product prices, quantities, removal controls, subtotal, estimated total, and checkout actions free from page-level texture or line art.
+- Botanical and sun-wash treatments are contained reassurance surfaces only; they do not replace the white item or summary boundaries.
 
 ### Checkout
 
 - Simplified header.
+- Introduce the route with one semantic page-level heading in a compact, minimally decorated warm-canvas header.
 - Progress indicator: Cart, Checkout, WhatsApp.
 - Use a quiet warm canvas with solid raised form and summary surfaces; do not place decorative texture behind fields, validation, totals, or payment instructions.
+- Page-level dots, line art, and glows stop before the progress and transaction workspace. Checkout uses the lowest decorative intensity of the three commerce routes.
 - Form sections:
   - Customer details
   - Delivery details
@@ -403,6 +411,7 @@ Best Sellers:
   - Copy button disabled until payment details are confirmed
   - WhatsApp order-request button
 - WhatsApp button stays disabled until required fields, policy acknowledgement, and prices are valid. Pending Paybill/Till details should not block the order request; instead, availability, final total, delivery, acceptance, and payment details are confirmed manually in the WhatsApp conversation before the customer pays.
+- A blocked WhatsApp action remains understandable to keyboard and screen-reader users through adjacent requirements, connected validation feedback, and a predictable route to the first blocking field.
 
 ### Blog
 
@@ -701,3 +710,82 @@ The FAQ route is being aligned with the About and Contact editorial pattern whil
 - Update implementation status here after each review checkpoint. Architecture documentation changes only if component ownership or shared responsibilities change.
 
 Phase 3 implementation includes the restrained sun-wash support handoff and targeted FAQ route and interaction coverage. Final acceptance remains pending user-run tests, static checks, production build, and the responsive browser QA matrix. No new component ownership or shared architectural responsibility was introduced, so `Architecture.md` does not require a corresponding structural update.
+
+## 16. Commerce Route Visual Consistency
+
+Shop, Cart, and Checkout already use the correct warm-canvas tokens and solid commerce surfaces. This migration addresses their weaker route-level hierarchy, missing page-level headings, and inconsistent introduction-to-workspace transitions without applying marketing-page decoration to transactional content.
+
+### Commerce decoration hierarchy
+
+| Route    | Decorative intensity | Introduction role                                                                 | Protected workspace                                                                                                                   |
+| -------- | -------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Shop     | Moderate             | Compact editorial entry with breadcrumb, one `h1`, restrained dots/line art/glow | Search, category filters, sorting, result feedback, prices, purchase actions, empty states, and product cards                         |
+| Cart     | Restrained           | Compact warm-canvas header with one `h1` and low-opacity decoration               | Item cards, product prices, quantities, removal controls, subtotal, estimated total, checkout action, and empty-cart recovery         |
+| Checkout | Minimal              | Compact warm-canvas header with one `h1`; decoration stops before progress        | Progress, navigation, form fields, validation, legal acknowledgement, prices, totals, shipping, payment instructions, and WhatsApp CTA |
+
+Protected workspace rules:
+
+- Pure white communicates focus and elevation across commerce tools, line items, forms, summaries, and actions.
+- Fine dots, botanical line work, contour motifs, and page-level glows remain outside protected workspaces and are hidden from assistive technology.
+- Botanical and sun-wash treatments are allowed only as contained reassurance, delivery, payment, or support surfaces where text contrast remains clear.
+- A background transition must communicate a content-role change. Do not alternate canvas, botanical, sun, and white mechanically.
+- Product images retain their documented botanical-to-canvas-to-sun treatment; this exception is bounded inside the product-card or gallery image region.
+- All three routes use one page-level `h1`, normal document flow, shared `Container` gutters, `min-w-0` containment, and stacked base layouts.
+- Sticky Shop, Cart, and Checkout panels retain the shared `top-24` desktop offset.
+- Route decoration is simplified or removed at the narrowest baseline and must not cause page-level horizontal overflow.
+
+### Six-phase implementation plan
+
+| Phase | Scope                                           | Implementation status         | Review checkpoint                                                                                                                                                            |
+| ----- | ----------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Commerce design contract and shared rules       | Implemented; awaiting review | Confirm route intensity, protected surfaces, semantic heading requirements, responsive constraints, and the separately reviewable rollout                                    |
+| 2     | Shop route foundation                           | Planned                       | Confirm compact hero depth, breadcrumb placement, single `h1`, restrained decoration, product-workspace transition, and unchanged URL-driven discovery                       |
+| 3     | Shop discovery refinement                       | Planned                       | Confirm shared field treatment, category semantics, result feedback, sticky filters, empty state, product-card density, and representative grid breakpoints                   |
+| 4     | Cart hierarchy and state consistency            | Planned                       | Confirm filled and empty states, item/summary hierarchy, destructive-action clarity, long-copy wrapping, sticky summary, and protected price/quantity surfaces                |
+| 5     | Checkout hierarchy and transactional clarity    | Planned                       | Confirm compact header, progress semantics, solid form/summary surfaces, validation focus, blocked-action explanation, payment states, sticky summary, and WhatsApp integrity |
+| 6     | Cross-route regression coverage and QA handoff | Planned                       | Confirm route-level semantics, responsive containment, reduced motion, 200% zoom, targeted/full automated coverage, production build, and the manual browser matrix           |
+
+### Phase 1 contract
+
+- Document the shared commerce background vocabulary and route-specific intensity before changing route code.
+- Treat the missing Shop, Cart, and Checkout page-level headings as semantic defects to be corrected in their route phases.
+- Preserve existing product data, cart persistence, URL search parameters, pricing, shipping, validation, legal acknowledgement, payment, and WhatsApp construction throughout the migration.
+- Keep phase changes independently reviewable; do not combine unrelated product, cart, checkout, or business-content changes.
+- Prefer route-level composition with existing shared tokens and primitives. Do not introduce a configurable commerce-hero abstraction unless repeated implementation proves a stable shared contract.
+
+### Phase 2 contract
+
+- Replace the Shop route's heading-only introduction with a compact semantic `h1` composition while preserving its breadcrumb and metadata.
+- Use `section-canvas` with restrained dots, one lightweight line motif, and low-opacity glows; keep its height materially below the editorial-route heroes.
+- Retain a quiet warm-canvas product workspace, the existing `Suspense` boundary, and URL-driven category, sort, and query state.
+- Do not place product previews or duplicated discovery controls in the Shop introduction.
+
+### Phase 3 contract
+
+- Align Shop search and sort controls with shared field recipes where practical and move result announcements to a concise status region.
+- Preserve native radio semantics, the mobile disclosure, the desktop sticky category panel, filter-reset behavior, and the documented product-grid breakpoints.
+- Align one-off category-control radius and interaction treatments with documented brand tokens without changing filtering behavior.
+- Add targeted coverage for the Shop heading, surface roles, URL state, category/search/sort interactions, result feedback, empty state, and responsive containment.
+
+### Phase 4 contract
+
+- Add a compact Cart introduction with one `h1`; keep all cart content on the quiet warm-canvas workspace below it.
+- Preserve flat white line items, the raised sticky summary, quantity behavior, removal, clearing, persistence, pricing, and checkout navigation.
+- Improve hierarchy among item count, cart actions, continuation, and checkout without making destructive actions dominant.
+- Keep botanical/sun reassurance contained inside the summary and align the empty-cart state with the route's introduction/workspace rhythm.
+- Add targeted coverage for empty and filled Cart states, heading and surface roles, totals, actions, and responsive containment.
+
+### Phase 5 contract
+
+- Add a compact Checkout introduction with one `h1` and minimal decoration that stops before checkout progress.
+- Preserve the simplified header, progress order, solid raised form sections, sticky order summary, shipping and total calculations, legal acknowledgement, payment states, and WhatsApp message construction.
+- Improve the blocked WhatsApp action through adjacent requirements, connected validation, and predictable focus or navigation to the first blocking field without weakening existing validation.
+- Keep validation, payment, shipping, totals, and legal content on semantic, solid high-contrast surfaces.
+- Add targeted coverage for empty, invalid, and valid Checkout states, progress semantics, validation focus, payment states, policy links, and WhatsApp integrity.
+
+### Phase 6 contract
+
+- Add or extend cross-route coverage for one `h1` per page, permitted background roles, protected commerce surfaces, sticky offsets, and mobile-first containment.
+- Run targeted tests before the full suite, followed by type checking, linting, formatting checks, and the production build.
+- Complete the responsive browser matrix at 320px, 360–390px, 768px, 1024–1280px, and 1440px+, including increased text size, 200% zoom, reduced motion, and keyboard-only navigation.
+- Update this section after each review checkpoint. Update `Architecture.md` only if component ownership, shared responsibilities, or the documented test inventory changes.
