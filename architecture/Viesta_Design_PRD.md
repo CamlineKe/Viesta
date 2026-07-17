@@ -670,8 +670,8 @@ The FAQ route is being aligned with the About and Contact editorial pattern whil
 
 | Phase | Scope                                            | Implementation status         | Review checkpoint                                                                                                                                               |
 | ----- | ------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1     | Design contract and editorial foundation        | Implemented; awaiting review | Confirm the single `h1`, hero hierarchy, topic-panel density, texture strength, mobile wrapping, and transition into the FAQ browser                            |
-| 2     | Discovery and accordion refinement              | Planned                       | Confirm shared field treatment, filter semantics, result feedback, accordion relationships, keyboard flow, and empty-state recovery                            |
+| 1     | Design contract and editorial foundation        | Complete                      | Confirmed for progression to Phase 2; final responsive browser acceptance remains part of Phase 3                                                               |
+| 2     | Discovery and accordion refinement              | Implemented; awaiting review | Confirm shared field treatment, filter semantics, result feedback, accordion relationships, keyboard flow, and empty-state recovery                            |
 | 3     | Support handoff, regression coverage, and QA    | Planned                       | Confirm factual support actions, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix                  |
 
 ### Phase 1 contract
