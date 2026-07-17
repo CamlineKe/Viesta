@@ -22,14 +22,6 @@ export type ProductOffer = {
   compareAtPrice?: number;
 };
 
-export type ProductVariant = {
-  id: string;
-  label: string;
-  packSize: string;
-  price: number;
-  priceStatus?: ProductPriceStatus;
-};
-
 export type Product = {
   id: string;
   name: string;
@@ -40,7 +32,6 @@ export type Product = {
   priceStatus: ProductPriceStatus;
   packSize?: string;
   offers?: ProductOffer[];
-  variants?: ProductVariant[];
   image: string;
   gallery: string[];
   description: string;

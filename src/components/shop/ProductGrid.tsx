@@ -186,7 +186,6 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
               offer.label,
               offer.packSize,
             ]) ?? []),
-            ...(product.variants?.map((variant) => variant.packSize) ?? []),
           ]
             .filter(Boolean)
             .join(" ")

@@ -93,8 +93,8 @@ export default function ShopPage() {
               Find wellness products for your everyday goals.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-8 text-brand-muted sm:text-lg">
-              Browse Viesta supplements by health goal, compare prices, and add
-              products to your cart before WhatsApp checkout.
+              Browse Viesta supplements by health goal, review confirmed retail
+              offers, and see which products are still awaiting prices.
             </p>
             <a
               className="mt-7 inline-flex min-h-12 items-center justify-center rounded-md bg-brand-primary px-6 font-heading font-extrabold text-brand-charcoal shadow-glow transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover focus-visible:outline-brand-charcoal active:scale-[0.97]"
@@ -123,7 +123,8 @@ export default function ShopPage() {
               <ul className="mt-5 space-y-3 border-t border-brand-border-soft pt-5">
                 {[
                   "Browse by wellness goal",
-                  "Compare confirmed prices",
+                  "Compare confirmed retail offers",
+                  "See unconfirmed prices clearly",
                   "Prepare checkout on WhatsApp",
                 ].map((item) => (
                   <li

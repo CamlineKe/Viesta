@@ -8,7 +8,6 @@ type ProductPriceInput = {
   price: number;
   priceStatus?: TransitionalPriceStatus;
   offers?: Array<{ price: number }>;
-  variants?: Array<{ price: number }>;
 };
 
 export function hasConfirmedPrice(price: number): boolean {
@@ -39,8 +38,7 @@ export function formatProductPrice(
 export function formatProductDisplayPrice(product: ProductPriceInput): string {
   const price = formatProductPrice(product.price, product.priceStatus);
   const hasMultipleOptions = Boolean(
-    (product.offers?.length && product.offers.length > 1) ||
-      (product.variants?.length && product.variants.length > 1),
+    product.offers?.length && product.offers.length > 1,
   );
 
   return hasMultipleOptions && hasConfirmedPrice(product.price)

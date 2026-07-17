@@ -6,13 +6,11 @@ import { ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
 import { categories } from "@/data/categories";
-import { useToast } from "@/context/ToastContext";
-import { useCart } from "@/hooks/useCart";
-import { openCartDrawer } from "@/lib/cart-drawer-events";
 import { cn } from "@/lib/class-names";
 import {
+  formatProductCompareAtPrice,
   formatProductDisplayPrice,
-  hasConfirmedPrice,
+  formatProductPrice,
 } from "@/lib/product-pricing";
 import type { Product } from "@/types/product";
 
@@ -25,32 +23,15 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { addItem } = useCart();
-  const { showToast } = useToast();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const category = categories.find((item) => item.id === product.category);
   const productHref = `/products/${product.slug}` as const;
-  const canAddToCart = hasConfirmedPrice(product.price);
-  const hasVariants = Boolean(product.variants?.length);
-  const handleAddToCart = () => {
-    if (!canAddToCart || hasVariants) {
-      return;
-    }
-
-    addItem({
-      id: product.id,
-      productId: product.id,
-      name: product.name,
-      slug: product.slug,
-      price: product.price,
-      priceStatus:
-        product.priceStatus === "confirmed" ? "confirmed" : undefined,
-      packSize: product.packSize,
-      image: product.image,
-    });
-    showToast(`${product.name} added to cart.`, "success");
-    openCartDrawer();
-  };
+  const offers = product.offers ?? [];
+  const canChooseOffer =
+    product.priceStatus === "confirmed" && offers.length > 0;
+  const compareAtPrice = formatProductCompareAtPrice(
+    offers[0]?.compareAtPrice,
+  );
 
   return (
     <article
@@ -81,35 +62,65 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-col p-3 sm:p-4">
-        {category ? <Badge>{category.name}</Badge> : null}
+        <div className="flex flex-wrap items-center gap-2">
+          {category ? <Badge>{category.name}</Badge> : null}
+          <Badge variant={canChooseOffer ? "success" : "warning"}>
+            {canChooseOffer ? "Retail offers" : "Price unconfirmed"}
+          </Badge>
+        </div>
         <Link href={productHref} className="mt-3 block">
           <h3 className="line-clamp-2 break-words font-heading text-base font-extrabold leading-snug text-brand-charcoal sm:text-lg">
             {product.name}
           </h3>
         </Link>
-        <p className="mt-2 line-clamp-3 break-words text-sm leading-6 text-brand-muted">
+        <p className="mt-2 line-clamp-2 break-words text-sm leading-6 text-brand-muted">
           {product.shortDescription}
         </p>
         <div className="mt-auto pt-4 sm:pt-5">
           <p className="break-words font-heading text-lg font-extrabold text-brand-charcoal sm:text-xl">
             {formatProductDisplayPrice(product)}
           </p>
-          {hasVariants ? (
+          {compareAtPrice ? (
+            <p className="mt-1 text-xs font-bold text-brand-muted line-through">
+              {compareAtPrice}
+            </p>
+          ) : null}
+          {canChooseOffer ? (
+            <ul
+              aria-label={`${product.name} retail offers`}
+              className="mt-3 space-y-1.5 rounded-brand-md border border-brand-border-soft bg-brand-sun-wash p-2.5"
+            >
+              {offers.map((offer) => (
+                <li
+                  key={offer.id}
+                  className="flex min-w-0 items-start justify-between gap-2 text-xs"
+                >
+                  <span className="min-w-0 break-words font-bold text-brand-charcoal">
+                    {offer.label}
+                  </span>
+                  <span className="shrink-0 font-extrabold text-brand-charcoal">
+                    {formatProductPrice(offer.price, "confirmed")}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-2 text-sm font-semibold leading-6 text-brand-muted">
+              Retail pricing has not been confirmed for this product.
+            </p>
+          )}
+          {canChooseOffer ? (
             <Link
               className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-primary px-5 text-sm font-bold text-brand-charcoal shadow-glow transition duration-300 ease-out-expo hover:-translate-y-0.5 hover:bg-brand-primary-hover active:translate-y-0 active:scale-[0.97]"
               href={productHref}
             >
               <ShoppingCart aria-hidden="true" className="h-4 w-4" />
-              Choose options
+              Choose offer
             </Link>
           ) : (
-            <Button
-              disabled={!canAddToCart}
-              className="mt-3 w-full transition duration-300"
-              onClick={handleAddToCart}
-            >
+            <Button disabled className="mt-3 w-full transition duration-300">
               <ShoppingCart aria-hidden="true" className="h-4 w-4" />
-              {canAddToCart ? "Add to cart" : "Awaiting price"}
+              Price unconfirmed
             </Button>
           )}
         </div>
