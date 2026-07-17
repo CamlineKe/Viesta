@@ -1,6 +1,6 @@
 # Viesta Design PRD
 
-**Version:** 2.3
+**Version:** 2.4
 **Date:** July 2026  
 **Project:** Viesta Nutrition static storefront  
 **Implementation:** Next.js App Router, TypeScript, Tailwind CSS  
@@ -423,11 +423,17 @@ Best Sellers:
 ### Contact
 
 - Two-column desktop layout.
+- Introduce the route with a warm-canvas editorial hero before the functional contact workspace.
+- The hero uses a clear eyebrow, one page-level heading, a concise support promise, and a primary jump action to the contact options.
+- Hero decoration may use the shared fine dot texture, restrained botanical SVG line art, and low-opacity yellow/green glows. All decorative layers remain behind content, ignore pointer events, and are hidden from assistive technology.
+- A featured hero panel may summarize available contact channels, but it must not duplicate full contact details or compete with the primary contact actions.
 - Client-side inquiry form that prepares and opens a WhatsApp message.
 - Contact cards for phone, email, address.
 - WhatsApp CTA.
 - Contact details must remain visibly flagged whenever their `needsConfirmation` state is true.
-- Use a botanical page wash with a solid raised form surface and clear flat/interactive contact cards.
+- Use a warm canvas for the introduction, a botanical wash for the contact workspace, and a restrained sun wash for supporting reassurance where introduced.
+- Keep the inquiry form on a solid raised white surface and contact methods on clear flat/interactive surfaces. Texture, line art, and glows must not sit behind form controls or contact values.
+- Stack the hero and contact workspace at widths below `lg`; use balanced split layouts from `lg` while preserving `min-w-0` containment for long contact values.
 
 ### FAQs
 
@@ -616,3 +622,38 @@ Migration rules:
 - Validate representative mobile, tablet, laptop, and wide-desktop layouts after each phase.
 - Transactional pages receive quieter decoration than marketing pages.
 - This version documents the implemented Phase 5 baseline. Future visual changes must update this PRD with the corresponding component and responsive contracts.
+
+## 14. Contact Page Editorial Alignment
+
+The Contact route is being aligned with the visual pattern established by the About route while retaining the Contact page's stronger functional and accessibility constraints. Consistency comes from shared surface roles, typography, spacing, restrained organic decoration, and editorial hierarchy. Form controls and full contact details remain on quiet high-contrast surfaces.
+
+| Phase | Scope | Implementation status | Review checkpoint |
+| ----- | ----- | --------------------- | ----------------- |
+| 1 | Design contract and page foundation | Implemented; awaiting review | Confirm hero hierarchy, texture strength, copy wrapping, section transition, and visual relationship to About across representative viewports |
+| 2 | Contact workspace and form refinement | Planned | Confirm direct-contact affordances, shared field treatment, blocked-action explanation, keyboard flow, focus visibility, and unchanged WhatsApp handoff behavior |
+| 3 | Reassurance, regression coverage, and QA handoff | Planned | Confirm factual support content, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix |
+
+### Phase 1 contract
+
+- Use `section-canvas` for a dedicated editorial hero and `section-botanical` for the functional contact workspace.
+- Reuse the About route's fine dot texture, lightweight botanical line art, low-opacity glows, eyebrow pill, responsive hero typography, and framed featured-panel language without copying its image-led composition.
+- Keep one `h1`; the contact workspace begins with a shared `SectionHeader` using an `h2`.
+- Provide an in-page jump action to the contact workspace and a matching scroll offset below the sticky header.
+- Use normal document flow and a stacked base layout. The hero becomes a split layout at `lg` and remains constrained by the shared `Container`.
+- Reduce visual competition by keeping the featured panel concise and reserving full phone, email, address, WhatsApp, warning, and form content for the functional section.
+- Preserve the existing contact data source, confirmation flag, WhatsApp URL construction, and inquiry-form behavior during this phase.
+
+### Phase 2 contract
+
+- Refine the inquiry form with the shared field treatment and explicit accessible relationships for labels, guidance, invalid state, and blocked-action explanation.
+- Preserve client-side WhatsApp message preparation; do not introduce a backend submission path or additional personal-data storage.
+- Organize phone, email, address, and WhatsApp into a clear channel hierarchy using existing card and action variants.
+- Keep long contact values shrinkable and wrappable at the 320px baseline and 200% browser zoom.
+- Retain a visible semantic warning whenever `siteContent.contact.needsConfirmation` is true.
+
+### Phase 3 contract
+
+- Add a restrained supporting section only with factual, already-approved inquiry categories; do not invent operating hours, response times, service guarantees, or new contact channels.
+- Add targeted coverage for contact links, form labels, blocked-action behavior, prepared WhatsApp inquiries, confirmation messaging, and responsive containment contracts.
+- Complete the Contact route checks in the existing responsive QA matrix, including keyboard-only use, reduced motion, increased text size, and representative mobile, tablet, laptop, and wide-desktop widths.
+- Update implementation status here after each review checkpoint. Architecture documentation changes only if component ownership or shared responsibilities change.
