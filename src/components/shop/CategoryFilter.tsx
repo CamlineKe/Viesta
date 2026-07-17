@@ -3,6 +3,7 @@
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 
 import { cardClassName } from "@/components/ui/Card";
+import { cn } from "@/lib/class-names";
 import type { ProductCategory, ProductCategorySlug } from "@/types/product";
 
 type CategoryFilterValue = ProductCategorySlug | "all";
@@ -40,8 +41,8 @@ export function CategoryFilter({
 
   if (variant === "mobile") {
     return (
-      <details className="group rounded-md border border-brand-border-soft bg-white lg:hidden">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-md px-3 text-sm font-bold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted [&::-webkit-details-marker]:hidden">
+      <details className="group rounded-brand-md border border-brand-border-soft bg-white lg:hidden">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-brand-md px-3 text-sm font-bold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted [&::-webkit-details-marker]:hidden">
           <span className="flex min-w-0 items-center gap-2">
             <SlidersHorizontal
               aria-hidden="true"
@@ -70,7 +71,11 @@ export function CategoryFilter({
           {categoryOptions.map((category) => (
             <label
               key={category.id}
-              className="flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-md px-3 py-2.5 transition hover:bg-brand-primary-muted"
+              className={cn(
+                "flex min-w-0 cursor-pointer items-center justify-between gap-3 rounded-brand-md px-3 py-2.5 transition hover:bg-brand-primary-muted",
+                selectedCategory === category.id &&
+                  "bg-brand-primary-muted ring-1 ring-brand-primary/50",
+              )}
             >
               <span className="flex min-w-0 items-center gap-3">
                 <input
@@ -116,7 +121,11 @@ export function CategoryFilter({
         {categoryOptions.map((category) => (
           <label
             key={category.id}
-            className="flex cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition hover:bg-brand-primary-muted"
+            className={cn(
+              "flex cursor-pointer items-center justify-between gap-3 rounded-brand-md px-3 py-2.5 transition hover:bg-brand-primary-muted",
+              selectedCategory === category.id &&
+                "bg-brand-primary-muted ring-1 ring-brand-primary/50",
+            )}
           >
             <span className="flex min-w-0 items-center gap-3">
               <input

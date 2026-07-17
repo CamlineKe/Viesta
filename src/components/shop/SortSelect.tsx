@@ -1,5 +1,8 @@
 "use client";
 
+import { useId } from "react";
+
+import { getFieldControlClassName } from "@/components/ui/FormField";
 import { cn } from "@/lib/class-names";
 import type { ProductSortOption } from "@/types/product";
 
@@ -18,16 +21,23 @@ const sortOptions: Array<{ value: ProductSortOption; label: string }> = [
 ];
 
 export function SortSelect({ value, onChange, className }: SortSelectProps) {
+  const selectId = useId();
+
   return (
-    <label
+    <div
       className={cn(
         "flex min-w-0 flex-col gap-2 text-sm font-bold text-brand-charcoal sm:flex-row sm:items-center",
         className,
       )}
     >
-      <span>Sort by</span>
+      <label htmlFor={selectId}>Sort by</label>
       <select
-        className="min-h-11 min-w-0 rounded-md border border-brand-border-soft bg-white px-3 text-sm font-semibold text-brand-charcoal outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30"
+        className={getFieldControlClassName({
+          className:
+            "mt-0 min-h-11 min-w-0 px-3 text-sm font-semibold sm:w-auto",
+        })}
+        id={selectId}
+        name="sort"
         value={value}
         onChange={(event) => onChange(event.target.value as ProductSortOption)}
       >
@@ -37,6 +47,6 @@ export function SortSelect({ value, onChange, className }: SortSelectProps) {
           </option>
         ))}
       </select>
-    </label>
+    </div>
   );
 }

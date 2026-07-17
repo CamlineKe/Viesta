@@ -5,8 +5,18 @@ import { Search, X } from "lucide-react";
 import type { Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { Button } from "@/components/ui/Button";
 import { cardClassName } from "@/components/ui/Card";
-import type { Product, ProductCategory, ProductCategorySlug, ProductSortOption } from "@/types/product";
+import {
+  FormField,
+  getFieldControlClassName,
+} from "@/components/ui/FormField";
+import type {
+  Product,
+  ProductCategory,
+  ProductCategorySlug,
+  ProductSortOption,
+} from "@/types/product";
 
 import { CategoryFilter } from "./CategoryFilter";
 import { ProductCard } from "./ProductCard";
@@ -19,14 +29,27 @@ type ProductGridProps = {
   categories: ProductCategory[];
 };
 
-const sortOptions: ProductSortOption[] = ["featured", "price-asc", "price-desc", "name-asc", "name-desc"];
+const sortOptions: ProductSortOption[] = [
+  "featured",
+  "price-asc",
+  "price-desc",
+  "name-asc",
+  "name-desc",
+];
 
-function getSafeCategory(category: string, categories: ProductCategory[]): CategoryFilterValue {
-  return categories.some((item) => item.id === category) ? (category as ProductCategorySlug) : "all";
+function getSafeCategory(
+  category: string,
+  categories: ProductCategory[],
+): CategoryFilterValue {
+  return categories.some((item) => item.id === category)
+    ? (category as ProductCategorySlug)
+    : "all";
 }
 
 function getSafeSort(sort: string): ProductSortOption {
-  return sortOptions.includes(sort as ProductSortOption) ? (sort as ProductSortOption) : "featured";
+  return sortOptions.includes(sort as ProductSortOption)
+    ? (sort as ProductSortOption)
+    : "featured";
 }
 
 function sortProducts(products: Product[], sortOption: ProductSortOption) {
@@ -43,7 +66,9 @@ function sortProducts(products: Product[], sortOption: ProductSortOption) {
       return sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
     case "featured":
     default:
-      return sortedProducts.sort((a, b) => Number(b.featured) - Number(a.featured));
+      return sortedProducts.sort(
+        (a, b) => Number(b.featured) - Number(a.featured),
+      );
   }
 }
 
@@ -51,7 +76,10 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const selectedCategory = getSafeCategory(searchParams.get("category") ?? "all", categories);
+  const selectedCategory = getSafeCategory(
+    searchParams.get("category") ?? "all",
+    categories,
+  );
   const sortOption = getSafeSort(searchParams.get("sort") ?? "featured");
   const query = searchParams.get("q") ?? "";
 
@@ -93,7 +121,9 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
       params.delete("q");
     }
 
-    const nextUrl = params.toString() ? `${pathname}?${params.toString()}` : pathname;
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
     router.replace(nextUrl as Route, { scroll: false });
   };
 
@@ -151,7 +181,10 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
     return sortProducts(searchedProducts, sortOption);
   }, [categoryNameById, products, query, selectedCategory, sortOption]);
 
-  const hasActiveFilters = selectedCategory !== "all" || sortOption !== "featured" || query.trim().length > 0;
+  const hasActiveFilters =
+    selectedCategory !== "all" ||
+    sortOption !== "featured" ||
+    query.trim().length > 0;
   const activeQuery = query.trim();
 
   return (
@@ -164,7 +197,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
         onChange={handleCategoryChange}
       />
 
-      <section className="min-w-0" aria-live="polite">
+      <section aria-label="Product catalog" className="min-w-0">
         <div
           className={cardClassName({
             className: "mb-5 space-y-4",
@@ -173,19 +206,34 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
           })}
         >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <label className="block min-w-0 flex-1">
-              <span className="text-sm font-bold text-brand-charcoal">Search products</span>
-              <span className="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-brand-border-soft bg-white px-3 transition focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/30">
-                <Search aria-hidden="true" className="h-4 w-4 shrink-0 text-brand-muted" />
-                <input
-                  className="min-h-10 min-w-0 flex-1 bg-transparent text-sm font-semibold text-brand-charcoal outline-none"
-                  placeholder="Search by name, category, or pack size"
-                  type="search"
-                  value={query}
-                  onChange={(event) => handleQueryChange(event.target.value)}
-                />
-              </span>
-            </label>
+            <div className="min-w-0 flex-1">
+              <FormField id="product-search" label="Search products">
+                {({ describedBy, id, invalid }) => (
+                  <div className="relative mt-2">
+                    <Search
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted"
+                    />
+                    <input
+                      aria-describedby={describedBy}
+                      aria-invalid={invalid}
+                      className={getFieldControlClassName({
+                        className: "mt-0 pl-10 text-sm font-semibold",
+                        invalid,
+                      })}
+                      id={id}
+                      name="q"
+                      placeholder="Search by name, category, or pack size"
+                      type="search"
+                      value={query}
+                      onChange={(event) =>
+                        handleQueryChange(event.target.value)
+                      }
+                    />
+                  </div>
+                )}
+              </FormField>
+            </div>
             <SortSelect
               className="hidden lg:flex"
               value={sortOption}
@@ -203,19 +251,29 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
             <SortSelect value={sortOption} onChange={handleSortChange} />
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm font-bold text-brand-muted">
-              Showing <span className="text-brand-charcoal">{filteredProducts.length}</span> of{" "}
-              <span className="text-brand-charcoal">{products.length}</span> products
+            <p
+              aria-live="polite"
+              className="text-sm font-bold text-brand-muted"
+              role="status"
+            >
+              Showing{" "}
+              <span className="text-brand-charcoal">
+                {filteredProducts.length}
+              </span>{" "}
+              of{" "}
+              <span className="text-brand-charcoal">{products.length}</span>{" "}
+              products
             </p>
             {hasActiveFilters ? (
-              <button
-                className="inline-flex min-h-10 items-center justify-center gap-2 self-start rounded-md border border-brand-border-soft bg-white px-4 text-sm font-bold text-brand-charcoal transition hover:border-brand-primary hover:bg-brand-primary-muted sm:self-auto"
-                type="button"
+              <Button
+                className="self-start sm:self-auto"
+                size="sm"
+                variant="outline"
                 onClick={resetFilters}
               >
                 <X aria-hidden="true" className="h-4 w-4" />
                 Reset filters
-              </button>
+              </Button>
             ) : null}
           </div>
         </div>
@@ -229,7 +287,9 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
         ) : (
           <div className="rounded-brand-lg border border-dashed border-brand-border-soft bg-white px-4 py-8 text-center sm:p-10">
             <h2 className="font-heading text-2xl font-extrabold text-brand-charcoal">
-              {activeQuery ? `No products found for "${activeQuery}"` : "No products found"}
+              {activeQuery
+                ? `No products found for "${activeQuery}"`
+                : "No products found"}
             </h2>
             <p className="mt-3 text-brand-muted">
               {activeQuery
@@ -237,13 +297,9 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
                 : "Try another category or reset the filter to all products."}
             </p>
             {hasActiveFilters ? (
-              <button
-                className="mt-6 inline-flex min-h-11 items-center justify-center rounded-md bg-brand-primary px-5 font-heading text-sm font-extrabold text-brand-charcoal shadow-glow transition hover:bg-brand-primary-hover"
-                type="button"
-                onClick={resetFilters}
-              >
+              <Button className="mt-6" size="md" onClick={resetFilters}>
                 Reset filters
-              </button>
+              </Button>
             ) : null}
           </div>
         )}

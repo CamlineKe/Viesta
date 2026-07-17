@@ -14,7 +14,7 @@ describe("shop category filter", () => {
   afterEach(cleanup);
 
   it("renders mobile categories in a collapsible disclosure without a horizontal rail", () => {
-    const { container, getAllByText, getByText } = render(
+    const { container, getAllByText, getByRole, getByText } = render(
       <CategoryFilter
         categories={categories.slice(0, 2)}
         productCounts={productCounts}
@@ -28,6 +28,11 @@ describe("shop category filter", () => {
     expect(getByText("Filters")).not.toBeNull();
     expect(getAllByText("Blood Pressure & Heart Health")).toHaveLength(2);
     expect(container.innerHTML).not.toContain("overflow-x-auto");
+    expect(
+      getByRole("radio", { name: /^Blood Pressure & Heart Health/ }).closest(
+        "label",
+      )?.className,
+    ).toContain("ring-brand-primary/50");
   });
 
   it("reports the selected mobile category through the shared change handler", () => {
