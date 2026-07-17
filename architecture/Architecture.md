@@ -154,6 +154,7 @@ src/
     ├── home-categories.test.tsx
     ├── mobile-navigation.test.tsx
     ├── product-pricing.test.ts
+    ├── product-retail-offers.test.tsx
     ├── products.test.ts
     ├── responsive-foundations.test.tsx
     ├── shipping.test.ts
@@ -209,7 +210,9 @@ vitest.config.ts        # Unit test configuration
 - Shipping zones: `src/data/shipping-zones.ts`
 - Public brand, registered legal name, contacts, payment, SEO: `src/data/site.ts`
 
-Data is intentionally local and typed. Product claims and payment details remain flagged where business confirmation is pending. Legal policy content reflects approved business rules but remains visibly marked as pending qualified Kenyan legal review and has no effective date. All catalog product prices are confirmed in `src/data/products.ts`. The public brand, registered legal name, business phone, WhatsApp, email, and physical address are confirmed in `src/data/site.ts`.
+Data is intentionally local and typed. Product claims and payment details remain flagged where business confirmation is pending. Legal policy content reflects approved business rules but remains visibly marked as pending qualified Kenyan legal review and has no effective date. Five products have confirmed retail promotional offers in `src/data/products.ts`; the remaining thirteen products stay visible with unconfirmed prices and cannot be added to the cart. The public brand, registered legal name, business phone, WhatsApp, email, and physical address are confirmed in `src/data/site.ts`.
+
+`Viesta_Inventory.md` is the business inventory and pricing-status source. `Viesta_Retail.md` is the confirmed promotional price source for the five purchasable products. `src/data/products.ts` mirrors those contracts as typed storefront data.
 
 ## State And Client Boundaries
 
@@ -255,8 +258,10 @@ Responsive regression coverage is split across `mobile-navigation.test.tsx`, `sh
 ### Cart
 
 - Stored in React Context.
-- Persisted to `localStorage` under `viesta-cart`.
-- Supports add, remove, quantity update, clear, subtotal, and item count.
+- Persisted to `localStorage` under `viesta-cart-v3`. Hydration removes the incompatible `viesta-cart-v2` wholesale cart.
+- Stores the selected offer identity, paid and free quantities, packs per bundle, individual pack format, and total offer price.
+- Treats cart quantity as the number of complete offer bundles. Totals separately track physical packs, offer bundles, and subtotal.
+- Supports add, remove, bundle-quantity update, clear, subtotal, pack count, and bundle count.
 - Cart drawer can be opened by header cart trigger or add-to-cart events.
 - Add-to-cart controls dispatch `viesta:cart-drawer-open`; the header listens for that event and owns the drawer open state.
 - Cart page remains available for full review.
@@ -299,7 +304,7 @@ Shipping rules are implemented in `src/data/shipping-zones.ts` and `src/lib/ship
 
 `src/lib/whatsapp.ts` builds a message containing:
 
-- Products and quantities
+- Products, selected offers, offer-bundle quantities, and total physical packs
 - Customer contact details
 - Delivery location and address
 - Optional order notes
@@ -325,6 +330,8 @@ Current unit and component tests cover:
 - Legal content structure and legal-page rendering
 - Checkout policy acknowledgement and policy links
 - Product data and pricing helpers
+- Retail offer selection and product confirmation states
+- Offer-aware cart, checkout, and WhatsApp totals
 - Shared UI primitive variants
 - Homepage category counts and category query links
 - Focus trapping and focus restoration
@@ -354,6 +361,7 @@ npm run build
 Production build, automated checks, browser QA, and accessibility verification remain pending user-run validation. These business and release facts also remain required before launch:
 
 - Final product labels, usage directions, ingredients, warnings, and compliant claims.
+- Final retail prices and stock status for products that remain unconfirmed before their purchase actions are enabled.
 - Final Paybill/Till details.
 - Qualified Kenyan legal review, effective dates, and removal of temporary legal-page `noindex` directives.
 - Browser/device responsive and accessibility pass.

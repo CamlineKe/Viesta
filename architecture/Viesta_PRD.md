@@ -95,9 +95,9 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 
 📄 Cart (/cart)
 ├── Cart Items List
-├── Quantity Updates
+├── Offer-Bundle Quantity Updates
 ├── Remove Items
-├── Subtotal Display
+├── Physical Pack, Offer-Bundle, and Subtotal Display
 └── Proceed to Checkout Button
 
 📄 Checkout (/checkout)
@@ -107,7 +107,7 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 │   ├── Delivery Location (Dropdown)
 │   └── Delivery Address (Optional)
 ├── Order Summary
-│   ├── Products + Quantities
+│   ├── Products + Selected Offers + Bundle Quantities + Pack Counts
 │   ├── Subtotal
 │   ├── Shipping Fee (Based on Location)
 │   ├── Grand Total
@@ -184,7 +184,7 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
    - *Each category displays as a card with icon + name*
 
 3. **Best Sellers (Product carousel/grid)**
-   - 4-6 products with: Product image, Product name, Price (KES), "Add to Cart" button
+   - 4-6 products with: Product image, Product name, confirmed starting price and offer summary, and "Choose offer" link
    - View All link → /shop
 
 4. **Trust Badges (Row of 4)**
@@ -213,7 +213,8 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 
 **Product Grid**
 - Display products as cards: 1 per row at the narrowest phone widths, 2 from 640px, 3 on tablet/standard desktop, and 4 only on sufficiently wide screens
-- Each card: Product image, Product name, Category tag (small badge), Price (KES), "Add to Cart" button
+- Each card: Product image, Product name, Category tag (small badge), pricing status, confirmed starting price and offer summary when available
+- Confirmed products use a "Choose offer" link to the product detail page; unconfirmed products show "Price unconfirmed" and no purchase action
 - Pagination (if >12 products)
 
 ### 3.4 Product Detail Page (/products/[slug])
@@ -222,7 +223,8 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 
 **Sections:**
 - Product Image (main image, optional thumbnails)
-- Product Info: Product name, Price (KES), Category tag, Product description (text), Add to Cart button (with quantity selector)
+- Product Info: Product name, pricing status, Category tag, Product description (text), retail offer selector, included pack count, offer-bundle quantity selector, and Add to Cart button
+- Confirmed products expose Buy 1, Buy 2 Get 1 Free, and Buy 3 Get 2 Free bundles; unconfirmed products remain visible but non-purchasable
 - "Buy it with" / Related Products (below)
 - Related Products (3-4 products from same category)
 - Customer Reviews (Static testimonials -- displayed as quotes)
@@ -261,8 +263,8 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
 **Purpose:** Review items before checkout
 
 **Sections:**
-- Cart Items List: Each item displays Image, Name, Price, Quantity selector, Remove button
-- Cart Summary: Subtotal, "Proceed to Checkout" button (primary CTA), "Continue Shopping" link
+- Cart Items List: Each item displays Image, Name, selected offer, offer price, bundle quantity selector, physical pack count, and Remove button
+- Cart Summary: Physical pack count, offer-bundle count, subtotal, "Proceed to Checkout" button (primary CTA), and "Continue Shopping" link
 
 > **Empty Cart State:** Display "Your cart is empty" + "Start Shopping" button
 
@@ -277,7 +279,7 @@ A static e-commerce website for a nutrition and health supplements store ("Viest
    - Delivery Address (optional textarea)
 
 2. **Order Summary**
-   - Products + Quantities
+   - Products + selected offers + offer-bundle quantities + physical pack counts
    - Subtotal
    - Shipping Fee (auto-calculated based on location)
    - Grand Total

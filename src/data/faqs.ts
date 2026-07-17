@@ -34,7 +34,7 @@ export const faqs: FAQ[] = [
     category: "products",
     question: "Are product details final?",
     answer:
-      "All product prices are confirmed. Some product entries still contain draft label details, ingredients, usage directions, and product claims that must be confirmed before launch.",
+      "Confirmed retail promotional prices are currently available for Bio1 Sterol, Bio1 Gluco, BioRelief, BioForge, and BioFlex. Other products show Price unconfirmed and cannot be added to the cart. Product label details, ingredients, usage directions, warnings, stock status, and health claims still require business confirmation.",
   },
   {
     id: "faq-products-002",

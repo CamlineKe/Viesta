@@ -18,6 +18,7 @@ Proprietary pre-launch storefront.
 The application structure and commerce flow are implemented, but production launch still depends on:
 
 - Product labels, ingredients, usage directions, warnings, and compliant health claims.
+- Final retail prices and stock status for products that remain unconfirmed before their purchase actions are enabled.
 - M-Pesa Paybill/Till details.
 - Qualified Kenyan legal review, policy effective dates, and final indexability approval.
 - Responsive, browser, accessibility, and WhatsApp redirect testing.
@@ -31,7 +32,7 @@ The application structure and commerce flow are implemented, but production laun
 | UI | React | Component model and client-side interactions |
 | Styling | Tailwind CSS, global CSS tokens | Utility styling plus shared brand/theme primitives |
 | State | React Context | Cart and toast state |
-| Persistence | `localStorage` | Browser-side cart persistence |
+| Persistence | `localStorage` | Browser-side retail-offer cart persistence under `viesta-cart-v3` |
 | Validation | Zod, local validation helpers | Checkout and domain validation |
 | Icons | Lucide React, custom WhatsApp icon | Interface and commerce action icons |
 | Testing | Vitest, Testing Library | Unit tests for helpers and key behavior |
@@ -150,7 +151,7 @@ flowchart TD
 | Data | File |
 |---|---|
 | Public brand, registered legal name, contact details, payment display text, SEO defaults | `src/data/site.ts` |
-| Product catalog, prices, variants, claims, confirmation flags | `src/data/products.ts` |
+| Product catalog, retail offers, pricing status, claims, confirmation flags | `src/data/products.ts` |
 | Product categories | `src/data/categories.ts` |
 | Shipping zones and fees | `src/data/shipping-zones.ts` |
 | Blog posts | `src/data/blog-posts.ts` |
@@ -158,7 +159,9 @@ flowchart TD
 | Legal page content | `src/data/legal.ts` |
 | Testimonials | `src/data/testimonials.ts` |
 
-Product claims and payment details stay visibly marked where business confirmation is pending. Legal content reflects approved business rules but remains marked as pending qualified Kenyan legal review and has no effective date. All catalog product prices are confirmed in `src/data/products.ts`.
+Product claims and payment details stay visibly marked where business confirmation is pending. Legal content reflects approved business rules but remains marked as pending qualified Kenyan legal review and has no effective date. Five products have confirmed retail promotional offers in `src/data/products.ts`; the remaining thirteen products stay visible with unconfirmed prices and cannot be added to the cart.
+
+`architecture/Viesta_Inventory.md` is the business inventory and pricing-status source. `architecture/Viesta_Retail.md` is the confirmed promotional price source for the five purchasable products. `src/data/products.ts` is the typed storefront implementation of those contracts.
 
 ## Commerce Flow
 
@@ -171,8 +174,8 @@ sequenceDiagram
   participant WhatsApp
 
   Customer->>Storefront: Browse shop or product page
-  Customer->>Cart: Add product and adjust quantity
-  Cart->>Checkout: Send cart items and totals
+  Customer->>Cart: Select a confirmed retail offer and bundle quantity
+  Cart->>Checkout: Send offer bundles, pack counts, and totals
   Customer->>Checkout: Enter customer and delivery details
   Customer->>Checkout: Agree to Terms and acknowledge Privacy Policy
   Checkout->>WhatsApp: Open pre-filled order request
@@ -277,6 +280,7 @@ npm run build
 Current tests cover:
 
 - Cart helper behavior.
+- Retail offer selection, bundle quantities, and physical pack totals.
 - Product pricing helpers.
 - KES currency formatting.
 - Shipping fee calculation.

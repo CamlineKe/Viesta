@@ -240,7 +240,7 @@ Every interactive component must define the relevant states below before impleme
 | Hover         | Desktop enhancement only; must not hide an action or required information.                                               |
 | Focus-visible | High-contrast, keyboard-visible indicator on every interactive element.                                                  |
 | Active        | Brief press feedback that does not impair readability or layout.                                                         |
-| Selected      | Clear persistent distinction for filters, variants, steps, and thumbnails.                                               |
+| Selected      | Clear persistent distinction for filters, retail offers, steps, and thumbnails.                                          |
 | Disabled      | Semantically disabled when possible; explain a blocked checkout or order action near the control.                        |
 | Loading       | Prevent duplicate actions and retain the control's dimensions.                                                           |
 | Empty         | Explain the condition and offer the next useful action.                                                                  |
@@ -280,9 +280,9 @@ Every interactive component must define the relevant states below before impleme
 - Image treatment: botanical-to-canvas-to-sun gradient with one solid white inset surface and an object-contain product image.
 - Loading: shimmer until image load.
 - Hover: restrained card lift, border/shadow emphasis, and slight image scale.
-- Text: category badge, two-line product name, two-line short description, price.
-- CTA: visible on mobile and desktop, with hover/focus enhancement only.
-- Disabled state: use "Awaiting price" when price is unconfirmed.
+- Text: category badge, pricing-status badge, two-line product name, two-line short description, starting price, and compact retail-offer summary when confirmed.
+- CTA: confirmed products use "Choose offer" on mobile and desktop, with hover/focus enhancement only.
+- Disabled state: use "Price unconfirmed" and do not expose a cart action.
 
 ### Product Gallery
 
@@ -295,7 +295,7 @@ Every interactive component must define the relevant states below before impleme
 
 - Triggered by header cart button and successful add-to-cart.
 - Width: up to 420px, full-width on small phones.
-- Includes item count, empty state, line items, quantity controls, remove buttons, subtotal, checkout CTA, cart page link, and continue shopping action.
+- Includes physical pack count, offer-bundle count, selected offers, bundle quantity controls, remove buttons, subtotal, checkout CTA, cart page link, and continue shopping action.
 
 ### Toasts
 
@@ -373,7 +373,8 @@ Best Sellers:
 
 - Breadcrumb: Home > Shop > Category > Product.
 - Two-column desktop layout: gallery left, product info right.
-- Product info includes category badge, featured badge, name, price/price-confirmation state, expandable description, trust micro-badges, delivery note, benefits, usage, ingredients, warnings, quantity selector, and add-to-cart.
+- Product info includes category badge, featured badge, pricing status, name, selected offer price, optional previous price, offer selector, included pack count, expandable description, trust micro-badges, delivery note, benefits, usage, ingredients, warnings, bundle quantity selector, and add-to-cart.
+- Confirmed products expose Buy 1, Buy 2 Get 1 Free, and Buy 3 Get 2 Free as complete retail bundles. Unconfirmed products show no offer selector and remain non-purchasable.
 - The gallery uses one solid image surface over a restrained botanical-to-sun wash; avoid nested translucent panels.
 - Supporting delivery, usage, and trust information may use sun or botanical washes, but price and purchase controls remain on quiet high-contrast surfaces.
 - Related products use mobile horizontal scroll and desktop grid.
@@ -387,7 +388,7 @@ Best Sellers:
 - Cart summary stays sticky on desktop.
 - Shipping is estimated/confirmed during checkout.
 - Use a quiet warm canvas, flat line-item cards, and a raised summary; cart controls and totals stay on solid white surfaces.
-- Keep product prices, quantities, removal controls, subtotal, estimated total, and checkout actions free from page-level texture or line art.
+- Keep offer prices, bundle quantities, pack counts, removal controls, subtotal, estimated total, and checkout actions free from page-level texture or line art.
 - Botanical and sun-wash treatments are contained reassurance surfaces only; they do not replace the white item or summary boundaries.
 
 ### Checkout
@@ -403,7 +404,7 @@ Best Sellers:
   - Optional order notes
   - Required Terms agreement, Privacy acknowledgement, policy links, and data-handoff notice
 - Order summary:
-  - Compact products
+  - Compact products with selected offer, bundle quantity, and physical pack count
   - Subtotal
   - Shipping
   - Grand total when available
@@ -608,7 +609,7 @@ If introduced later, each pattern requires its own responsive, keyboard, focus, 
 
 ## 12. Current Launch Risks
 
-- Product prices and price statuses are confirmed; product label facts, ingredients, usage, warnings, and claims still need business review.
+- Retail promotional prices are confirmed for five products. Thirteen products remain visible with unconfirmed prices and are non-purchasable; product label facts, ingredients, usage, warnings, stock status, and claims still need business review.
 - Paybill/Till details are not final; WhatsApp orders can proceed with payment details confirmed manually in chat.
 - Legal pages contain business-approved policy drafts but still require qualified Kenyan legal review, effective dates, and removal of temporary `noindex` directives.
 - Browser/device responsive QA and full accessibility audit are still required.
@@ -720,7 +721,7 @@ Shop, Cart, and Checkout already use the correct warm-canvas tokens and solid co
 | Route    | Decorative intensity | Introduction role                                                                 | Protected workspace                                                                                                                   |
 | -------- | -------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | Shop     | Moderate             | Compact editorial entry with breadcrumb, one `h1`, restrained dots/line art/glow | Search, category filters, sorting, result feedback, prices, purchase actions, empty states, and product cards                         |
-| Cart     | Restrained           | Compact warm-canvas header with one `h1` and low-opacity decoration               | Item cards, product prices, quantities, removal controls, subtotal, estimated total, checkout action, and empty-cart recovery         |
+| Cart     | Restrained           | Compact warm-canvas header with one `h1` and low-opacity decoration               | Item cards, offer prices, bundle quantities, pack counts, removal controls, subtotal, estimated total, checkout action, and empty-cart recovery |
 | Checkout | Minimal              | Compact warm-canvas header with one `h1`; decoration stops before progress        | Progress, navigation, form fields, validation, legal acknowledgement, prices, totals, shipping, payment instructions, and WhatsApp CTA |
 
 Protected workspace rules:

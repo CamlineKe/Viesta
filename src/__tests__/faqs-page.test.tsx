@@ -19,6 +19,23 @@ import { buildWhatsAppInquiryMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 describe("FAQ page", () => {
   afterEach(cleanup);
 
+  it("describes the mixed retail pricing status accurately", () => {
+    const productDetailsFaq = faqs.find(
+      (faq) => faq.id === "faq-products-001",
+    );
+
+    expect(productDetailsFaq?.answer).toContain(
+      "Bio1 Sterol, Bio1 Gluco, BioRelief, BioForge, and BioFlex",
+    );
+    expect(productDetailsFaq?.answer).toContain("Price unconfirmed");
+    expect(productDetailsFaq?.answer).toContain(
+      "cannot be added to the cart",
+    );
+    expect(productDetailsFaq?.answer).not.toContain(
+      "All product prices are confirmed",
+    );
+  });
+
   it("presents one page heading, the editorial surfaces, and support actions", () => {
     const { container, getByRole } = render(<FAQsPage />);
     const pageHeading = getByRole("heading", {

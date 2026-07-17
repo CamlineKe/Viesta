@@ -252,7 +252,7 @@ Sources:
 
 ## Product-claim boundary
 
-The inventory confirms product names, categories, formats, pack sizes, images, minimum order quantities, and prices. It does not currently provide confirmed ingredients, complete directions, contraindications, clinical evidence, or approved health claims.
+The inventory confirms product names, categories, known pack formats, images, and pricing status. Retail promotional prices are confirmed only for Bio1 Sterol, Bio1 Gluco, BioRelief, BioForge, and BioFlex. Other catalog products have unconfirmed prices. The inventory does not currently provide confirmed ingredients, complete directions, contraindications, clinical evidence, stock status, or approved health claims.
 
 Articles may:
 
@@ -271,7 +271,7 @@ Articles must not state or imply that:
 - BioForge treats or supports a prostate condition.
 - Any herbal tea is a therapy or substitute for medical care.
 
-`Bio Pawa`/`BioPawa` appeared in the original brief but is not in the confirmed inventory and must not be published or linked. The confirmed joint-and-mobility range is BioRelief, BioRelief Plus, and BioRelief Cream, subject to the same claim restrictions.
+`Bio Pawa`/`BioPawa` appeared in the original brief but is not in the catalog and must not be published or linked. The cataloged joint-and-mobility range is BioRelief, BioRelief Plus, and BioRelief Cream, subject to the same claim restrictions.
 
 ## Customer-story gate
 
