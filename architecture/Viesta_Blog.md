@@ -351,7 +351,7 @@ Before the blog is treated as production-ready:
 3. Review the homepage, blog index, and article pages at mobile, tablet, and desktop sizes.
 4. Keyboard-test filters, tables, contents links, sources, cards, and closing navigation actions.
 5. Validate deployed article pages with a structured-data testing tool.
-6. Confirm `https://viesta.co.ke` is the correct canonical production domain.
+6. Confirm `https://viestanutrition.com` is the correct canonical production domain.
 7. Obtain qualified Kenyan clinical review of the final article copy.
 8. Supply confirmed product labels and regulatory documentation before approving stronger product wording.
 

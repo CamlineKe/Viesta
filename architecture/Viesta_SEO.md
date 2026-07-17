@@ -132,7 +132,7 @@ Part 1 should ensure that:
 Canonical production domain:
 
 ```txt
-https://viesta.co.ke
+https://viestanutrition.com
 ```
 
 Current public URL groups:
@@ -166,15 +166,15 @@ Examples:
 
 | Page type | Canonical |
 |-----------|-----------|
-| Home | `https://viesta.co.ke/` |
-| Shop | `https://viesta.co.ke/shop` |
-| Product | `https://viesta.co.ke/products/{slug}` |
-| Blog index | `https://viesta.co.ke/blog` |
-| Blog post | `https://viesta.co.ke/blog/{slug}` |
+| Home | `https://viestanutrition.com/` |
+| Shop | `https://viestanutrition.com/shop` |
+| Product | `https://viestanutrition.com/products/{slug}` |
+| Blog index | `https://viestanutrition.com/blog` |
+| Blog post | `https://viestanutrition.com/blog/{slug}` |
 
 For `/shop` query filters:
 
-- Keep the canonical as `https://viesta.co.ke/shop`.
+- Keep the canonical as `https://viestanutrition.com/shop`.
 - Do not create canonical URLs for each filter state unless those pages become real category landing pages with unique content.
 
 Implementation target:
@@ -240,7 +240,7 @@ User-agent: *
 Allow: /
 Disallow: /cart
 Disallow: /checkout
-Sitemap: https://viesta.co.ke/sitemap.xml
+Sitemap: https://viestanutrition.com/sitemap.xml
 ```
 
 Important distinction:
@@ -447,7 +447,7 @@ For products with `needsConfirmation`, structured data should either omit uncert
 Viesta should expose business identity consistently:
 
 - Name: `Viesta Nutrition`.
-- URL: `https://viesta.co.ke`.
+- URL: `https://viestanutrition.com`.
 - Logo: `/icons/logo.svg`.
 - Phone.
 - Email.
@@ -622,13 +622,13 @@ Before submitting to Google:
 
 Recommended property:
 
-- Use a Domain property for `viesta.co.ke` if DNS verification is available.
+- Use a Domain property for `viestanutrition.com` if DNS verification is available.
 - Use URL-prefix property only if DNS access is not available.
 
 Search Console tasks:
 
 - Verify ownership.
-- Submit `https://viesta.co.ke/sitemap.xml`.
+- Submit `https://viestanutrition.com/sitemap.xml`.
 - Inspect homepage URL.
 - Request indexing for homepage after launch.
 - Inspect representative product and blog URLs.
@@ -638,19 +638,19 @@ Search Console tasks:
 
 After deployment:
 
-1. Visit `https://viesta.co.ke/robots.txt`.
-2. Visit `https://viesta.co.ke/sitemap.xml`.
+1. Visit `https://viestanutrition.com/robots.txt`.
+2. Visit `https://viestanutrition.com/sitemap.xml`.
 3. Confirm sitemap URLs return `200`.
 4. Confirm production pages render visible product/blog content.
 5. Use Search Console URL Inspection for:
-   - `https://viesta.co.ke/`
-   - `https://viesta.co.ke/shop`
+   - `https://viestanutrition.com/`
+   - `https://viestanutrition.com/shop`
    - One product page.
    - One blog post.
 6. Search Google with:
 
 ```txt
-site:viesta.co.ke
+site:viestanutrition.com
 ```
 
 Indexing may take days or weeks. Google does not guarantee that every submitted URL will be indexed.
@@ -797,8 +797,8 @@ Consider only after indexing begins and after a separate privacy and business ap
 
 Technical SEO is ready when:
 
-- `https://viesta.co.ke/sitemap.xml` returns a valid sitemap.
-- `https://viesta.co.ke/robots.txt` returns the expected robots policy.
+- `https://viestanutrition.com/sitemap.xml` returns a valid sitemap.
+- `https://viestanutrition.com/robots.txt` returns the expected robots policy.
 - Important pages have canonical URLs.
 - Cart and checkout do not appear in the sitemap.
 - Product and blog detail pages generate correct metadata.

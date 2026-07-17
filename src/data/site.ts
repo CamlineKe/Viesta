@@ -6,7 +6,7 @@ export const siteContent: SiteContent = {
   tagline: "Nutrition and wellness products for Kenya.",
   description:
     "A static storefront for nutrition and health supplements with Kenyan delivery context, KES pricing, and WhatsApp checkout.",
-  url: "https://viesta.co.ke",
+  url: "https://viestanutrition.com",
   logo: "/icons/logo.svg",
   announcement: "Free shipping in Nairobi & Kiambu",
   currency: "KES",

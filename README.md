@@ -104,7 +104,8 @@ flowchart TD
 │   ├── Viesta_SEO.md            # SEO plan and content guidance
 │   └── Viesta_Inventory.md      # Inventory/product planning notes
 ├── infrastructure/
-│   └── Viesta_Deployment.md     # Vercel deployment and launch operations
+│   ├── Viesta_Deployment.md     # Vercel deployment and launch operations
+│   └── Viesta_DNS.md            # cPanel DNS and Vercel domain operations
 ├── public/
 │   ├── favicon.ico
 │   └── images/

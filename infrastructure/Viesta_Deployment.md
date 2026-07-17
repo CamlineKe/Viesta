@@ -27,9 +27,9 @@ Confirm these items before directing customers to the production domain:
 - Confirm the final M-Pesa Paybill/Till and payment instructions.
 - Confirm all displayed contact information and remove placeholder wording.
 - Test the complete WhatsApp order handoff on real mobile devices.
-- Confirm that `https://viesta.co.ke` is the intended canonical production URL.
+- Confirm that `https://viestanutrition.com` is the intended canonical production URL.
 
-The canonical URL is currently defined in `src/data/site.ts`. Preview deployments will still generate metadata based on `https://viesta.co.ke`; this is acceptable for internal review, but the custom domain should be connected before the public launch.
+The canonical URL is currently defined in `src/data/site.ts`. Preview deployments will still generate metadata based on `https://viestanutrition.com`; this is acceptable for internal review, but the custom domain should be connected before the public launch.
 
 ## 3. Import configuration after selecting the repository
 
@@ -80,7 +80,7 @@ Common configuration mistakes for this repository are:
 
 ## 5. Preview deployment validation
 
-Validate the generated Vercel URL before connecting `viesta.co.ke`.
+Validate the generated Vercel URL before connecting `viestanutrition.com`.
 
 ### Core routes
 
@@ -136,20 +136,22 @@ For safer releases while the website is pre-launch, validate changes through pre
 
 See [Vercel deployment environments](https://vercel.com/docs/deployments/overview) and [promoting a deployment](https://vercel.com/docs/deployments/promoting-a-deployment).
 
-## 7. Connect `viesta.co.ke`
+## 7. Connect `viestanutrition.com`
 
 Connect the domain only after the preview deployment and business content are approved.
 
 1. Open the Viesta project in Vercel.
 2. Go to **Settings → Domains**.
-3. Add `viesta.co.ke`.
-4. Add `www.viesta.co.ke` when prompted, or add it separately.
+3. Add `viestanutrition.com`.
+4. Add `www.viestanutrition.com` when prompted, or add it separately.
 5. Choose which hostname is primary and configure the other to redirect to it. Using one canonical hostname avoids duplicate URLs.
 6. At the domain registrar or current DNS provider, add the exact DNS records Vercel displays.
 7. Do not copy an IP address or CNAME from an unrelated guide: Vercel may show project-specific values.
 8. Preserve existing email-related DNS records, including MX, SPF, DKIM, and DMARC records. Replacing nameservers without recreating those records can interrupt email delivery.
 9. Wait for Vercel to report that the domain configuration is valid.
 10. Confirm that Vercel has provisioned HTTPS and that both the apex and `www` hostnames behave as intended.
+
+For the current cPanel-managed DNS configuration, record inventory, maintenance procedure, and troubleshooting guidance, read [Viesta DNS and Domain Operations](./Viesta_DNS.md).
 
 DNS propagation can take time. If Vercel shows **Invalid Configuration**, compare the record name, type, and value against the exact values in **Settings → Domains**. Remove conflicting A, AAAA, or CNAME records only after confirming they are obsolete.
 
@@ -163,8 +165,8 @@ Official references:
 
 Repeat the preview checks on the production domain, then specifically verify:
 
-- `https://viesta.co.ke` loads over HTTPS without certificate warnings.
-- `www.viesta.co.ke` redirects to the chosen canonical hostname, or the reverse if `www` is canonical.
+- `https://viestanutrition.com` loads over HTTPS without certificate warnings.
+- `www.viestanutrition.com` redirects to the chosen canonical hostname, or the reverse if `www` is canonical.
 - Page metadata and shared links use the intended production domain.
 - Product and blog detail pages work when opened directly in a new browser session.
 - Refreshing a nested route does not return a platform 404.
@@ -282,7 +284,7 @@ Use this final checklist before announcing the website:
 - [ ] Local tests, type checking, linting, formatting check, and production build pass.
 - [ ] The Vercel preview smoke test passes.
 - [ ] The production branch is `main`.
-- [ ] `viesta.co.ke` and `www.viesta.co.ke` are configured correctly.
+- [ ] `viestanutrition.com` and `www.viestanutrition.com` are configured correctly.
 - [ ] HTTPS is active.
 - [ ] Existing email DNS records remain intact.
 - [ ] The production-domain smoke test passes.

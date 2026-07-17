@@ -64,16 +64,16 @@ describe("blog SEO metadata", () => {
     expect(jsonLd).toMatchObject({
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "@id": `https://viesta.co.ke/blog/${post.slug}#article`,
+      "@id": `https://viestanutrition.com/blog/${post.slug}#article`,
       headline: post.title,
       description: post.excerpt,
-      image: [`https://viesta.co.ke${post.coverImage.src}`],
+      image: [`https://viestanutrition.com${post.coverImage.src}`],
       datePublished: post.publishedAt,
       dateModified: post.publishedAt,
       inLanguage: "en-KE",
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `https://viesta.co.ke/blog/${post.slug}`,
+        "@id": `https://viestanutrition.com/blog/${post.slug}`,
       },
     });
   });
