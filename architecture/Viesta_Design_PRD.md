@@ -627,11 +627,11 @@ Migration rules:
 
 The Contact route is being aligned with the visual pattern established by the About route while retaining the Contact page's stronger functional and accessibility constraints. Consistency comes from shared surface roles, typography, spacing, restrained organic decoration, and editorial hierarchy. Form controls and full contact details remain on quiet high-contrast surfaces.
 
-| Phase | Scope                                            | Implementation status         | Review checkpoint                                                                                                                                                                 |
-| ----- | ------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1     | Design contract and page foundation              | Complete                      | Confirmed for progression to Phase 2; final responsive browser acceptance remains part of Phase 3                                                                                 |
-| 2     | Contact workspace and form refinement            | Implemented; awaiting review | Confirm direct-contact affordances, shared field treatment, blocked-action explanation, keyboard flow, focus visibility, and unchanged WhatsApp handoff behavior                 |
-| 3     | Reassurance, regression coverage, and QA handoff | Planned                       | Confirm factual support content, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix                                   |
+| Phase | Scope                                            | Implementation status               | Review checkpoint                                                                                                                                                           |
+| ----- | ------------------------------------------------ | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Design contract and page foundation              | Complete                            | Confirmed for progression to Phase 2; final responsive browser acceptance remains part of Phase 3                                                                           |
+| 2     | Contact workspace and form refinement            | Complete                            | Confirmed for progression to Phase 3; final interaction and browser acceptance remains part of Phase 3                                                                     |
+| 3     | Reassurance, regression coverage, and QA handoff | Implemented; awaiting verification | Run targeted automated coverage and confirm factual support content, responsive containment, reduced motion, 200% zoom, and the manual browser matrix                      |
 
 ### Phase 1 contract
 
@@ -657,3 +657,5 @@ The Contact route is being aligned with the visual pattern established by the Ab
 - Add targeted coverage for contact links, form labels, blocked-action behavior, prepared WhatsApp inquiries, confirmation messaging, and responsive containment contracts.
 - Complete the Contact route checks in the existing responsive QA matrix, including keyboard-only use, reduced motion, increased text size, and representative mobile, tablet, laptop, and wide-desktop widths.
 - Update implementation status here after each review checkpoint. Architecture documentation changes only if component ownership or shared responsibilities change.
+
+Phase 3 implementation includes the restrained sun-wash inquiry-support section and targeted Contact route coverage. Final acceptance remains pending user-run tests, static checks, production build, and the responsive browser QA matrix. No new component ownership or shared architectural responsibility was introduced, so `Architecture.md` does not require a corresponding structural update.

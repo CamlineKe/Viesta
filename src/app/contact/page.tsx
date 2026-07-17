@@ -6,7 +6,11 @@ import {
   Mail,
   MapPin,
   MessageCircle,
+  PackageSearch,
   Phone,
+  ReceiptText,
+  RotateCcw,
+  Truck,
 } from "lucide-react";
 
 import { WhatsAppInquiryForm } from "@/components/contact/WhatsAppInquiryForm";
@@ -40,6 +44,33 @@ const contactMethods = [
     value: siteContent.contact.address,
     href: null,
     icon: MapPin,
+  },
+];
+
+const supportAreas = [
+  {
+    title: "Product inquiries",
+    description:
+      "Ask about Viesta products and the information available to support a more informed choice.",
+    icon: PackageSearch,
+  },
+  {
+    title: "Delivery coordination",
+    description:
+      "Discuss delivery details and the information needed to coordinate your order.",
+    icon: Truck,
+  },
+  {
+    title: "Payment confirmation",
+    description:
+      "Confirm payment details with the Viesta team before completing a payment.",
+    icon: ReceiptText,
+  },
+  {
+    title: "Returns and refunds",
+    description:
+      "Raise a return or refund question and review the applicable policy information.",
+    icon: RotateCcw,
   },
 ];
 
@@ -290,6 +321,59 @@ export default function ContactPage() {
                 </div>
               </div>
             </aside>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-sun-wash relative overflow-hidden py-16 lg:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border-[48px] border-brand-primary/10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 -left-32 h-72 w-72 rounded-full bg-brand-primary/10 blur-3xl"
+        />
+        <Container className="relative">
+          <SectionHeader
+            align="center"
+            eyebrow="How We Can Help"
+            title="Start with the reason for your inquiry"
+            description="Choose the closest inquiry type in the WhatsApp form and share the details the Viesta team needs to understand your question."
+          />
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {supportAreas.map((area, index) => {
+              const Icon = area.icon;
+
+              return (
+                <article
+                  key={area.title}
+                  className={cardClassName({
+                    className: "min-w-0 p-5 sm:p-6",
+                    variant: "flat",
+                  })}
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
+                      <Icon aria-hidden="true" className="h-6 w-6" />
+                    </div>
+                    <span
+                      aria-hidden="true"
+                      className="font-heading text-2xl font-extrabold text-brand-charcoal/10"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-heading text-lg font-extrabold text-brand-charcoal">
+                    {area.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-brand-muted">
+                    {area.description}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </Container>
       </section>
