@@ -2,98 +2,64 @@ import { describe, expect, it } from "vitest";
 
 import { products } from "@/data/products";
 
-const expectedCatalog = {
-  "bio1-sterol-capsules": {
-    name: "Bio1 Sterol",
-    packs: [{ packSize: "30s", price: 350 }],
-  },
-  "bio1-sterol-plus": {
-    name: "Bio1 Sterol Plus",
-    packs: [{ packSize: "60s", price: 450 }],
-  },
-  "bio1-sterol-sachets": {
-    name: "Bio1 Sterol Sachets",
-    packs: [
-      { packSize: "20 sachets", price: 300 },
-      { packSize: "40 sachets", price: 450 },
-    ],
-  },
-  "biorelief-capsules": {
-    name: "BioRelief",
-    packs: [{ packSize: "30s", price: 350 }],
-  },
-  "biorelief-plus": {
-    name: "BioRelief Plus",
-    packs: [{ packSize: "60s", price: 450 }],
-  },
-  "biorelief-cream": {
-    name: "BioRelief Cream",
-    packs: [{ packSize: "50gms", price: 350 }],
-  },
-  "bio2-total-body-detox": {
-    name: "Bio2 Total Body Detox",
-    packs: [
-      { packSize: "20 sachets", price: 300 },
-      { packSize: "40 sachets", price: 450 },
-    ],
-  },
-  "bio2-nutraceutical-tea": {
-    name: "Bio2 Nutraceutical Tea",
-    packs: [
-      { packSize: "10 tea bags", price: 100 },
-      { packSize: "20 tea bags", price: 200 },
-    ],
-  },
-  "bio-immune-booster-immunity-support-formula": {
-    name: "Bio1 Immune Booster",
-    packs: [
-      { packSize: "20 sachets", price: 350 },
-      { packSize: "40 sachets", price: 500 },
-    ],
-  },
-  "bio1-metabalance-metabolism-energy-support": {
-    name: "Bio Metabalance",
-    packs: [{ packSize: "30s", price: 500 }],
-  },
-  "bioforge-capsules": {
-    name: "BioForge",
-    packs: [{ packSize: "30s", price: 350 }],
-  },
-  "bioforge-plus": {
-    name: "BioForge Plus",
-    packs: [{ packSize: "60s", price: 450 }],
-  },
-  bioflex: {
-    name: "BioFlex",
-    packs: [{ packSize: "30s", price: 350 }],
-  },
-  "bioflex-plus": {
-    name: "BioFlex Plus",
-    packs: [{ packSize: "60s", price: 450 }],
-  },
-  "viesta-slimming-coffee": {
-    name: "Viesta Slimming Coffee",
-    packs: [
-      { packSize: "90 capsules", price: 750 },
-      { packSize: "200 capsules", price: 1300 },
-    ],
-  },
-  "bio1-gluco": {
-    name: "Bio1 Gluco",
-    packs: [{ packSize: "30s", price: 350 }],
-  },
-  "bio1-gluco-plus": {
-    name: "Bio1 Gluco Plus",
-    packs: [{ packSize: "60s", price: 450 }],
-  },
-  "bio-gluco-tea-bags": {
-    name: "Bio Gluco Tea Bags",
-    packs: [
-      { packSize: "20 sachets", price: 300 },
-      { packSize: "40 sachets", price: 450 },
-    ],
-  },
+const expectedSlugs = [
+  "bio1-sterol-capsules",
+  "bio1-sterol-plus",
+  "bio1-sterol-sachets",
+  "biorelief-capsules",
+  "biorelief-plus",
+  "biorelief-cream",
+  "bio2-total-body-detox",
+  "bio2-nutraceutical-tea",
+  "bio-immune-booster-immunity-support-formula",
+  "bio1-metabalance-metabolism-energy-support",
+  "bioforge-capsules",
+  "bioforge-plus",
+  "bioflex",
+  "bioflex-plus",
+  "viesta-slimming-coffee",
+  "bio1-gluco",
+  "bio1-gluco-plus",
+  "bio-gluco-tea-bags",
+] as const;
+
+const confirmedProducts = {
+  "bio1-sterol-capsules": "Bio1 Sterol",
+  "biorelief-capsules": "BioRelief",
+  "bioforge-capsules": "BioForge",
+  bioflex: "BioFlex",
+  "bio1-gluco": "Bio1 Gluco",
 } as const;
+
+const expectedOffers = [
+  {
+    label: "Buy 1",
+    paidQuantity: 1,
+    freeQuantity: 0,
+    totalQuantity: 1,
+    packSize: "30 capsules",
+    price: 2800,
+    compareAtPrice: 5999,
+  },
+  {
+    label: "Buy 2 Get 1 Free",
+    paidQuantity: 2,
+    freeQuantity: 1,
+    totalQuantity: 3,
+    packSize: "30 capsules",
+    price: 4999,
+    compareAtPrice: undefined,
+  },
+  {
+    label: "Buy 3 Get 2 Free",
+    paidQuantity: 3,
+    freeQuantity: 2,
+    totalQuantity: 5,
+    packSize: "30 capsules",
+    price: 6999,
+    compareAtPrice: undefined,
+  },
+] as const;
 
 const expectedCategoryCounts = {
   "blood-pressure-heart-health": 3,
@@ -105,42 +71,64 @@ const expectedCategoryCounts = {
   diabetes: 3,
 };
 
-describe("product inventory and pricing metadata", () => {
+describe("product inventory and retail pricing metadata", () => {
   it("contains exactly the 18 products in the current inventory", () => {
-    expect(products.map((product) => product.slug)).toEqual(
-      Object.keys(expectedCatalog),
-    );
+    expect(products.map((product) => product.slug)).toEqual(expectedSlugs);
   });
 
-  it("matches all 24 confirmed pack and price combinations", () => {
-    let packCount = 0;
+  it("matches the five confirmed retail promotion matrices", () => {
+    const confirmed = products.filter(
+      (product) => product.priceStatus === "confirmed",
+    );
 
-    for (const product of products) {
-      const expected = expectedCatalog[product.slug as keyof typeof expectedCatalog];
-      const actualPacks = product.variants?.length
-        ? product.variants.map(({ packSize, price }) => ({ packSize, price }))
-        : [{ packSize: product.packSize, price: product.price }];
+    expect(confirmed).toHaveLength(5);
 
-      expect(product.name).toBe(expected.name);
-      expect(actualPacks).toEqual(expected.packs);
-      expect(product.price).toBe(
-        Math.min(...expected.packs.map((pack) => pack.price)),
+    for (const product of confirmed) {
+      expect(product.name).toBe(
+        confirmedProducts[product.slug as keyof typeof confirmedProducts],
       );
-      expect(product.priceStatus).toBe("confirmed");
+      expect(product.packSize).toBe("30 capsules");
+      expect(product.price).toBe(2800);
       expect(
-        product.minimumOrderQuantity ??
-          product.variants?.[0]?.minimumOrderQuantity,
-      ).toBe(100);
-      expect(
-        product.variants?.every(
-          (variant) => variant.minimumOrderQuantity === 100,
-        ) ?? true,
-      ).toBe(true);
-
-      packCount += actualPacks.length;
+        product.offers?.map((offer) => ({
+          label: offer.label,
+          paidQuantity: offer.paidQuantity,
+          freeQuantity: offer.freeQuantity,
+          totalQuantity: offer.totalQuantity,
+          packSize: offer.packSize,
+          price: offer.price,
+          compareAtPrice: offer.compareAtPrice,
+        })),
+      ).toEqual(expectedOffers);
+      expect(product.needsConfirmation).not.toContain("price");
+      expect(product.needsConfirmation).toContain("stock status");
     }
+  });
 
-    expect(packCount).toBe(24);
+  it("keeps the remaining 13 products visible with unconfirmed prices", () => {
+    const unconfirmed = products.filter(
+      (product) => product.priceStatus === "unconfirmed",
+    );
+
+    expect(unconfirmed).toHaveLength(13);
+
+    for (const product of unconfirmed) {
+      expect(product.price).toBe(0);
+      expect(product.offers).toBeUndefined();
+      expect(product.packSize).toBeTruthy();
+      expect(product.needsConfirmation).toContain("price");
+    }
+  });
+
+  it("does not expose wholesale minimum-order metadata", () => {
+    for (const product of products) {
+      expect("minimumOrderQuantity" in product).toBe(false);
+      expect(
+        product.offers?.some(
+          (offer) => "minimumOrderQuantity" in offer,
+        ) ?? false,
+      ).toBe(false);
+    }
   });
 
   it("matches the documented seven-category distribution", () => {
@@ -153,12 +141,5 @@ describe("product inventory and pricing metadata", () => {
     );
 
     expect(actualCategoryCounts).toEqual(expectedCategoryCounts);
-  });
-
-  it("does not request price or stock confirmation for confirmed inventory", () => {
-    for (const product of products) {
-      expect(product.needsConfirmation).not.toContain("price");
-      expect(product.needsConfirmation).not.toContain("stock status");
-    }
   });
 });

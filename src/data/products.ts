@@ -1,9 +1,9 @@
 import type {
   Product,
   ProductCategorySlug,
+  ProductOffer,
   ProductPriceStatus,
   ProductSubCategory,
-  ProductVariant,
 } from "@/types/product";
 
 type ProductFormat =
@@ -33,10 +33,9 @@ type ProductSeed = {
   category: ProductCategorySlug;
   subCategory: ProductSubCategory;
   price?: number;
-  priceStatus?: ProductPriceStatus;
-  packSize?: string;
-  minimumOrderQuantity?: number;
-  variants?: ProductVariant[];
+  priceStatus: ProductPriceStatus;
+  packSize: string;
+  offers?: ProductOffer[];
   image: string;
   format: ProductFormat;
   featured: boolean;
@@ -57,30 +56,30 @@ const medicalConfirmations = [
   "medical-safe wording",
 ];
 
-const confirmedCommerceFields = new Set(["price", "stock status"]);
+const confirmedCommerceFields = new Set(["price"]);
 
 function getBasePrice(product: ProductSeed): number {
   if (typeof product.price === "number") {
     return product.price;
   }
 
-  if (product.variants?.length) {
-    return Math.min(...product.variants.map((variant) => variant.price));
+  if (product.offers?.length) {
+    return Math.min(...product.offers.map((offer) => offer.price));
   }
 
   return 0;
 }
 
 function hasConfirmedCommerceData(product: ProductSeed): boolean {
-  return getBasePrice(product) > 0 && Boolean(product.packSize || product.variants?.length);
+  return (
+    product.priceStatus === "confirmed" &&
+    getBasePrice(product) > 0 &&
+    Boolean(product.offers?.length)
+  );
 }
 
-function getPriceStatus(product: ProductSeed): ProductPriceStatus | undefined {
-  if (!hasConfirmedCommerceData(product)) {
-    return undefined;
-  }
-
-  return product.priceStatus ?? "confirmed";
+function getPriceStatus(product: ProductSeed): ProductPriceStatus {
+  return product.priceStatus;
 }
 
 function getNeedsConfirmation(product: ProductSeed, content: CategoryDraftContent): string[] {
@@ -88,11 +87,40 @@ function getNeedsConfirmation(product: ProductSeed, content: CategoryDraftConten
     return content.needsConfirmation;
   }
 
-  if (getPriceStatus(product) === "estimated") {
-    return content.needsConfirmation.filter((item) => item !== "stock status");
-  }
-
   return content.needsConfirmation.filter((item) => !confirmedCommerceFields.has(item));
+}
+
+function createRetailOffers(productSlug: string): ProductOffer[] {
+  return [
+    {
+      id: `${productSlug}-buy-1`,
+      label: "Buy 1",
+      paidQuantity: 1,
+      freeQuantity: 0,
+      totalQuantity: 1,
+      packSize: "30 capsules",
+      price: 2800,
+      compareAtPrice: 5999,
+    },
+    {
+      id: `${productSlug}-buy-2-get-1-free`,
+      label: "Buy 2 Get 1 Free",
+      paidQuantity: 2,
+      freeQuantity: 1,
+      totalQuantity: 3,
+      packSize: "30 capsules",
+      price: 4999,
+    },
+    {
+      id: `${productSlug}-buy-3-get-2-free`,
+      label: "Buy 3 Get 2 Free",
+      paidQuantity: 3,
+      freeQuantity: 2,
+      totalQuantity: 5,
+      packSize: "30 capsules",
+      price: 6999,
+    },
+  ];
 }
 
 const categoryContent: Record<ProductCategorySlug, CategoryDraftContent> = {
@@ -259,9 +287,9 @@ const productSeeds: ProductSeed[] = [
     slug: "bio1-sterol-capsules",
     category: "blood-pressure-heart-health",
     subCategory: null,
-    price: 350,
-    packSize: "30s",
-    minimumOrderQuantity: 100,
+    priceStatus: "confirmed",
+    packSize: "30 capsules",
+    offers: createRetailOffers("bio1-sterol-capsules"),
     image: "/images/products/bio1_sterol_capsule-cutout.webp",
     format: "capsules",
     featured: true,
@@ -272,9 +300,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio1-sterol-plus",
     category: "blood-pressure-heart-health",
     subCategory: null,
-    price: 450,
-    packSize: "60s",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "60 capsules",
     image: "/images/products/bio1_sterol_plus-cutout.webp",
     format: "formula",
     featured: true,
@@ -285,22 +312,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio1-sterol-sachets",
     category: "blood-pressure-heart-health",
     subCategory: null,
-    variants: [
-      {
-        id: "bio1-sterol-sachets-20",
-        label: "20 sachets",
-        packSize: "20 sachets",
-        price: 300,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "bio1-sterol-sachets-40",
-        label: "40 sachets",
-        packSize: "40 sachets",
-        price: 450,
-        minimumOrderQuantity: 100,
-      },
-    ],
+    priceStatus: "unconfirmed",
+    packSize: "20 or 40 sachets",
     image: "/images/products/bio1_sterol_sachets-cutout.webp",
     format: "sachets",
     featured: false,
@@ -311,9 +324,9 @@ const productSeeds: ProductSeed[] = [
     slug: "biorelief-capsules",
     category: "joint-mobility-support",
     subCategory: null,
-    price: 350,
-    packSize: "30s",
-    minimumOrderQuantity: 100,
+    priceStatus: "confirmed",
+    packSize: "30 capsules",
+    offers: createRetailOffers("biorelief-capsules"),
     image: "/images/products/biorelief_capsules-cutout.webp",
     format: "capsules",
     featured: true,
@@ -324,9 +337,8 @@ const productSeeds: ProductSeed[] = [
     slug: "biorelief-plus",
     category: "joint-mobility-support",
     subCategory: null,
-    price: 450,
-    packSize: "60s",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "60 capsules",
     image: "/images/products/biorelief_plus-cutout.webp",
     format: "formula",
     featured: true,
@@ -337,9 +349,8 @@ const productSeeds: ProductSeed[] = [
     slug: "biorelief-cream",
     category: "joint-mobility-support",
     subCategory: null,
-    price: 350,
-    packSize: "50gms",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "50 g",
     image: "/images/products/biorelief_cream-cutout.webp",
     format: "cream",
     featured: false,
@@ -350,22 +361,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio2-total-body-detox",
     category: "detox-digestive-wellness",
     subCategory: null,
-    variants: [
-      {
-        id: "bio2-total-body-detox-20",
-        label: "20 sachets",
-        packSize: "20 sachets",
-        price: 300,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "bio2-total-body-detox-40",
-        label: "40 sachets",
-        packSize: "40 sachets",
-        price: 450,
-        minimumOrderQuantity: 100,
-      },
-    ],
+    priceStatus: "unconfirmed",
+    packSize: "20 or 40 sachets",
     image: "/images/products/bio2_total_body-cutout.webp",
     format: "formula",
     featured: true,
@@ -376,22 +373,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio2-nutraceutical-tea",
     category: "detox-digestive-wellness",
     subCategory: null,
-    variants: [
-      {
-        id: "bio2-nutraceutical-tea-10",
-        label: "10 tea bags",
-        packSize: "10 tea bags",
-        price: 100,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "bio2-nutraceutical-tea-20",
-        label: "20 tea bags",
-        packSize: "20 tea bags",
-        price: 200,
-        minimumOrderQuantity: 100,
-      },
-    ],
+    priceStatus: "unconfirmed",
+    packSize: "10 or 20 tea bags",
     image: "/images/products/bio2_neutraceutical-cutout.webp",
     format: "tea",
     featured: false,
@@ -402,22 +385,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio-immune-booster-immunity-support-formula",
     category: "immunity-general-wellness",
     subCategory: null,
-    variants: [
-      {
-        id: "bio-immune-booster-20",
-        label: "20 sachets",
-        packSize: "20 sachets",
-        price: 350,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "bio-immune-booster-40",
-        label: "40 sachets",
-        packSize: "40 sachets",
-        price: 500,
-        minimumOrderQuantity: 100,
-      },
-    ],
+    priceStatus: "unconfirmed",
+    packSize: "20 or 40 sachets",
     image: "/images/products/bio_immune_booster-cutout.webp",
     format: "formula",
     featured: true,
@@ -428,9 +397,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio1-metabalance-metabolism-energy-support",
     category: "immunity-general-wellness",
     subCategory: null,
-    price: 500,
-    packSize: "30s",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "30 capsules",
     image: "/images/products/bio1_metabalance-cutout.webp",
     format: "formula",
     featured: true,
@@ -441,9 +409,9 @@ const productSeeds: ProductSeed[] = [
     slug: "bioforge-capsules",
     category: "mens-wellness",
     subCategory: "mens-health",
-    price: 350,
-    packSize: "30s",
-    minimumOrderQuantity: 100,
+    priceStatus: "confirmed",
+    packSize: "30 capsules",
+    offers: createRetailOffers("bioforge-capsules"),
     image: "/images/products/bioforge_capsules-cutout.webp",
     format: "capsules",
     featured: true,
@@ -454,9 +422,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bioforge-plus",
     category: "mens-wellness",
     subCategory: "mens-health",
-    price: 450,
-    packSize: "60s",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "60 capsules",
     image: "/images/products/bioforge_plus-cutout.webp",
     format: "formula",
     featured: false,
@@ -467,9 +434,9 @@ const productSeeds: ProductSeed[] = [
     slug: "bioflex",
     category: "womens-wellness",
     subCategory: "womens-health",
-    price: 350,
-    packSize: "30s",
-    minimumOrderQuantity: 100,
+    priceStatus: "confirmed",
+    packSize: "30 capsules",
+    offers: createRetailOffers("bioflex"),
     image: "/images/products/bioflex-cutout.webp",
     format: "formula",
     featured: true,
@@ -480,9 +447,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bioflex-plus",
     category: "womens-wellness",
     subCategory: "womens-health",
-    price: 450,
-    packSize: "60s",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "60 capsules",
     image: "/images/products/bioflex_plus-cutout.webp",
     format: "formula",
     featured: false,
@@ -493,22 +459,8 @@ const productSeeds: ProductSeed[] = [
     slug: "viesta-slimming-coffee",
     category: "womens-wellness",
     subCategory: "womens-health",
-    variants: [
-      {
-        id: "viesta-slimming-coffee-90",
-        label: "90 capsules",
-        packSize: "90 capsules",
-        price: 750,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "viesta-slimming-coffee-200",
-        label: "200 capsules",
-        packSize: "200 capsules",
-        price: 1300,
-        minimumOrderQuantity: 100,
-      },
-    ],
+    priceStatus: "unconfirmed",
+    packSize: "90 or 200 capsules",
     image: "/images/products/viesta_slimming_coffee-cutout.webp",
     format: "coffee",
     featured: true,
@@ -519,9 +471,9 @@ const productSeeds: ProductSeed[] = [
     slug: "bio1-gluco",
     category: "diabetes",
     subCategory: null,
-    price: 350,
-    packSize: "30s",
-    minimumOrderQuantity: 100,
+    priceStatus: "confirmed",
+    packSize: "30 capsules",
+    offers: createRetailOffers("bio1-gluco"),
     image: "/images/products/bio1_gluco-cutout.webp",
     format: "formula",
     featured: true,
@@ -532,9 +484,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio1-gluco-plus",
     category: "diabetes",
     subCategory: null,
-    price: 450,
-    packSize: "60s",
-    minimumOrderQuantity: 100,
+    priceStatus: "unconfirmed",
+    packSize: "60 capsules",
     image: "/images/products/bio1_gluco_plus-cutout.webp",
     format: "formula",
     featured: false,
@@ -545,22 +496,8 @@ const productSeeds: ProductSeed[] = [
     slug: "bio-gluco-tea-bags",
     category: "diabetes",
     subCategory: null,
-    variants: [
-      {
-        id: "bio-gluco-tea-bags-20",
-        label: "20 sachets",
-        packSize: "20 sachets",
-        price: 300,
-        minimumOrderQuantity: 100,
-      },
-      {
-        id: "bio-gluco-tea-bags-40",
-        label: "40 sachets",
-        packSize: "40 sachets",
-        price: 450,
-        minimumOrderQuantity: 100,
-      },
-    ],
+    priceStatus: "unconfirmed",
+    packSize: "20 or 40 sachets",
     image: "/images/products/bio_gluco_teabags-cutout.webp",
     format: "teabags",
     featured: false,
@@ -581,8 +518,7 @@ export const products: Product[] = productSeeds.map((product) => {
     price,
     priceStatus: getPriceStatus(product),
     packSize: product.packSize,
-    minimumOrderQuantity: product.minimumOrderQuantity,
-    variants: product.variants,
+    offers: product.offers,
     image: product.image,
     gallery: [product.image],
     shortDescription: `${content.shortDescription} ${format.benefit}.`,

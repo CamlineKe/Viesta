@@ -43,9 +43,9 @@ export function ProductCard({ product }: ProductCardProps) {
       name: product.name,
       slug: product.slug,
       price: product.price,
-      priceStatus: product.priceStatus,
+      priceStatus:
+        product.priceStatus === "confirmed" ? "confirmed" : undefined,
       packSize: product.packSize,
-      minimumOrderQuantity: product.minimumOrderQuantity,
       image: product.image,
     });
     showToast(`${product.name} added to cart.`, "success");

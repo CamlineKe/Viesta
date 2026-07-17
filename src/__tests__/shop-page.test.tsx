@@ -26,7 +26,7 @@ vi.mock("@/components/shop/ProductCard", () => ({
 }));
 
 import ShopPage from "@/app/shop/page";
-import { ProductGrid } from "@/components/shop/ProductGrid";
+import { ProductGrid, sortProducts } from "@/components/shop/ProductGrid";
 import { categories } from "@/data/categories";
 import { products } from "@/data/products";
 
@@ -96,6 +96,27 @@ describe("Shop page", () => {
       "/shop?category=joint-mobility-support",
       { scroll: false },
     );
+  });
+
+  it("keeps unconfirmed products after confirmed products for price sorting", () => {
+    for (const sortOption of ["price-asc", "price-desc"] as const) {
+      const sortedProducts = sortProducts(products, sortOption);
+      const firstUnconfirmedIndex = sortedProducts.findIndex(
+        (product) => product.priceStatus === "unconfirmed",
+      );
+
+      expect(firstUnconfirmedIndex).toBe(5);
+      expect(
+        sortedProducts
+          .slice(0, firstUnconfirmedIndex)
+          .every((product) => product.priceStatus === "confirmed"),
+      ).toBe(true);
+      expect(
+        sortedProducts
+          .slice(firstUnconfirmedIndex)
+          .every((product) => product.priceStatus === "unconfirmed"),
+      ).toBe(true);
+    }
   });
 
   it("announces an empty result and provides filter recovery", () => {

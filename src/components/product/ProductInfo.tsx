@@ -45,8 +45,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
   const selectedPriceStatus =
     selectedVariant?.priceStatus ?? product.priceStatus;
   const selectedPackSize = selectedVariant?.packSize ?? product.packSize;
-  const selectedMinimumOrderQuantity =
-    selectedVariant?.minimumOrderQuantity ?? product.minimumOrderQuantity;
   const canAddToCart = hasConfirmedPrice(selectedPrice);
   const trustItems = [
     { label: "Delivery", sublabel: "Free Nairobi & Kiambu", icon: Truck },
@@ -72,9 +70,9 @@ export function ProductInfo({ product }: ProductInfoProps) {
       variantId: selectedVariant?.id,
       variantLabel: selectedVariant?.label,
       packSize: selectedPackSize,
-      minimumOrderQuantity: selectedMinimumOrderQuantity,
       price: selectedPrice,
-      priceStatus: selectedPriceStatus,
+      priceStatus:
+        selectedPriceStatus === "confirmed" ? "confirmed" : undefined,
       image: product.image,
       quantity,
     });
@@ -101,18 +99,11 @@ export function ProductInfo({ product }: ProductInfoProps) {
       <p className="mt-4 break-words font-heading text-2xl font-extrabold text-brand-charcoal sm:text-3xl">
         {formatProductPrice(selectedPrice, selectedPriceStatus)}
       </p>
-      {selectedPackSize || selectedMinimumOrderQuantity ? (
+      {selectedPackSize ? (
         <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide text-brand-muted">
-          {selectedPackSize ? (
-            <span className="max-w-full break-words rounded-full bg-brand-primary-muted px-3 py-1 text-brand-charcoal">
-              Pack: {selectedPackSize}
-            </span>
-          ) : null}
-          {selectedMinimumOrderQuantity ? (
-            <span className="rounded-full bg-brand-primary-muted px-3 py-1 text-brand-charcoal">
-              MOQ: {selectedMinimumOrderQuantity} pcs
-            </span>
-          ) : null}
+          <span className="max-w-full break-words rounded-full bg-brand-primary-muted px-3 py-1 text-brand-charcoal">
+            Pack: {selectedPackSize}
+          </span>
         </div>
       ) : null}
       <div className="mt-5">
@@ -251,9 +242,6 @@ export function ProductInfo({ product }: ProductInfoProps) {
                         variant.price,
                         variant.priceStatus ?? product.priceStatus,
                       )}
-                    </span>
-                    <span className="mt-1 block text-xs font-semibold text-brand-muted">
-                      MOQ: {variant.minimumOrderQuantity} pcs
                     </span>
                   </button>
                 );

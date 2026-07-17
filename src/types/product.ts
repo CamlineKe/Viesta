@@ -9,14 +9,24 @@ export type ProductCategorySlug =
 
 export type ProductSubCategory = "mens-health" | "womens-health" | null;
 
-export type ProductPriceStatus = "confirmed" | "estimated";
+export type ProductPriceStatus = "confirmed" | "unconfirmed";
+
+export type ProductOffer = {
+  id: string;
+  label: string;
+  paidQuantity: number;
+  freeQuantity: number;
+  totalQuantity: number;
+  packSize: string;
+  price: number;
+  compareAtPrice?: number;
+};
 
 export type ProductVariant = {
   id: string;
   label: string;
   packSize: string;
   price: number;
-  minimumOrderQuantity: number;
   priceStatus?: ProductPriceStatus;
 };
 
@@ -27,9 +37,9 @@ export type Product = {
   category: ProductCategorySlug;
   subCategory: ProductSubCategory;
   price: number;
-  priceStatus?: ProductPriceStatus;
+  priceStatus: ProductPriceStatus;
   packSize?: string;
-  minimumOrderQuantity?: number;
+  offers?: ProductOffer[];
   variants?: ProductVariant[];
   image: string;
   gallery: string[];

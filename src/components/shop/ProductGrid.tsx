@@ -52,14 +52,28 @@ function getSafeSort(sort: string): ProductSortOption {
     : "featured";
 }
 
-function sortProducts(products: Product[], sortOption: ProductSortOption) {
+export function sortProducts(
+  products: Product[],
+  sortOption: ProductSortOption,
+) {
   const sortedProducts = [...products];
+  const comparePriceStatus = (a: Product, b: Product) => {
+    if (a.priceStatus === b.priceStatus) {
+      return 0;
+    }
+
+    return a.priceStatus === "confirmed" ? -1 : 1;
+  };
 
   switch (sortOption) {
     case "price-asc":
-      return sortedProducts.sort((a, b) => a.price - b.price);
+      return sortedProducts.sort(
+        (a, b) => comparePriceStatus(a, b) || a.price - b.price,
+      );
     case "price-desc":
-      return sortedProducts.sort((a, b) => b.price - a.price);
+      return sortedProducts.sort(
+        (a, b) => comparePriceStatus(a, b) || b.price - a.price,
+      );
     case "name-asc":
       return sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
     case "name-desc":
@@ -168,6 +182,10 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
             product.description,
             categoryNameById[product.category],
             product.packSize,
+            ...(product.offers?.flatMap((offer) => [
+              offer.label,
+              offer.packSize,
+            ]) ?? []),
             ...(product.variants?.map((variant) => variant.packSize) ?? []),
           ]
             .filter(Boolean)
