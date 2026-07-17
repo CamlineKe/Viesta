@@ -627,11 +627,11 @@ Migration rules:
 
 The Contact route is being aligned with the visual pattern established by the About route while retaining the Contact page's stronger functional and accessibility constraints. Consistency comes from shared surface roles, typography, spacing, restrained organic decoration, and editorial hierarchy. Form controls and full contact details remain on quiet high-contrast surfaces.
 
-| Phase | Scope | Implementation status | Review checkpoint |
-| ----- | ----- | --------------------- | ----------------- |
-| 1 | Design contract and page foundation | Implemented; awaiting review | Confirm hero hierarchy, texture strength, copy wrapping, section transition, and visual relationship to About across representative viewports |
-| 2 | Contact workspace and form refinement | Planned | Confirm direct-contact affordances, shared field treatment, blocked-action explanation, keyboard flow, focus visibility, and unchanged WhatsApp handoff behavior |
-| 3 | Reassurance, regression coverage, and QA handoff | Planned | Confirm factual support content, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix |
+| Phase | Scope                                            | Implementation status         | Review checkpoint                                                                                                                                                                 |
+| ----- | ------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Design contract and page foundation              | Complete                      | Confirmed for progression to Phase 2; final responsive browser acceptance remains part of Phase 3                                                                                 |
+| 2     | Contact workspace and form refinement            | Implemented; awaiting review | Confirm direct-contact affordances, shared field treatment, blocked-action explanation, keyboard flow, focus visibility, and unchanged WhatsApp handoff behavior                 |
+| 3     | Reassurance, regression coverage, and QA handoff | Planned                       | Confirm factual support content, responsive containment, reduced motion, 200% zoom, targeted automated coverage, and the manual browser matrix                                   |
 
 ### Phase 1 contract
 

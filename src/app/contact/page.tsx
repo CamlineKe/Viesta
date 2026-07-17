@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   ArrowDown,
+  AlertTriangle,
   CheckCircle2,
   Mail,
   MapPin,
@@ -10,6 +11,7 @@ import {
 
 import { WhatsAppInquiryForm } from "@/components/contact/WhatsAppInquiryForm";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { Alert } from "@/components/ui/Alert";
 import { cardClassName } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -19,6 +21,27 @@ export const metadata = {
   title: "Contact",
   description: "Contact Viesta Nutrition in Kenya.",
 } satisfies Metadata;
+
+const contactMethods = [
+  {
+    label: "Phone",
+    value: siteContent.contact.phone,
+    href: `tel:${siteContent.contact.phone}`,
+    icon: Phone,
+  },
+  {
+    label: "Email",
+    value: siteContent.contact.email,
+    href: `mailto:${siteContent.contact.email}`,
+    icon: Mail,
+  },
+  {
+    label: "Address",
+    value: siteContent.contact.address,
+    href: null,
+    icon: MapPin,
+  },
+];
 
 export default function ContactPage() {
   const whatsappUrl = `https://wa.me/${siteContent.contact.whatsapp.replace(/[^\d]/g, "")}`;
@@ -167,11 +190,16 @@ export default function ContactPage() {
           />
 
           {siteContent.contact.needsConfirmation ? (
-            <div className="mt-6 max-w-3xl rounded-brand-lg border border-orange-200 bg-orange-50 p-4 text-sm font-semibold leading-6 text-orange-800">
+            <Alert
+              className="mt-6 max-w-3xl"
+              icon={<AlertTriangle className="h-5 w-5" />}
+              title="Contact details need confirmation"
+              variant="warning"
+            >
               Contact details are placeholders until launch. Use this page to
               confirm the intended support experience, then replace the phone,
               email, WhatsApp, and address before publishing.
-            </div>
+            </Alert>
           ) : null}
 
           <div className="mt-10 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
@@ -179,70 +207,88 @@ export default function ContactPage() {
               whatsappNumber={siteContent.contact.whatsapp}
             />
 
-            <aside className="min-w-0 space-y-4">
-              {[
-                {
-                  label: "Phone",
-                  value: siteContent.contact.phone,
-                  href: `tel:${siteContent.contact.phone}`,
-                  icon: Phone,
-                },
-                {
-                  label: "Email",
-                  value: siteContent.contact.email,
-                  href: `mailto:${siteContent.contact.email}`,
-                  icon: Mail,
-                },
-                {
-                  label: "Address",
-                  value: siteContent.contact.address,
-                  href: null,
-                  icon: MapPin,
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-                const content = (
-                  <div
-                    className={cardClassName({
-                      className: "min-w-0 flex gap-4 p-4 sm:p-5",
-                      variant: item.href ? "interactive" : "flat",
-                    })}
-                  >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-brand-lg bg-brand-primary-muted">
-                      <Icon aria-hidden="true" className="h-6 w-6" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-xs font-bold uppercase tracking-wide text-brand-muted">
-                        {item.label}
-                      </p>
-                      <p
-                        className={`mt-1 font-heading font-extrabold ${
-                          item.label === "Email" ? "break-all" : "break-words"
-                        }`}
-                      >
-                        {item.value}
-                      </p>
-                    </div>
-                  </div>
-                );
-
-                return item.href ? (
-                  <a key={item.label} href={item.href}>
-                    {content}
-                  </a>
-                ) : (
-                  <div key={item.label}>{content}</div>
-                );
-              })}
-              <a
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-brand-whatsapp px-4 text-center font-heading font-extrabold text-white shadow-soft transition hover:brightness-95 sm:px-6"
-                href={whatsappUrl}
-                rel="noopener noreferrer"
-                target="_blank"
+            <aside className="min-w-0 space-y-6">
+              <div
+                className={cardClassName({
+                  className: "min-w-0 p-5 sm:p-6",
+                  variant: "featured",
+                })}
               >
-                <WhatsAppIcon className="h-5 w-5" />
-                Chat on WhatsApp
-              </a>
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-brand-lg bg-brand-whatsapp text-white shadow-brand-sm">
+                    <WhatsAppIcon aria-hidden="true" className="h-6 w-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-brand-success">
+                      Direct chat
+                    </p>
+                    <h2 className="mt-1 font-heading text-xl font-extrabold sm:text-2xl">
+                      Prefer a quick WhatsApp conversation?
+                    </h2>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-6 text-brand-muted">
+                  Open a direct chat for a general question, or use the form to
+                  prepare a more detailed inquiry first.
+                </p>
+                <a
+                  className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-brand-whatsapp px-4 text-center font-heading font-extrabold text-white shadow-soft transition duration-200 ease-out-expo hover:-translate-y-0.5 hover:brightness-95 focus-visible:outline-brand-charcoal active:translate-y-0 active:scale-[0.97] sm:px-6"
+                  href={whatsappUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <WhatsAppIcon aria-hidden="true" className="h-5 w-5" />
+                  Chat on WhatsApp
+                </a>
+              </div>
+
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-brand-muted">
+                  Other contact options
+                </p>
+                <h2 className="mt-1 font-heading text-xl font-extrabold">
+                  Phone, email, and location
+                </h2>
+                <div className="mt-3 space-y-3">
+                  {contactMethods.map((item) => {
+                    const Icon = item.icon;
+                    const content = (
+                      <div
+                        className={cardClassName({
+                          className: "min-w-0 flex gap-4 p-4 sm:p-5",
+                          variant: item.href ? "interactive" : "flat",
+                        })}
+                      >
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-brand-lg bg-brand-primary-muted">
+                          <Icon aria-hidden="true" className="h-6 w-6" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-xs font-bold uppercase tracking-wide text-brand-muted">
+                            {item.label}
+                          </p>
+                          <p
+                            className={`mt-1 font-heading font-extrabold ${
+                              item.label === "Email"
+                                ? "break-all"
+                                : "break-words"
+                            }`}
+                          >
+                            {item.value}
+                          </p>
+                        </div>
+                      </div>
+                    );
+
+                    return item.href ? (
+                      <a key={item.label} href={item.href}>
+                        {content}
+                      </a>
+                    ) : (
+                      <div key={item.label}>{content}</div>
+                    );
+                  })}
+                </div>
+              </div>
             </aside>
           </div>
         </Container>
