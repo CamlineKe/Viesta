@@ -59,6 +59,11 @@ export function OrderSummary({
     hasCheckoutErrors({ ...validationErrors, ...errors }) ||
     items.length === 0 ||
     hasUnpricedItems;
+  const requirementsMessage = hasUnpricedItems
+    ? "This order contains a product without a confirmed price. Return to the cart or contact Viesta before continuing."
+    : isDisabled
+      ? "Complete your full name, Kenyan phone number, delivery location, and policy acknowledgement to continue."
+      : "Your required checkout details are complete. WhatsApp will open with the prepared order request.";
   const paymentNeedsConfirmation = siteContent.payment.needsConfirmation;
   const shippingLabel =
     !hasSelectedLocation
@@ -295,6 +300,7 @@ export function OrderSummary({
       <WhatsAppOrderButton
         disabled={isDisabled}
         href={whatsAppUrl}
+        requirementsMessage={requirementsMessage}
         values={values}
         onValidationErrors={onValidationErrors}
       />

@@ -144,7 +144,9 @@ src/
 │   ├── content.ts
 │   └── product.ts
 └── __tests__/
+    ├── cart-page.test.tsx
     ├── cart.test.ts
+    ├── checkout-page.test.tsx
     ├── commerce-responsive.test.tsx
     ├── currency.test.ts
     ├── editorial-responsive.test.tsx
@@ -156,6 +158,7 @@ src/
     ├── responsive-foundations.test.tsx
     ├── shipping.test.ts
     ├── shop-category-filter.test.tsx
+    ├── shop-page.test.tsx
     ├── ui-primitives.test.tsx
     ├── validation.test.ts
     └── whatsapp.test.ts
@@ -245,7 +248,7 @@ Visual breakpoint rules and browser QA criteria are owned by `Viesta_Design_PRD.
 
 Any new modal, drawer, fixed action, or sticky panel should reuse these mechanisms or document why it cannot.
 
-Responsive regression coverage is split across `mobile-navigation.test.tsx`, `shop-category-filter.test.tsx`, `commerce-responsive.test.tsx`, `editorial-responsive.test.tsx`, and `responsive-foundations.test.tsx`. These tests cover interaction semantics and shared containment contracts; they do not replace the manual browser/device matrix in `Viesta_Design_PRD.md`.
+Responsive regression coverage is split across `mobile-navigation.test.tsx`, `shop-category-filter.test.tsx`, `shop-page.test.tsx`, `cart-page.test.tsx`, `checkout-page.test.tsx`, `commerce-responsive.test.tsx`, `editorial-responsive.test.tsx`, and `responsive-foundations.test.tsx`. These tests cover route hierarchy, interaction semantics, and shared containment contracts; they do not replace the manual browser/device matrix in `Viesta_Design_PRD.md`.
 
 ## Commerce Architecture
 

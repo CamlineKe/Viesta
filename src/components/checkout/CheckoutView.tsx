@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, CheckCircle2, ShoppingBag, ShoppingCart } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  ShoppingBag,
+  ShoppingCart,
+} from "lucide-react";
 
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { cardClassName } from "@/components/ui/Card";
@@ -10,7 +15,10 @@ import { siteContent } from "@/data/site";
 import { useCart } from "@/hooks/useCart";
 import { calculateGrandTotal, getShippingFee } from "@/lib/shipping";
 import { buildWhatsAppMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
-import type { CheckoutFormValues, CheckoutValidationErrors } from "@/types/checkout";
+import type {
+  CheckoutFormValues,
+  CheckoutValidationErrors,
+} from "@/types/checkout";
 
 import { CheckoutForm } from "./CheckoutForm";
 import { OrderSummary } from "./OrderSummary";
@@ -50,20 +58,25 @@ export function CheckoutView() {
       }),
     [grandTotal, items, shippingFee, subtotal, values],
   );
-  const whatsAppUrl = buildWhatsAppUrl(siteContent.contact.whatsapp, whatsAppMessage);
+  const whatsAppUrl = buildWhatsAppUrl(
+    siteContent.contact.whatsapp,
+    whatsAppMessage,
+  );
 
   if (items.length === 0) {
     return (
       <section
         className={cardClassName({
-          className: "px-6 py-16 text-center",
+          className: "min-w-0 px-6 py-14 text-center sm:py-16",
           variant: "raised",
         })}
       >
         <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-brand-xl bg-brand-primary-muted text-brand-charcoal">
           <ShoppingCart aria-hidden="true" className="h-10 w-10" />
         </div>
-        <h2 className="mt-6 font-heading text-3xl font-extrabold text-brand-charcoal">Your cart is empty</h2>
+        <h2 className="mt-6 font-heading text-3xl font-extrabold text-brand-charcoal">
+          Your cart is empty
+        </h2>
         <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-brand-muted">
           Add products to your cart before starting WhatsApp checkout.
         </p>
@@ -91,6 +104,7 @@ export function CheckoutView() {
           {progressSteps.map((step, index) => (
             <li
               key={step.label}
+              aria-current={step.status === "current" ? "step" : undefined}
               className={`flex items-center gap-3 rounded-xl px-3 py-2 ${
                 step.status === "current"
                   ? "bg-brand-primary-muted text-brand-charcoal"
@@ -105,7 +119,9 @@ export function CheckoutView() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-success text-sm font-extrabold text-white">
                     <CheckCircle2 aria-hidden="true" className="h-4 w-4" />
                   </span>
-                  <span className="font-heading text-sm font-extrabold">{step.label}</span>
+                  <span className="font-heading text-sm font-extrabold">
+                    {step.label}
+                  </span>
                 </Link>
               ) : (
                 <>
@@ -122,7 +138,9 @@ export function CheckoutView() {
                       index + 1
                     )}
                   </span>
-                  <span className="font-heading text-sm font-extrabold">{step.label}</span>
+                  <span className="font-heading text-sm font-extrabold">
+                    {step.label}
+                  </span>
                 </>
               )}
             </li>
@@ -160,7 +178,12 @@ export function CheckoutView() {
       </div>
 
       <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
-        <CheckoutForm errors={errors} values={values} onErrorsChange={setErrors} onValuesChange={setValues} />
+        <CheckoutForm
+          errors={errors}
+          values={values}
+          onErrorsChange={setErrors}
+          onValuesChange={setValues}
+        />
         <OrderSummary
           errors={errors}
           grandTotal={grandTotal}

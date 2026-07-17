@@ -28,6 +28,7 @@ describe("responsive commerce controls", () => {
       <WhatsAppOrderButton
         disabled
         href="https://wa.me/254700000000"
+        requirementsMessage="Complete the required checkout details."
         values={{
           fullName: "",
           phone: "",
@@ -51,6 +52,9 @@ describe("responsive commerce controls", () => {
     orderLink.dispatchEvent(clickEvent);
 
     expect(clickEvent.defaultPrevented).toBe(true);
+    expect(orderLink.getAttribute("aria-describedby")).toBe(
+      "whatsapp-order-requirements",
+    );
     expect(handleValidationErrors).toHaveBeenCalledWith(
       expect.objectContaining({
         fullName: expect.any(String),

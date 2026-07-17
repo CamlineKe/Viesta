@@ -40,7 +40,12 @@ export function CheckoutForm({
 
   return (
     <form className="min-w-0 space-y-6" noValidate>
-      <section className={cardClassName({ className: "p-4 sm:p-5", variant: "raised" })}>
+      <section
+        className={cardClassName({
+          className: "min-w-0 p-4 sm:p-5",
+          variant: "raised",
+        })}
+      >
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <User aria-hidden="true" className="h-5 w-5" />
@@ -65,6 +70,7 @@ export function CheckoutForm({
                 id={id}
                 name="fullName"
                 placeholder="Jane Doe"
+                required
                 type="text"
                 value={values.fullName}
                 onBlur={handleBlur}
@@ -84,6 +90,7 @@ export function CheckoutForm({
                 id={id}
                 name="phone"
                 placeholder="0712 345 678"
+                required
                 type="tel"
                 value={values.phone}
                 onBlur={handleBlur}
@@ -96,7 +103,12 @@ export function CheckoutForm({
         </div>
       </section>
 
-      <section className={cardClassName({ className: "p-4 sm:p-5", variant: "raised" })}>
+      <section
+        className={cardClassName({
+          className: "min-w-0 p-4 sm:p-5",
+          variant: "raised",
+        })}
+      >
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <MapPin aria-hidden="true" className="h-5 w-5" />
@@ -148,7 +160,12 @@ export function CheckoutForm({
         </div>
       </section>
 
-      <section className={cardClassName({ className: "p-4 sm:p-5", variant: "raised" })}>
+      <section
+        className={cardClassName({
+          className: "min-w-0 p-4 sm:p-5",
+          variant: "raised",
+        })}
+      >
         <div className="mb-5 flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-brand-lg bg-brand-primary-muted text-brand-charcoal">
             <MessageSquare aria-hidden="true" className="h-5 w-5" />
@@ -189,7 +206,7 @@ export function CheckoutForm({
 
       <section
         className={cardClassName({
-          className: "p-4 sm:p-5",
+          className: "min-w-0 p-4 sm:p-5",
           variant: "raised",
         })}
       >

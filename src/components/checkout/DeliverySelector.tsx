@@ -11,7 +11,11 @@ type DeliverySelectorProps = {
   onChange: (location: DeliveryLocation) => void;
 };
 
-export function DeliverySelector({ value, error, onChange }: DeliverySelectorProps) {
+export function DeliverySelector({
+  value,
+  error,
+  onChange,
+}: DeliverySelectorProps) {
   const selectedZone = shippingZones.find((zone) => zone.id === value);
   const descriptionId = error
     ? "deliveryLocation-error"
@@ -33,6 +37,7 @@ export function DeliverySelector({ value, error, onChange }: DeliverySelectorPro
         className={getFieldControlClassName({ invalid: Boolean(error) })}
         id="deliveryLocation"
         name="deliveryLocation"
+        required
         value={value}
         onChange={(event) => onChange(event.target.value as DeliveryLocation)}
       >
@@ -41,7 +46,11 @@ export function DeliverySelector({ value, error, onChange }: DeliverySelectorPro
         </option>
         {shippingZones.map((zone) => {
           const feeLabel =
-            zone.fee === null ? "Contact for fee" : zone.fee === 0 ? "Free" : formatKES(zone.fee);
+            zone.fee === null
+              ? "Contact for fee"
+              : zone.fee === 0
+                ? "Free"
+                : formatKES(zone.fee);
 
           return (
             <option key={zone.id} value={zone.id}>
