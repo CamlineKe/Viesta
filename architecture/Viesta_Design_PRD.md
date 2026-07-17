@@ -742,8 +742,8 @@ Protected workspace rules:
 | 2     | Shop route foundation                           | Complete                      | Confirmed for progression to Phase 3; final responsive browser acceptance remains part of Phase 6                                                                            |
 | 3     | Shop discovery refinement                       | Complete                      | Confirmed for progression to Phase 4; final responsive browser acceptance remains part of Phase 6                                                                            |
 | 4     | Cart hierarchy and state consistency            | Complete                      | Confirmed for progression to Phase 5; final responsive browser acceptance remains part of Phase 6                                                                            |
-| 5     | Checkout hierarchy and transactional clarity    | Implemented; awaiting review | Confirm compact header, progress semantics, solid form/summary surfaces, validation focus, blocked-action explanation, payment states, sticky summary, and WhatsApp integrity |
-| 6     | Cross-route regression coverage and QA handoff | Planned                       | Confirm route-level semantics, responsive containment, reduced motion, 200% zoom, targeted/full automated coverage, production build, and the manual browser matrix           |
+| 5     | Checkout hierarchy and transactional clarity    | Complete                      | Confirmed for progression to Phase 6; final responsive browser acceptance remains part of Phase 6                                                                            |
+| 6     | Cross-route regression coverage and QA handoff | Implemented; awaiting manual review | Complete keyboard-only and real-browser 200% zoom review; reconcile the existing repository-wide Prettier baseline                                                           |
 
 ### Phase 1 contract
 
@@ -789,3 +789,7 @@ Protected workspace rules:
 - Run targeted tests before the full suite, followed by type checking, linting, formatting checks, and the production build.
 - Complete the responsive browser matrix at 320px, 360–390px, 768px, 1024–1280px, and 1440px+, including increased text size, 200% zoom, reduced motion, and keyboard-only navigation.
 - Update this section after each review checkpoint. Update `Architecture.md` only if component ownership, shared responsibilities, or the documented test inventory changes.
+
+Phase 6 implementation extends the existing Shop, Cart, Checkout, commerce-control, and responsive-foundation coverage with shared heading, workspace-decoration, protected-surface, sticky-offset, shrinkable-grid, keyboard-focus, and reduced-motion contracts. Automated verification on July 17, 2026 completed with 16 targeted tests and 79 full-suite tests passing; TypeScript, ESLint, and the Next.js production build also passed. The repository-wide Prettier check remains unresolved because it reports 79 existing files across documentation, configuration, application, and test code.
+
+Headless Chromium review covered Shop at 320px, 375px with reduced motion, 768px, 1120px, and 1440px; empty Cart and Checkout at 320px and 1440px; and a 2x scale-factor Shop stress pass. No visible horizontal clipping or protected-workspace decoration regression was found. Final acceptance still requires manual keyboard-only navigation, real-browser 200% zoom and increased-text review, and filled Cart/Checkout browser-state review.

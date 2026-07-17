@@ -44,6 +44,12 @@ describe("Shop page", () => {
       name: "Find wellness products for your everyday goals.",
     });
     const catalog = container.querySelector("#product-catalog");
+    const categoryPanel = getByRole("heading", { name: "Categories" }).closest(
+      "aside",
+    );
+    const productCatalog = getByRole("region", {
+      name: "Product catalog",
+    });
 
     expect(container.querySelectorAll("h1")).toHaveLength(1);
     expect(pageHeading.closest("section")?.className).toContain(
@@ -51,6 +57,13 @@ describe("Shop page", () => {
     );
     expect(catalog?.className).toContain("bg-brand-canvas");
     expect(catalog?.className).not.toContain("section-botanical");
+    expect(catalog?.querySelector("svg pattern")).toBeNull();
+    expect(catalog?.querySelector(".blur-3xl")).toBeNull();
+    expect(productCatalog.className).toContain("min-w-0");
+    expect(productCatalog.parentElement?.className).toContain("min-w-0");
+    expect(categoryPanel?.className).toContain("bg-brand-surface-solid");
+    expect(categoryPanel?.className).toContain("lg:sticky");
+    expect(categoryPanel?.className).toContain("lg:top-24");
     expect(getByRole("status").textContent).toContain(
       `Showing ${products.length} of ${products.length} products`,
     );

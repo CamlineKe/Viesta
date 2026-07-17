@@ -188,7 +188,7 @@ export function ProductGrid({ products, categories }: ProductGridProps) {
   const activeQuery = query.trim();
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[260px_1fr] xl:grid-cols-[280px_1fr]">
+    <div className="grid min-w-0 gap-6 lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)]">
       <CategoryFilter
         categories={categories}
         productCounts={productCounts}

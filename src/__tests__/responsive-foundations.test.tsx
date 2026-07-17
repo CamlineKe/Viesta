@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
@@ -27,5 +29,18 @@ describe("responsive foundations", () => {
     expect(markup).toContain("text-3xl");
     expect(markup).toContain("sm:text-4xl");
     expect(markup).toContain("max-w-3xl");
+  });
+
+  it("provides global keyboard focus and reduced-motion fallbacks", () => {
+    const globalStyles = readFileSync(
+      join(process.cwd(), "src/app/globals.css"),
+      "utf8",
+    );
+
+    expect(globalStyles).toContain(":focus-visible");
+    expect(globalStyles).toContain("outline: 3px solid var(--color-primary)");
+    expect(globalStyles).toContain("@media (prefers-reduced-motion: reduce)");
+    expect(globalStyles).toContain("animation-duration: 0.01ms !important");
+    expect(globalStyles).toContain("transition-duration: 0.01ms !important");
   });
 });

@@ -3,7 +3,6 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import CartPage from "@/app/cart/page";
 import { CartContext } from "@/context/CartContext";
-import { formatKES } from "@/lib/currency";
 import type { CartItem } from "@/types/cart";
 
 vi.mock("next/image", () => ({
@@ -63,6 +62,10 @@ describe("Cart page", () => {
     );
     expect(workspace?.className).toContain("bg-brand-canvas");
     expect(workspace?.className).not.toContain("section-botanical");
+    expect(workspace?.querySelector("svg pattern")).toBeNull();
+    expect(
+      workspace?.querySelector(".pointer-events-none.absolute"),
+    ).toBeNull();
     expect(
       getByRole("heading", { level: 2, name: "Your cart is empty" }),
     ).not.toBeNull();
@@ -75,7 +78,7 @@ describe("Cart page", () => {
     const clearCart = vi.fn();
     const removeItem = vi.fn();
     const updateQuantity = vi.fn();
-    const { getAllByText, getByRole } = render(
+    const { getByRole, getByText } = render(
       <CartContext.Provider
         value={{
           items: [cartItem],
@@ -106,12 +109,18 @@ describe("Cart page", () => {
     expect(summary?.className).toContain("bg-brand-surface-solid");
     expect(summary?.className).toContain("min-w-0");
     expect(summary?.className).toContain("lg:sticky");
+    expect(summary?.className).toContain("lg:top-24");
     expect(
       getByRole("link", { name: "Proceed to checkout" }).getAttribute(
         "href",
       ),
     ).toBe("/checkout");
-    expect(getAllByText(formatKES(2500))).toHaveLength(3);
+    expect(
+      getByText("Subtotal").parentElement?.querySelector("dd")?.textContent,
+    ).toContain("2,500");
+    expect(
+      getByText("Estimated total").parentElement?.textContent,
+    ).toContain("2,500");
 
     fireEvent.click(getByRole("button", { name: "Clear cart" }));
     fireEvent.click(getByRole("button", { name: "Remove" }));

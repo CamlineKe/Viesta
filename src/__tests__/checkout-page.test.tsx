@@ -4,7 +4,6 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import CheckoutPage from "@/app/checkout/page";
 import { CartContext } from "@/context/CartContext";
 import { ToastProvider } from "@/context/ToastContext";
-import { formatKES } from "@/lib/currency";
 import type { CartItem } from "@/types/cart";
 
 const mockSiteContent = vi.hoisted(() => ({
@@ -96,6 +95,10 @@ describe("Checkout page", () => {
     );
     expect(workspace?.className).toContain("bg-brand-canvas");
     expect(workspace?.className).not.toContain("section-botanical");
+    expect(workspace?.querySelector("svg pattern")).toBeNull();
+    expect(
+      workspace?.querySelector(".pointer-events-none.absolute"),
+    ).toBeNull();
     expect(
       getByRole("heading", { level: 2, name: "Your cart is empty" }),
     ).not.toBeNull();
@@ -105,7 +108,7 @@ describe("Checkout page", () => {
   });
 
   it("keeps progress, forms, totals, payment, and policies on protected surfaces", () => {
-    const { getAllByText, getByRole, getByText } = renderCheckout();
+    const { getByRole, getByText } = renderCheckout();
     const currentStep = getByText("Checkout", { selector: "span" }).closest(
       "li",
     );
@@ -121,7 +124,15 @@ describe("Checkout page", () => {
     expect(customerSection?.className).toContain("min-w-0");
     expect(summary?.className).toContain("bg-brand-surface-solid");
     expect(summary?.className).toContain("lg:sticky");
-    expect(getAllByText(formatKES(2500))).toHaveLength(3);
+    expect(summary?.className).toContain("lg:top-24");
+    expect(customerSection?.parentElement?.className).toContain("min-w-0");
+    expect(
+      getByText("Subtotal").parentElement?.querySelector("dd")?.textContent,
+    ).toContain("2,500");
+    expect(
+      getByText("Grand total").parentElement?.querySelector("dd")
+        ?.textContent,
+    ).toBe("Select location");
     expect(getByText("Payment confirmation")).not.toBeNull();
     expect(
       getByRole("button", { name: "Copy" }).hasAttribute("disabled"),
